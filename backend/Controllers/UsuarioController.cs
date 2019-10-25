@@ -15,7 +15,6 @@ namespace backend.Controllers
         XepaDigitalContext _contexto = new XepaDigitalContext(); 
 
         //GET: api/Usuario
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<Usuario>>> Get(){
             var Usuarios = await _contexto.Usuario.Include("IdEnderecoNavigation").ToListAsync();

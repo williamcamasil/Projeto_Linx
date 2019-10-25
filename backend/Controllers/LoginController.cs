@@ -34,9 +34,9 @@ namespace backend.Controllers
                 u.SenhaUsuario == login.SenhaUsuario
             );
 
-            if(usuario != null){
-                usuario = login;
-            }
+            // if(usuario != null){
+            //     usuario = login;
+            // }
 
             return usuario;
         }
@@ -51,7 +51,8 @@ namespace backend.Controllers
             var claims = new[] {
                 new Claim(JwtRegisteredClaimNames.NameId, userInfo.NomeUsuario),
                 new Claim(JwtRegisteredClaimNames.Email, userInfo.EmailUsuario),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Role, userInfo.TipoUsuario)
             }; 
 
             //Configuramos nosso Token e seu tempo de vida
