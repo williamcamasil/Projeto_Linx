@@ -47,7 +47,8 @@
                         <div id="caixa_parte_imagem">
                             <img src="img/foto_legume.png" alt="Legume verde">
                             <form action="GET">
-                                <button class="botao" type="button" name="Inserir IMG"><a href="cadastros_receita.html">Inserir IMG</a><!--Inserir IMG--></button>
+                                <!-- <button class="botao" type="button" name="Inserir IMG"><a href="cadastros_receita.html">Inserir IMG</a>Inserir IMG</button> -->
+                                <a class="btn_link_click" href="cadastros_receita.html">Inserir IMG</a>
                             </form>                            
                         </div>
 
@@ -68,24 +69,28 @@
                                 </div>
 
                                 <div class="caixa_texto">
-                                    <div class="caixa_texto_sub">
+                                    <!-- <div class="caixa_texto_sub">
                                         <label for="detalhe_lbl" aria-label="detalhe_lbl"> Detalhe</label><br>
-                                        <input class="caixa_texto_componente" type="detalhe_produto" placeholder="Digite os detalhes desse produto" name="detalhe_produto" id="detalhe_produto"> 
+                                        <input class="caixa_texto_componente_campo" type="detalhe_produto" placeholder="Digite os detalhes desse produto" name="detalhe_produto" id="detalhe_produto"> 
+                                    </div> -->
+                                    <div>
+                                        <label for="organico_lbl" aria-label="organico_lbl"> Este produto é orgânico?</label><br>
+                                        <select class="caixa_texto_componente" name="organico_produto" id="organico_produto">
+                                            <option value="organico_nao">Não</option>
+                                            <option value="organico_sim">Sim</option>
+                                        </select>
                                     </div>
+
                                     <div class="caixa_texto_sub">
                                         <label for="disponibilidade_lbl" aria-label="disponibilidade_lbl"> Disponibilidade</label><br>
-                                        <select class="caixa_texto_componente" name="disponibilidade_produto" id="disponibilidade_produto">
-                                            <option value="disponibilidade_nao">Não</option>
-                                            <option value="disponibilidade_sim">Sim</option>
-                                        </select>
+                                        <input class="caixa_texto_componente" type="detalhe_produto" placeholder="1 kg" name="detalhe_produto" id="detalhe_produto">
                                     </div>
                                 </div>
 
-                                <label for="organico_lbl" aria-label="organico_lbl"> Este produto é orgânico?</label><br>
-                                <select class="caixa_texto_componente" name="organico_produto" id="organico_produto">
-                                    <option value="organico_nao">Não</option>
-                                    <option value="organico_sim">Sim</option>
-                                </select>
+                                <div class="caixa_texto_sub">
+                                    <label for="detalhe_lbl" aria-label="detalhe_lbl"> Detalhe</label><br>
+                                    <input class="caixa_texto_componente_campo" type="detalhe_produto" placeholder="Digite os detalhes desse produto" name="detalhe_produto" id="detalhe_produto"> 
+                                </div>
 
                                 <div class="caixa_texto_botoes">
                                     <button class="botao" type="button" name="Inserir IMG">Salvar</button>
