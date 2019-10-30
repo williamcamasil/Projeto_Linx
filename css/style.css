@@ -1000,6 +1000,10 @@ h2 {
     width: 95%;    
 }
 
+.padronizar_campo2 input{
+    width: 750px;
+}
+
 
 /* ---------------------------------------------------------------FIM DA PAGINA CADASTROS-----------------------------------------------  */
 
@@ -1016,6 +1020,16 @@ h2 {
     padding: 5px;
     width: 350px; 
     height: 200px;       
+}
+
+.tit_receita{
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.tit_receita span{
+    font-size: 30px;
+    text-decoration-line: underline;
 }
 
 /* ---------------------------------------------------------------FIM DA PAGINA CADASTROS RECEITAS-----------------------------------------------  */
@@ -1843,6 +1857,52 @@ h2 {
     .caixa-texto {
         width: 100%;
     }
+
+    #caixa_parte_imagem img{
+        width: 200px;
+    }
+    
+    #caixa_total{
+        flex-direction: column;
+    }
+    
+    #caixa_parte_conteudo{
+        width: 350px;
+    }
+    
+    #caixa_parte_conteudo input{
+        width: 340px;
+    }
+
+    .caixa_texto{
+        flex-direction: column;
+    }
+
+    .caixa_texto_sub{
+        width: 350px;
+    }
+
+    .caixa_texto{
+        width: 350px;
+    }
+
+    #caixa_parte_conteudo .form_caixa {
+        width: 350px;
+    }
+
+    .padronizar_campo2{
+        margin-top: 20px;
+    } 
+     
+
+    .card_{
+        flex-wrap: wrap; 
+    }
+
+    .card_branco{
+        margin-bottom: 10px;
+    }
+
     /* ------------------------------------------------------------------------LOGIN MOBILE*/
     .fundo {
         width: 100%;
@@ -1965,20 +2025,180 @@ h2 {
         margin-left: 85px;
     }
 
-    /* --------------------------------------------------------------COLABORADOR_REPOSITORIO (INICIO)*/
+    /* --------------------------------------------------------------COLABORADOR_REPOSITORIO (INICIO) / RECEITA_DETALHES*/
     
+    .colab_section{
+        width: 100%;
+    }
+
     .caixa_produtor{
-        width: 350px;    
+        width: 250px;    
+    }
+
+    .caixa_produtor img{
+        width: 150px;
     }
 
     #centralizar_pagina_produtor{
         width: 350px;
     }
 
-    CONTINUAR AQUI
+    #box_informacoes{
+        width: 330px;    
+    }
 
+    #box_informacoes p{
+        width: 330px;
+    }
+
+    .produtos_colab{
+        width: 350px;
+        height: 400px;
+        flex-direction: column;
+    }
+
+    
     /* --------------------------------------------------------------COLABORADOR_REPOSITORIO (FIM)*/
 
+    /* --------------------------------------------------------------TERMOS_DE_USO (INICIO)*/
+
+    #centralizar_pagina_termos{
+        width: 350px;
+    }
+
+    .caixa_termos{
+        /* margin: 10px; */
+        width: 300px;
+    }
+
+    .caixa_termos span{
+        /* padding: 0px; */
+    }
+
+    /* --------------------------------------------------------------TERMOS_DE_USO (FIM)*/
+
+    /* --------------------------------------------------------------DUVIDAS (INICIO)*/
+
+    #centralizar_pagina_duvida{
+        width: 350px;
+    }
+
+    .sub_tit_duvida{
+        width: 350px;
+        font-size: 25px;   
+    }
+
+    .pergunta{
+        width: 350px;  
+        align-items: center;
+    }
+
+    .letra_pagina_duvida{
+        font-size: 20px; 
+    }
+
+    .caixa_duvidas{
+        width: 350px;    
+    }
+
+    /* --------------------------------------------------------------DUVIDAS (FIM)*/
+
+    /* --------------------------------------------------------------PERFIL_COLABORADOR (INICIO)*/
+
+    .caixa_cadastro{
+        width: 350px;
+    }
+
+    .btn_link_click{
+        margin: 0px;
+    }
+
+    .linha_perfil_colab{
+        width: 350px;
+    }
+
+    #p_nome{
+        width: 357px;    
+    }
+
+    #p_razao_documento{
+        flex-direction: column;
+    }
+
+    #p_razao_documento #_1{
+        width: 340px;
+        margin: 0px;
+    }
+
+    #p_razao_documento #_2{
+        width: 340px;
+        margin: 0px;
+    }
+
+    .form_caixa{
+        width: 350px;
+    }
+
+    #p_entrega{
+        width: 350px;    
+    }
+
+    #p_entrega select{
+        width: 200px;
+    }
+
+    .padronizar_campo input{
+        width: 340px;
+    }
+
+    #p_enderco{
+        flex-direction: column;
+    }
+
+    #p_end{
+        margin: 0px;
+        width: 340px;
+    }
+
+    #p_cep_logradouro{
+        flex-direction: column;
+    }
+
+    .button_conj{
+        visibility: hidden;
+    }
+
+    #p_email_2{
+        width: 357px;
+    }
+
+    #p_sobre{
+        width: 357px;     
+    }
+    
+    #p_cep{
+        width: 200px;
+        height: 49px;
+    }
+
+    #p_logradouro{
+        width: 340px;
+    }
+
+    #p_logradouro input{
+        width: 100%;
+    }
+
+    #p_bairro{
+        width: 340px;
+    }
+
+    .caix{
+        width: 150px;
+    }
+
+    /* --------------------------------------------------------------PERFIL_COLABORADOR (FIM)*/
+    
 
     /* --------------------------------------------------------------FOOTER MOBILE*/
     .footer_position {
