@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace backend.Models
+namespace backend.Domains
 {
     public partial class XepaDigitalContext : DbContext
     {
@@ -28,7 +28,8 @@ namespace backend.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-IN4K5BB\\SQLEXPRESS; Database=XepaDigital; User Id=sa; Password=132");
+// #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=DESKTOP-LNH3DKI\\SQLEXPRESS; Database=XepaDigital; User Id=sa; Password=132");
             }
         }
 
@@ -37,7 +38,7 @@ namespace backend.Models
             modelBuilder.Entity<Colaborador>(entity =>
             {
                 entity.HasKey(e => e.IdColaborador)
-                    .HasName("PK__Colabora__3D2CA512214CFABB");
+                    .HasName("PK__Colabora__3D2CA5123C9C4E35");
 
                 entity.Property(e => e.DocumentoColab).IsUnicode(false);
 
@@ -56,7 +57,7 @@ namespace backend.Models
             modelBuilder.Entity<Endereco>(entity =>
             {
                 entity.HasKey(e => e.IdEndereco)
-                    .HasName("PK__Endereco__0B7C7F174E004759");
+                    .HasName("PK__Endereco__0B7C7F1778F50F60");
 
                 entity.Property(e => e.Bairro).IsUnicode(false);
 
@@ -76,7 +77,7 @@ namespace backend.Models
             modelBuilder.Entity<Produto>(entity =>
             {
                 entity.HasKey(e => e.IdProduto)
-                    .HasName("PK__Produto__2E883C239F6A82C4");
+                    .HasName("PK__Produto__2E883C237B774D4C");
 
                 entity.Property(e => e.ImgProduto).IsUnicode(false);
 
@@ -91,7 +92,7 @@ namespace backend.Models
             modelBuilder.Entity<Receita>(entity =>
             {
                 entity.HasKey(e => e.IdReceita)
-                    .HasName("PK__Receita__27290E9AB8FF75DA");
+                    .HasName("PK__Receita__27290E9A48A325EA");
 
                 entity.Property(e => e.ImgReceita).IsUnicode(false);
 
@@ -106,7 +107,7 @@ namespace backend.Models
             modelBuilder.Entity<RegistroProduto>(entity =>
             {
                 entity.HasKey(e => e.IdRegistro)
-                    .HasName("PK__Registro__FFA45A999CCBDE1F");
+                    .HasName("PK__Registro__FFA45A9967950BCB");
 
                 entity.HasOne(d => d.IdColaboradorNavigation)
                     .WithMany(p => p.RegistroProduto)
@@ -122,7 +123,7 @@ namespace backend.Models
             modelBuilder.Entity<ReservaProduto>(entity =>
             {
                 entity.HasKey(e => e.IdReserva)
-                    .HasName("PK__ReservaP__0E49C69DF47ED5C1");
+                    .HasName("PK__ReservaP__0E49C69D804A322E");
 
                 entity.HasOne(d => d.IdProdutoNavigation)
                     .WithMany(p => p.ReservaProduto)
@@ -138,7 +139,7 @@ namespace backend.Models
             modelBuilder.Entity<SobreProduto>(entity =>
             {
                 entity.HasKey(e => e.IdSobreProduto)
-                    .HasName("PK__SobrePro__F5A7575C8171BB15");
+                    .HasName("PK__SobrePro__F5A7575CA3334479");
 
                 entity.Property(e => e.DescricaoProduto).IsUnicode(false);
 
@@ -150,10 +151,10 @@ namespace backend.Models
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__Usuario__5B65BF97B76078EA");
+                    .HasName("PK__Usuario__5B65BF97FFBF9CD5");
 
                 entity.HasIndex(e => e.EmailUsuario)
-                    .HasName("UQ__Usuario__59FA3B655A397ECB")
+                    .HasName("UQ__Usuario__59FA3B65B6D22349")
                     .IsUnique();
 
                 entity.Property(e => e.EmailUsuario).IsUnicode(false);

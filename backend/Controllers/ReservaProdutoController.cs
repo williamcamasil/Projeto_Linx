@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using backend.Models;
+using backend.Domains;
+using backend.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,12 +12,11 @@ namespace backend.Controllers
     [ApiController]
     public class ReservaProdutoController: ControllerBase
     {
-        XepaDigitalContext _contexto = new XepaDigitalContext(); 
-
+        ReservaProdutoRepository _repositorio = new ReservaProdutoRepository(); 
         //GET: api/ReservaProduto
         [HttpGet]
         public async Task<ActionResult<List<ReservaProduto>>> Get(){
-            var ReservaProdutos = await _contexto.ReservaProduto.Include("IdProdutoNavigation").Include("IdUsuarioNavigation").ToListAsync();
+            var ReservaProdutos = await _repositorio.Listar();
 
             if(ReservaProdutos == null){
                 return NotFound();
@@ -29,7 +29,7 @@ namespace backend.Controllers
         //GET: api/ReservaProduto/2
         [HttpGet("{id}")]
         public async Task<ActionResult<ReservaProduto>> Get(int id){
-            var ReservaProduto = await _contexto.ReservaProduto.Include("IdProdutoNavigation").Include("IdUsuarioNavigation").FirstOrDefaultAsync(e => e.IdReserva == id);
+            var ReservaProduto = await _repositorio.BuscarPorID (id);
 
             if(ReservaProduto == null){
                 return NotFound();
@@ -44,10 +44,7 @@ namespace backend.Controllers
         public async Task<ActionResult<ReservaProduto>> Post(ReservaProduto ReservaProduto){
             try
             {
-                //Tratamos contra ataques de SQL Injection
-                await _contexto.AddAsync(ReservaProduto);
-                //Salvamos efetivamente o nosso objeto no BD
-                await _contexto.SaveChangesAsync();   
+                await _repositorio.Salvar (ReservaProduto);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -67,20 +64,14 @@ namespace backend.Controllers
             if(id != ReservaProduto.IdReserva){
                 return BadRequest();
             }
-
-            //Faz uma comparação do que foi mudado no Banco
-            //Comparamos os atributos que foram modificados através do EF
-            _contexto.Entry(ReservaProduto).State = EntityState.Modified;
-            //UPDATE ReservaProduto SET titulo = "nt" where id =2
-
             try
             {
-                await _contexto.SaveChangesAsync();    
+                await _repositorio.Alterar (ReservaProduto);
             }
             catch (DbUpdateConcurrencyException)
             {
                 //Verificamos se o objeto inserido realmente existe no banco
-                var ReservaProduto_valido = await _contexto.ReservaProduto.FindAsync(id);
+                var ReservaProduto_valido = await _repositorio.BuscarPorID (id);
                 if(ReservaProduto_valido == null){
                     return NotFound();
                 }else{
@@ -95,15 +86,10 @@ namespace backend.Controllers
         //FAZENDO DELETE NO BANCO
         [HttpDelete("{id}")]
         public async Task<ActionResult<ReservaProduto>> Delete(int id){
-            var ReservaProduto = await _contexto.ReservaProduto.FindAsync(id);
+            var ReservaProduto = await _repositorio.BuscarPorID (id);
             if(ReservaProduto == null){
                 return NotFound();
             }
-            
-            //Selecionando o objeto a ser removido
-            _contexto.ReservaProduto.Remove(ReservaProduto);
-            //De fato deleta o arquivo
-            await _contexto.SaveChangesAsync();
             return ReservaProduto;
         }
 

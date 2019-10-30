@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using backend.Models;
+using backend.Domains;
+using backend.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,17 +12,15 @@ namespace backend.Controllers
     [ApiController]
     public class ReceitaController: ControllerBase
     {
-        XepaDigitalContext _contexto = new XepaDigitalContext(); 
-
+        ReceitaRepository _repositorio = new ReceitaRepository();
         //GET: api/Receita
         [HttpGet]
         public async Task<ActionResult<List<Receita>>> Get(){
-            var Receitas = await _contexto.Receita.ToListAsync();
+            var Receitas = await _repositorio.Listar();
 
             if(Receitas == null){
                 return NotFound();
             }
-
             return Receitas;
         }
 
@@ -29,7 +28,7 @@ namespace backend.Controllers
         //GET: api/Receita/2
         [HttpGet("{id}")]
         public async Task<ActionResult<Receita>> Get(int id){
-            var Receita = await _contexto.Receita.FindAsync(id);
+            var Receita = await _repositorio.BuscarPorID (id);
 
             if(Receita == null){
                 return NotFound();
@@ -44,10 +43,7 @@ namespace backend.Controllers
         public async Task<ActionResult<Receita>> Post(Receita Receita){
             try
             {
-                //Tratamos contra ataques de SQL Injection
-                await _contexto.AddAsync(Receita);
-                //Salvamos efetivamente o nosso objeto no BD
-                await _contexto.SaveChangesAsync();   
+                await _repositorio.Salvar (Receita);   
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -67,20 +63,14 @@ namespace backend.Controllers
             if(id != Receita.IdReceita){
                 return BadRequest();
             }
-
-            //Faz uma comparação do que foi mudado no Banco
-            //Comparamos os atributos que foram modificados através do EF
-            _contexto.Entry(Receita).State = EntityState.Modified;
-            //UPDATE Receita SET titulo = "nt" where id =2
-
             try
             {
-                await _contexto.SaveChangesAsync();    
+                   await _repositorio.Alterar (Receita);
             }
             catch (DbUpdateConcurrencyException)
             {
                 //Verificamos se o objeto inserido realmente existe no banco
-                var Receita_valido = await _contexto.Receita.FindAsync(id);
+                var Receita_valido = await _repositorio.BuscarPorID (id);
                 if(Receita_valido == null){
                     return NotFound();
                 }else{
@@ -95,15 +85,10 @@ namespace backend.Controllers
         //FAZENDO DELETE NO BANCO
         [HttpDelete("{id}")]
         public async Task<ActionResult<Receita>> Delete(int id){
-            var Receita = await _contexto.Receita.FindAsync(id);
+            var Receita = await _repositorio.BuscarPorID (id);
             if(Receita == null){
                 return NotFound();
             }
-            
-            //Selecionando o objeto a ser removido
-            _contexto.Receita.Remove(Receita);
-            //De fato deleta o arquivo
-            await _contexto.SaveChangesAsync();
             return Receita;
         }
 
