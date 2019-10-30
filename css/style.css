@@ -293,6 +293,20 @@ h3 {
     width: 300px;
 }
 
+.btn_link_click{
+    color: var(--branco);
+    background-color: var(--roxo);
+    border-radius: 10px;
+    font-size: 18px;
+    text-decoration-line: none;
+    padding: 10px;
+}
+
+
+#caixa_parte_imagem form{
+    margin-top: 10px;    
+}
+
 /* -------------------------------------------------------FIM DA PAGINA COLABORADORES----------------------------------------------------------------  */
 
 /* -------------------------------------------------------INICIO DA PAGINA RECEITAS-----------------------------------------------------------------  */
@@ -388,10 +402,6 @@ h3 {
 .botao_mais{
     text-align: center;
     height: 50px;
-}
-
-.cards .button_conj{
-
 }
 
 .img {
@@ -551,6 +561,7 @@ h2 {
     /* background: red; */
     margin-top: 2 0px;
     display: flex;
+    padding: 20px 0px 10px 0px;
     
 }
 
@@ -848,7 +859,17 @@ h2 {
     border: 1px solid #707070;
     border-radius: 4px;
     padding: 5px;
-    width: 350px;        
+    width: 350px; 
+          
+}
+
+.caixa_texto_componente_campo{
+    font-size: 20px;
+    border: 1px solid #707070;
+    border-radius: 4px;
+    padding: 5px;
+    width: 750px; 
+    height: 140px;
 }
 
 .caixa_texto_botoes{
@@ -1287,7 +1308,15 @@ h2 {
     height: 40px;
 }
 
+#box_colab_produtor{
+    text-align: center;
+}
 
+
+#box_colab_produtor .botao{
+    width: 150px;
+    margin: 20px;
+}
 /*-------------------------------------------------------FIM DA PAGINA COLABORADOR_RESERVA---------------------------------------------------------------------------------*/
 
 
@@ -1554,7 +1583,7 @@ h2 {
     }
     .subtext_home1 {
         padding: 25px 0px 25px 30px;
-        /* width: 300px; */
+        width: 400px;
     }
     .subtext_home2 {
         padding: 25px 30px 25px 0px;
@@ -1868,6 +1897,11 @@ h2 {
     .banner_home {
         background-size: cover;
     }
+
+    .banner_home img{
+        width: 70vw;    
+    }
+
     .loganslogan_home {
         margin-top: 100px;
     }
@@ -1921,6 +1955,31 @@ h2 {
         margin: auto;
         text-align: center;
     }
+    
+    .card_size p{
+        font-size: 14px;
+    }
+
+    .btn_link_click{
+        margin-top: 10px;
+        margin-left: 85px;
+    }
+
+    /* --------------------------------------------------------------COLABORADOR_REPOSITORIO (INICIO)*/
+    
+    .caixa_produtor{
+        width: 350px;    
+    }
+
+    #centralizar_pagina_produtor{
+        width: 350px;
+    }
+
+    CONTINUAR AQUI
+
+    /* --------------------------------------------------------------COLABORADOR_REPOSITORIO (FIM)*/
+
+
     /* --------------------------------------------------------------FOOTER MOBILE*/
     .footer_position {
         width: auto;
