@@ -10,10 +10,10 @@ namespace backend.Controllers {
     [Route ("api/[Controller]")]
     [Produces ("Application/json")] // O que é isso mesmo??? força retorno do controle ser em jason
     [ApiController]
-    public class FiltroController : ControllerBase {
+    public class FiltroProdutoController : ControllerBase {
         XepaDigitalContext _context = new XepaDigitalContext ();
         [HttpGet]
-        public async Task<ActionResult<List<Produto>>> GetProdutos (FiltroViewModel search) {
+        public async Task<ActionResult<List<Produto>>> GetProdutos (FiltroProdutoViewModel search) {
             // if (search == null) {
             //     return BadRequest (
             //         new {

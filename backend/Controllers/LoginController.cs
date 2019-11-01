@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using backend.ViewModels;
 
 namespace backend.Controllers
 {
@@ -28,7 +29,7 @@ namespace backend.Controllers
         }
 
         //Chamamos nosso método para validar o usuário na aplicação
-        private Usuario ValidarUsuario(Usuario login){
+        private Usuario ValidarUsuario(LoginViewModel login){
             var usuario = _context.Usuario.FirstOrDefault(
                 u => u.EmailUsuario == login.EmailUsuario &&
                 u.SenhaUsuario == login.SenhaUsuario
@@ -70,7 +71,7 @@ namespace backend.Controllers
         //Usamos essa anotação para ignorar a autenticação nesse método
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login([FromBody]Usuario login){
+        public IActionResult Login([FromBody]LoginViewModel login){
             IActionResult response = Unauthorized();
             var user = ValidarUsuario(login);
 
