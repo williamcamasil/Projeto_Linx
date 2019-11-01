@@ -22,14 +22,33 @@
         </nav>
         <nav id="menu_inferior">
             <div class="container header_position">
-                <a href="index.html" title="Página inicial">
+                <!-- <a href="index.html" title="Página inicial">
                     <img src="img/logo_xepa.svg"
                         alt="Logo do Xepa Gourmet. Circulo lilás com uma berijela com chapéu de chefe e uma cenoura."></a>
                 <ul>
                     <li><a href="index.html" title="Página Inicial">HOME</a></li>
                     <li><a href="colaboradores.html" title="Página Colaboradores">COLABORADORES</a></li>
                     <li><a href="receitas.html" title="Página Receitas">RECEITAS</a></li>
-                </ul>
+                </ul> -->
+
+                <div id="menu_cabecalho">  <!-- Nova div -->   
+                    <div>
+                        <a href="index.html" title="Página inicial">
+                            <img src="img/logo_xepa.svg"
+                                alt="Logo do Xepa Gourmet. Circulo lilás com uma berijela com chapéu de chefe e uma cenoura."></a>
+                    </div> 
+
+                    
+                    <div class="nav">
+                        <label id="lbl_menu" for="toggle">&#9776;</label>
+                        <input type="checkbox" id="toggle"/>
+                        <div class="menu_home">
+                            <a href="index.html" title="Página Inicial">HOME</a>
+                            <a href="colaboradores.html" title="Página Colaboradores">COLABORADORES</a>
+                            <a href="receitas.html" title="Página Receitas" class="ativo">RECEITAS</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
         </div>
