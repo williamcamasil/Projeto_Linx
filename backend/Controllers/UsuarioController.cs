@@ -10,6 +10,7 @@ namespace backend.Controllers {
     //Definimos nossa rota do controller e dizemos que é um controller de API
     [Route ("api/[Controller]")]
     [ApiController]
+    [Authorize (Roles = "Administrador")]
     public class UsuarioController : ControllerBase {
         UsuarioRepository _repositorio = new UsuarioRepository ();
         //GET: api/Usuario
