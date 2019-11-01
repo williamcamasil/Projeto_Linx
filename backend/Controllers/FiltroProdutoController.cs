@@ -14,22 +14,20 @@ namespace backend.Controllers {
         XepaDigitalContext _context = new XepaDigitalContext ();
         [HttpGet]
         public async Task<ActionResult<List<Produto>>> GetProdutos (FiltroProdutoViewModel search) {
-            // if (search == null) {
-            //     return BadRequest (
-            //         new {
-            //             mensagem = "Não foi especificado um produto valido",
-            //                 Erro = true
-            //         }
-            //     );
-            // }
+            if (search.NomeProduto == "") {
+                return BadRequest (
+                    new {
+                        mensagem = "Não foi especificado um produto valido"
+                    }
+                );
+            }
             // TRATAMENTO DE ERRO ESTÁ CORRETO É NECESSÁRIO NO CONTEXTO ATUAL???
             var prod = await _context.Produto.Include ("IdSobreProdutoNavigation").Where (p =>
                 p.NomeProduto.StartsWith (search.NomeProduto)).ToListAsync ();
             if (prod.Count == 0) {
                 return NotFound (
                     new {
-                        mensagem = "Produto não encontrado",
-                            Erro = true
+                        mensagem = "Produto não encontrado"
                     }
 
                 );
