@@ -1447,6 +1447,16 @@ h2 {
     .sp_border {
         display: none;
     }
+
+    .btn_link_click{
+        margin-left: 18vw;
+           
+    }
+
+    .card_style{
+        margin-bottom: 5vw; 
+    }
+
     /* --------------------------------------------------------------------RECEITAS TABLET*/
     .caixa_central {
         width: auto;
@@ -1599,9 +1609,11 @@ h2 {
     .login, .registrar-se {
         width: 50%;
         justify-items: center;
+        height: 90%;
     }
     .registrar-se {
         border-left: 1px solid #707070;
+        
     }
     .botao {
         width: 100%;
@@ -1684,6 +1696,153 @@ h2 {
         font-size: 20px;
         padding: 0px 30px;
     }
+
+    /* -----------------------INICIO DUVIDAS------------------------------ */
+
+    .caixa_duvidas{
+        width: 700px;
+    
+    }
+
+    #centralizar_pagina_duvida{
+        width: 720px;
+    }
+    
+    .pergunta{
+        width: 700px;
+    }
+
+    /* -----------------------FIM DUVIDAS------------------------------ */
+
+    /* -------------------INICIO TERMOS DE USO------------------------- */
+
+    #centralizar_pagina_termos{
+        width: 700px;   
+    }
+
+    .caixa_termos{
+        width: 660px;
+    }
+
+    /* -------------------FIM TERMOS DE USO------------------------- */
+
+    /* -------------------INICIO COLABORADOR_PRODUTOS------------------------- */
+
+    #centralizar_pagina_produtor{
+        width: 700px;   
+    }
+
+    #box_informacoes p {
+        width: 700px; 
+    }
+
+    .caixa_produtor{
+        width: 700px;
+        padding: 20px 0px;
+    }
+
+    .produtos_colab{
+        width: 700px; 
+        height: 120px; 
+         
+    }
+
+    .produtos_colab p {
+        font-size: 15px;
+        width: 400px;
+        
+    }
+
+    #box_informacoes{
+        width: 700px;
+    }
+
+    .caixa_cadastro{
+        width: 700px;
+    }
+
+    .caixa-texto{
+        margin: 0px;
+        font-size: 13px;
+    }
+
+    #p_bairro{
+        width: 280px;
+    }
+
+    #p_bairro .caixa-texto{
+        width: 100%;
+    }
+
+    #p_cidade{
+        margin-left: 30px;   
+    }
+
+    #p_cidade .caixa-texto {
+        width: 80%;
+    }
+
+    #p_estado{
+        margin-right: 30px;    
+    }
+
+    #p_estado .caixa-texto{
+        width: 100%;    
+    }
+
+    /* #p_cidade .caixa-texto {
+        width: 150px;
+        margin-left: 30px;
+    }
+
+    #p_estado .caixa-texto {
+        width: 80px;
+        margin-left: 30px;
+    } */
+
+    /* -------------------FIM COLABORADOR_PRODUTOS------------------------- */
+
+    /* -------------------INICIO CADASTRO_PRODUTOS------------------------- */
+    #caixa_parte_imagem img{
+        width: 150px;
+    }
+
+    .form_caixa{
+        width: 450px;
+        margin: 0px;
+    }
+
+    PAREI AQUI
+
+    .padronizar_campo2{
+        width: 400px;
+    }
+
+    .padronizar_campo2 .caixa_texto_componente{
+        width: 400px;
+    }
+
+    .caixa_texto_componente{
+    
+    }
+
+    .caixa_texto{
+
+    }
+
+    #caixa_parte_imagem{
+        margin-right: 30px;
+    }
+
+    /* .caixa_texto_botoes{
+        width: 500px;
+        
+    }
+
+    .caixa_texto_sub{
+        width: 700px;
+    } */
+
 }
 
 /*SMARTPHONE 360px to 767px*/
