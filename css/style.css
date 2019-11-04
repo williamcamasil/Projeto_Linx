@@ -117,9 +117,9 @@ html {
     line-height: 70px;
 }
 
-span {
+/* span {
     color: #54D17A;
-}
+} */
 
 #lbl_menu {
     margin: 0 40px 0 0;
@@ -512,10 +512,11 @@ h3 {
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.292), rgba(0, 0, 0, 0.292)), url(../img/foto_fundo.svg);
     background-position: center top;
     background-repeat: no-repeat;
-    background-size: cover;
+    /* background-size: cover; */
     height: 800px;
     width: 100%;
     padding: auto;
+    /* z-index: -10 !important; */
 }
 
 .fundo img {
@@ -528,6 +529,7 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* z-index: -1; */
 }
 
 .login form {
@@ -1398,6 +1400,8 @@ h2 {
 #menu_cabecalho{
     display: flex;
     flex-direction: row;
+    z-index: 1000;
+    
 }
 /*-------------------------------------------------------INICIO DA PAGINA RECEITA_DETALHES---------------------------------------------------------------------------------*/
 
@@ -1421,7 +1425,9 @@ h2 {
         margin-left: 20px; 
         margin-right: 0px;
     }
-
+    #menu_cabecalho {
+        display: none;
+    }
     /* --------------------------------------------------------------------HEADER TABLET*/
     #menu_inferior .header_position {
         width: 700px;
@@ -1430,6 +1436,7 @@ h2 {
         margin: 0px 0px 0px 15px;
         font-size: 16px;
     }
+    
     /* --------------------------------------------------------------------COLABORADORES TABLET*/
     .card_colab {
         display: inline-flex;
@@ -1690,6 +1697,9 @@ h2 {
             margin-right: 100px;
             
         }
+        .header_position{
+            justify-content: center;
+        }
         
         .menu_home {
             text-align: center;
@@ -1717,6 +1727,9 @@ h2 {
         .nav{
             text-align: center;
             
+        }
+        #menu_web, #menu_web img{
+            display: none;
         }
 
         
@@ -1747,7 +1760,7 @@ h2 {
     }
     #menu_inferior .header_position {
         width: 350px;
-        display: inline-flex;
+        /* display: inline-flex; */
         justify-content: center;
         align-items: center;
     }
@@ -2022,12 +2035,14 @@ h2 {
     .fundo {
         width: 100%;
         height: auto;
+        /* z-index: -10 !important;  */
     }
     .card-login {
         width: 90%;
         margin: 20px;
         flex-direction: column;
         height: auto;
+        /* z-index: -1; */
     }
     .login, .registrar-se {
         width: 90%;
@@ -2333,5 +2348,8 @@ h2 {
 @media(min-width: 1200px){
     .registrar-se {
         border-left: 1px solid #707070;
+    }
+    #menu_cabecalho {
+        display: none;
     }
 }
