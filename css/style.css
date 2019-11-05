@@ -117,9 +117,9 @@ html {
     line-height: 70px;
 }
 
-span {
+/* span {
     color: #54D17A;
-}
+} */
 
 #lbl_menu {
     margin: 0 40px 0 0;
@@ -512,10 +512,11 @@ h3 {
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.292), rgba(0, 0, 0, 0.292)), url(../img/foto_fundo.svg);
     background-position: center top;
     background-repeat: no-repeat;
-    background-size: cover;
+    /* background-size: cover; */
     height: 800px;
     width: 100%;
     padding: auto;
+    /* z-index: -10 !important; */
 }
 
 .fundo img {
@@ -528,6 +529,7 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* z-index: -1; */
 }
 
 .login form {
@@ -1062,6 +1064,23 @@ h2 {
     width: 95%;    
 }
 
+#p_bairro_perfil{
+    margin-right: 30px;
+    width: 300px;
+}
+
+#p_bairro_perfil .caixa-texto{
+    width: 100%;
+}
+
+#p_cidade_perfil{
+    margin-right: 30px;
+}
+
+#p_estado_perfil{
+    margin-right: 30px;
+}
+
 .padronizar_campo2 input{
     width: 750px;
 }
@@ -1398,6 +1417,8 @@ h2 {
 #menu_cabecalho{
     display: flex;
     flex-direction: row;
+    z-index: 1000;
+    
 }
 /*-------------------------------------------------------INICIO DA PAGINA RECEITA_DETALHES---------------------------------------------------------------------------------*/
 
@@ -1421,7 +1442,9 @@ h2 {
         margin-left: 20px; 
         margin-right: 0px;
     }
-
+    #menu_cabecalho {
+        display: none;
+    }
     /* --------------------------------------------------------------------HEADER TABLET*/
     #menu_inferior .header_position {
         width: 700px;
@@ -1430,6 +1453,7 @@ h2 {
         margin: 0px 0px 0px 15px;
         font-size: 16px;
     }
+    
     /* --------------------------------------------------------------------COLABORADORES TABLET*/
     .card_colab {
         display: inline-flex;
@@ -1440,6 +1464,16 @@ h2 {
     .sp_border {
         display: none;
     }
+
+    .btn_link_click{
+        margin-left: 18vw;
+           
+    }
+
+    .card_style{
+        margin-bottom: 5vw; 
+    }
+
     /* --------------------------------------------------------------------RECEITAS TABLET*/
     .caixa_central {
         width: auto;
@@ -1592,9 +1626,11 @@ h2 {
     .login, .registrar-se {
         width: 50%;
         justify-items: center;
+        height: 90%;
     }
     .registrar-se {
         border-left: 1px solid #707070;
+        
     }
     .botao {
         width: 100%;
@@ -1677,6 +1713,210 @@ h2 {
         font-size: 20px;
         padding: 0px 30px;
     }
+
+    /* -----------------------INICIO DUVIDAS------------------------------ */
+
+    .caixa_duvidas{
+        width: 700px;
+    
+    }
+
+    #centralizar_pagina_duvida{
+        width: 720px;
+    }
+    
+    .pergunta{
+        width: 700px;
+    }
+
+    /* -----------------------FIM DUVIDAS------------------------------ */
+
+    /* -------------------INICIO TERMOS DE USO------------------------- */
+
+    #centralizar_pagina_termos{
+        width: 700px;   
+    }
+
+    .caixa_termos{
+        width: 660px;
+    }
+
+    /* -------------------FIM TERMOS DE USO------------------------- */
+
+    /* -------------------INICIO COLABORADOR_PRODUTOS------------------------- */
+
+    #centralizar_pagina_produtor{
+        width: 700px;   
+    }
+
+    #box_informacoes p {
+        width: 700px; 
+    }
+
+    .caixa_produtor{
+        width: 700px;
+        padding: 20px 0px;
+    }
+
+    .produtos_colab{
+        width: 700px; 
+        height: 120px; 
+         
+    }
+
+    .produtos_colab p {
+        font-size: 15px;
+        width: 400px;
+        
+    }
+
+    #box_informacoes{
+        width: 700px;
+    }
+
+    .caixa_cadastro{
+        width: 700px;
+    }
+
+    .caixa-texto{
+        margin: 0px;
+        font-size: 13px;
+    }
+
+    #p_bairro{
+        width: 280px;
+    }
+
+    #p_bairro .caixa-texto{
+        width: 100%;
+    }
+
+    #p_cidade{
+        margin-left: 30px;   
+    }
+
+    #p_cidade .caixa-texto {
+        width: 80%;
+    }
+
+    #p_estado{
+        margin-right: 30px;    
+    }
+
+    #p_estado .caixa-texto{
+        width: 100%;    
+    }
+
+    /* #p_cidade .caixa-texto {
+        width: 150px;
+        margin-left: 30px;
+    }
+
+    #p_estado .caixa-texto {
+        width: 80px;
+        margin-left: 30px;
+    } */
+
+    /* -------------------FIM COLABORADOR_PRODUTOS------------------------- */
+
+    /* -------------------INICIO CADASTRO_PRODUTOS------------------------- */
+    #caixa_parte_imagem img{
+        width: 150px;
+    }
+
+    /* .form_caixa{
+        width: 450px;
+        margin: 0px;
+    } */
+
+    .padronizar_campo2{
+        width: 400px;
+    }
+
+    .padronizar_campo2 .caixa_texto_componente{
+        width: 400px;
+    }
+
+    /* .caixa_texto_componente{
+    
+    } */
+
+    .caixa_texto_sub{
+        width: 170px;
+    }
+
+    .caixa_texto_sub .caixa_texto_componente{
+        width: 170px;
+    }
+
+    .caixa_texto_componente_campo{
+        width: 400px;
+    }
+
+    .caixa_texto div .caixa_texto_componente{
+        width: 170px;
+    }
+
+    .caixa_texto{
+        width: 400px;
+    }
+
+    #caixa_parte_imagem{
+        margin: 0px 40px;
+    }
+
+    .caixa_texto_componente_bt{
+        width: 170px;
+    }
+
+    
+    /* ------------------------------PERFIL DO USUARIO */
+    
+    #p_cidade_perfil .caixa-texto{
+        width: 100%;
+    }
+
+    #p_estado_perfil .caixa-texto{
+        width: 100%;
+    }
+    
+    #p_cidade_perfil{
+        margin-right: 30px;
+    }
+    
+    #p_estado_perfil{
+        margin-right: 30px;
+        width: 70px;
+    }
+
+    /* -- */
+
+    #p_cidade .caixa-texto{
+        width: 100%;
+    }
+
+    #p_estado .caixa-texto{
+        width: 100%;
+    }
+    
+    #p_cidade{
+        margin-right: 30px;
+    }
+    
+    #p_estado{
+        margin-right: 30px;
+        width: 70px;
+    }
+
+    /* .caixa_texto_botoes{
+        width: 500px;
+        
+    }
+
+    .caixa_texto_sub{
+        width: 700px;
+    } */
+
 }
 
 /*SMARTPHONE 360px to 767px*/
@@ -1689,6 +1929,9 @@ h2 {
             cursor: pointer;
             margin-right: 100px;
             
+        }
+        .header_position{
+            justify-content: center;
         }
         
         .menu_home {
@@ -1717,6 +1960,9 @@ h2 {
         .nav{
             text-align: center;
             
+        }
+        #menu_web, #menu_web img{
+            display: none;
         }
 
         
@@ -1747,7 +1993,7 @@ h2 {
     }
     #menu_inferior .header_position {
         width: 350px;
-        display: inline-flex;
+        /* display: inline-flex; */
         justify-content: center;
         align-items: center;
     }
@@ -2022,12 +2268,14 @@ h2 {
     .fundo {
         width: 100%;
         height: auto;
+        /* z-index: -10 !important;  */
     }
     .card-login {
         width: 90%;
         margin: 20px;
         flex-direction: column;
         height: auto;
+        /* z-index: -1; */
     }
     .login, .registrar-se {
         width: 90%;
@@ -2290,6 +2538,7 @@ h2 {
     #p_cep{
         width: 200px;
         height: 49px;
+        
     }
 
     #p_logradouro{
@@ -2333,5 +2582,8 @@ h2 {
 @media(min-width: 1200px){
     .registrar-se {
         border-left: 1px solid #707070;
+    }
+    #menu_cabecalho {
+        display: none;
     }
 }
