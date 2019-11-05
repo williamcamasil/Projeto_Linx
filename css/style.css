@@ -1064,6 +1064,23 @@ h2 {
     width: 95%;    
 }
 
+#p_bairro_perfil{
+    margin-right: 30px;
+    width: 300px;
+}
+
+#p_bairro_perfil .caixa-texto{
+    width: 100%;
+}
+
+#p_cidade_perfil{
+    margin-right: 30px;
+}
+
+#p_estado_perfil{
+    margin-right: 30px;
+}
+
 .padronizar_campo2 input{
     width: 750px;
 }
@@ -1807,12 +1824,10 @@ h2 {
         width: 150px;
     }
 
-    .form_caixa{
+    /* .form_caixa{
         width: 450px;
         margin: 0px;
-    }
-
-    PAREI AQUI
+    } */
 
     .padronizar_campo2{
         width: 400px;
@@ -1822,16 +1837,75 @@ h2 {
         width: 400px;
     }
 
-    .caixa_texto_componente{
+    /* .caixa_texto_componente{
     
+    } */
+
+    .caixa_texto_sub{
+        width: 170px;
+    }
+
+    .caixa_texto_sub .caixa_texto_componente{
+        width: 170px;
+    }
+
+    .caixa_texto_componente_campo{
+        width: 400px;
+    }
+
+    .caixa_texto div .caixa_texto_componente{
+        width: 170px;
     }
 
     .caixa_texto{
-
+        width: 400px;
     }
 
     #caixa_parte_imagem{
+        margin: 0px 40px;
+    }
+
+    .caixa_texto_componente_bt{
+        width: 170px;
+    }
+
+    
+    /* ------------------------------PERFIL DO USUARIO */
+    
+    #p_cidade_perfil .caixa-texto{
+        width: 100%;
+    }
+
+    #p_estado_perfil .caixa-texto{
+        width: 100%;
+    }
+    
+    #p_cidade_perfil{
         margin-right: 30px;
+    }
+    
+    #p_estado_perfil{
+        margin-right: 30px;
+        width: 70px;
+    }
+
+    /* -- */
+
+    #p_cidade .caixa-texto{
+        width: 100%;
+    }
+
+    #p_estado .caixa-texto{
+        width: 100%;
+    }
+    
+    #p_cidade{
+        margin-right: 30px;
+    }
+    
+    #p_estado{
+        margin-right: 30px;
+        width: 70px;
     }
 
     /* .caixa_texto_botoes{
@@ -2464,6 +2538,7 @@ h2 {
     #p_cep{
         width: 200px;
         height: 49px;
+        
     }
 
     #p_logradouro{
