@@ -18,7 +18,7 @@ namespace backend.Domains
         [Required]
         [StringLength(255)]
         public string NomeProduto { get; set; }
-        [Required]
+        // [Required]
         [StringLength(255)]
         public string ImgProduto { get; set; }
         public int? IdSobreProduto { get; set; }

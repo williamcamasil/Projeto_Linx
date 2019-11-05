@@ -8,7 +8,7 @@ namespace backend.Interfaces {
 
         Task<Endereco> BuscarPorID (int id);
 
-        Task<Endereco> Salvar (Endereco Endereco);
+        Task<Endereco> Salvar (Endereco endereco);
 
         Task<Endereco> Alterar (Endereco Endereco);
 

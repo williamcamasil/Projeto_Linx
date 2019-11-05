@@ -13,6 +13,7 @@ namespace backend.Controllers
     public class ReceitaController: ControllerBase
     {
         ReceitaRepository _repositorio = new ReceitaRepository();
+        UploadRepository _UploadImg = new UploadRepository();
         //GET: api/Receita
         [HttpGet]
         public async Task<ActionResult<List<Receita>>> Get(){
@@ -40,17 +41,23 @@ namespace backend.Controllers
         //FAZENDO ENVIO PARA O BANCO
         //POST api/Receita
         [HttpPost]
-        public async Task<ActionResult<Receita>> Post(Receita Receita){
+        public async Task<ActionResult<Receita>> Post([FromForm] Receita Receita){
             try
             {
+                var imagem = Request.Form.Files[0];
+
+                Receita.ImgReceita = _UploadImg.Upload (imagem, "Receitas");
+                Receita.NomeReceita = Request.Form["NomeReceita"].ToString();
+                Receita.DescricaoIngrediente = Request.Form["DescricaoIngrediente"].ToString();
+                Receita.DescricaoPreparo = Request.Form["DescricaoPreparo"].ToString();
+                Receita.IdUsuario = int.Parse(Request.Form["IdUsuario"]);
+
                 await _repositorio.Salvar (Receita);   
             }
             catch (DbUpdateConcurrencyException)
             {
                 throw;
-
             }
-
             return Receita;
         }
 
