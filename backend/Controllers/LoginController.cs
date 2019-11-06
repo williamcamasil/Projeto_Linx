@@ -13,6 +13,7 @@ using backend.ViewModels;
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
+    [Produces ("Application/json")]
     [ApiController]
     public class LoginController: ControllerBase
     {
