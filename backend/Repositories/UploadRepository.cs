@@ -12,7 +12,7 @@ namespace backend.Repositories {
     public class UploadRepository {
         public string Upload (IFormFile imagem, string urlFolder) {
 
-            var incremento = DateTime.Now.Day.ToString () + DateTime.Now.Month.ToString () + DateTime.Now.Year.ToString () + "_" + DateTime.Now.ToLongTimeString ().Replace (":", "") + "_";
+            var incremento = DateTime.Now.ToString ("yyyyMMdd") + "_" + DateTime.Now.ToLongTimeString ().Replace (":", "") + "_";
             var folderName = Path.Combine ("Resources", "Images", urlFolder);
             var pathToSave = Path.Combine (Directory.GetCurrentDirectory (), folderName);
 
