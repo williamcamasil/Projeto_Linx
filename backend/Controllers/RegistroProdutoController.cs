@@ -23,7 +23,7 @@ namespace backend.Controllers {
                     }
                 );
             }
-
+            
             return RegistroProdutos;
         }
 
