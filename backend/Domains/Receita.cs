@@ -12,7 +12,7 @@ namespace backend.Domains
         [Required]
         [StringLength(255)]
         public string NomeReceita { get; set; }
-        [Required]
+        // [Required]
         [StringLength(255)]
         public string ImgReceita { get; set; }
         [Required]

@@ -5,7 +5,7 @@ using backend.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Repositories {
-    public class ColaboradorRepositoy : IColaborador {
+    public class ColaboradorRepository : IColaborador {
         public async Task<Colaborador> Alterar (Colaborador Colaborador) {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()) {
                 //Faz uma comparação do que foi mudado no Banco

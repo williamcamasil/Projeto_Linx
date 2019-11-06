@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Domains;
 using backend.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,8 +10,9 @@ namespace backend.Controllers {
     //Definimos nossa rota do controller e dizemos que é um controller de API
     [Route ("api/[Controller]")]
     [ApiController]
+    [Authorize (Roles = "Administrador")]    
     public class ColaboradorController : ControllerBase {
-        ColaboradorRepositoy _repositorio = new ColaboradorRepositoy ();
+        ColaboradorRepository _repositorio = new ColaboradorRepository ();
         //GET: api/Colaborador
         [HttpGet]
         public async Task<ActionResult<List<Colaborador>>> Get () {

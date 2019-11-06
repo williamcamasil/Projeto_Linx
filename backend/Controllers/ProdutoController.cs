@@ -11,10 +11,11 @@ namespace backend.Controllers {
     [ApiController]
     public class ProdutoController : ControllerBase {
         ProdutoRepository _repositorio = new ProdutoRepository ();
+        UploadRepository _UploadImg = new UploadRepository ();
         //GET: api/Produto
         [HttpGet]
         public async Task<ActionResult<List<Produto>>> Get () {
-            var Produtos = await _repositorio.Listar();
+            var Produtos = await _repositorio.Listar ();
             if (Produtos == null) {
                 return NotFound ();
             }
@@ -35,8 +36,13 @@ namespace backend.Controllers {
         //FAZENDO ENVIO PARA O BANCO
         //POST api/Produto
         [HttpPost]
-        public async Task<ActionResult<Produto>> Post (Produto Produto) {
+        public async Task<ActionResult<Produto>> Post ([FromForm] Produto Produto) {
             try {
+                var imagem = Request.Form.Files[0];
+
+                Produto.ImgProduto = _UploadImg.Upload (imagem, "Produtos");
+                Produto.NomeProduto = Request.Form["NomeProduto"].ToString();
+                Produto.IdSobreProduto = int.Parse(Request.Form["IdSobreProduto"]);
                 await _repositorio.Salvar (Produto);
             } catch (DbUpdateConcurrencyException) {
                 throw;
@@ -46,13 +52,18 @@ namespace backend.Controllers {
 
         //FAZENDO UPDATE NO BANCO
         [HttpPut ("{id}")]
-        public async Task<ActionResult> Put (int id, Produto Produto) {
+        public async Task<ActionResult> Put (int id,[FromForm] Produto Produto) {
             //Se o Id do objeto não existir
             //ele retorna 400 
             if (id != Produto.IdProduto) {
                 return BadRequest ();
-            }            
+            }
             try {
+                var imagem = Request.Form.Files[0];
+
+                Produto.ImgProduto = _UploadImg.Upload (imagem, "Produtos");
+                Produto.NomeProduto = Request.Form["NomeProduto"].ToString();
+                Produto.IdSobreProduto = int.Parse(Request.Form["IdSobreProduto"]);
                 await _repositorio.Alterar (Produto);
             } catch (DbUpdateConcurrencyException) {
                 //Verificamos se o objeto inserido realmente existe no banco
