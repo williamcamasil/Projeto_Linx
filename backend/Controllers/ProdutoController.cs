@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Domains;
 using backend.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +18,11 @@ namespace backend.Controllers {
         public async Task<ActionResult<List<Produto>>> Get () {
             var Produtos = await _repositorio.Listar ();
             if (Produtos == null) {
-                return NotFound ();
+                return NotFound (
+                    new {
+                        Mensagem = "Não foi possível listar os Produtos"
+                    }
+                );
             }
             return Produtos;
         }
@@ -28,7 +33,11 @@ namespace backend.Controllers {
         public async Task<ActionResult<Produto>> Get (int id) {
             var Produto = await _repositorio.BuscarPorID (id);
             if (Produto == null) {
-                return NotFound ();
+                return NotFound (
+                    new {
+                        Mensagem = "Não foi possível obter o Produto"
+                    }
+                );
             }
             return Produto;
         }
@@ -36,13 +45,19 @@ namespace backend.Controllers {
         //FAZENDO ENVIO PARA O BANCO
         //POST api/Produto
         [HttpPost]
+        [Authorize (Roles = "Administrador Colaborador")]
         public async Task<ActionResult<Produto>> Post ([FromForm] Produto Produto) {
             try {
                 var imagem = Request.Form.Files[0];
 
                 Produto.ImgProduto = _UploadImg.Upload (imagem, "Produtos");
-                Produto.NomeProduto = Request.Form["NomeProduto"].ToString();
-                Produto.IdSobreProduto = int.Parse(Request.Form["IdSobreProduto"]);
+                Produto.NomeProduto = Request.Form["NomeProduto"].ToString ();
+                Produto.Disponibilidade = decimal.Parse (Request.Form["Disponibilidade"]);
+                Produto.DescricaoProduto = Request.Form["DescricaoProduto"].ToString ();
+                Produto.Organico = bool.Parse (Request.Form["Organico"]);
+                Produto.Preco = Request.Form["Preco"].ToString ();
+                Produto.Validade = Request.Form["Validade"].ToString ();
+
                 await _repositorio.Salvar (Produto);
             } catch (DbUpdateConcurrencyException) {
                 throw;
@@ -52,24 +67,38 @@ namespace backend.Controllers {
 
         //FAZENDO UPDATE NO BANCO
         [HttpPut ("{id}")]
-        public async Task<ActionResult> Put (int id,[FromForm] Produto Produto) {
+        [Authorize (Roles = "Administrador Colaborador")]
+        public async Task<ActionResult> Put (int id, [FromForm] Produto Produto) {
             //Se o Id do objeto não existir
             //ele retorna 400 
             if (id != Produto.IdProduto) {
-                return BadRequest ();
+                return BadRequest (
+                    new {
+                        Mensagem = "Id incompatível, Não foi possível fazer a atualização"
+                    }
+                );
             }
             try {
                 var imagem = Request.Form.Files[0];
 
                 Produto.ImgProduto = _UploadImg.Upload (imagem, "Produtos");
-                Produto.NomeProduto = Request.Form["NomeProduto"].ToString();
-                Produto.IdSobreProduto = int.Parse(Request.Form["IdSobreProduto"]);
+                Produto.NomeProduto = Request.Form["NomeProduto"].ToString ();
+                Produto.Disponibilidade = decimal.Parse (Request.Form["Disponibilidade"]);
+                Produto.DescricaoProduto = Request.Form["DescricaoProduto"].ToString ();
+                Produto.Organico = bool.Parse (Request.Form["Organico"]);
+                Produto.Preco = Request.Form["Preco"].ToString ();
+                Produto.Validade = Request.Form["Validade"].ToString ();
+
                 await _repositorio.Alterar (Produto);
             } catch (DbUpdateConcurrencyException) {
                 //Verificamos se o objeto inserido realmente existe no banco
                 var Produto_valido = await _repositorio.BuscarPorID (id);
                 if (Produto_valido == null) {
-                    return NotFound ();
+                    return NotFound (
+                        new {
+                            Mensagem = "Não foi possível obter as informações"
+                        }
+                    );
                 } else {
                     throw;
                 }
@@ -81,10 +110,15 @@ namespace backend.Controllers {
 
         //FAZENDO DELETE NO BANCO
         [HttpDelete ("{id}")]
+        [Authorize (Roles = "Administrador")]
         public async Task<ActionResult<Produto>> Delete (int id) {
             var Produto = await _repositorio.BuscarPorID (id);
             if (Produto == null) {
-                return NotFound ();
+                return NotFound (
+                    new {
+                        Mensagem = "Não foi possível obter as informações"
+                    }
+                );
             }
             return Produto;
         }

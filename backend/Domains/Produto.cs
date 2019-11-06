@@ -18,14 +18,19 @@ namespace backend.Domains
         [Required]
         [StringLength(255)]
         public string NomeProduto { get; set; }
-        // [Required]
         [StringLength(255)]
         public string ImgProduto { get; set; }
-        public int? IdSobreProduto { get; set; }
+        [StringLength(255)]
+        public string DescricaoProduto { get; set; }
+        [Column(TypeName = "decimal(18, 0)")]
+        public decimal? Disponibilidade { get; set; }
+        public bool? Organico { get; set; }
+        [StringLength(20)]
+        public string Preco { get; set; }
+        [Required]
+        [StringLength(20)]
+        public string Validade { get; set; }
 
-        [ForeignKey(nameof(IdSobreProduto))]
-        [InverseProperty(nameof(SobreProduto.Produto))]
-        public virtual SobreProduto IdSobreProdutoNavigation { get; set; }
         [InverseProperty("IdProdutoNavigation")]
         public virtual ICollection<RegistroProduto> RegistroProduto { get; set; }
         [InverseProperty("IdProdutoNavigation")]

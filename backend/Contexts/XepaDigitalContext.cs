@@ -21,7 +21,6 @@ namespace backend.Domains
         public virtual DbSet<Receita> Receita { get; set; }
         public virtual DbSet<RegistroProduto> RegistroProduto { get; set; }
         public virtual DbSet<ReservaProduto> ReservaProduto { get; set; }
-        public virtual DbSet<SobreProduto> SobreProduto { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -38,7 +37,7 @@ namespace backend.Domains
             modelBuilder.Entity<Colaborador>(entity =>
             {
                 entity.HasKey(e => e.IdColaborador)
-                    .HasName("PK__Colabora__3D2CA5123C9C4E35");
+                    .HasName("PK__Colabora__3D2CA512749041ED");
 
                 entity.Property(e => e.DocumentoColab).IsUnicode(false);
 
@@ -57,7 +56,7 @@ namespace backend.Domains
             modelBuilder.Entity<Endereco>(entity =>
             {
                 entity.HasKey(e => e.IdEndereco)
-                    .HasName("PK__Endereco__0B7C7F1778F50F60");
+                    .HasName("PK__Endereco__0B7C7F17B5BFC7E2");
 
                 entity.Property(e => e.Bairro).IsUnicode(false);
 
@@ -77,22 +76,25 @@ namespace backend.Domains
             modelBuilder.Entity<Produto>(entity =>
             {
                 entity.HasKey(e => e.IdProduto)
-                    .HasName("PK__Produto__2E883C237B774D4C");
+                    .HasName("PK__Produto__2E883C23B37CA77E");
+
+                entity.Property(e => e.DescricaoProduto).IsUnicode(false);
 
                 entity.Property(e => e.ImgProduto).IsUnicode(false);
 
                 entity.Property(e => e.NomeProduto).IsUnicode(false);
 
-                entity.HasOne(d => d.IdSobreProdutoNavigation)
-                    .WithMany(p => p.Produto)
-                    .HasForeignKey(d => d.IdSobreProduto)
-                    .HasConstraintName("FK__Produto__IdSobre__44FF419A");
+                entity.Property(e => e.Organico).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Preco).IsUnicode(false);
+
+                entity.Property(e => e.Validade).IsUnicode(false);
             });
 
             modelBuilder.Entity<Receita>(entity =>
             {
                 entity.HasKey(e => e.IdReceita)
-                    .HasName("PK__Receita__27290E9A48A325EA");
+                    .HasName("PK__Receita__27290E9A0266549F");
 
                 entity.Property(e => e.ImgReceita).IsUnicode(false);
 
@@ -101,60 +103,48 @@ namespace backend.Domains
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Receita)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__Receita__IdUsuar__4BAC3F29");
+                    .HasConstraintName("FK__Receita__IdUsuar__48CFD27E");
             });
 
             modelBuilder.Entity<RegistroProduto>(entity =>
             {
                 entity.HasKey(e => e.IdRegistro)
-                    .HasName("PK__Registro__FFA45A9967950BCB");
+                    .HasName("PK__Registro__FFA45A99A11E256C");
 
                 entity.HasOne(d => d.IdColaboradorNavigation)
                     .WithMany(p => p.RegistroProduto)
                     .HasForeignKey(d => d.IdColaborador)
-                    .HasConstraintName("FK__RegistroP__IdCol__48CFD27E");
+                    .HasConstraintName("FK__RegistroP__IdCol__45F365D3");
 
                 entity.HasOne(d => d.IdProdutoNavigation)
                     .WithMany(p => p.RegistroProduto)
                     .HasForeignKey(d => d.IdProduto)
-                    .HasConstraintName("FK__RegistroP__IdPro__47DBAE45");
+                    .HasConstraintName("FK__RegistroP__IdPro__44FF419A");
             });
 
             modelBuilder.Entity<ReservaProduto>(entity =>
             {
                 entity.HasKey(e => e.IdReserva)
-                    .HasName("PK__ReservaP__0E49C69D804A322E");
+                    .HasName("PK__ReservaP__0E49C69DC62BB036");
 
                 entity.HasOne(d => d.IdProdutoNavigation)
                     .WithMany(p => p.ReservaProduto)
                     .HasForeignKey(d => d.IdProduto)
-                    .HasConstraintName("FK__ReservaPr__IdPro__4E88ABD4");
+                    .HasConstraintName("FK__ReservaPr__IdPro__4BAC3F29");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.ReservaProduto)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__ReservaPr__IdUsu__4F7CD00D");
-            });
-
-            modelBuilder.Entity<SobreProduto>(entity =>
-            {
-                entity.HasKey(e => e.IdSobreProduto)
-                    .HasName("PK__SobrePro__F5A7575CA3334479");
-
-                entity.Property(e => e.DescricaoProduto).IsUnicode(false);
-
-                entity.Property(e => e.Preco).IsUnicode(false);
-
-                entity.Property(e => e.Validade).IsUnicode(false);
+                    .HasConstraintName("FK__ReservaPr__IdUsu__4CA06362");
             });
 
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__Usuario__5B65BF97FFBF9CD5");
+                    .HasName("PK__Usuario__5B65BF975F0B320D");
 
                 entity.HasIndex(e => e.EmailUsuario)
-                    .HasName("UQ__Usuario__59FA3B65B6D22349")
+                    .HasName("UQ__Usuario__59FA3B65BF738F9F")
                     .IsUnique();
 
                 entity.Property(e => e.EmailUsuario).IsUnicode(false);
