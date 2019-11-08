@@ -677,6 +677,19 @@ h2 {
     
 }
 
+.botoes_perfil_edicao{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.botoes_perfil_edicao button{
+    margin-right: 20px;
+    height: 40px;
+    width: 200px;
+    font-size: 20px;
+}
+
 
 
 
@@ -2142,6 +2155,20 @@ h2 {
         flex-wrap: wrap;
         align-content: space-between
     }
+
+    .botoes_perfil_edicao{
+        flex-direction: column;
+        width: 300px;
+        margin: 40px auto;
+        
+    }
+
+    .botoes_perfil_edicao button{
+        margin: 10px;
+        width: 300px;
+        height: 60px;
+    }
+
     /* --------------------------------------------------------------------CADASTRO MOBILE*/
     .card_cadastro {
         width: 368px;
