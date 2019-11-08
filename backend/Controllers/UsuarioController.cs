@@ -19,7 +19,11 @@ namespace backend.Controllers {
             var Usuarios = await _repositorio.Listar ();
 
             if (Usuarios == null) {
-                return NotFound ();
+                return NotFound (
+                    new {
+                        Mensagem = "Não foi possível listar os Usuários"
+                    }
+                );
             }
             return Usuarios;
         }
@@ -32,7 +36,11 @@ namespace backend.Controllers {
             var Usuario = await _repositorio.BuscarPorID (id);
 
             if (Usuario == null) {
-                return NotFound ();
+                return NotFound (
+                    new {
+                        Mensagem = "Não foi possível obter o Usuário"
+                    }
+                );
             }
 
             return Usuario;
@@ -60,7 +68,11 @@ namespace backend.Controllers {
             //Se o Id do objeto não existir
             //ele retorna 400 
             if (id != Usuario.IdUsuario) {
-                return BadRequest ();
+                return BadRequest (
+                    new {
+                        Mensagem = "Id incompatível, Não foi possível fazer a atualização"
+                    }
+                );
             }
             try {
                 await _repositorio.Alterar (Usuario);
@@ -68,7 +80,11 @@ namespace backend.Controllers {
                 //Verificamos se o objeto inserido realmente existe no banco
                 var Usuario_valido = await _repositorio.BuscarPorID (id);
                 if (Usuario_valido == null) {
-                    return NotFound ();
+                    return NotFound (
+                        new {
+                            Mensagem = "Não foi possível obter as informações"
+                        }
+                    );
                 } else {
                     throw;
                 }
@@ -84,7 +100,11 @@ namespace backend.Controllers {
         public async Task<ActionResult<Usuario>> Delete (int id) {
             var Usuario = await _repositorio.BuscarPorID (id);
             if (Usuario == null) {
-                return NotFound ();
+                return NotFound (
+                    new {
+                        Mensagem = "Não foi possível obter as informações"
+                    }
+                );
             }
             return Usuario;
         }

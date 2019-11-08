@@ -17,9 +17,13 @@ namespace backend.Controllers {
             var RegistroProdutos = await _repositorio.Listar ();
 
             if (RegistroProdutos == null) {
-                return NotFound ();
+                return NotFound (
+                    new {
+                        Mensagem = "Não foi possível listar os Registros"
+                    }
+                );
             }
-
+            
             return RegistroProdutos;
         }
 
@@ -30,7 +34,11 @@ namespace backend.Controllers {
             var RegistroProduto = await _repositorio.BuscarPorID (id);
 
             if (RegistroProduto == null) {
-                return NotFound ();
+                return NotFound (
+                    new {
+                        Mensagem = "Não foi possível obter o Registro"
+                    }
+                );
             }
 
             return RegistroProduto;
@@ -54,7 +62,11 @@ namespace backend.Controllers {
             //Se o Id do objeto não existir
             //ele retorna 400 
             if (id != RegistroProduto.IdRegistro) {
-                return BadRequest ();
+                return BadRequest (
+                    new {
+                        Mensagem = "Id incompatível, Não foi possível fazer a atualização"
+                    }
+                );
             }
             try {
                 await _repositorio.Alterar (RegistroProduto);
@@ -62,7 +74,11 @@ namespace backend.Controllers {
                 //Verificamos se o objeto inserido realmente existe no banco
                 var RegistroProduto_valido = await _repositorio.BuscarPorID (id);
                 if (RegistroProduto_valido == null) {
-                    return NotFound ();
+                    return NotFound (
+                        new {
+                            Mensagem = "Não foi possível obter as informações"
+                        }
+                    );
                 } else {
                     throw;
                 }
@@ -77,7 +93,11 @@ namespace backend.Controllers {
         public async Task<ActionResult<RegistroProduto>> Delete (int id) {
             var RegistroProduto = await _repositorio.BuscarPorID (id);
             if (RegistroProduto == null) {
-                return NotFound ();
+                return NotFound (
+                    new {
+                        Mensagem = "Não foi possível obter as informações"
+                    }
+                );
             }
             return RegistroProduto;
         }
