@@ -24,9 +24,9 @@ CREATE TABLE Produto
     NomeProduto varchar (255) not null,
     ImgProduto varchar (255),
     DescricaoProduto varchar (255),
-    Disponibilidade float,
+    Disponibilidade numeric(10,1),
     Organico bit DEFAULT (0),
-    Preco float,
+    Preco numeric(10,1),
     Validade datetime,
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE RegistroProduto
 CREATE TABLE ReservaProduto
 (
     IdReserva int identity primary key,
-    QuantidadeReserva float not null,
+    QuantidadeReserva numeric(10,1) not null,
     Situacao varchar (50),
     IdRegistro int foreign key references RegistroProduto(IdRegistro),
     IdUsuario int foreign key references Usuario(IdUsuario)
