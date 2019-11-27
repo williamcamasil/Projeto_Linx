@@ -1,17 +1,6 @@
 CREATE DATABASE XepaDigital;
 USE XepaDigital;
 
-CREATE TABLE Endereco
-(
-    IdEndereco int identity primary key,
-    Endereco varchar (255),
-    Numero varchar (10),
-    CEP varchar (9),
-    Cidade varchar (255),
-    Bairro varchar (255),
-    Estado char (2),
-    IdUsuario int foreign key references Usuario(IdUsuario)
-);
 CREATE TABLE Usuario
 (
     IdUsuario int identity primary key,
@@ -35,16 +24,21 @@ CREATE TABLE Produto
     NomeProduto varchar (255) not null,
     ImgProduto varchar (255),
     DescricaoProduto varchar (255),
-    Disponibilidade decimal,
+    Disponibilidade float,
     Organico bit DEFAULT (0),
-    Preco decimal,
+    Preco float,
     Validade datetime,
 );
 
-CREATE TABLE RegistroProduto
+CREATE TABLE Endereco
 (
-    IdRegistro int identity primary key,
-    IdProduto int foreign key references Produto(IdProduto),
+    IdEndereco int identity primary key,
+    Endereco varchar (255),
+    Numero varchar (10),
+    CEP varchar (9),
+    Cidade varchar (255),
+    Bairro varchar (255),
+    Estado char (2),
     IdUsuario int foreign key references Usuario(IdUsuario)
 );
 
@@ -57,10 +51,18 @@ CREATE TABLE Receita
     DescricaoPreparo text,
     IdUsuario int foreign key references Usuario(IdUsuario)
 );
+
+CREATE TABLE RegistroProduto
+(
+    IdRegistro int identity primary key,
+    IdProduto int foreign key references Produto(IdProduto),
+    IdUsuario int foreign key references Usuario(IdUsuario)
+);
+
 CREATE TABLE ReservaProduto
 (
     IdReserva int identity primary key,
-    QuantidadeReserva decimal not null,
+    QuantidadeReserva float not null,
     Situacao varchar (50),
     IdRegistro int foreign key references RegistroProduto(IdRegistro),
     IdUsuario int foreign key references Usuario(IdUsuario)
