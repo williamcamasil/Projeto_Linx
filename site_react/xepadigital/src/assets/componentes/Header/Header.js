@@ -6,6 +6,7 @@ import logo_xepa from '../../img/logo_xepa.svg';
 class Header extends Component {
     render() {
         return (
+            <body>
             <header>
                 <nav id="menu_superior">
                     <div classname="container">
@@ -53,6 +54,7 @@ class Header extends Component {
                     </div>
                 </nav>
             </header>
+            </body>
         );
     }
 }
