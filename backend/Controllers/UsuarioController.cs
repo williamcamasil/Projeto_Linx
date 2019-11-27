@@ -108,6 +108,5 @@ namespace backend.Controllers {
             }
             return Usuario;
         }
-
     }
 }

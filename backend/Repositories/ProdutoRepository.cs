@@ -19,7 +19,7 @@ namespace backend.Repositories {
 
         public async Task<Produto> BuscarPorID (int id) {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()){
-                return await _contexto.Produto.Include ("IdSobreProdutoNavigation").FirstOrDefaultAsync (e => e.IdProduto == id);
+                return await _contexto.Produto.FirstOrDefaultAsync (e => e.IdProduto == id);
             }
         }
 
@@ -35,7 +35,7 @@ namespace backend.Repositories {
 
         public async Task<List<Produto>> Listar () {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()){
-                return await _contexto.Produto.Include ("IdSobreProdutoNavigation").ToListAsync ();
+                return await _contexto.Produto.ToListAsync ();
             }
         }
 

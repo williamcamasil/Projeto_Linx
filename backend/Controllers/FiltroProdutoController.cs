@@ -22,7 +22,7 @@ namespace backend.Controllers {
                 );
             }
             // TRATAMENTO DE ERRO ESTÁ CORRETO É NECESSÁRIO NO CONTEXTO ATUAL???
-            var prod = await _context.Produto.Include ("IdSobreProdutoNavigation").Where (p =>
+            var prod = await _context.Produto.Where (p =>
                 p.NomeProduto.Contains (search.NomeProduto)).ToListAsync ();
             if (prod.Count == 0) {
                 return NotFound (

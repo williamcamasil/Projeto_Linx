@@ -51,7 +51,7 @@ namespace backend.Controllers {
         //FAZENDO ENVIO PARA O BANCO
         //POST api/Receita
         [HttpPost]
-        [Authorize (Roles = "Administrador Cliente")]
+        [Authorize (Roles = "Administrador, Cliente")]
         public async Task<ActionResult<Receita>> Post ([FromForm] Receita Receita) {
             try {
                 var imagem = Request.Form.Files[0];
@@ -75,7 +75,8 @@ namespace backend.Controllers {
 
         //FAZENDO UPDATE NO BANCO
         [HttpPut ("{id}")]
-        [Authorize (Roles = "Administrador Cliente")]
+        [Authorize (Roles = "Administrador, Cliente")]
+
         public async Task<ActionResult> Put (int id, Receita Receita) {
             //Se o Id do objeto não existir
             //ele retorna 400 
