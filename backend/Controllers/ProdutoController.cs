@@ -45,15 +45,15 @@ namespace backend.Controllers {
         //FAZENDO ENVIO PARA O BANCO
         //POST api/Produto
         [HttpPost]
-        [Authorize (Roles = "Administrador Colaborador")]
+        [Authorize (Roles = "Administrador, Colaborador")]
         public async Task<ActionResult<Produto>> Post ([FromForm] Produto Produto) {
             try {
                 var imagem = Request.Form.Files[0];
 
                 Produto.ImgProduto = _UploadImg.Upload (imagem, "Produtos");
                 Produto.NomeProduto = Request.Form["NomeProduto"].ToString ();
-                Produto.Disponibilidade = decimal.Parse (Request.Form["Disponibilidade"]);
                 Produto.DescricaoProduto = Request.Form["DescricaoProduto"].ToString ();
+                Produto.Disponibilidade = decimal.Parse (Request.Form["Disponibilidade"]);
                 Produto.Organico = bool.Parse (Request.Form["Organico"]);
                 Produto.Preco = Request.Form["Preco"].ToString ();
                 Produto.Validade = Request.Form["Validade"].ToString ();
@@ -67,7 +67,7 @@ namespace backend.Controllers {
 
         //FAZENDO UPDATE NO BANCO
         [HttpPut ("{id}")]
-        [Authorize (Roles = "Administrador Colaborador")]
+        [Authorize (Roles = "Administrador, Colaborador")]
         public async Task<ActionResult> Put (int id, [FromForm] Produto Produto) {
             //Se o Id do objeto não existir
             //ele retorna 400 

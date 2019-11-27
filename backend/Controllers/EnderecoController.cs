@@ -53,7 +53,9 @@ namespace backend.Controllers {
         [Authorize]
         public async Task<ActionResult<Endereco>> Post (Endereco Endereco) {
             try {
+
                 await _repositorio.Salvar (Endereco);
+                
             } catch (DbUpdateConcurrencyException) {
                 throw;
             }

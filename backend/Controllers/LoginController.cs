@@ -35,11 +35,6 @@ namespace backend.Controllers
                 u => u.EmailUsuario == login.EmailUsuario &&
                 u.SenhaUsuario == login.SenhaUsuario
             );
-
-            // if(usuario != null){
-            //     usuario = login;
-            // }
-
             return usuario;
         }
 

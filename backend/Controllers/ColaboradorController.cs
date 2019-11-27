@@ -31,7 +31,7 @@ namespace backend.Controllers {
         //FAZENDO SELECT NO BANCO
         //GET: api/Colaborador/2
         [HttpGet ("{id}")]
-        [Authorize (Roles = "Administrador Colaborador")]
+        [Authorize (Roles = "Administrador, Colaborador")]
         public async Task<ActionResult<Colaborador>> Get (int id) {
             var Colaborador = await _repositorio.BuscarPorID (id);
 
@@ -49,7 +49,7 @@ namespace backend.Controllers {
         //FAZENDO ENVIO PARA O BANCO
         //POST api/Colaborador
         [HttpPost]
-        [Authorize (Roles = "Administrador Colaborador")]
+        [Authorize (Roles = "Administrador, Colaborador")]
         public async Task<ActionResult<Colaborador>> Post (Colaborador Colaborador) {
             try {
                 await _repositorio.Salvar (Colaborador);
@@ -62,7 +62,7 @@ namespace backend.Controllers {
         //FAZENDO UPDATE NO BANCO
         //PUT api/Colaborador
         [HttpPut ("{id}")]
-        [Authorize (Roles = "Administrador Colaborador")]
+        [Authorize (Roles = "Administrador, Colaborador")]
         public async Task<ActionResult> Put (int id, Colaborador Colaborador) {
             //Se o Id do objeto não existir
             //ele retorna 400 
