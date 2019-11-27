@@ -1,0 +1,2640 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat&display=swap');
+/* EDIÇÃO GERAL */
+
+:root {
+    --roxo: #472A4C;
+    /* RGB: 71,42,76 */
+    --branco: white;
+    --cinza: #F5F5F5;
+    --cinza_esc: #CCCCCC;
+    --laranja: #FFB65C;
+    --mont: 'Montserrat';
+    --lato: 'Lato';
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: var(--lato);
+    font-size: 15px;
+}
+
+.container {
+    width: 1200px;
+    margin: auto;
+}
+
+/* INÍCIO DO HEADER */
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+}
+
+.header_position {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_position img {
+    height: 60px;
+}
+
+header ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+}
+
+#menu_superior {
+    background-color: #472A4C;
+    padding: 4px 0px;
+}
+
+#menu_superior ul li {
+    background-color: var(--branco);
+    border-radius: 20px;
+    text-align: center;
+    width: 140px;
+    padding: 2px 0px;
+    margin: 5px 0px 5px 20px;
+}
+
+#menu_superior ul a {
+    color: var(--roxo);
+    text-decoration: none;
+}
+
+#menu_inferior {
+    -webkit-box-shadow: 0px 0px 35px -14px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px 0px 35px -14px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 35px -14px rgba(0, 0, 0, 1);
+    background-image: linear-gradient(#efefef, #f5f5f5, #f5f5f5, #f5f5f5, #f5f5f5, #f5f5f5, #f5f5f5, #efefef);
+    padding: 28.5px 0px;
+}
+
+#menu_inferior ul a {
+    color: var(--roxo);
+    text-decoration: none;
+    margin: 0px 0px 0px 40px;
+    font-size: 20px;
+}
+
+#menu_inferior ul a:hover, .ativo {
+    border-bottom: 1px solid var(--roxo);
+    padding: 0px 0px 2px;
+}
+
+/* ********************************************************* */
+/* ********************************************************* */
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+html {
+    font-family: "helvetica neue", sans-serif;
+}
+
+.nav {
+    /* border-bottom: 1px solid #EAEAEB; */
+    text-align: right;
+    height: 70px;
+    line-height: 70px;
+}
+.menu_home {
+    margin: 0 30px 0 0;
+}
+.menu_home a {
+    clear: right;
+    text-decoration: none;
+    color: gray;
+    margin: 0 10px;
+    line-height: 70px;
+}
+
+/* span {
+    color: #54D17A;
+} */
+
+#lbl_menu {
+    margin: 0 40px 0 0;
+    font-size: 26px;
+    line-height: 70px;
+    display: none;
+    width: 26px;
+    float: right;
+}
+
+#toggle {
+    display: none;
+}
+
+.menu_home{
+    margin-left: 20vw;   
+}
+
+/* ********************************************************* */
+/* ********************************************************* */
+
+/* INÍCIO DO FOOTER */
+
+footer {
+    background-image: linear-gradient(#3A233D, var(--roxo), var(--roxo), var(--roxo), var(--roxo), #3A233D);
+    background-color: var(--roxo);
+    text-align: center;
+    color: var(--branco);
+    padding: 15px 0px;
+}
+
+.footer_position {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+}
+
+.footer_style {
+    text-align: left;
+}
+
+.footer_style p {
+    font-size: 20px;
+    margin: 10px 0px;
+}
+
+.footer_style a {
+    color: var(--branco);
+    text-decoration: none;
+    margin: 0px 20px 0px 0px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer_style img {
+    margin: 0px 10px 0px 0px;
+    height: 30px;
+}
+
+/* NECESSÁRIO NO MAIN */
+
+main {
+    margin: 150px 0px 0px;
+}
+
+body {
+    background: var(--cinza);
+}
+
+/* DEFINIR: height, width e radius conforme necessário na sua página em outra classe*/
+
+.card {
+    -webkit-box-shadow: 0px 0px 20px -14px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px 0px 20px -14px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 20px -14px rgba(0, 0, 0, 1);
+    background-color: white;
+}
+
+/* -------------------------------------------------------INICIO DA PAGINA HOME---------------------------------------------------------------------------------  */
+
+/* -------------------------------------------------------INICIO DA PAGINA COLABORADORES---------------------------------------------------------------------------------  */
+
+/* BANNER */
+
+.colab {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/banner_colaboradores.svg);
+    /* opacity: 0.8; */
+    height: 620px;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colab_banner {
+    /* background-color: rgba(0, 0, 0, 0.4); */
+    text-align: center;
+    height: auto;
+    width: 100%;
+    padding: 30px 0px;
+}
+
+.tituloh1 {
+    color: var(--branco);
+    font-family: var(--mont);
+    font-size: 40px;
+    letter-spacing: 0.1em;
+}
+
+.colab_banner .p_colab {
+    color: var(--branco);
+    font-family: var(--mont);
+    font-size: 30px;
+}
+
+/* SEARCH BAR */
+
+.search_bar {
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.form_style {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 80px;
+}
+
+.input_style {
+    border-radius: 10px;
+    font-size: 20px;
+    border: 0.5px solid var(--roxo);
+    padding: 7.5px 10px;
+    margin: 0px 5px;
+    width: 628px;
+}
+
+.button_conj img {
+    width: 32px;
+    padding: 3px 0px 0px;
+}
+
+.colaboradores_img{
+    width: 150px;
+    height: 200px
+    
+}
+
+.button_conj {
+    color: var(--branco);
+    background-color: var(--roxo);
+    border: 1px solid var(--roxo);
+    border-radius: 10px;
+    font-size: 18px;
+    width: 150px;
+    height: 40px;
+    margin: 0px 5px;
+}
+
+/* CONTEUDO PRINCIPAL */
+
+.colab_section {
+    background-color: var(--laranja);
+    color: var(--roxo);
+    text-align: center;
+    font-size: 25px;
+    padding: 25px 0px;
+    margin: 0px 0px 40px;
+
+    margin-bottom: 0px; /*verificar */
+}
+
+.card_colab {
+    border-radius: 15px;
+    width: 1200px;
+    height: 350px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.card_size {
+    width: 500px;
+    height: 300px;
+}
+
+.Contato_Colaborador{
+    font-weight: bold;
+
+}
+
+.sp_border {
+    border-right: 2px solid var(--cinza_esc);
+    height: 300px;
+}
+
+.card_style {
+    display: flex;
+    justify-content: space-between;
+    text-align: justify;
+    margin: 15px 0px;
+}
+
+.card_info, .card_info img {
+    width: 100px;
+    text-align: center;
+}
+
+h3 {
+    font-family: var(--mont);
+    font-size: 25px;
+    text-align: center;
+}
+
+.text_1 {
+    width: 300px;
+}
+
+.btn_link_click{
+    color: var(--branco);
+    background-color: var(--roxo);
+    border-radius: 10px;
+    font-size: 18px;
+    text-decoration-line: none;
+    padding: 10px;
+}
+
+.btn_link_click_receita{ 
+    color: var(--branco);
+    background-color: var(--roxo);
+    border-radius: 10px;
+    font-size: 18px;
+    text-decoration-line: none;
+    padding: 10px;
+}
+
+
+#caixa_parte_imagem form{
+    margin-top: 10px;    
+}
+
+/* -------------------------------------------------------FIM DA PAGINA COLABORADORES----------------------------------------------------------------  */
+
+/* -------------------------------------------------------INICIO DA PAGINA RECEITAS-----------------------------------------------------------------  */
+
+.caixa_central {
+    margin: auto;
+    width: 1200px;
+}
+
+.banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6 ), rgba(0, 0, 0, 0.6)), url(../img/Banner.jpg);
+    /* opacity: 0.8; */
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 620px;
+    /*765*/
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: var(--montserrat);
+}
+
+.bloco {
+    padding: 30px 0px;
+    width: 100%;
+    color: var(--branco);
+}
+
+.bloco_titulo_1 {
+    font-size: 40px;
+    font-family: var(--mont);
+}
+
+.bloco_titulo_2 {
+    font-size: 30px;
+    font-family: var(--mont);
+}
+
+.pesquisa {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.pesquisa a {
+    background-color: var(--roxo);
+    margin-left: 10px;
+    padding: 0px 18px;
+    border-radius: 10px;
+    height: 35px;
+    font-family: var(--lato);
+}
+
+.pesquisa img {
+    width: 25px;
+}
+
+.texto {
+    width: 700px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.linha_laranja {
+    background-color: var(--laranja);
+    color: var(--roxo);
+    text-align: center;
+    padding: 25px 0px;
+    font-size: 25px;
+}
+
+.grupo_total {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.grupo {
+    display: flex;
+    justify-content: space-around;
+    width: 1100px;
+    flex-wrap: wrap;
+}
+
+.cards {
+    border-radius: 10px;
+    margin-top: 40px;
+    width: 350px;
+}
+
+.botao_mais{
+    text-align: center;
+    height: 50px;
+}
+
+.img {
+    align-items: center;
+    text-align: center;
+}
+
+.img img {
+    padding-top: 30px;
+    width: 130px;
+}
+
+.card_titulo {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    text-decoration-line: underline;
+    font-size: 18px;
+    font-family: var(--montserrat);
+}
+
+.card_subtitulo {
+    padding-left: 10px;
+    font-family: var(--lato);
+}
+
+.card_conteudo {
+    width: 320px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    padding-left: 10px;
+    font-family: var(--lato);
+}
+
+.mais {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 45px;
+}
+
+/* ---------------------------------------------------------------FIM DA PAGINA RECEITAS-----------------------------------------------  */
+
+/* ---------------------------------------------------------------INICÍO DA PAGINA LOGIN-----------------------------------------------  */
+
+.fundo {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.292), rgba(0, 0, 0, 0.292)), url(../img/foto_fundo.svg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    /* background-size: cover; */
+    height: 800px;
+    width: 100%;
+    padding: auto;
+    /* z-index: -10 !important; */
+}
+
+.fundo img {
+    width: 100%;
+}
+
+.card-login {
+    width: 1136px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* z-index: -1; */
+}
+
+.login form {
+    display: flex;
+    flex-flow: row wrap;
+    width: 400px;
+}
+
+.registrar-se form {
+    width: 400px;
+}
+
+.login, .registrar-se {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+}
+
+.texto {
+    display: flex;
+    width: 70%;
+    margin: 0px 30px;
+    flex-wrap: wrap;
+}
+
+.texto a {
+    margin: 10px 0px 0px;
+}
+
+h2 {
+    text-align: center;
+    justify-content: center;
+    font-size: 35px;
+    font-family: var(--mont);
+    color: #472A4C;
+    margin: 0px 30px;
+}
+
+.registrar-se input, .login input {
+    width: 100%;
+    height: 20px;
+    color: #707070;
+    border: 1px solid #707070;
+    border-radius: 4px;
+}
+
+.registrar-se label, .login label {
+    margin: 10px 0px 0px;
+}
+
+.botao {
+    width: 100%;
+    height: 60px;
+    margin-top: 20px;
+    font-size: 25px;
+    margin-bottom: 20px;
+    border: 1px solid #472A4C;
+    border-radius: 5px;
+    color: white;
+    background-color: #472A4C;
+}
+
+.caixa-texto {
+    border: 1px solid #707070;
+    border-radius: 4px;
+    padding: 5.5px 4px;
+}
+
+.container-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    height: 800px;
+}
+
+.texto-horizontal, .linha_link {
+    display: inline-flex;
+    text-align: left;
+    align-items: center;
+    width: 350px;
+}
+
+.texto-horizontal input, .linha_link input {
+    width: 20px;
+    margin: 0px 15px 0px 0px;
+}
+ 
+#opcao_login{
+    height: 20px;
+    width: 100%;
+    /* background: red; */
+    margin-top: 2 0px;
+    display: flex;
+    padding: 20px 0px 10px 0px;
+    
+}
+
+#opcao_login input{
+    width: 40px;
+}
+
+/* ---------------------------------------------------------------FIM DA PAGINA LOGIN-----------------------------------------------  */
+
+/* ---------------------------------------------------------------INICIO DA PAGINA PERFIL-----------------------------------------------  */
+
+.caixa_cad_colaborador{
+    text-align: center;
+    padding: 40px 0px;
+    
+}
+
+.caixa_cad_colaborador span{
+    font-size: 30px;
+    text-decoration-line: underline;
+}
+
+.caixa_cad_colaborador img{
+    margin-top: 20px;
+}
+
+.caixa_cad_colaborador button{
+    width: 150px;
+    
+}
+
+.linha_perfil_colab{
+    background-color: #707070;
+    padding: 1px;  
+    margin-bottom: 20px;
+}
+
+.caixa_cadastro span{
+    font-size: 25px;
+}
+
+.caixa_cad_endereco{
+    margin-bottom: 30px;
+}
+
+.caixa_cad_endereco .button_conj{
+    height: 30px;
+    width: 40px;
+    
+}
+
+.botoes_perfil_edicao{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.botoes_perfil_edicao button{
+    margin-right: 20px;
+    height: 40px;
+    width: 200px;
+    font-size: 20px;
+}
+
+
+
+
+/* .wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dados-pessoais {
+    display: flex;
+    width: 100%;
+}
+
+.dados-pessoais img {
+    width: 20%;
+    height: 80%;
+    margin: auto;
+    border: 1px solid var(--laranja);
+    padding: 5px;
+    border-radius: 4px;
+    background: var(--branco);
+}
+
+.dados-pessoais form {
+    display: flex;
+    border: 1px solid var(--laranja);
+    justify-content: space-between;
+    padding: 20px 10px;
+    margin: 20px;
+    border-radius: 4px;
+    width: 80%;
+    background: var(--branco);
+}
+
+.dados {
+    width: 400px;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.informacoes-extras {
+    width: 50%;
+    margin-left: 20px;
+}
+
+.informacoes-extras input {
+    margin: 0px 2px;
+    color: var(--roxo);
+}
+
+.dados label {
+    font-family: var(--lato);
+    color: var(--roxo);
+    width: 100%;
+    margin: 0px 2px;
+}
+
+.titulo-perfil {
+    text-align: center;
+    font-size: 20pt;
+    padding: 5px 0px;
+}
+
+.row-form {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    margin: 8px 0px;
+    ;
+}
+
+.row-form span {
+    text-align: justify right;
+    margin-right: 5px;
+}
+
+.text-data {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    line-height: 1.5;
+    font: 20px var(--roxo) var(--lato);
+    margin: 30px 0px;
+    border-right: 1px solid var(--laranja);
+}
+
+.text-data label {
+    margin: 8px 0px;
+    text-align: justify;
+}
+
+.dados-contato {
+    width: 100%;
+    margin: 30px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.contato, .endereco {
+    background-color: var(--branco);
+    width: 40%;
+    height: 100%;
+    margin: 0px auto;
+    padding: 10px;
+}
+
+.contato h5, .endereco h5 {
+    font-family: var(--lato);
+    width: 90%;
+    height: 10%;
+    font-weight: lighter;
+    color: var(--laranja);
+    font-size: x-large;
+    text-align: center;
+    border-bottom: 1px var(--roxo) solid;
+    padding: 8px 15px;
+}
+
+.texto-card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    text-align: justify;
+    font-size: 20px;
+    color: var(--roxo);
+    font-family: var(--lato);
+}
+
+.endereco p {
+    text-align: center;
+    margin: auto;
+}
+
+.mapa {
+    width: 100%;
+    margin: auto;
+}
+
+.mapa iframe {
+    margin: 30px;
+    width: 80%;
+    height: 80%;
+    border-radius: 10px;
+}
+
+.contato form {
+    width: 100%;
+    height: 270px;
+    display: flex;
+    text-align: center;
+    flex-flow: column wrap;
+    margin: 20px 0px;
+}
+
+.contato form span {
+    font-size: 18px;
+    margin: 0px 8px;
+}
+
+.botoes {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-card {
+    color: var(--branco);
+    font-size: 16px;
+    margin: 40px;
+    font-family: var(--montserrat);
+    border: 0px;
+    background-color: var(--roxo);
+    width: 15%;
+    height: 54px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px -5px 20px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px -5px 20px 0px rgba(0, 0, 0, 0.575);
+    box-shadow: 0px -5px 20px 0px rgba(0, 0, 0, 0.39);
+}
+
+.btn-card img {
+    width: 32px;
+    margin-right: 5px;
+} */
+
+/* ---------------------------------------------------------------FIM DA PAGINA PERFIL-----------------------------------------------  */
+
+/* ---------------------------------------------------------------INICIO DA PAGINA CADASTROS-----------------------------------------------  */
+
+#card_cadastro{
+    background: var(--branco);
+    padding: 30px 0px;
+    margin-bottom: 4vw;
+    margin-top: 13vw;
+    text-align: center; 
+}
+
+#card_cadastro span{
+    font-size: 40px; 
+    text-decoration-line: underline; 
+}
+
+#caixa_total{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+#caixa_parte_conteudo{
+    width: 800px;  
+}
+
+#caixa_parte_conteudo label{
+    font-size: 20px;   
+}
+
+#caixa_parte_conteudo .caixa-texto{
+    width: 750px;
+    font-size: 20px;
+}
+
+#caixa_parte_conteudo .form_caixa{
+    text-align: initial;
+    
+}
+
+.caixa_texto{
+    display: flex;
+    justify-content: space-between;  
+    width: 760px; 
+}
+
+.caixa_texto_componente{
+    font-size: 20px;
+    border: 1px solid #707070;
+    border-radius: 4px;
+    padding: 5px;
+    width: 350px; 
+          
+}
+
+.caixa_texto_componente_campo{
+    font-size: 20px;
+    border: 1px solid #707070;
+    border-radius: 4px;
+    padding: 5px;
+    width: 750px; 
+    height: 140px;
+}
+
+.caixa_texto_botoes{
+    display: flex;
+    justify-content: space-around;    
+    
+}
+
+.caixa_texto_botoes button{
+    width: 15vw;
+    
+}
+
+.card_branco{
+    background: var(--branco);
+    width: 200px;
+    padding: 10px 0px;
+}
+
+.card_branco img{
+    width: 120px;
+    padding-bottom: 20px;
+}
+
+.card_branco button{
+    width: 150px;
+    font-size: 20px;
+    height: 40px;
+}
+
+.card_{
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.tit_produtor{
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.tit_produtor span{
+    font-size: 30px;
+    text-decoration-line: underline;
+}
+
+#p_nome input{
+    width: 95%;
+}
+
+#p_razao_documento{
+    display: flex;
+}
+
+#p_razao_documento #_1{
+    margin-right: 45px;
+    width: 60%; 
+}
+
+#p_razao_documento #_2{
+    width: 30%;
+
+}
+
+#p_razao_documento #_1 input{
+    width: 100%;    
+}
+
+#p_razao_documento #_2 input{
+    width: 100%;    
+}
+
+#p_sobre input{
+    height: 200px;
+    width: 95%;
+    margin-bottom: 30px;
+}
+
+.caixa_cadastro{
+    width: 900px;
+    margin: auto;
+}
+
+#p_entrega select{
+    width: 10vw;
+}
+
+#p_cep_logradouro{
+    display: flex;
+    
+        
+}
+
+#p_cep{
+    width: 30%;
+}
+
+#p_logradouro{
+    width: 75%;  
+}
+
+#p_logradouro input{
+    width: 90%;       
+}
+
+#p_cep img{
+    width: 20px;
+}
+
+#p_enderco{
+    display: flex;
+}
+
+#p_end{
+    margin-left: 30px;
+}
+
+#p_email{
+    margin-bottom: 30px;
+}
+
+#p_email input{
+    width: 95%;    
+}
+
+#p_email_2 input{
+    width: 95%;    
+}
+
+#p_bairro_perfil{
+    margin-right: 30px;
+    width: 300px;
+}
+
+#p_bairro_perfil .caixa-texto{
+    width: 100%;
+}
+
+#p_cidade_perfil{
+    margin-right: 30px;
+}
+
+#p_estado_perfil{
+    margin-right: 30px;
+}
+
+.padronizar_campo2 input{
+    width: 750px;
+}
+
+
+/* ---------------------------------------------------------------FIM DA PAGINA CADASTROS-----------------------------------------------  */
+
+/* ---------------------------------------------------------------INICIO DA PAGINA CADASTROS RECEITAS-----------------------------------------------  */
+
+.img_cad_receita{
+    width: 15vw;
+}
+
+.caixa_texto_componente_bt{
+    font-size: 20px;
+    border: 1px solid #707070;
+    border-radius: 4px;
+    padding: 5px;
+    width: 350px; 
+    height: 200px;       
+}
+
+.tit_receita{
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.tit_receita span{
+    font-size: 30px;
+    text-decoration-line: underline;
+}
+
+/* ---------------------------------------------------------------FIM DA PAGINA CADASTROS RECEITAS-----------------------------------------------  */
+
+
+/* ---------------------------------------------------------------INICIO DA PAGINA HOME-----------------------------------------------  */
+
+.home {
+    background-color: var(--branco);
+    width: 100%;
+    font-size: 20px;
+}
+
+.banner_home {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/home.jpg);
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoslogan_home {
+    /* background-color: rgba(0, 0, 0, 0.4); */
+    /* background-color: rgba(255, 255, 255, 0.4); */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 150px;
+    /* padding-top: 39vh;
+    padding-bottom: 38vh; */
+}
+
+.logoslogan_home img {
+    height: 300px;
+}
+
+.tituloh2 {
+    color: var(--roxo);
+    font-family: var(--mont);
+    font-size: 32px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 100px;
+    border-bottom: var(--roxo) solid 2px;
+    padding: 5px;
+}
+
+#historia, #colaboradores {
+    z-index: -1;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#propositos, #receitas {
+    background-image: url(../img/home_bg.png);
+    z-index: -1;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.container_home {
+    width: 900px;
+    margin: auto;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.text_home1 {
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+    color: var(--roxo);
+    padding: 30px 60px;
+}
+
+.text_home2 p, .text1 p, .subtext_home1, .subtext_home2 {
+    text-align: justify;
+    font-size: 20px;
+}
+
+.subtext_home1, .subtext_home2 {
+    margin: 0px 20px;
+}
+
+.text_home2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    color: var(--roxo);
+    padding: 30px 60px;
+}
+
+.text_home2 img {
+    opacity: 0.8;
+    border-radius: 16px;
+    height: 250px; /*200px*/
+    width: 340px; /*240px*/
+}
+
+.subtext_home1 {
+    padding: 25px 0px 25px 50px;
+}
+
+.subtext_home2 {
+    padding: 25px 50px 25px 15px;
+}
+
+.saiba {
+    display: flex;
+    justify-content: flex-end;
+    text-decoration: none;
+    line-height: none;
+    color: var(--roxo);
+    font-size: 25px;
+    padding: 0px 80px;
+    font-weight: bold;
+}
+
+/* -------------------------------------------------------FIM DA PAGINA HOME---------------------------------------------------------------------------------  */
+
+
+/*-------------------------------------------------------INICIO DA PAGINA DUVIDAS---------------------------------------------------------------------------------*/
+
+#banner_duvidas span{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/duvida.png);
+    height: 30vh;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--branco);
+    font-size: 60px;
+}
+
+#centralizar_pagina_duvida{
+    margin: auto;
+    width: 1200px;
+}
+
+.caixa_duvidas{
+    width: 900px;
+    margin: 40px auto;
+}
+
+.sub_tit_duvida{
+    padding: 30px 0px 20px 0px;
+    text-align: left;
+    margin: 0px;
+    width: 900px;
+    
+}
+
+.pergunta{
+    display: flex;
+    justify-content: space-between;
+    width: 800px;
+    background: var(--branco);
+    margin-bottom: 15px;
+    padding: 10px 0px 0px 10px;  
+    border-radius: 16px;
+}
+
+.letra_pagina_duvida{
+    font-size: 25px; 
+}
+
+/*-------------------------------------------------------FIM DA PAGINA DUVIDAS---------------------------------------------------------------------------------*/
+
+
+/*-------------------------------------------------------INICIO DA PAGINA TERMOS DE USO---------------------------------------------------------------------------------*/
+
+#banner_termos span{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/termos.png);
+    height: 30vh;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--branco);
+    font-size: 60px;
+}
+
+#centralizar_pagina_termos{
+    margin: auto;
+    width: 1200px;
+}
+
+.caixa_termos{
+    width: 900px;
+    margin: 40px auto;
+    background: var(--branco);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.caixa_termos h1{
+    text-align: center;
+    font-size: 35px;
+    padding: 20px;
+}
+
+.caixa_termos span{
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 50px;
+}
+
+.caixa_termos p{
+    padding-left: 50px;
+}
+
+
+/*-------------------------------------------------------FIM DA PAGINA TERMOS DE USO---------------------------------------------------------------------------------*/
+
+/*-------------------------------------------------------INICIO DA PAGINA COLABORADOR_RESERVA---------------------------------------------------------------------------------*/
+
+#centralizar_pagina_produtor{
+    margin: 30px auto;
+    padding-bottom: 30px;
+    width: 1200px;
+    background: var(--branco);
+}
+
+.caixa_produtor{
+    background-image: linear-gradient(rgba(71, 42, 76, 0.6), rgba(71, 42, 76, 0.6));
+    width: 1100px; 
+    margin: 40px auto;
+    text-align: center;
+    padding: 50px;
+    color: var(--branco);
+}
+
+.caixa_produtor img{
+    padding-bottom: 30px; 
+}
+
+#box_informacoes{
+    margin: auto;
+    width: 1000px;
+    margin-bottom: 30px;
+}
+
+#box_informacoes .Contato_Colaborador{
+    margin-top: 20px;
+}
+
+.produtos_colab{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-image: linear-gradient(rgba(71, 42, 76, 0.6), rgba(71, 42, 76, 0.6));
+    margin: 30px auto;
+    width: 1000px;
+    border-radius: 16px;
+    height: 12vw;
+}
+
+.produto p{
+    color: var(--branco);
+    font-size: 20px;
+}
+
+.input_produtos label{
+    color: var(--branco);
+    font-size: 20px; 
+}
+
+.input_produtos .botao{
+    font-size: 20px;
+    margin: 10px 0px;
+    height: 40px;
+}
+
+#box_colab_produtor{
+    text-align: center;
+}
+
+
+#box_colab_produtor .botao{
+    width: 150px;
+    margin: 20px;
+}
+/*-------------------------------------------------------FIM DA PAGINA COLABORADOR_RESERVA---------------------------------------------------------------------------------*/
+
+#menu_cabecalho{
+    display: flex;
+    flex-direction: row;
+    z-index: 1000;
+    
+}
+/*-------------------------------------------------------INICIO DA PAGINA RECEITA_DETALHES---------------------------------------------------------------------------------*/
+
+
+#p_bairro{
+    width: 280px;
+}
+
+#p_bairro .caixa-texto{
+    width: 100%;
+}
+
+#p_cidade{
+    margin-left: 30px;   
+}
+
+#p_cidade .caixa-texto {
+    width: 80%;
+}
+
+#p_estado{
+    margin-right: 30px;    
+}
+
+#p_estado .caixa-texto{
+    width: 100%;    
+}
+
+
+/*-------------------------------------------------------FIM DA PAGINA RECEITA_DETALHES---------------------------------------------------------------------------------*/
+
+
+
+/* ---------------------------------------------------------------RESPONSIVO----------------------------------------------------------------- */
+
+/*TABLET 768px to 1200 px */
+
+@media (min-width:768px) and (max-width: 1200px) {
+    /* --------------------------------------------------------------------EDIÇÃO GERAL TABLET*/
+    .container {
+        width: 700px;
+    }
+
+    .menu_home{
+        margin-left: 20px; 
+        margin-right: 0px;
+    }
+    #menu_cabecalho {
+        display: none;
+    }
+    /* --------------------------------------------------------------------HEADER TABLET*/
+    #menu_inferior .header_position {
+        width: 700px;
+    }
+    #menu_inferior ul a {
+        margin: 0px 0px 0px 15px;
+        font-size: 16px;
+    }
+    
+    /* --------------------------------------------------------------------COLABORADORES TABLET*/
+    .card_colab {
+        display: inline-flex;
+        flex-direction: column;
+        width: 700px;
+        height: 750px;
+    }
+    .sp_border {
+        display: none;
+    }
+
+    .btn_link_click{
+        margin-left: 18vw;
+           
+    }
+
+    .card_style{
+        margin-bottom: 5vw; 
+    }
+
+    /* --------------------------------------------------------------------RECEITAS TABLET*/
+    .caixa_central {
+        width: auto;
+        margin: auto;
+    }
+    .grupo_total {
+        margin: auto;
+        width: auto;
+    }
+    .grupo {
+        margin: auto;
+        width: 750px;
+    }
+    .linha_laranja {
+        width: auto;
+    }
+    /* --------------------------------------------------------------------PERFIL TABLET*/
+    .titulo-perfil {
+        font-size: 15pt;
+    }
+    .dados-pessoais {
+        width: 90%;
+        margin: auto;
+        flex-flow: column wrap;
+    }
+    .contato, .endereco {
+        width: 50%;
+        padding: 0;
+    }
+    .endereco {
+        margin: 0px 0px 0px 8px;
+    }
+    .dados, .row-form, .dados-contato, .texto-card {
+        margin: 10px;
+        padding: 10px;
+        width: 100%;
+    }
+    .dados-pessoais img {
+        width: 40%;
+        height: 80%;
+    }
+    .dados-pessoais form {
+        margin: 20px 0px;
+        width: 100%;
+    }
+    .dados {
+        width: 100%;
+        display: flex;
+        flex-flow: column wrap;
+    }
+    .texto-card {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .informacoes-extras {
+        width: 100%;
+        padding: 50px 0px 0px;
+    }
+    .botoes {
+        justify-content: space-around;
+    }
+    .btn-card {
+        margin: 40px 10px;
+        width: 25%;
+        cursor: pointer;
+    }
+    .btn-card:hover {
+        font-size: 20px;
+    }
+    .text-social {
+        width: 100%;
+        flex-flow: row wrap;
+        font-size: 16px;
+    }
+    /* ------------------------------------------------CADASTRO TABLET*/
+    .tit_cad {
+        width: 700px;
+    }
+    .prod_h_titulo {
+        width: 700px;
+    }
+    .card_cadastro {
+        width: 700px;
+    }
+    .form {
+        width: 700px;
+    }
+    .formulario {
+        width: 500px;
+        margin-left: 30px;
+    }
+    .txt_cad {
+        width: 400px;
+    }
+    .form_box1 {
+        width: 700px;
+    }
+    .form_box2 {
+        width: 700px;
+    }
+    .form_box3 {
+        width: 700px;
+    }
+    .txt_1 {
+        width: 220px;
+    }
+    .txt_2 {
+        width: 220px;
+    }
+    .box_1 {
+        width: 300px;
+    }
+    .grupo_cad {
+        margin-left: 30px;
+    }
+    .linha_laranja_cad {
+        width: 700px;
+    }
+    .prod_h {
+        width: 700px;
+    }
+    .btn_cad {
+        background-color: transparent;
+        margin-top: 115px;
+    }
+    .card_total_cad {
+        width: 500px;
+        height: 500px;
+    }
+    .card_prod {
+        width: 500px;
+        height: 400px;
+    }
+    .crd {
+        margin-bottom: 20px;
+    }
+    /* --------------------------------------------------------------LOGIN TABLET*/
+    .card-login {
+        width: 90%;
+        height: 90%;
+        margin: 0px 10px;
+    }
+    .login form, .registrar-se form {
+        width: 100%;
+        margin: 0px;
+        height: 60%;
+    }
+    .login, .registrar-se {
+        width: 50%;
+        justify-items: center;
+        height: 90%;
+    }
+    .registrar-se {
+        border-left: 1px solid #707070;
+        
+    }
+    .botao {
+        width: 100%;
+        font-size: 20px;
+        margin: 15px 20px;
+    }
+    .caixa-texto{
+        width: 60%;
+        margin: 5px 10px 10px 20px;
+        font-size:20px;
+        padding: 5px;
+    }
+    .registrar-se p{
+        width:100%;
+        margin:0px 20px;
+        font-size: 16px;
+    }
+    .registrar-se label, .login label{
+        margin:20px 0px 0px 20px;
+        height: fit-content;
+        font-size: 20px;
+    }
+    .login form .texto, .registrar-se form .texto {
+        width: 100%;
+        margin: 0px;
+    }
+    .login .texto a {
+        margin: 15px 20px;
+    }
+    .texto-horizontal {
+        width: 100%;
+    }
+    /* 
+    --------------------------------------------------------------HOME TABLET */
+    .banner_home {
+        background-size: cover;
+    }
+    .loganslogan_home {
+        margin-top: 100px;
+    }
+    .logoslogan_home img {
+        height: 200px;
+    }
+    .tituloh2 {
+        font-size: 28px;
+        /* margin: auto; */
+        margin-bottom: 50px;
+        
+    }
+    .container_home1 {
+        width: 500px;
+    }
+
+    .container_home {
+        width: 600px;
+    }
+
+    .text_home1 {
+        padding: 25px;
+    }
+    .text_home2 {
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .text_home2 img {
+        height: 170px; /*150*/
+        width: 220px; /*200*/
+    }
+    .subtext_home1 {
+        padding: 25px 0px 25px 30px;
+        width: 400px;
+    }
+    .subtext_home2 {
+        padding: 25px 30px 25px 0px;
+    }
+    .saiba {
+        font-size: 20px;
+        padding: 0px 30px;
+    }
+
+    /* -----------------------INICIO DUVIDAS------------------------------ */
+
+    .caixa_duvidas{
+        width: 700px;
+    
+    }
+
+    #centralizar_pagina_duvida{
+        width: 720px;
+    }
+    
+    .pergunta{
+        width: 700px;
+    }
+
+    /* -----------------------FIM DUVIDAS------------------------------ */
+
+    /* -------------------INICIO TERMOS DE USO------------------------- */
+
+    #centralizar_pagina_termos{
+        width: 700px;   
+    }
+
+    .caixa_termos{
+        width: 660px;
+    }
+
+    /* -------------------FIM TERMOS DE USO------------------------- */
+
+    /* -------------------INICIO COLABORADOR_PRODUTOS------------------------- */
+
+    #centralizar_pagina_produtor{
+        width: 700px;   
+    }
+
+    #box_informacoes p {
+        width: 700px; 
+    }
+
+    .caixa_produtor{
+        width: 700px;
+        padding: 20px 0px;
+    }
+
+    .produtos_colab{
+        width: 700px; 
+        height: 120px; 
+         
+    }
+
+    .produtos_colab p {
+        font-size: 15px;
+        width: 400px;
+        
+    }
+
+    #box_informacoes{
+        width: 700px;
+    }
+
+    .caixa_cadastro{
+        width: 700px;
+    }
+
+    .caixa-texto{
+        margin: 0px;
+        font-size: 13px;
+    }
+
+    #p_bairro{
+        width: 280px;
+    }
+
+    #p_bairro .caixa-texto{
+        width: 100%;
+    }
+
+    #p_cidade{
+        margin-left: 30px;   
+    }
+
+    #p_cidade .caixa-texto {
+        width: 80%;
+    }
+
+    #p_estado{
+        margin-right: 30px;    
+    }
+
+    #p_estado .caixa-texto{
+        width: 100%;    
+    }
+
+    /* #p_cidade .caixa-texto {
+        width: 150px;
+        margin-left: 30px;
+    }
+
+    #p_estado .caixa-texto {
+        width: 80px;
+        margin-left: 30px;
+    } */
+
+    /* -------------------FIM COLABORADOR_PRODUTOS------------------------- */
+
+    /* -------------------INICIO CADASTRO_PRODUTOS------------------------- */
+    #caixa_parte_imagem img{
+        width: 150px;
+    }
+
+    /* .form_caixa{
+        width: 450px;
+        margin: 0px;
+    } */
+
+    .padronizar_campo2{
+        width: 400px;
+    }
+
+    .padronizar_campo2 .caixa_texto_componente{
+        width: 400px;
+    }
+
+    /* .caixa_texto_componente{
+    
+    } */
+
+    .caixa_texto_sub{
+        width: 170px;
+    }
+
+    .caixa_texto_sub .caixa_texto_componente{
+        width: 170px;
+    }
+
+    .caixa_texto_componente_campo{
+        width: 400px;
+    }
+
+    .caixa_texto div .caixa_texto_componente{
+        width: 170px;
+    }
+
+    .caixa_texto{
+        width: 400px;
+    }
+
+    #caixa_parte_imagem{
+        margin: 0px 40px;
+    }
+
+    .caixa_texto_componente_bt{
+        width: 170px;
+    }
+
+    
+    /* ------------------------------PERFIL DO USUARIO */
+    
+    #p_cidade_perfil .caixa-texto{
+        width: 100%;
+    }
+
+    #p_estado_perfil .caixa-texto{
+        width: 100%;
+    }
+    
+    #p_cidade_perfil{
+        margin-right: 30px;
+    }
+    
+    #p_estado_perfil{
+        margin-right: 30px;
+        width: 70px;
+    }
+
+    /* -- */
+
+    #p_cidade .caixa-texto{
+        width: 100%;
+    }
+
+    #p_estado .caixa-texto{
+        width: 100%;
+    }
+    
+    #p_cidade{
+        margin-right: 30px;
+    }
+    
+    #p_estado{
+        margin-right: 30px;
+        width: 70px;
+    }
+
+    /* .caixa_texto_botoes{
+        width: 500px;
+        
+    }
+
+    .caixa_texto_sub{
+        width: 700px;
+    } */
+
+}
+
+/*SMARTPHONE 360px to 767px*/
+
+@media(min-width: 360px) and (max-width: 767px) {
+    /* -------------------------- */
+    /* -------------------------- */
+        #lbl_menu {
+            display: block;
+            cursor: pointer;
+            margin-right: 100px;
+            
+        }
+        .header_position{
+            justify-content: center;
+        }
+        
+        .menu_home {
+            text-align: center;
+            width: 100%;
+            display: none;
+            margin-left: 0;   
+        }
+        .menu_home a {
+            display: block;
+            border-bottom: 1px solid #EAEAEB;
+            margin: 0; 
+        }
+
+        #toggle:checked + .menu_home{
+            display: block;
+            background-color: #F5F5F5;
+            text-align: center; 
+            /* z-index: 1; */
+        }
+
+        #menu_cabecalho{
+            flex-direction: column;
+        }
+
+        .nav{
+            text-align: center;
+            
+        }
+        #menu_web, #menu_web img{
+            display: none;
+        }
+
+        
+        
+        
+    /* -------------------------- */
+    /* -------------------------- */
+    
+    /* --------------------------------------------------------------------EDIÇÃO GERAL MOBILE*/
+    .container {
+        width: 350px;
+    }
+    main {
+        margin: 0px;
+    }
+    /* --------------------------------------------------------------------HEADER MOBILE*/
+    header {
+        position: static;
+    }
+    #menu_superior ul a {
+        font-size: 10px;
+    }
+    #menu_superior ul li {
+        margin: 0px 10px;
+    }
+    #menu_inferior {
+        text-align: center;
+    }
+    #menu_inferior .header_position {
+        width: 350px;
+        /* display: inline-flex; */
+        justify-content: center;
+        align-items: center;
+    }
+    #menu_inferior .header_position ul {
+        display: none;
+    }
+    /* --------------------------------------------------------------------COLABORADORES MOBILE*/
+    .colab_banner .p_colab {
+        font-size: 25px;
+    }
+    .sp_border {
+        display: none;
+    }
+    .card_colab {
+        display: inline-flex;
+        flex-direction: column;
+        width: 350px;
+        height: 1350px;
+    }
+    .card_size {
+        width: 300px;
+        height: 650px;
+    }
+    .card_style {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: justify;
+        flex-direction: column;
+        margin: 20px 0px;
+    }
+    .text_1 {
+        margin: 20px 0px 0px;
+    }
+
+    /* ------------------------------------------------------------------RECEITAS E COLABORADORES MOBILE*/
+    h1 {
+        font-size: 30px;
+    }
+    .form_style {
+        display: none;
+    }
+
+
+    .tituloh1 {
+        font-size: 30px;
+    }
+    
+
+    /* ---------------------------------------------------------------------RECEITAS MOBILE*/
+    .bloco_titulo_2 {
+        font-size: 25px;
+    }
+
+    .caixa_central {
+        width: auto;
+        margin: auto;
+    }
+    .grupo_total {
+        margin: auto;
+        width: auto;
+    }
+    .grupo {
+        margin: auto;
+        width: 350px;
+    }
+    .linha_laranja {
+        width: auto;
+    }
+
+
+
+    /* ----------------------------------------------------------------------PERFIL MOBILE*/
+    .dados-pessoais {
+        display: flex;
+        flex-wrap: wrap;
+        width: 300px;
+        margin: auto;
+    }
+    .dados, .informacoes-extras, .dados-pessoais form, .row-form, .dados-contato, .contato, .endereco, .texto-card {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin: auto;
+        padding: 20px 10px;
+    }
+    .row-form, .texto-card, .text-data {
+        font-size: 18px;
+        padding: 5px;
+    }
+    .dados-pessoais img {
+        width: 80%;
+        height: 30%;
+        margin: 20px;
+    }
+    .text-data {
+        border-right: 0px;
+        margin: 0;
+        border-bottom: 1px var(--laranja) solid;
+        border: bottom size 30px;
+    }
+    .contato form {
+        height: 100%;
+        flex-flow: column wrap;
+        padding: 3px;
+    }
+    .contato {
+        margin: 30px 0px;
+        padding: 10px 5px;
+    }
+    .btn-card {
+        width: 100%;
+    }
+    .btn-card:hover {
+        font-size: 20px;
+    }
+    .dados-pessoais form label, .dados-pessoais form span, .informacoes-extras form label, .informacoes-extras form span, .row-form form label, .row-form form span {
+        width: 100%;
+        font-size: 18px;
+        margin: 2px 0px;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: space-between
+    }
+
+    .botoes_perfil_edicao{
+        flex-direction: column;
+        width: 300px;
+        margin: 40px auto;
+        
+    }
+
+    .botoes_perfil_edicao button{
+        margin: 10px;
+        width: 300px;
+        height: 60px;
+    }
+
+    /* --------------------------------------------------------------------CADASTRO MOBILE*/
+    .card_cadastro {
+        width: 368px;
+        margin: auto;
+        background-color: var(--branco);
+    }
+    .prod_h_titulo {
+        width: 361px;
+        font-size: 20px;
+        text-decoration-line: none;
+        background-color: var(--roxo);
+        color: var(--branco);
+    }
+    .formulario {
+        flex-direction: column;
+        width: 368px;
+    }
+    .formulario img {
+        padding-left: 100px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .form_box1 {
+        padding: 0px;
+        width: 368px;
+        padding-left: 30px;
+    }
+    .form_box2 {
+        flex-direction: column;
+        width: 368px;
+    }
+    .txt_cad {
+        width: 230px;
+    }
+    .box_1 {
+        padding-left: 30px;
+    }
+    .grupo_cad {
+        text-align: center;
+        width: 368px;
+    }
+    .bt_salvar {
+        margin-bottom: 10px;
+    }
+    .grupo_cad_total {
+        flex-direction: column;
+        width: 368px;
+    }
+    .form_box3 {
+        width: 368px;
+    }
+    .opcao {
+        padding: 0px;
+    }
+    .txt_1 {
+        width: 240px;
+    }
+    .txt_2 {
+        width: 240px;
+    }
+    .btncad {
+        width: 260px;
+        flex-direction: column;
+        margin-top: 10px;
+    }
+    .linha_laranja_cad {
+        width: 368px;
+    }
+    .prod_h {
+        width: 368px;
+    }
+    .tit_cad {
+        width: 360px;
+    }
+    .btn_cad {
+        display: none;
+    }
+    .card_total_cad {
+        width: 368px;
+        display: flex;
+        justify-content: center;
+        height: 1040px;
+    }
+    .crd {
+        margin-top: 30px;
+    }
+    .card_prod {
+        width: 200px;
+    }
+    .parte2 {
+        display: none;
+    }
+    .container-login {
+        width: 80%;
+        margin: auto;
+        height: 100%;
+    }
+    .caixa-texto {
+        width: 100%;
+    }
+
+    #caixa_parte_imagem img{
+        width: 200px;
+    }
+    
+    #caixa_total{
+        flex-direction: column;
+    }
+    
+    #caixa_parte_conteudo{
+        width: 350px;
+    }
+    
+    #caixa_parte_conteudo input{
+        width: 340px;
+    }
+
+    .caixa_texto{
+        flex-direction: column;
+    }
+
+    .caixa_texto_sub{
+        width: 350px;
+    }
+
+    .caixa_texto{
+        width: 350px;
+    }
+
+    #caixa_parte_conteudo .form_caixa {
+        width: 350px;
+    }
+
+    .padronizar_campo2{
+        margin-top: 20px;
+    } 
+     
+
+    .card_{
+        flex-wrap: wrap; 
+    }
+
+    .card_branco{
+        margin-bottom: 10px;
+    }
+
+    /* ------------------------------------------------------------------------LOGIN MOBILE*/
+    .fundo {
+        width: 100%;
+        height: auto;
+        /* z-index: -10 !important;  */
+    }
+    .card-login {
+        width: 90%;
+        margin: 20px;
+        flex-direction: column;
+        height: auto;
+        /* z-index: -1; */
+    }
+    .login, .registrar-se {
+        width: 90%;
+    }
+    .login form, .registrar-se form {
+        width: 100%;
+        margin: 0px;
+        height: 100%;
+        padding: 20px 0px;
+    }
+    .registrar-se {
+        border-top: 1px solid #707070;
+        height: 100%;
+    }
+    .botao {
+        width: 100%;
+        font-size: 20px;
+        margin: 30px 0px;
+    }
+    .tituloh2-sm {
+        font-size: 28px;
+        margin: 30px 0px 0px 0px;
+    }
+    .texto, .linha-link input {
+        width: 100%;
+    }
+    .registrar-se .texto-horizontal {
+        margin: 20px 0px;
+    }
+    .registrar-se .texto-horizontal .check {
+        width: 30px;
+        height: 30px;
+        margin: 5px;
+    }
+    .texto-horizontal input, .linha_link input {
+        margin: 5px;
+    }
+    .registrar-se label {
+        margin: 20px 0px 5px 0px;
+    }
+    /* --------------------------------------------------------------HOME MOBILE */
+    .banner_home {
+        background-size: cover;
+    }
+
+    .banner_home img{
+        width: 70vw;    
+    }
+
+    .loganslogan_home {
+        margin-top: 100px;
+    }
+    .logoslogan_home img {
+        height: 200px;
+    }
+    .tituloh2 {
+        font-size: 20px;
+        /* margin: auto; */
+        margin-bottom: 15px;
+    }
+    .container_home {
+        width: 300px;
+        align-items: center;
+    }
+    .text_home1 {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+    }
+    .text_home2 {
+        padding: 20px 0px 20px 0px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+    }
+    .inverse {
+        flex-direction: column-reverse;
+    }
+    .text_home img {
+        height: 75px;
+        width: 100px;
+    }
+
+    .text_home2 img {
+        height: 150px;
+        width: 220px;
+    }
+
+    .subtext_home1 {
+        padding: 10px 10px 0px 10px; 
+    }
+    .subtext_home2 {
+        padding: 10px 10px 0px 10px;
+    }
+    .saiba {
+        font-size: 15px;
+        margin-bottom: 20px;
+        margin: auto;
+        text-align: center;
+    }
+    
+    .card_size p{
+        font-size: 14px;
+    }
+
+    .btn_link_click{
+        margin-top: 10px;
+        margin-left: 85px;
+    }
+
+    /* --------------------------------------------------------------COLABORADOR_REPOSITORIO (INICIO) / RECEITA_DETALHES*/
+    
+    .colab_section{
+        width: 100%;
+    }
+
+    .caixa_produtor{
+        width: 250px;    
+    }
+
+    .caixa_produtor img{
+        width: 150px;
+    }
+
+    #centralizar_pagina_produtor{
+        width: 350px;
+    }
+
+    #box_informacoes{
+        width: 330px;    
+    }
+
+    #box_informacoes p{
+        width: 330px;
+    }
+
+    .produtos_colab{
+        width: 350px;
+        height: 400px;
+        flex-direction: column;
+    }
+
+    
+    /* --------------------------------------------------------------COLABORADOR_REPOSITORIO (FIM)*/
+
+    /* --------------------------------------------------------------TERMOS_DE_USO (INICIO)*/
+
+    #centralizar_pagina_termos{
+        width: 350px;
+    }
+
+    .caixa_termos{
+        /* margin: 10px; */
+        width: 300px;
+    }
+
+    /* --------------------------------------------------------------TERMOS_DE_USO (FIM)*/
+
+    /* --------------------------------------------------------------DUVIDAS (INICIO)*/
+
+    #centralizar_pagina_duvida{
+        width: 350px;
+    }
+
+    .sub_tit_duvida{
+        width: 350px;
+        font-size: 25px;   
+    }
+
+    .pergunta{
+        width: 350px;  
+        align-items: center;
+    }
+
+    .letra_pagina_duvida{
+        font-size: 20px; 
+    }
+
+    .caixa_duvidas{
+        width: 350px;    
+    }
+
+    /* --------------------------------------------------------------DUVIDAS (FIM)*/
+
+    /* --------------------------------------------------------------PERFIL_COLABORADOR (INICIO)*/
+
+    .caixa_cadastro{
+        width: 350px;
+    }
+
+    /* .btn_link_click{
+        margin: 0px;
+    } */
+
+    .linha_perfil_colab{
+        width: 350px;
+    }
+
+    #p_nome{
+        width: 357px;    
+    }
+
+    #p_razao_documento{
+        flex-direction: column;
+    }
+
+    #p_razao_documento #_1{
+        width: 340px;
+        margin: 0px;
+    }
+
+    #p_razao_documento #_2{
+        width: 340px;
+        margin: 0px;
+    }
+
+    .form_caixa{
+        width: 350px;
+    }
+
+    #p_entrega{
+        width: 350px;    
+    }
+
+    #p_entrega select{
+        width: 200px;
+    }
+
+    .padronizar_campo input{
+        width: 340px;
+    }
+
+    #p_enderco{
+        flex-direction: column;
+    }
+
+    #p_end{
+        margin: 0px;
+        width: 340px;
+    }
+
+    #p_cep_logradouro{
+        flex-direction: column;
+    }
+
+    .button_conj{
+        visibility: hidden;
+    }
+
+    #p_email_2{
+        width: 357px;
+    }
+
+    #p_sobre{
+        width: 357px;     
+    }
+    
+    #p_cep{
+        width: 200px;
+        height: 49px;
+        
+    }
+
+    #p_logradouro{
+        width: 340px;
+    }
+
+    #p_logradouro input{
+        width: 100%;
+    }
+
+    #p_bairro{
+        width: 340px;
+    }
+
+    .caix{
+        width: 150px;
+    }
+
+    /* --------------------------------------------------------------PERFIL_COLABORADOR (FIM)*/
+    
+
+    /* --------------------------------------------------------------FOOTER MOBILE*/
+    .footer_position {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .footer_style .off {
+        display: none;
+    }
+    .footer_style a {
+        text-align: left;
+        margin: 10px 0px 0px;
+    }
+    .footer_style div {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+    }
+}
+@media(min-width: 1200px){
+    .registrar-se {
+        border-left: 1px solid #707070;
+    }
+    #menu_cabecalho {
+        display: none;
+    }
+}
