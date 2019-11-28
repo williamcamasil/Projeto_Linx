@@ -119,6 +119,7 @@ namespace backend.Controllers {
                     }
                 );
             }
+            await _repositorio.Excluir (Receita);
             return Receita;
         }
 

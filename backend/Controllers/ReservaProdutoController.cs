@@ -99,6 +99,7 @@ namespace backend.Controllers {
                     }
                 );
             }
+            await _repositorio.Excluir (ReservaProduto);
             return ReservaProduto;
         }
 

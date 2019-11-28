@@ -108,6 +108,7 @@ namespace backend.Controllers {
                     }
                 );
             }
+            await _repositorio.Excluir(Endereco);
             return Endereco;
         }
 

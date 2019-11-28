@@ -19,7 +19,7 @@ namespace backend.Repositories {
 
         public async Task<RegistroProduto> BuscarPorID (int id) {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()){
-                return await _contexto.RegistroProduto.Include("IdProdutoNavigation").Include("IdColaboradorNavigation").FirstOrDefaultAsync(e => e.IdRegistro == id);
+                return await _contexto.RegistroProduto.Include("IdProdutoNavigation").Include("IdUsuarioNavigation").FirstOrDefaultAsync(e => e.IdRegistro == id);
             }
         }
 
@@ -35,7 +35,7 @@ namespace backend.Repositories {
 
         public async Task<List<RegistroProduto>> Listar () {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()){
-                return await _contexto.RegistroProduto.Include("IdProdutoNavigation").Include("IdColaboradorNavigation").ToListAsync();
+                return await _contexto.RegistroProduto.Include("IdProdutoNavigation").Include("IdUsuarioNavigation").ToListAsync();
             }
         }
 

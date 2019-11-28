@@ -106,6 +106,7 @@ namespace backend.Controllers {
                     }
                 );
             }
+            await _repositorio.Excluir(Usuario);
             return Usuario;
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Domains;
@@ -19,7 +20,7 @@ namespace backend.Repositories {
 
         public async Task<Endereco> BuscarPorID (int id) {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()){
-                return await _contexto.Endereco.FindAsync (id);
+                return await _contexto.Endereco.Include("IdUsuarioNavigation").FirstOrDefaultAsync (e => e.IdEndereco == id);
             }
         }
 
@@ -35,7 +36,7 @@ namespace backend.Repositories {
 
         public async Task<List<Endereco>> Listar () {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()){
-                return await _contexto.Endereco.ToListAsync ();
+                return await _contexto.Endereco.Include("IdUsuarioNavigation").ToListAsync ();
             }
         }
 

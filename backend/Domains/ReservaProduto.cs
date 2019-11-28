@@ -9,14 +9,16 @@ namespace backend.Domains
     {
         [Key]
         public int IdReserva { get; set; }
-        [Column(TypeName = "decimal(18, 0)")]
-        public decimal Quantidade { get; set; }
-        public int? IdProduto { get; set; }
+        [Column(TypeName = "numeric(10, 1)")]
+        public decimal QuantidadeReserva { get; set; }
+        [StringLength(50)]
+        public string Situacao { get; set; }
+        public int? IdRegistro { get; set; }
         public int? IdUsuario { get; set; }
 
-        [ForeignKey(nameof(IdProduto))]
-        [InverseProperty(nameof(Produto.ReservaProduto))]
-        public virtual Produto IdProdutoNavigation { get; set; }
+        [ForeignKey(nameof(IdRegistro))]
+        [InverseProperty(nameof(RegistroProduto.ReservaProduto))]
+        public virtual RegistroProduto IdRegistroNavigation { get; set; }
         [ForeignKey(nameof(IdUsuario))]
         [InverseProperty(nameof(Usuario.ReservaProduto))]
         public virtual Usuario IdUsuarioNavigation { get; set; }
