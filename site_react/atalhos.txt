@@ -1,0 +1,17 @@
+import React, {Component} from 'react';
+import Header from '../../componentes/Header/Header';
+import Footer from '../../componentes/Footer/Footer';
+
+class Colaboradores extends Component {
+    render() {
+        return (
+            <div>
+                <Header />
+
+                <Footer />
+            </div>
+        );
+    }
+}
+
+export default Colaboradores;

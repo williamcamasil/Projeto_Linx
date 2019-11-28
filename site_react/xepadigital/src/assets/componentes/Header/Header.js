@@ -6,10 +6,9 @@ import logo_xepa from '../../img/logo_xepa.svg';
 class Header extends Component {
     render() {
         return (
-            <body>
             <header>
                 <nav id="menu_superior">
-                    <div classname="container">
+                    <div className="container">
                         <ul>
                             <li><a href="#footer_contato">CONTATE-NOS</a></li>
                             <li><a href="login.html">CADASTRE-SE</a></li>
@@ -18,12 +17,17 @@ class Header extends Component {
                     </div>
                 </nav>
                 <nav id="menu_inferior">
-                    <div classname="container header_position">
-                        <div id="menu_web" classname="container header_position">
-                            <img src={logo_xepa} className="App-logo" alt="Logo do Xepa Digital. Circulo lilás com uma berijela com chapéu de chefe e uma cenoura." />
-                            {/* <a href="index.html" title="Página inicial">
-                                <img src="img/logo_xepa.svg"
-                                    alt="Logo do Xepa Digital. Circulo lilás com uma berijela com chapéu de chefe e uma cenoura."></a> */}
+                    <div className="container header_position">
+                        <div id="menu_web" className="container header_position">
+                            <a 
+                                href="/" 
+                                title="Página inicial">
+                                    <img src={logo_xepa} 
+                                        className="App-logo" 
+                                        alt="Logo do Xepa Digital. Circulo lilás com uma 
+                                        berijela com chapéu de chefe e uma cenoura." 
+                                    />
+                            </a>
                             <ul>
                                 <li><a href="#historia" title="Tópico História">HISTÓRIA</a></li>
                                 <li><a href="#propositos" title="Tópico Propósitos">PROPÓSITOS</a></li>
@@ -34,16 +38,22 @@ class Header extends Component {
                         
                         <div id="menu_cabecalho">    
                             <div>
-                                {/* <a href="index.html" title="Página inicial">
-                                    <img src="img/logo_xepa.svg"
-                                        alt="Logo do Xepa Digital. Circulo lilás com uma berijela com chapéu de chefe e uma cenoura."></a> */}
+                                <a 
+                                    href="index.html" 
+                                    title="Página inicial">
+                                        <img src={logo_xepa} 
+                                            className="App-logo" 
+                                            alt="Logo do Xepa Digital. Circulo lilás com uma 
+                                            berijela com chapéu de chefe e uma cenoura." 
+                                        />
+                                </a>
                             </div> 
 
                             
-                            <div classname="nav">
+                            <div className="nav">
                                 <label id="lbl_menu" for="toggle">&#9776;</label>
                                 <input type="checkbox" id="toggle"/>
-                                <div classname="menu_home">
+                                <div className="menu_home">
                                     <a href="#historia" title="Tópico História">HISTÓRIA</a>
                                     <a href="#propositos" title="Tópico Propósitos">PROPÓSITOS</a>
                                     <a href="#colaboradores" title="Tópico Colaboradores">COLABORADORES</a>
@@ -54,7 +64,6 @@ class Header extends Component {
                     </div>
                 </nav>
             </header>
-            </body>
         );
     }
 }
