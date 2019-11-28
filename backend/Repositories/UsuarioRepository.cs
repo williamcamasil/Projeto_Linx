@@ -19,7 +19,7 @@ namespace backend.Repositories {
 
         public async Task<Usuario> BuscarPorID (int id) {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()) {
-                var usuario = await _contexto.Usuario.Include ("IdEnderecoNavigation").FirstOrDefaultAsync (e => e.IdUsuario == id);
+                var usuario = await _contexto.Usuario.FirstOrDefaultAsync (e => e.IdUsuario == id);
 
                 usuario.EmailUsuario = null;
                 usuario.SenhaUsuario = null;
@@ -41,7 +41,7 @@ namespace backend.Repositories {
         public async Task<List<Usuario>> Listar () {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()) {
                 List<Usuario> ListaUsuario = new List<Usuario> ();
-                ListaUsuario = await _contexto.Usuario.Include ("IdEnderecoNavigation").ToListAsync ();
+                ListaUsuario = await _contexto.Usuario.ToListAsync ();
                 // Tratamos 
                 foreach (var user in ListaUsuario) {
                     user.EmailUsuario = null;

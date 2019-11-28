@@ -10,7 +10,6 @@ namespace backend.Domains
         public Produto()
         {
             RegistroProduto = new HashSet<RegistroProduto>();
-            ReservaProduto = new HashSet<ReservaProduto>();
         }
 
         [Key]
@@ -22,18 +21,15 @@ namespace backend.Domains
         public string ImgProduto { get; set; }
         [StringLength(255)]
         public string DescricaoProduto { get; set; }
-        [Column(TypeName = "decimal(18, 0)")]
+        [Column(TypeName = "numeric(10, 1)")]
         public decimal? Disponibilidade { get; set; }
         public bool? Organico { get; set; }
-        [StringLength(20)]
-        public string Preco { get; set; }
-        [Required]
-        [StringLength(20)]
-        public string Validade { get; set; }
+        [Column(TypeName = "numeric(10, 1)")]
+        public decimal? Preco { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? Validade { get; set; }
 
         [InverseProperty("IdProdutoNavigation")]
         public virtual ICollection<RegistroProduto> RegistroProduto { get; set; }
-        [InverseProperty("IdProdutoNavigation")]
-        public virtual ICollection<ReservaProduto> ReservaProduto { get; set; }
     }
 }

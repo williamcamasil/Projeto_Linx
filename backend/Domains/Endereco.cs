@@ -7,11 +7,6 @@ namespace backend.Domains
 {
     public partial class Endereco
     {
-        public Endereco()
-        {
-            Usuario = new HashSet<Usuario>();
-        }
-
         [Key]
         public int IdEndereco { get; set; }
         [Column("Endereco")]
@@ -28,8 +23,10 @@ namespace backend.Domains
         public string Bairro { get; set; }
         [StringLength(2)]
         public string Estado { get; set; }
+        public int? IdUsuario { get; set; }
 
-        [InverseProperty("IdEnderecoNavigation")]
-        public virtual ICollection<Usuario> Usuario { get; set; }
+        [ForeignKey(nameof(IdUsuario))]
+        [InverseProperty(nameof(Usuario.Endereco))]
+        public virtual Usuario IdUsuarioNavigation { get; set; }
     }
 }

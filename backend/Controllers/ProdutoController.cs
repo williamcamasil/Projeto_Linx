@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Domains;
@@ -55,8 +56,8 @@ namespace backend.Controllers {
                 Produto.DescricaoProduto = Request.Form["DescricaoProduto"].ToString ();
                 Produto.Disponibilidade = decimal.Parse (Request.Form["Disponibilidade"]);
                 Produto.Organico = bool.Parse (Request.Form["Organico"]);
-                Produto.Preco = Request.Form["Preco"].ToString ();
-                Produto.Validade = Request.Form["Validade"].ToString ();
+                Produto.Preco = decimal.Parse(Request.Form["Preco"]);
+                Produto.Validade = DateTime.Parse(Request.Form["Validade"]);
 
                 await _repositorio.Salvar (Produto);
             } catch (DbUpdateConcurrencyException) {
@@ -86,8 +87,8 @@ namespace backend.Controllers {
                 Produto.Disponibilidade = decimal.Parse (Request.Form["Disponibilidade"]);
                 Produto.DescricaoProduto = Request.Form["DescricaoProduto"].ToString ();
                 Produto.Organico = bool.Parse (Request.Form["Organico"]);
-                Produto.Preco = Request.Form["Preco"].ToString ();
-                Produto.Validade = Request.Form["Validade"].ToString ();
+                Produto.Preco = decimal.Parse(Request.Form["Preco"]);
+                Produto.Validade = DateTime.Parse(Request.Form["Validade"]);
 
                 await _repositorio.Alterar (Produto);
             } catch (DbUpdateConcurrencyException) {
@@ -120,6 +121,7 @@ namespace backend.Controllers {
                     }
                 );
             }
+            await _repositorio.Excluir (Produto);
             return Produto;
         }
 

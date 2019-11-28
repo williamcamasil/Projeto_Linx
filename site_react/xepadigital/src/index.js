@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import Inicial from './assets/pages/Inicial/Inicial';
 import * as serviceWorker from './serviceWorker';
+import './assets/css/style.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
+import Colaboradores from './assets/pages/Colaboradores/Colaboradores';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+const Rotas = (
+    //cria a URL
+    <Router> 
+        <div>
+            <Switch>
+                <Route exact path = "/" component ={Inicial}/>
+                <Route path="/Colaboradores" component = {() => <Colaboradores titulo_pagina="Colaboradores - XepaDigital" />}/>  
+                {/* <Route component = {NotFound}/> */}
+            </Switch>
+        </div>
+    </Router>
+)
+
+ReactDOM.render(Rotas, document.getElementById('root'));
+
 serviceWorker.unregister();
