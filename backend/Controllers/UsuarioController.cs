@@ -12,6 +12,7 @@ namespace backend.Controllers {
     [ApiController]
     public class UsuarioController : ControllerBase {
         UsuarioRepository _repositorio = new UsuarioRepository ();
+        EnderecoRepository _repositorioEndereco = new EnderecoRepository ();
         //GET: api/Usuario
         [HttpGet]
         [Authorize (Roles = "Administrador")]
@@ -53,6 +54,13 @@ namespace backend.Controllers {
         public async Task<ActionResult<Usuario>> Post (Usuario Usuario) {
             try {
                 await _repositorio.Salvar (Usuario);
+
+                // Instanciamos o Endereco para chama-lo
+                Endereco endereco = new Endereco();
+                // Falamos que a chave estrangeira dentro de endereço será o Id do usuario que foi criado
+                endereco.IdUsuario = Usuario.IdUsuario;
+                // Criamos a tabela de Endereco com o IdUsuario nela, para poder atualiza-la no perfil
+                await _repositorioEndereco.Salvar (endereco);
             } catch (DbUpdateConcurrencyException) {
                 throw;
 

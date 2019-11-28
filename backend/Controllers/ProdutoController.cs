@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using backend.Domains;
 using backend.Repositories;
@@ -13,6 +15,9 @@ namespace backend.Controllers {
     [ApiController]
     public class ProdutoController : ControllerBase {
         ProdutoRepository _repositorio = new ProdutoRepository ();
+        // Instanciar o Repositório Registro de Produtos
+        RegistroProdutoRepository _repositorioRegistro = new RegistroProdutoRepository();
+
         UploadRepository _UploadImg = new UploadRepository ();
         //GET: api/Produto
         [HttpGet]
@@ -60,6 +65,20 @@ namespace backend.Controllers {
                 Produto.Validade = DateTime.Parse(Request.Form["Validade"]);
 
                 await _repositorio.Salvar (Produto);
+
+                // Criando a tabela Registro de produto e passando o IdProduto criado + IdUsuario Logado
+                var idPostagemRec = HttpContext.User.Identity as ClaimsIdentity;
+                IEnumerable<Claim> claim = idPostagemRec.Claims;
+                var idClaim = claim.Where (x => x.Type == ClaimTypes.PrimarySid).FirstOrDefault ();
+                
+                // Criando o Objeto Registro
+                RegistroProduto registro = new RegistroProduto ();
+
+                // Passando os atributos do Objeto Registro
+                registro.IdProduto = Produto.IdProduto;
+                registro.IdUsuario = Convert.ToInt32(idClaim.Value);
+
+                await _repositorioRegistro.Salvar(registro);
             } catch (DbUpdateConcurrencyException) {
                 throw;
             }
