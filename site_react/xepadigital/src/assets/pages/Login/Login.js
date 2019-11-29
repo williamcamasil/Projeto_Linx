@@ -22,7 +22,7 @@ class Login extends Component {
     }
 
     realizarLogin(e) {
-        e.prevenDefaut();
+        e.preventDefault();
 
         this.setState({ erroMsg: "" })
 
