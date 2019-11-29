@@ -26,6 +26,9 @@ namespace backend
             Configuration = configuration;
         }
 
+        //para habilitar o cors
+        readonly string PermissaoEntreOrigens = "_PermissaoEntreOrigens";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -60,16 +63,10 @@ namespace backend
             });
 
             // Configuramos o Cors
-            services.AddCors (
-                options => {
-                    options.AddPolicy ("AllowMyOrigin",
-                        builder => builder.AllowAnyOrigin ()
-                        .AllowAnyMethod ()
-                        .AllowAnyHeader ()
-                        // .AllowCredentials ()
-                        );
-                }
-            );
+            services.AddCors (options => {
+                options.AddPolicy (PermissaoEntreOrigens,
+                    builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -90,9 +87,10 @@ namespace backend
             //Usamos efetivamente a autenticação
             app.UseAuthentication();
 
+            // Usamos o Cors
             app.UseCors (builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection(); Desabilitado para evitar redirecionamento
 
             app.UseRouting();
 
