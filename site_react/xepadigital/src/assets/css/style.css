@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat&display=swap');
 
+/*#region USO GERAL*/
 :root {
     --roxo: #472A4C;
     --branco: white;
@@ -45,7 +46,7 @@
     color: white;
       
 }
-
+/*#endregion*/
 
 /*#region TABELA*/
 #conteudoPrincipal-lista {
@@ -199,6 +200,12 @@ html {
 
 .menu_home{
     margin-left: 20vw;   
+}
+
+#menu_cabecalho{
+    display: flex;
+    flex-direction: row;
+    z-index: 1000;
 }
 
 /*#endregion */
@@ -673,57 +680,75 @@ h2 {
 /*#endregion */
 
 /*#region PÁGINA PERFIL*/
-.caixa_cad_colaborador{
-    text-align: center;
-    padding: 40px 0px;
+
+.caixa_cad_esquerda{
+    margin: 0px 0px 80px;
+    width: 300px;
+    text-align: center;    
 }
 
-.caixa_cad_colaborador span{
+.c_text{
+    text-align: center;
     font-size: 30px;
     text-decoration-line: underline;
+    margin: 0px 0px 20px;
+}
+.d_text{
+    font-size: 25px;
 }
 
-.caixa_cad_colaborador img{
-    margin-top: 20px;
+.caixa_cad_direita{
+    width: 900px;
 }
 
-.caixa_cad_colaborador button{
+.caixa_cad_esquerda button{
     width: 150px;
-    
+}
+
+.card_size_cad{
+    padding: 30px 20px;
+    margin:  220px auto 50px;
+    width: 1200px;
+    border-radius: 15px;
 }
 
 .linha_perfil_colab{
     background-color: #707070;
     padding: 1px;  
-    margin-bottom: 20px;
+    margin: 5px 0px 20px;
 }
 
-.caixa_cadastro span{
-    font-size: 25px;
-}
-
-.caixa_cad_endereco{
-    margin-bottom: 30px;
-}
-
-.caixa_cad_endereco .button_conj{
-    height: 30px;
-    width: 40px;
-    
-}
-
-.botoes_perfil_edicao{
+.c_disp_flex{
     display: flex;
-    justify-content: center;
-    margin-top: 50px;
 }
+.c_disp_wrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+.caixa_input_2{
+    width: 450px;
+}
+.caixa_style{
+    border: 1px solid #707070;
+    border-radius: 4px;
+    padding: 5.5px 4px;
+    margin: 0px 0px 13.5px;
+}
+.caixa-texto_1 {
+    width: 95%;
+}
+.caixa-texto_2 {
+    width: 90%;
+}
+.caixa-texto_3 {
+    width: 92.23%;
+}
+.caixa-texto_4 {
+    width: 95%;
+    height: 60px;
+}
+/* AGUARDANDO CSS DO ENDEREÇO */
 
-.botoes_perfil_edicao button{
-    margin-right: 20px;
-    height: 40px;
-    width: 200px;
-    font-size: 20px;
-}
 /*#endregion */
 
 /*#region PÁGINA CADASTRO*/
@@ -1244,12 +1269,6 @@ h2 {
     margin: 20px;
 }
 /*#endregion */
-
-#menu_cabecalho{
-    display: flex;
-    flex-direction: row;
-    z-index: 1000;
-}
 
 /*#region PAGINA RECEITA_DETALHES*/
 #p_bairro{
