@@ -128,7 +128,7 @@ class Colaboradores extends Component {
                                         R$10,20 kg</p>
                                     </div>
                                 </div>
-                                <a className="btn_link_click" href="colaborador_produtos.html">+ Informações</a>
+                                <a className="btn_link_click" href="colaborador_produtos">+ Informações</a>
                             </div>
                         </div>
 
@@ -169,7 +169,7 @@ class Colaboradores extends Component {
                                         R$10,20 kg</p>
                                     </div>
                                 </div>
-                                <a className="btn_link_click" href="colaborador_produtos.html">+ Informações</a>
+                                <a className="btn_link_click" href="colaborador_produtos">+ Informações</a>
                             </div>
                         </div>
                     </section>
@@ -211,7 +211,7 @@ class Colaboradores extends Component {
                                         R$6,20 kg</p>
                                     </div>
                                 </div>
-                                <a className="btn_link_click" href="colaborador_produtos.html">+ Informações</a>
+                                <a className="btn_link_click" href="colaborador_produtos">+ Informações</a>
                             </div>
                         </div>
                         <div className="card card_colab">
@@ -253,7 +253,7 @@ class Colaboradores extends Component {
                                         R$6,20 kg</p>
                                     </div>
                                 </div>
-                                <a className="btn_link_click" href="colaborador_produtos.html">+ Informações</a>   
+                                <a className="btn_link_click" href="colaborador_produtos">+ Informações</a>   
                             </div>
                         </div>
                     </section>
