@@ -89,15 +89,12 @@ class Inicial extends Component {
                     <div className="container_home">
                         <h2 className="tituloh2">DUVIDAS</h2>
                         <div className="text_home2 inverse">
-                            <p className="subtext_home2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod leo
-                                a nibh dignissim tincidunt. Nam ultricies odio ac neque suscipit volutpat. Ut dictum adipiscing
-                                felis sed malesuada. Integer porta sem nec nibh hendrerit imperdiet. Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit.</p>
+                            <p className="subtext_home2">‘Nesse campo oferecemos toda ajuda para esclarecer as dúvidas, tanto para colaboradores quanto para clientes. Todas perguntas feitas nesta página serão esclarecidas da melhor forma possível para que todos consigam ter uma experiência boa no final..</p>
                             <div id="imagem_div_home">
                                 <img src={duvida} alt="imagem ilustrativa de duvidas"/>
                             </div>
                         </div>
-                        <a href="faq" title="Saiba mais sobre colaboradores." className="saiba">Saiba Mais>></a>
+                        <a href="Duvidas" title="Saiba mais sobre colaboradores." className="saiba">Saiba Mais>></a>
                     </div>
                 </section>
             </main>
