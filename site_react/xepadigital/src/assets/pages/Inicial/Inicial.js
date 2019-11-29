@@ -49,7 +49,7 @@ class Inicial extends Component {
                                 Quer ser um colaborador ? <strong>Clique em saiba mais</strong>
                             </p>
                         </div>
-                        <a href="colaboradores" title="Saiba mais sobre colaboradores." className="saiba">Saiba Mais>></a>
+                        <a href="Colaboradores" title="Saiba mais sobre colaboradores." className="saiba">Saiba Mais>></a>
                     </div>
                 </section>
                 <section id="receitas">
@@ -64,7 +64,7 @@ class Inicial extends Component {
                                 <img src={receitas} alt="pratos de comida representando as receitas"/>
                             </div>
                         </div>
-                        <a href="receitas.html" title="Saiba mais sobre colaboradores." className="saiba">Saiba Mais>></a>
+                        <a href="Receitas" title="Saiba mais sobre colaboradores." className="saiba">Saiba Mais>></a>
                     </div>
                 </section>
                 
@@ -80,7 +80,7 @@ class Inicial extends Component {
                                 felis sed malesuada. Integer porta sem nec nibh hendrerit imperdiet. Lorem ipsum dolor sit amet,
                                 consectetur adipiscing elit.</p>
                         </div>
-                        <a href="termosuso" title="Saiba mais sobre nossos termos." className="saiba">Saiba Mais>></a>
+                        <a href="Termos" title="Saiba mais sobre nossos termos." className="saiba">Saiba Mais>></a>
                     </div>
                 </section>
 
