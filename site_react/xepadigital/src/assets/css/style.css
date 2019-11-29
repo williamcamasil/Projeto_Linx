@@ -32,6 +32,20 @@
     color: var(--branco);
 }
 
+.texto_pagina_404{   
+    background: #FFB65C;
+    height: 70vh;
+    padding: 146px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;      
+}
+
+.texto_pagina_404 h1{
+    color: white;
+      
+}
+
 
 /*#region TABELA*/
 #conteudoPrincipal-lista {
@@ -228,7 +242,7 @@ footer {
 }
 
 main {
-    margin: 150px 0px 0px;
+    margin: 160px 0px 0px;
 }
 
 body {

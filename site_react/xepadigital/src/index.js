@@ -17,34 +17,13 @@ import Colaborador_Detalhes from './assets/pages/Colaborador_Detalhes/Colaborado
 import Reserva_Colaborador from './assets/pages/Reserva_Colaborador/Reserva_Colaborador';
 import Reserva_Cliente from './assets/pages/Reserva_Cliente/Reserva_Cliente';
 import Receitas_Detalhes from './assets/pages/Receitas_Detalhes/Receitas_Detalhes';
+import Duvidas from './assets/pages/Duvidas/Duvidas';
 import Termos from './assets/pages/Termos/Termos';
-import Login from './assets/pages/Login/Login';
-import { usuarioAutenticado, parseJwt } from './assets/services/auth';
-
-//AUTENTIFICAÇÃO
-// const PermissaoAdmin = ({ component : Component }) => (
-//     <Route 
-//         render={props =>
-//             usuarioAutenticado() && parseJwt().Role === "Administrador" ? (
-//                 <Component {...props}/>
-//             ) : (
-//                 <Redirect to={{ pathname : "/Login"}}/>
-//             )
-//         }
-//     />
-// )
-
-// const PermissaoCliente = ({ component : Component }) => (
-//     <Route 
-//         render={props =>
-//             usuarioAutenticado() && parseJwt().Role === "Cliente" ? (
-//                 <Component {...props}/>
-//             ) : (
-//                 <Redirect to={{ pathname : "/Login"}}/>
-//             )
-//         }
-//     />
-// )
+import Cadastro_Produto from './assets/pages/Cadastro_Produto/Cadastro_Produto';
+import Cadastro_Receita from './assets/pages/Cadastro_Receita/Cadastro_Receita';
+import NotFound from './assets/pages/NotFound/NotFound';
+// import Login from './assets/pages/Login/Login';
+// import { usuarioAutenticado, parseJwt } from './assets/services/auth';
 
 const Rotas = (
     //cria a URL
@@ -57,11 +36,13 @@ const Rotas = (
                 <Route path="/Reserva_Colaborador" component = {() => <Reserva_Colaborador titulo_pagina="Reserva Colaborador - XepaDigital" />}/> 
                 <Route path="/Reserva_Cliente" component = {() => <Reserva_Cliente titulo_pagina="Reserva Cliente - XepaDigital" />}/> 
                 <Route path="/Receitas_Detalhes" component = {() => <Receitas_Detalhes titulo_pagina="Receitas Detalhes - XepaDigital" />}/> 
+                <Route path="/Duvidas" component = {() => <Duvidas titulo_pagina="Duvidas - XepaDigital" />}/> 
                 <Route path="/Termos" component = {() => <Termos titulo_pagina="Termos - XepaDigital" />}/> 
-                {/* <PermissaoAdmin path="/" component={Inicial}/> */}
-                <Route path="/Login" component={Login}/>
-                <Route path="/Colaboradores" component = {() => <Colaboradores titulo_pagina="Colaboradores - XepaDigital" />}/>  
-                {/* <Route component = {NotFound}/> */}
+                <Route path="/Cadastro_Produto" component = {() => <Cadastro_Produto titulo_pagina="Cadastro Produtos - XepaDigital" />}/> 
+                <Route path="/Cadastro_Receita" component = {() => <Cadastro_Receita titulo_pagina="Cadastro Receitas - XepaDigital" />}/>
+                <Route path="/NotFound" component = {() => <NotFound titulo_pagina="página não encontrada - XepaDigital" />}/>
+
+                {/* <Route path="/Login" component={Login}/> */}
             </Switch>
         </div>
     </Router>
