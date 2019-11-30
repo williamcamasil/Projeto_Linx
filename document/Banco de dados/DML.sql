@@ -1,12 +1,5 @@
 USE XepaDigital;
 
-INSERT INTO Endereco
-    (Endereco, Numero, CEP, Cidade, Bairro, Estado, IdUsuario)
-VALUES
-    ('Av. 23 Maio', '152', '53427-003', 'São Paulo', 'Brooklin', 'SP', 1),
-    ('Rua Barão de Limeira', '539', '06453-004', 'São Paulo', 'Campos Elíseos', 'SP', 2),
-    ('Av Teruo Asaeda', '137', '07181-230', 'São Paulo', 'Cid.Jd Cumbica', 'SP', 3);
-
 INSERT INTO Usuario
     (NomeUsuario, EmailUsuario, SenhaUsuario, ReceberNotif, Documento, ImgPerfil, Telefone1, Telefone2, TipoUsuario, SobreColab, FazEntrega, RazaoSocial)
 VALUES
@@ -19,6 +12,14 @@ VALUES
 -- VALUES
 --     ('Url/100/colaporador1.jpg', 'Zunduri & CIA', '111222333-00', 1, 'Nascida no Brasil mas Ayana 45 anos, é filha de imigrantes, negra casada com 2 filhas, acorda todos os dias às 5:00 AM para cuidar de suas plantações junto ao seu marido. Mora num humilde terreno em Rio Pequeno, SP onde plantam seus produtos orgânicos. Ayana tem ensino médio e técnico em agricultura completo.', 2),
 --     ('Url/101/colaborador2.jpg', 'Fazenda Vass', '444555666-00', 1, 'Nascido no Paraná Joselito 63 anos, Branco veio para São Paulo aos 14 anos de idade. Casado sem filhos, sem estudo, não tem nenhuma experiência com tecnologia. Todos dias trabalha com criação de animais e suas plantações, mora em São Pedro do Turvo.', 3);
+
+
+INSERT INTO Endereco
+    (Endereco, Numero, CEP, Cidade, Bairro, Estado, IdUsuario)
+VALUES
+    ('Av. 23 Maio', '152', '53427-003', 'São Paulo', 'Brooklin', 'SP', 1),
+    ('Rua Barão de Limeira', '539', '06453-004', 'São Paulo', 'Campos Elíseos', 'SP', 2),
+    ('Av Teruo Asaeda', '137', '07181-230', 'São Paulo', 'Cid.Jd Cumbica', 'SP', 3);
 
 
 INSERT INTO Receita

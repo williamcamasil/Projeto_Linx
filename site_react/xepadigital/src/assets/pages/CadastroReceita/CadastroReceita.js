@@ -5,7 +5,7 @@ import food from '../../img/food_af.jpg';
 import mais from '../../img/mais.png'
 
 
-class Cadastro_Receita extends Component {
+class CadastroReceita extends Component {
     render() {
         return (
             <>
@@ -108,4 +108,4 @@ class Cadastro_Receita extends Component {
     }
 }
 
-export default Cadastro_Receita;
+export default CadastroReceita;

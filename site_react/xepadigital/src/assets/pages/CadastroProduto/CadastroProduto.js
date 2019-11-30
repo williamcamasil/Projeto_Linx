@@ -4,7 +4,7 @@ import Footer from '../../componentes/Footer/Footer';
 import foto_legume from '../../img/foto_legume.png';
 import mais from '../../img/mais.png';
 
-class Cadastro_Produto extends Component {
+class CadastroProduto extends Component {
     render() {
         return (
             <div>
@@ -124,5 +124,5 @@ class Cadastro_Produto extends Component {
     }
 }
 
-export default Cadastro_Produto;
+export default CadastroProduto;
   

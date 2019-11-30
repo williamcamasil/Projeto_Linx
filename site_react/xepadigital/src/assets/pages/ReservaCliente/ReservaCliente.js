@@ -3,7 +3,7 @@ import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import Lupa from '../../img/Lupa.svg';
 
-class Reserva_Cliente extends Component {
+class ReservaCliente extends Component {
     render() {
         return (
             <div>
@@ -98,4 +98,4 @@ class Reserva_Cliente extends Component {
     }
 }
 
-export default Reserva_Cliente;
+export default ReservaCliente;

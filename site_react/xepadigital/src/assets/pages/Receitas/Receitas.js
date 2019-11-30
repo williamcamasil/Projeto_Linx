@@ -6,8 +6,45 @@ import food from '../../img/food.png';
 import mais from '../../img/mais.png';
 
 class Receitas extends Component {
-    render() {
+    constructor(){
+        super();
+        this.state = {
+            lista : []
 
+            // informacoes : {
+            //     idReceita : "",
+            //     nomeReceita : "",
+            //     descricaoIngrediente : ""
+            // }
+        }
+    }
+    
+    //Com o didmount o listaAtualizado é mostrado no front
+    componentDidMount(){
+        console.log("Carregado")
+        console.log(this.state.lista)
+        this.listaAtualizado();
+    }
+
+    //Fazendo comunicação com o BD (Feito para chamar a API)
+    //GET - Listar (é feito no didmount)
+    listaAtualizado = () =>{
+        fetch("http://localhost:5001/api/Receita")
+        .then(response => response.json())
+        .then(data => this.setState( {lista : data} ))
+    }
+
+    // atualizaInformacoes(input){
+    //     this.setState({
+    //         informacoes : {
+    //             idReceita : this.state.informacoes.idReceita,
+    //             nomeReceita : input.target.value,
+    //             descricaoIngrediente : input.target.value
+    //         }
+    //     })
+    // }
+
+    render() {
         return (
             <div>
             <Header />
@@ -38,8 +75,28 @@ class Receitas extends Component {
                                         <div className="img">
                                             <img src={food} alt="imagem ilustrativa de comida" />
                                         </div>
-            
-                                        <p className="card_titulo">Xepa 1 - Alegria</p>
+                                        
+                                        {/* {
+                                            // 4 - Percorrer a lista de Receita 
+                                            this.state.lista.map(function(Receita){
+                                                return(
+                                                    <div>
+                                                        <tr key={Receita.idReceita}>
+                                                            <td>{Receita.nomeReceita}</td>
+                                                            <td>{Receita.descricaoIngrediente}</td>
+                                                        </tr>
+                                                    </div>
+                                                )
+                                            }
+                                        }    */}
+
+                                        {/* Como trazer as informações da API para colocar no lugar da Xepa 1 - Alegria? e assim por diante?
+                                        Tentei com this.state.lista.map(function(Receita)) 
+                                        Tentei com {this.state.lista}
+                                        Tentei com { this.state.informacoes.nomeReceita }
+                                        */}
+                                        
+                                        <p className="card_titulo">  Xepa 1 - Alegria</p>
                                         <p className="card_subtitulo">Ingredientes</p>
                                         <p className="card_conteudo">
                                             - Margarina para untar
@@ -67,7 +124,7 @@ class Receitas extends Component {
                                             derreter (fiz no micro-ondas)</p>
                                         
                                         <div className="botao_mais">
-                                            <a className="btn_link_click_receita" href="receita_detalhes.html">Mais Informações</a>
+                                            <a className="btn_link_click_receita" href="Receitas_Detalhes">Mais Informações</a>
                                         </div>                            
                                     </div>
             
@@ -104,7 +161,7 @@ class Receitas extends Component {
                                             derreter (fiz no micro-ondas)</p>
                                         
                                         <div className="botao_mais">
-                                            <a className="btn_link_click_receita" href="receita_detalhes.html" >Mais Informações</a>
+                                            <a className="btn_link_click_receita" href="Receitas_Detalhes" >Mais Informações</a>
                                         </div>  
                                     </div>
             
@@ -140,7 +197,7 @@ class Receitas extends Component {
                                             derreter (fiz no micro-ondas)</p>
                                         
                                         <div className="botao_mais">
-                                            <a className="btn_link_click_receita" href="receita_detalhes.html" >Mais Informações</a>
+                                            <a className="btn_link_click_receita" href="Receitas_Detalhes" >Mais Informações</a>
                                         </div>  
                                     </div>
                                 </div>
@@ -182,7 +239,7 @@ class Receitas extends Component {
                                             derreter (fiz no micro-ondas)</p>
             
                                         <div className="botao_mais">
-                                            <a className="btn_link_click_receita" href="receita_detalhes.html">Mais Informações </a>
+                                            <a className="btn_link_click_receita" href="Receitas_Detalhes">Mais Informações </a>
                                         </div>  
                                     </div>
             
@@ -217,7 +274,7 @@ class Receitas extends Component {
                                             derreter (fiz no micro-ondas)</p>
             
                                         <div className="botao_mais">
-                                            <a className="btn_link_click_receita" href="receita_detalhes.html" >Mais Informações </a>
+                                            <a className="btn_link_click_receita" href="Receitas_Detalhes" >Mais Informações </a>
                                         </div>  
                                     </div>
             
@@ -252,7 +309,7 @@ class Receitas extends Component {
                                             derreter (fiz no micro-ondas)</p>
             
                                         <div className="botao_mais">
-                                            <a className="btn_link_click_receita" href="receita_detalhes.html">Mais Informações</a>
+                                            <a className="btn_link_click_receita" href="Receitas_Detalhes">Mais Informações</a>
                                         </div>   
                                     </div>
                                 </div>

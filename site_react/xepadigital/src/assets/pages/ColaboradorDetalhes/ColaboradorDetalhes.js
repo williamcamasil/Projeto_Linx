@@ -5,7 +5,7 @@ import Footer from '../../componentes/Footer/Footer';
 import colaborador from '../../img/colaborador.png';
 import foto_cenoura from '../../img/foto_cenoura.png';
 
-class Colaborador_Detalhes extends Component {
+class ColaboradorDetalhes extends Component {
     render() {
         return (
             <div>
@@ -141,4 +141,4 @@ class Colaborador_Detalhes extends Component {
     }
 }
 
-export default Colaborador_Detalhes;
+export default ColaboradorDetalhes;

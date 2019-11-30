@@ -13,14 +13,16 @@ import './assets/css/style.css';
 //PAGINAS
 import Inicial from './assets/pages/Inicial/Inicial';
 import Colaboradores from './assets/pages/Colaboradores/Colaboradores';
-import Colaborador_Detalhes from './assets/pages/Colaborador_Detalhes/Colaborador_Detalhes';
-import Reserva_Colaborador from './assets/pages/Reserva_Colaborador/Reserva_Colaborador';
-import Reserva_Cliente from './assets/pages/Reserva_Cliente/Reserva_Cliente';
-import Receitas_Detalhes from './assets/pages/Receitas_Detalhes/Receitas_Detalhes';
+import ColaboradorDetalhes from './assets/pages/ReservaColaborador/ReservaColaborador';
+import ReservaColaborador from './assets/pages/ReservaColaborador/ReservaColaborador';
+import ReservaCliente from './assets/pages/ReservaCliente/ReservaCliente';
+import Receitas from './assets/pages/Receitas/Receitas';
+import ReceitasDetalhes from './assets/pages/ReceitasDetalhes/ReceitasDetalhes';
+import PerfilColaborador from './assets/pages/PerfilColaborador/PerfilColaborador';
 import Duvidas from './assets/pages/Duvidas/Duvidas';
 import Termos from './assets/pages/Termos/Termos';
-import Cadastro_Produto from './assets/pages/Cadastro_Produto/Cadastro_Produto';
-import Cadastro_Receita from './assets/pages/Cadastro_Receita/Cadastro_Receita';
+import CadastroProduto from './assets/pages/CadastroProduto/CadastroProduto';
+import CadastroReceita from './assets/pages/CadastroReceita/CadastroReceita';
 import NotFound from './assets/pages/NotFound/NotFound';
 // import Login from './assets/pages/Login/Login';
 // import { usuarioAutenticado, parseJwt } from './assets/services/auth';
@@ -32,14 +34,16 @@ const Rotas = (
             <Switch>
                 <Route exact path="/" component ={Inicial}/>
                 <Route path="/Colaboradores" component = {() => <Colaboradores titulo_pagina="Colaboradores - XepaDigital" />}/> 
-                <Route path="/Colaborador_Detalhes" component = {() => <Colaborador_Detalhes titulo_pagina="Colaborador Detalhes - XepaDigital" />}/> 
-                <Route path="/Reserva_Colaborador" component = {() => <Reserva_Colaborador titulo_pagina="Reserva Colaborador - XepaDigital" />}/> 
-                <Route path="/Reserva_Cliente" component = {() => <Reserva_Cliente titulo_pagina="Reserva Cliente - XepaDigital" />}/> 
-                <Route path="/Receitas_Detalhes" component = {() => <Receitas_Detalhes titulo_pagina="Receitas Detalhes - XepaDigital" />}/> 
+                <Route path="/ColaboradorDetalhes" component = {() => <ColaboradorDetalhes titulo_pagina="Colaborador Detalhes - XepaDigital" />}/> 
+                <Route path="/ReservaColaborador" component = {() => <ReservaColaborador titulo_pagina="Reserva Colaborador - XepaDigital" />}/> 
+                <Route path="/ReservaCliente" component = {() => <ReservaCliente titulo_pagina="Reserva Cliente - XepaDigital" />}/> 
+                <Route path="/Receitas" component = {() => <Receitas titulo_pagina="Receitas - XepaDigital" />}/> 
+                <Route path="/ReceitasDetalhes" component = {() => <ReceitasDetalhes titulo_pagina="Receitas Detalhes - XepaDigital" />}/> 
                 <Route path="/Duvidas" component = {() => <Duvidas titulo_pagina="Duvidas - XepaDigital" />}/> 
                 <Route path="/Termos" component = {() => <Termos titulo_pagina="Termos - XepaDigital" />}/> 
-                <Route path="/Cadastro_Produto" component = {() => <Cadastro_Produto titulo_pagina="Cadastro Produtos - XepaDigital" />}/> 
-                <Route path="/Cadastro_Receita" component = {() => <Cadastro_Receita titulo_pagina="Cadastro Receitas - XepaDigital" />}/>
+                <Route path="/CadastroProduto" component = {() => <CadastroProduto titulo_pagina="Cadastro Produtos - XepaDigital" />}/> 
+                <Route path="/CadastroReceita" component = {() => <CadastroReceita titulo_pagina="Cadastro Receitas - XepaDigital" />}/>
+                <Route path="/PerfilColaborador" component = {() => <PerfilColaborador titulo_pagina="Perfil Colaborador - XepaDigital" />}/>
                 <Route path="/NotFound" component = {() => <NotFound titulo_pagina="página não encontrada - XepaDigital" />}/>
 
                 {/* <Route path="/Login" component={Login}/> */}

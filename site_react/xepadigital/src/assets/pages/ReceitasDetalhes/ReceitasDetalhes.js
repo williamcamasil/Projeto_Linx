@@ -4,7 +4,7 @@ import Footer from '../../componentes/Footer/Footer';
 
 import food from '../../img/food.png';
 
-class Receitas_Detalhes extends Component {
+class ReceitasDetalhes extends Component {
     render() {
         return (
             <div>
@@ -68,4 +68,4 @@ class Receitas_Detalhes extends Component {
     }
 }
 
-export default Receitas_Detalhes;
+export default ReceitasDetalhes;

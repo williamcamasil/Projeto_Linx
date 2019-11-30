@@ -31,7 +31,7 @@ class Colaboradores extends Component {
     
     //GET - Listar (é feito no didmount)
     getListarColaboradores = () => {
-        fetch("http://localhost:5000/api/evento")
+        fetch("http://localhost:5001/api/RegistroProduto")
             .then(response => response.json())
             .then(data => this.setState({ lista: data }))
     }
@@ -128,7 +128,7 @@ class Colaboradores extends Component {
                                         R$10,20 kg</p>
                                     </div>
                                 </div>
-                                <a className="btn_link_click" href="colaborador_produtos">+ Informações</a>
+                                <a className="btn_link_click" href="Colaborador_Detalhes">+ Informações</a>
                             </div>
                         </div>
 
@@ -169,7 +169,7 @@ class Colaboradores extends Component {
                                         R$10,20 kg</p>
                                     </div>
                                 </div>
-                                <a className="btn_link_click" href="colaborador_produtos">+ Informações</a>
+                                <a className="btn_link_click" href="Colaborador_Detalhes">+ Informações</a>
                             </div>
                         </div>
                     </section>
@@ -211,7 +211,7 @@ class Colaboradores extends Component {
                                         R$6,20 kg</p>
                                     </div>
                                 </div>
-                                <a className="btn_link_click" href="colaborador_produtos">+ Informações</a>
+                                <a className="btn_link_click" href="Colaborador_Detalhes">+ Informações</a>
                             </div>
                         </div>
                         <div className="card card_colab">
@@ -253,7 +253,7 @@ class Colaboradores extends Component {
                                         R$6,20 kg</p>
                                     </div>
                                 </div>
-                                <a className="btn_link_click" href="colaborador_produtos">+ Informações</a>   
+                                <a className="btn_link_click" href="Colaborador_Detalhes">+ Informações</a>   
                             </div>
                         </div>
                     </section>
