@@ -11,7 +11,7 @@ class Header extends Component {
                     <div className="container">
                         <ul>
                             <li><a href="#footer_contato">CONTATE-NOS</a></li>
-                            <li><a href="/Login">CADASTRE-SE</a></li>
+                            <li><a href="/Registrar">CADASTRE-SE</a></li>
                             <li><a href="/Login">LOGIN</a></li>
                         </ul>
                     </div>

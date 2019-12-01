@@ -557,7 +557,7 @@ h3 {
 }
 /*#endregion */
 
-/*#region PÁGINA LOGIN*/
+/*#region PÁGINA LOGIN/REGISTRO*/
 .fundo {
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.292), rgba(0, 0, 0, 0.292)), url(../img/foto_fundo.svg);
     background-position: center top;
@@ -640,6 +640,12 @@ h2 {
     background-color: #472A4C;
 }
 
+.botao a{
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+}
+
 .caixa-texto {
     border: 1px solid #707070;
     border-radius: 4px;
@@ -682,7 +688,7 @@ h2 {
 /*#region PÁGINA PERFIL*/
 
 .caixa_cad_esquerda{
-    margin: 0px 0px 80px;
+    margin: 0px 0px 40cpx;
     width: 300px;
     text-align: center;    
 }
@@ -725,8 +731,17 @@ h2 {
     display: flex;
     flex-wrap: wrap;
 }
+.c_disp_just{
+    margin: 20px 0px 0px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .caixa_input_2{
     width: 450px;
+}
+.caixa_input_3{
+    width: 300px;
 }
 .caixa_style{
     border: 1px solid #707070;
@@ -747,6 +762,13 @@ h2 {
     width: 95%;
     height: 60px;
 }
+.caixa-texto_5 {
+    width: 87.8%;
+}
+.caixa-texto_6 {
+    width: 85%;
+}
+
 /* AGUARDANDO CSS DO ENDEREÇO */
 
 /*#endregion */
@@ -1504,10 +1526,10 @@ h2 {
         justify-items: center;
         height: 90%;
     }
-    .registrar-se {
+    /* .registrar-se {
         border-left: 1px solid #707070;
         
-    }
+    } */
     .botao {
         width: 100%;
         font-size: 20px;
@@ -2466,9 +2488,9 @@ h2 {
 /*#endregion */
 
 @media(min-width: 1200px){
-    .registrar-se {
+    /* .registrar-se {
         border-left: 1px solid #707070;
-    }
+    } */
     #menu_cabecalho {
         display: none;
     }

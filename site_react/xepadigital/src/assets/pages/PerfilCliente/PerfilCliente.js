@@ -3,7 +3,7 @@ import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import colaborador_3 from '../../img/colaborador_3.png';
 
-class PerfilColaborador extends Component {
+class PerfilCliente extends Component {
     render() {
         return (
             <div>
@@ -11,7 +11,7 @@ class PerfilColaborador extends Component {
                 <main>
                     <section class="card card_size_cad">
                         <div class="container">
-                            <h1 class="c_text">PERFIL COLABORADOR</h1>
+                            <h1 class="c_text">PERFIL CLIENTE</h1>
 
                             <span class="d_text">Informações</span>
                             <div class="linha_perfil_colab"></div>
@@ -68,26 +68,6 @@ class PerfilColaborador extends Component {
                                                     <option value="entrega_sim">Sim</option>
                                                 </select>
                                             </div>
-                                            <div class="caixa_input_2">
-                                                {/* <!-- razao --> */}
-                                                <label for="razao_social_lbl" aria-label="razao_social_lbl">Razão Social:</label>
-                                                <br/>
-                                                <input class="caixa-texto_2 caixa_style" type="razao_social" placeholder="Digite o nome da razao social" name="razao_social" id="razao_social"/>
-                                            </div>
-                                            <div class="caixa_input_2">
-                                                {/* <!-- entrega --> */}
-                                                <label for="entrega_lbl" aria-label="entrega_lbl"> Faz entrega?</label>
-                                                <br/>
-                                                <select class="caixa-texto_3 caixa_style" name="entrega_produto" id="entrega_produto">
-                                                    <option value="entrega_nao">Não</option>
-                                                    <option value="entrega_sim">Sim</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="caixa_cad_direita">
-                                            <label for="sobre_lbl" aria-label="sobre_lbl"> Sobre</label>
-                                            <br/>
-                                            <input class="caixa-texto_4 caixa_style" type="sobre" placeholder="Sobre o colaborador" name="sobre_produtor" id="sobre_produto"/>
                                         </div>
                                     </div>
                                 </div>
@@ -156,4 +136,4 @@ class PerfilColaborador extends Component {
     }
 }
 
-export default PerfilColaborador;
+export default PerfilCliente;
