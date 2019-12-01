@@ -27,7 +27,7 @@ namespace backend.Domains
             if (!optionsBuilder.IsConfigured)
             {
 // #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=WILLIAM\\SQLEXPRESS; Database=XepaDigital; Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-DJ0P3UG\\SQLEXPRESS; Database=XepaDigital; User Id=sa; Password=132");
             }
         }
 

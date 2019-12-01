@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\willi\\Desktop\\GitHub\\Projeto_Linx\\backend\\backend.csproj": {}
+    "C:\\Users\\Fabiano\\Desktop\\GITHUB\\Projeto_Linx\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\willi\\Desktop\\GitHub\\Projeto_Linx\\backend\\backend.csproj": {
+    "C:\\Users\\Fabiano\\Desktop\\GITHUB\\Projeto_Linx\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\willi\\Desktop\\GitHub\\Projeto_Linx\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Users\\Fabiano\\Desktop\\GITHUB\\Projeto_Linx\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\willi\\Desktop\\GitHub\\Projeto_Linx\\backend\\backend.csproj",
-        "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\willi\\Desktop\\GitHub\\Projeto_Linx\\backend\\obj\\",
+        "projectPath": "C:\\Users\\Fabiano\\Desktop\\GITHUB\\Projeto_Linx\\backend\\backend.csproj",
+        "packagesPath": "C:\\Users\\Fabiano\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Fabiano\\Desktop\\GITHUB\\Projeto_Linx\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Fabiano\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
@@ -80,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
