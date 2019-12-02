@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 
-import food from '../../img/food.png';
+import food from '../../assets/img/food.png';
 
 class ReceitasDetalhes extends Component {
     render() {

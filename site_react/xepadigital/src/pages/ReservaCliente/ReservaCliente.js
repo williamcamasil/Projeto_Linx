@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
-import Lupa from '../../img/Lupa.svg';
+import Lupa from '../../assets/img/Lupa.svg';
 
 class ReservaCliente extends Component {
     render() {

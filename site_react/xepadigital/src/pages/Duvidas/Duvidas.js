@@ -1,7 +1,7 @@
 import React , { Component } from 'react' ;
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer'; 
-import mais from '../../img/mais.png';
+import mais from '../../assets/img/mais.png';
 
  
 class Duvidas extends Component {

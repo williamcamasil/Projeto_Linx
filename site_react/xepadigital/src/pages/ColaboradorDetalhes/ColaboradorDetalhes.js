@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 
-import colaborador from '../../img/colaborador.png';
-import foto_cenoura from '../../img/foto_cenoura.png';
+import colaborador from '../../assets/img/colaborador.png';
+import foto_cenoura from '../../assets/img/foto_cenoura.png';
 
 class ColaboradorDetalhes extends Component {
     render() {

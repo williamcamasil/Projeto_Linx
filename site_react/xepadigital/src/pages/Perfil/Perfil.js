@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
-import colaborador_3 from '../../img/colaborador_3.png';
+import colaborador_3 from '../../assets/img/colaborador_3.png';
 
 class Perfil extends Component {
     render() {

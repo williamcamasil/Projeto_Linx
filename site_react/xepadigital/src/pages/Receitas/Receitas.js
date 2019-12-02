@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
-import lupa from '../../img/Lupa.svg';
-import food from '../../img/food.png';
-import mais from '../../img/mais.png';
+import lupa from '../../assets/img/Lupa.svg';
+import food from '../../assets/img/food.png';
+import mais from '../../assets/img/mais.png';
 
 class Receitas extends Component {
     constructor(){

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
-import foto_legume from '../../img/foto_legume.png';
-import mais from '../../img/mais.png';
+import foto_legume from '../../assets/img/foto_legume.png';
+import mais from '../../assets/img/mais.png';
 
 class CadastroProduto extends Component {
     render() {

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import HeaderHome from '../../componentes/Header/HeaderHome';
 import Footer from '../../componentes/Footer/Footer';
-import logo_slogan from '../../img/logo_slogan.svg';
-import colab from '../../img/colab.jpg';
-import receitas from '../../img/receitas.jpg';
-import termos from '../../img/termos.png';
-import duvida from '../../img/duvida.png';
+import logo_slogan from '../../assets/img/logo_slogan.svg';
+import colab from '../../assets/img/colab.jpg';
+import receitas from '../../assets/img/receitas.jpg';
+import termos from '../../assets/img/termos.png';
+import duvida from '../../assets/img/duvida.png';
 
 
 class Inicial extends Component {
