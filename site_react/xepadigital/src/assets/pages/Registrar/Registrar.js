@@ -84,19 +84,19 @@ class Registrar extends Component {
                                         <input type="radio" name="escolha"/> Cliente
                                     </div>
                                     
-                                    <label for="nome" aria-label="Seu nome"> Seu nome</label>
+                                    <label htmlFor="nome" aria-label="Seu nome"> Seu nome</label>
                                     <input className="caixa-texto" type="email" placeholder="Digite seu nome" name="nome" id="nome"/>
 
 
-                                    <label for="email" aria-label="Seu E-mail">E-mail</label>
+                                    <label htmlFor="email" aria-label="Seu E-mail">E-mail</label>
                                     <input className="caixa-texto" type="email" placeholder="Digite seu e-mail" name="email"/>
 
 
-                                    <label for="senha" aria-label="Senha">Senha</label>
+                                    <label htmlFor="senha" aria-label="Senha">Senha</label>
                                     <input className="caixa-texto" type="password" placeholder="Crie sua senha" name="senha"/>
 
 
-                                    <label for="confirmar senha" aria-label="Confirme sua senha"> Confirme sua senha</label>
+                                    <label htmlFor="confirmar senha" aria-label="Confirme sua senha"> Confirme sua senha</label>
                                     <input className="caixa-texto" type="password" placeholder="Confirme sua senha"
                                         name="confirmar_senha" id="confirmar_senha"/>
 
@@ -105,7 +105,7 @@ class Registrar extends Component {
                                         {/* <a href="#" title="Condições">condições</a> e */}
                                         {/* <a href="#" title="termos de uso">termos de uso</a> */}
                                     </p>
-                                    <label className="texto-horizontal" for="atualizacoes"
+                                    <label className="texto-horizontal" htmlFor="atualizacoes"
                                         aria-label="Desejo receber notificações e atualizações por e-mail?">
                                         <input className="check" type="checkbox" name="atualizacoes" id="atualizacoes"/>
                                         <span>

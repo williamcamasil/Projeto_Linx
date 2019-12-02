@@ -29,7 +29,7 @@ class ReservaColaborador extends Component {
                         <h3>Joselito Ferreira Vass</h3>
                     </div>
 
-                    <div class="tit_produtor">
+                    <div className="tit_produtor">
                         <span>PEDIDOS SOLICITADOS</span>
                     </div>
 

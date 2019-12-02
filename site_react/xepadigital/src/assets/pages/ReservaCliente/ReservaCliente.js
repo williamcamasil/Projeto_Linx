@@ -29,7 +29,7 @@ class ReservaCliente extends Component {
                         <h3>Fernanda de Souza</h3>
                     </div>
 
-                    <div class="tit_produtor">
+                    <div className="tit_produtor">
                         <span>PEDIDOS REALIZADOS</span>
                     </div>
 

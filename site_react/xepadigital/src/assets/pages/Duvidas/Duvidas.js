@@ -14,11 +14,11 @@ class Duvidas extends Component {
                         <span>DÚVIDAS</span>
                     </div>
                     <div id="centralizar_pagina_duvida">            
-                        <div class="caixa_duvidas">
-                            <h2 class="sub_tit_duvida">Sobre a Xepa Digital</h2>
-                            <div class="pergunta">
+                        <div className="caixa_duvidas">
+                            <h2 className="sub_tit_duvida">Sobre a Xepa Digital</h2>
+                            <div className="pergunta">
                                 <div>
-                                    <h5 class="letra_pagina_duvida">O que é Xepa Digital?</h5>
+                                    <h5 className="letra_pagina_duvida">O que é Xepa Digital?</h5>
                                 </div>
 
                                 <div>
@@ -26,56 +26,9 @@ class Duvidas extends Component {
                                 </div>                
                             </div>
 
-                            <div class="pergunta">
+                            <div className="pergunta">
                                 <div>
-                                    <h5 class="letra_pagina_duvida">Nosso time de desenvolvedores</h5>
-                                </div>
-
-                                <div>
-                                    <a href="#"><img src={mais} alt="" /></a>
-                                </div>                
-                            </div>
-                        </div>
-
-
-                        <div class="caixa_duvidas">
-                            <h2 class="sub_tit_duvida">Sobre Colaboradores</h2>
-                            <div class="pergunta">
-                                <div>
-                                    <h5 class="letra_pagina_duvida">Como funciona?</h5>
-                                </div>
-
-                                <div>
-                                    <a href="#"><img src={mais} alt="" /></a>
-                                </div>                
-                            </div>
-
-                            <div class="pergunta">
-                                <div>
-                                    <h5 class="letra_pagina_duvida">Quem pode ser um colaborador?</h5>
-                                </div>
-
-                                <div>
-                                    <a href="#"><img src={mais} alt="" /></a>
-                                </div>                
-                            </div>
-                        </div>
-
-                        <div class="caixa_duvidas">
-                            <h2 class="sub_tit_duvida">Sobre Geração de Renda</h2>
-                            <div class="pergunta">
-                                <div>
-                                    <h5 class="letra_pagina_duvida">Como funciona?</h5>
-                                </div>
-
-                                <div>
-                                    <a href="#"><img src={mais} alt="" /></a>
-                                </div>                
-                            </div>
-
-                            <div class="pergunta">
-                                <div>
-                                    <h5 class="letra_pagina_duvida">quem pode ser um gerador de renda?</h5>
+                                    <h5 className="letra_pagina_duvida">Nosso time de desenvolvedores</h5>
                                 </div>
 
                                 <div>
@@ -85,11 +38,11 @@ class Duvidas extends Component {
                         </div>
 
 
-                        <div class="caixa_duvidas">
-                            <h2 class="sub_tit_duvida">Sobre Nosso Propósito</h2>
-                            <div class="pergunta">
+                        <div className="caixa_duvidas">
+                            <h2 className="sub_tit_duvida">Sobre Colaboradores</h2>
+                            <div className="pergunta">
                                 <div>
-                                    <h5 class="letra_pagina_duvida">O que...?</h5>
+                                    <h5 className="letra_pagina_duvida">Como funciona?</h5>
                                 </div>
 
                                 <div>
@@ -97,9 +50,56 @@ class Duvidas extends Component {
                                 </div>                
                             </div>
 
-                            <div class="pergunta">
+                            <div className="pergunta">
                                 <div>
-                                    <h5 class="letra_pagina_duvida">Como...?</h5>
+                                    <h5 className="letra_pagina_duvida">Quem pode ser um colaborador?</h5>
+                                </div>
+
+                                <div>
+                                    <a href="#"><img src={mais} alt="" /></a>
+                                </div>                
+                            </div>
+                        </div>
+
+                        <div className="caixa_duvidas">
+                            <h2 className="sub_tit_duvida">Sobre Geração de Renda</h2>
+                            <div className="pergunta">
+                                <div>
+                                    <h5 className="letra_pagina_duvida">Como funciona?</h5>
+                                </div>
+
+                                <div>
+                                    <a href="#"><img src={mais} alt="" /></a>
+                                </div>                
+                            </div>
+
+                            <div className="pergunta">
+                                <div>
+                                    <h5 className="letra_pagina_duvida">quem pode ser um gerador de renda?</h5>
+                                </div>
+
+                                <div>
+                                    <a href="#"><img src={mais} alt="" /></a>
+                                </div>                
+                            </div>
+                        </div>
+
+
+                        <div className="caixa_duvidas">
+                            <h2 className="sub_tit_duvida">Sobre Nosso Propósito</h2>
+                            <div className="pergunta">
+                                <div>
+                                    <h5 className="letra_pagina_duvida">O que...?</h5>
+                                </div>
+
+                                <div>
+                                    <a href="#"><img src={mais} alt="" /></a>
+                                </div>                
+                            </div>
+
+                            <div className="pergunta">
+                                <div>
+                                    <h5 className="letra_pagina_duvida">Como...?</h5>
                                 </div>
 
                                 <div>

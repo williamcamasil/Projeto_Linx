@@ -25,30 +25,17 @@ class Header extends Component {
                         <ul>
                             <li><a href="#footer_contato">CONTATE-NOS</a></li>
                             <li><a href="/Registrar">CADASTRE-SE</a></li>
-                            {usuarioAutenticado() && parseJwt().Role === "Administrador" ?
+                            {((usuarioAutenticado() && parseJwt().Role === "Administrador") || (usuarioAutenticado() && parseJwt().Role === "Colaborador") || (usuarioAutenticado() && parseJwt().Role === "Cliente"))?
                                 (
                                     <React.Fragment>
-                                        
                                             <li><a href="/" onClick={this.logout}>SAIR</a></li>
                                     </React.Fragment>
                                 ) : (
-                                    usuarioAutenticado() && parseJwt().Role === "Colaborador" ?
-                                        (
-                                            <React.Fragment>
-                                                <li><a href="/" onClick={this.logout}>SAIR</a></li>
-                                            </React.Fragment>
-                                        ) : (
-                                            usuarioAutenticado() && parseJwt().Role === "Cliente" ?
-                                                (
-                                                    <React.Fragment>
-                                                        <li><a href="/" onClick={this.logout}>SAIR</a></li>
-                                                    </React.Fragment>
-                                                ) : (
-                                                    <React.Fragment>
-                                                        <li><a href="/Login">LOGIN</a></li>
-                                                    </React.Fragment>
-                                                )
-                                ))}
+                                        <React.Fragment>
+                                            <li><a href="/Login">LOGIN</a></li>
+                                        </React.Fragment>
+                                    )
+                                }
                         </ul>
                     </div>
                 </nav>
@@ -86,7 +73,7 @@ class Header extends Component {
 
                             
                             <div className="nav">
-                                <label id="lbl_menu" for="toggle">&#9776;</label>
+                                <label id="lbl_menu" htmlFor="toggle">&#9776;</label>
                                 <input type="checkbox" id="toggle"/>
                                 <div className="menu_home">
                                     <a href="#historia" title="Tópico História">HISTÓRIA</a>
