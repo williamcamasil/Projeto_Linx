@@ -53,7 +53,7 @@ class ColaboradorDetalhes extends Component {
                                 </div>
                                 <div className="input_produtos">
                                     <div>
-                                        <label for="qtd_produto" aria-label="qtd_produto"> Quantidade:</label><br/>
+                                        <label htmlFor="qtd_produto" aria-label="qtd_produto"> Quantidade:</label><br/>
                                         <input className="caixa-texto" type="Quantidade" placeholder="1 Kg" name="Quantidade" id="Quantidade"/><br/>
                                     </div>
                                 </div>
@@ -75,30 +75,7 @@ class ColaboradorDetalhes extends Component {
                                 </div>
                                 <div className="input_produtos">
                                     <div>
-                                        <label for="qtd_produto" aria-label="qtd_produto"> Quantidade:</label><br/>
-                                        <input className="caixa-texto" type="Quantidade" placeholder="1 Kg" name="Quantidade" id="Quantidade"/><br/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="produtos_colab">
-                                <div>
-                                    <img src={foto_cenoura} alt="Foto do produto, cenouras"/>
-                                    
-                                </div>                    
-                                <div className="produto">
-                                    <p>
-                                        Cenoura orgânica <br/>
-                                        Preço: R$10,20 kg <br/>
-                                        Data de validade: 26/10/2019 <br/>  
-                                        Disponível: Sim <br/> 
-                                        Orgânico: Sim <br/> 
-                                        Produto livre de agrotóxicos                                
-                                    </p>
-                                </div>
-                                <div className="input_produtos">
-                                    <div>
-                                        <label for="qtd_produto" aria-label="qtd_produto"> Quantidade:</label><br/>
+                                        <label htmlFor="qtd_produto" aria-label="qtd_produto"> Quantidade:</label><br/>
                                         <input className="caixa-texto" type="Quantidade" placeholder="1 Kg" name="Quantidade" id="Quantidade"/><br/>
                                     </div>
                                 </div>
@@ -121,7 +98,30 @@ class ColaboradorDetalhes extends Component {
                                 </div>
                                 <div className="input_produtos">
                                     <div>
-                                        <label for="qtd_produto" aria-label="qtd_produto"> Quantidade:</label><br/>
+                                        <label htmlFor="qtd_produto" aria-label="qtd_produto"> Quantidade:</label><br/>
+                                        <input className="caixa-texto" type="Quantidade" placeholder="1 Kg" name="Quantidade" id="Quantidade"/><br/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="produtos_colab">
+                                <div>
+                                    <img src={foto_cenoura} alt="Foto do produto, cenouras"/>
+                                    
+                                </div>                    
+                                <div className="produto">
+                                    <p>
+                                        Cenoura orgânica <br/>
+                                        Preço: R$10,20 kg <br/>
+                                        Data de validade: 26/10/2019 <br/>  
+                                        Disponível: Sim <br/> 
+                                        Orgânico: Sim <br/> 
+                                        Produto livre de agrotóxicos                                
+                                    </p>
+                                </div>
+                                <div className="input_produtos">
+                                    <div>
+                                        <label htmlFor="qtd_produto" aria-label="qtd_produto"> Quantidade:</label><br/>
                                         <input className="caixa-texto" type="Quantidade" placeholder="1 Kg" name="Quantidade" id="Quantidade"/><br/>
                                     </div>
                                 </div>

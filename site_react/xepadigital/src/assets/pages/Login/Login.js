@@ -43,17 +43,17 @@ class Login extends Component {
 
                     var base64 = localStorage.getItem('usuario-xepa').split('.')[1]
 
-                    console.log(base64)
-                    // console.log(window.atob(base64))
-                    // console.log(JSON.parse(window.atob(base64)))
-                    console.log(parseJwt().Role)
-                    console.log(usuarioAutenticado())
+                    console.log("PAYLOAD: "+base64)
+                    console.log("PAYLOAD STRING: "+window.atob(base64))
+                    console.log(JSON.parse(window.atob(base64)))
+                    console.log("ROLE: "+parseJwt().Role)
+                    console.log("AUTH: "+usuarioAutenticado())
 
-                    if (parseJwt().Role === 'Colaborador') {
-                        this.props.history.push('/PerfilColaborador');
+                    if (parseJwt().Role === "Colaborador") {
+                        this.props.history.push("/PerfilColaborador");
                     }
                     else {
-                        this.props.history.push('/Perfil');
+                        this.props.history.push("/Perfil");
                     }
                 }
             })
@@ -76,7 +76,7 @@ class Login extends Component {
                                 
                                 {/* LOGAR */}
                                 <form className="texto" id="Entrar" method="POST" onSubmit={this.realizarLogin.bind(this)}>
-                                    <label aria-label="E-mail" for="email">E-mail</label>
+                                    <label aria-label="E-mail" htmlFor="email">E-mail</label>
                                     <input 
                                         className="caixa-texto" 
                                         type="email" 
@@ -87,7 +87,7 @@ class Login extends Component {
                                         onChange={this.atualizaEstado}
                                     />
 
-                                    <label aria-label="Senha" for="senha">Senha</label>
+                                    <label aria-label="Senha" htmlFor="senha">Senha</label>
                                     <input 
                                         className="caixa-texto" 
                                         type="password" 
@@ -100,7 +100,7 @@ class Login extends Component {
 
                                     {/* <a className="texto" title="Esqueci a senha" href="#">Esqueceu sua senha?</a> */}
 
-                                    <label for="conectado" aria-label="Mantenha-me conectado" className="linha_link">
+                                    <label htmlFor="conectado" aria-label="Mantenha-me conectado" className="linha_link">
                                         <input 
                                             className="check" 
                                             type="checkbox" 
