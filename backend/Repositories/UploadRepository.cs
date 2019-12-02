@@ -25,7 +25,7 @@ namespace backend.Repositories {
                 using (var stream = new FileStream (fullPath, FileMode.Create)) {
                     imagem.CopyTo (stream);
                 }
-                return fullPath;
+                return dbPath;
             } else {
                 return "Erro ao enviar a imagem";
             }
