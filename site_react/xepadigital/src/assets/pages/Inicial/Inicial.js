@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Header from '../../componentes/Header/Header';
+import HeaderHome from '../../componentes/Header/HeaderHome';
 import Footer from '../../componentes/Footer/Footer';
 import logo_slogan from '../../img/logo_slogan.svg';
 import colab from '../../img/colab.jpg';
@@ -12,7 +12,7 @@ class Inicial extends Component {
     render() {
         return (
         <div>
-            <Header />
+            <HeaderHome />
             
             <main className="home">
                 <div className="banner_home">

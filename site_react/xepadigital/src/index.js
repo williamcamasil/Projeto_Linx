@@ -29,29 +29,29 @@ import NotFound from './assets/pages/NotFound/NotFound';
 import Login from './assets/pages/Login/Login';
 import Registrar from './assets/pages/Registrar/Registrar';
 
-// const PermissaoAdmin = ({ component : Component }) => (
-//     <Route render={props =>
-//         usuarioAutenticado() && parseJwt().Role === "1" ?
-//         (
-//             <Component {...props}/>
-//         ) : (
-//             <Redirect to={{ pathname: "/Login" }}/>
-//         )
-//     }
-//     />
-// )
+const PermissaoCliente = ({ component : Component }) => (
+    <Route render={props =>
+        usuarioAutenticado() && parseJwt().Role === "Cliente" ?
+        (
+            <Component {...props}/>
+        ) : (
+            <Redirect to={{ pathname: "/Login" }}/>
+        )
+    }
+    />
+)
 
-// const PermissaoAluno = ({ component : Component }) => (
-//     <Route render={props =>
-//         usuarioAutenticado() && parseJwt().Role === "2" ?
-//         (
-//             <Component {...props}/>
-//         ) : (
-//             <Redirect to={{ pathname: "/Login" }}/>
-//         )
-//     }
-//     />
-// )
+const PermissaoColaborador = ({ component : Component }) => (
+    <Route render={props =>
+        usuarioAutenticado() && parseJwt().Role === "Colaborador" ?
+        (
+            <Component {...props}/>
+        ) : (
+            <Redirect to={{ pathname: "/Login" }}/>
+        )
+    }
+    />
+)
 
 const Rotas = (
     //cria a URL
@@ -67,9 +67,9 @@ const Rotas = (
                 <Route path="/ReceitasDetalhes" component = {() => <ReceitasDetalhes titulo_pagina="Receitas Detalhes - XepaDigital" />}/> 
                 <Route path="/Duvidas" component = {() => <Duvidas titulo_pagina="Duvidas - XepaDigital" />}/> 
                 <Route path="/Termos" component = {() => <Termos titulo_pagina="Termos - XepaDigital" />}/> 
-                <Route path="/CadastroProduto" component = {() => <CadastroProduto titulo_pagina="Cadastro Produtos - XepaDigital" />}/> 
-                <Route path="/CadastroReceita" component = {() => <CadastroReceita titulo_pagina="Cadastro Receitas - XepaDigital" />}/>
-                <Route path="/PerfilColaborador" component = {() => <PerfilColaborador titulo_pagina="Perfil Colaborador - XepaDigital" />}/>
+                <PermissaoColaborador path="/CadastroProduto" component = {() => <CadastroProduto titulo_pagina="Cadastro Produtos - XepaDigital" />}/> 
+                <PermissaoCliente path="/CadastroReceita" component = {() => <CadastroReceita titulo_pagina="Cadastro Receitas - XepaDigital" />}/>
+                <PermissaoColaborador path="/PerfilColaborador" component = {() => <PerfilColaborador titulo_pagina="Perfil Colaborador - XepaDigital" />}/>
                 <Route path="/Perfil" component = {() => <Perfil titulo_pagina="Perfil Cliente - XepaDigital" />}/>
                 <Route path="/NotFound" component = {() => <NotFound titulo_pagina="página não encontrada - XepaDigital" />}/>
 

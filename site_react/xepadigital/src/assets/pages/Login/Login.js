@@ -49,7 +49,7 @@ class Login extends Component {
                     console.log("ROLE: "+parseJwt().Role)
                     console.log("AUTH: "+usuarioAutenticado())
 
-                    if (parseJwt().role === "Colaborador") {
+                    if (parseJwt().Role === "Colaborador") {
                         this.props.history.push("/PerfilColaborador");
                     }
                     else {
