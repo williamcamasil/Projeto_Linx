@@ -4,7 +4,7 @@ import * as serviceWorker from './serviceWorker';
 
 //DEPENDENCIAS    ''
 import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
-import { usuarioAutenticado, parseJwt } from './assets/services/auth';
+import { usuarioAutenticado, parseJwt } from './services/auth';
 
 //SERVICES 
 

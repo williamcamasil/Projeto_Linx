@@ -2,7 +2,7 @@ import React , {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import food from '../../assets/img/food_af.jpg';
-import mais from '../..assets/img/mais.png'
+import mais from '../../assets/img/mais.png'
 
 
 class CadastroReceita extends Component {
