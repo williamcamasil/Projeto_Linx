@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { parseJwt } from '../../services/auth';
+import { parseJwt, usuarioAutenticado } from '../../services/auth';
 import api from '../../services/api';
 
 import Header from '../../componentes/Header/Header';
@@ -44,18 +44,17 @@ class Login extends Component {
                     var base64 = localStorage.getItem('usuario-xepa').split('.')[1]
 
                     console.log(base64)
-                    console.log(window.atob(base64))
-                    console.log(JSON.parse(window.atob(base64)))
+                    // console.log(window.atob(base64))
+                    // console.log(JSON.parse(window.atob(base64)))
                     console.log(parseJwt().Role)
+                    console.log(usuarioAutenticado())
 
-                    // if (parseJwt().Role === 'Administrador') {
-
-                    //     this.props.history.push('/Inicio');
-                    // }
-                    // else {
-
-                    //     this.props.history.push('/Inicio');
-                    // }
+                    if (parseJwt().Role === 'Colaborador') {
+                        this.props.history.push('/PerfilColaborador');
+                    }
+                    else {
+                        this.props.history.push('/Perfil');
+                    }
                 }
             })
             .catch(erro => {

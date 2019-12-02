@@ -1,9 +1,22 @@
 import React, {Component} from 'react';
 import logo_xepa from '../../img/logo_xepa.svg';
-// import '../../css/style.css';
+import { withRouter } from 'react-router-dom'
+import { usuarioAutenticado, parseJwt } from '../../services/auth';
 
 
 class Header extends Component {
+    logout = () => {
+        //Remove o token do localStorage
+        localStorage.removeItem("usuario-xepa");
+
+        //Redireciona para o endereço '/'
+        this.props.history.push("/");
+    }
+    
+    // 
+    // 
+    
+
     render() {
         return (
             <header>
@@ -12,7 +25,30 @@ class Header extends Component {
                         <ul>
                             <li><a href="#footer_contato">CONTATE-NOS</a></li>
                             <li><a href="/Registrar">CADASTRE-SE</a></li>
-                            <li><a href="/Login">LOGIN</a></li>
+                            {usuarioAutenticado() && parseJwt().Role === "Administrador" ?
+                                (
+                                    <React.Fragment>
+                                        
+                                            <li><a href="/" onClick={this.logout}>SAIR</a></li>
+                                    </React.Fragment>
+                                ) : (
+                                    usuarioAutenticado() && parseJwt().Role === "Colaborador" ?
+                                        (
+                                            <React.Fragment>
+                                                <li><a href="/" onClick={this.logout}>SAIR</a></li>
+                                            </React.Fragment>
+                                        ) : (
+                                            usuarioAutenticado() && parseJwt().Role === "Cliente" ?
+                                                (
+                                                    <React.Fragment>
+                                                        <li><a href="/" onClick={this.logout}>SAIR</a></li>
+                                                    </React.Fragment>
+                                                ) : (
+                                                    <React.Fragment>
+                                                        <li><a href="/Login">LOGIN</a></li>
+                                                    </React.Fragment>
+                                                )
+                                ))}
                         </ul>
                     </div>
                 </nav>
@@ -24,8 +60,7 @@ class Header extends Component {
                                 title="Página inicial">
                                     <img src={logo_xepa} 
                                         className="App-logo" 
-                                        alt="Logo do Xepa Digital. Circulo lilás com uma 
-                                        berijela com chapéu de chefe e uma cenoura." 
+                                        alt="Logo do Xepa Digital." 
                                     />
                             </a>
                             <ul>
@@ -68,6 +103,6 @@ class Header extends Component {
     }
 }
 
-// export default withRouter(Header); 
-export default Header; 
+export default withRouter(Header); 
+// export default Header; 
 

@@ -3,7 +3,7 @@ import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import colaborador_3 from '../../img/colaborador_3.png';
 
-class PerfilCliente extends Component {
+class Perfil extends Component {
     render() {
         return (
             <div>
@@ -136,4 +136,4 @@ class PerfilCliente extends Component {
     }
 }
 
-export default PerfilCliente;
+export default Perfil;
