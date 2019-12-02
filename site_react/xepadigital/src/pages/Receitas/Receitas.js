@@ -9,7 +9,7 @@ class Receitas extends Component {
     constructor(){
         super();
         this.state = {
-            lista : []
+            listaReceitas : []
 
             // informacoes : {
             //     idReceita : "",
@@ -19,19 +19,23 @@ class Receitas extends Component {
         }
     }
     
+    // //ComponentWillMound
+    // UNSAFE_componentWillMount() { ///
+    //     document.title = this.props.titulo_pagina;
+    //     console.log("Carregando");
+    // }
+
     //Com o didmount o listaAtualizado é mostrado no front
     componentDidMount(){
         console.log("Carregado")
-        console.log(this.state.lista)
-        this.listaAtualizado();
+        this.getReceita();
     }
 
-    //Fazendo comunicação com o BD (Feito para chamar a API)
     //GET - Listar (é feito no didmount)
-    listaAtualizado = () =>{
-        fetch("http://localhost:5001/api/Receita")
-        .then(response => response.json())
-        .then(data => this.setState( {lista : data} ))
+    getReceita = () =>{
+        fetch("http://localhost:5000/api/Receita")
+            .then(response => response.json())
+            .then(data => this.setState( {listaReceitas : data} ))
     }
 
     // atualizaInformacoes(input){
@@ -64,38 +68,54 @@ class Receitas extends Component {
                                     <img src={lupa} alt="Lupa branca, representando a busca." />
                                 </button>
                             </form>
-                            
                         </div>
             
-                        <p className="linha_laranja"></p>
-                        <div className="caixa_central">
+                        <p className="linha_laranja"></p>                                        
+                            {
+                                this.state.listaReceitasId.map(function(receita){
+                                    return(
+                                        <div>
+                                            <div className="caixa_central"> 
+                                                <div className="grupo_total">
+                                                    <div className="grupo"></div>
+
+                                                        <div className="card cards">
+                                                            <div className="img">
+                                                                <img src={food} alt="imagem ilustrativa de comida" />
+                                                            </div>
+                                
+                                                            <p className="card_titulo">{receita.nomeReceita}</p>
+                                                            <p className="card_subtitulo">Ingredientes</p>
+                                                            <p className="card_conteudo">
+                                                                {receita.descricaoIngrediente}   
+                                                            </p>
+                                                            <p className="card_subtitulo">Mode de Preparo</p>
+                                                            <p className="card_conteudo">
+                                                                {receita.descricaoPreparo}   
+                                                            </p>
+                                                            
+                                                            <div className="botao_mais">
+                                                                <a className="btn_link_click_receita" href="Receitas_Detalhes" >Mais Informações</a>
+                                                            </div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                }.bind(this))
+                            }  
+
+                        { //Codigo comentado
+                            
+
+                        {/* <div className="caixa_central"> 
                             <div className="grupo_total">
                                 <div className="grupo">
-                                    <div className="card cards">
+                                        <div className="card cards">
                                         <div className="img">
                                             <img src={food} alt="imagem ilustrativa de comida" />
                                         </div>
-                                        
-                                        {/* {
-                                            // 4 - Percorrer a lista de Receita 
-                                            this.state.lista.map(function(Receita){
-                                                return(
-                                                    <div>
-                                                        <tr key={Receita.idReceita}>
-                                                            <td>{Receita.nomeReceita}</td>
-                                                            <td>{Receita.descricaoIngrediente}</td>
-                                                        </tr>
-                                                    </div>
-                                                )
-                                            }
-                                        }    */}
-
-                                        {/* Como trazer as informações da API para colocar no lugar da Xepa 1 - Alegria? e assim por diante?
-                                        Tentei com this.state.lista.map(function(Receita)) 
-                                        Tentei com {this.state.lista}
-                                        Tentei com { this.state.informacoes.nomeReceita }
-                                        */}
-                                        
+                                    
                                         <p className="card_titulo">  Xepa 1 - Alegria</p>
                                         <p className="card_subtitulo">Ingredientes</p>
                                         <p className="card_conteudo">
@@ -319,7 +339,14 @@ class Receitas extends Component {
                                         <img src={mais}
                                         alt="Ícone de adição, representando ver mais." /></a>
                             </div>
-                        </div>
+                                            </div>  */}
+
+                        }
+
+                        
+                            
+                            
+
                         <p className="linha_laranja"></p>
                 </section>
             </main>
