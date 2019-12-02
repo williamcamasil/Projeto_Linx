@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import logo_xepa from '../../img/logo_xepa.svg';
+import logo_xepa from '../../assets/img/logo_xepa.svg';
 import { withRouter } from 'react-router-dom'
 import { usuarioAutenticado, parseJwt } from '../../services/auth';
 
