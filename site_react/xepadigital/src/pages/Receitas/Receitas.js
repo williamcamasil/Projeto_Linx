@@ -11,6 +11,7 @@ class Receitas extends Component {
         this.state = {
             listaReceitas : []
 
+            // Para ir para o objeto
             // informacoes : {
             //     idReceita : "",
             //     nomeReceita : "",
@@ -38,16 +39,6 @@ class Receitas extends Component {
             .then(response => response.json())
             .then(data => this.setState( {listaReceitas : data} ))
     }
-
-    // atualizaInformacoes(input){
-    //     this.setState({
-    //         informacoes : {
-    //             idReceita : this.state.informacoes.idReceita,
-    //             nomeReceita : input.target.value,
-    //             descricaoIngrediente : input.target.value
-    //         }
-    //     })
-    // }
 
     render() {
         return (
@@ -82,21 +73,21 @@ class Receitas extends Component {
 
                                                         <div className="card cards">
                                                             <div className="img">
-                                                                {/* <img src={"http://localhost:5000" + (receita.ImgReceita).split('\\')[6]} alt="imagem ilustrativa de comida" /> */}
+                                                                <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
+                                                                {/* <img src={"http://localhost:5000/Resources\\Images\\Receitas\\20191202_172614_colaborador_3.png"} alt="imagem ilustrativa de comida" /> */}
+                                                                
                                                             </div>
                                 
                                                             <p className="card_titulo">{receita.nomeReceita}</p>
                                                             <p className="card_subtitulo">Ingredientes</p>
-                                                            <p className="card_conteudo">
-                                                                {receita.descricaoIngrediente}   
-                                                            </p>
+                                                            <p className="card_conteudo">{receita.descricaoIngrediente}</p>
                                                             <p className="card_subtitulo">Mode de Preparo</p>
                                                             <p className="card_conteudo">
                                                                 {receita.descricaoPreparo}   
                                                             </p>
                                                             
                                                             <div className="botao_mais">
-                                                                <a className="btn_link_click_receita" href="Receitas_Detalhes" >Mais Informações</a>
+                                                                <a className="btn_link_click_receita" href="/ReceitasDetalhes" >Mais Informações</a>
                                                             </div>  
                                                     </div>
                                                 </div>
