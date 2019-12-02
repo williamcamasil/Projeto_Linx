@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import img_instagram from '../../img/instagram.png';
-import img_facebook from '../../img/facebook.png';
-import img_gmail from '../../img/gmail.png';
+import img_instagram from '../../assets/img/instagram.png';
+import img_facebook from '../../assets/img/facebook.png';
+import img_gmail from '../../assets/img/gmail.png';
 
 class Footer extends Component{
   render(){

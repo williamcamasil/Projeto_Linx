@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
-//DEPENDENCIAS    ', Redirect'
-import {Route, BrowserRouter as Router, Switch} from 'react-router-dom';
-// import { usuarioAutenticado, parseJwt } from './assets/services/auth';
+//DEPENDENCIAS    ''
+import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
+import { usuarioAutenticado, parseJwt } from './assets/services/auth';
 
 //SERVICES 
 
@@ -12,22 +12,22 @@ import {Route, BrowserRouter as Router, Switch} from 'react-router-dom';
 import './assets/css/style.css';
 
 //PAGINAS
-import Inicial from './assets/pages/Inicial/Inicial';
-import Colaboradores from './assets/pages/Colaboradores/Colaboradores';
-import ColaboradorDetalhes from './assets/pages/ReservaColaborador/ReservaColaborador';
-import ReservaColaborador from './assets/pages/ReservaColaborador/ReservaColaborador';
-import ReservaCliente from './assets/pages/ReservaCliente/ReservaCliente';
-import Receitas from './assets/pages/Receitas/Receitas';
-import ReceitasDetalhes from './assets/pages/ReceitasDetalhes/ReceitasDetalhes';
-import PerfilColaborador from './assets/pages/PerfilColaborador/PerfilColaborador';
-import Perfil from './assets/pages/Perfil/Perfil';
-import Duvidas from './assets/pages/Duvidas/Duvidas';
-import Termos from './assets/pages/Termos/Termos';
-import CadastroProduto from './assets/pages/CadastroProduto/CadastroProduto';
-import CadastroReceita from './assets/pages/CadastroReceita/CadastroReceita';
-import NotFound from './assets/pages/NotFound/NotFound';
-import Login from './assets/pages/Login/Login';
-import Registrar from './assets/pages/Registrar/Registrar';
+import Inicial from './pages/Inicial/Inicial';
+import Colaboradores from './pages/Colaboradores/Colaboradores';
+import ColaboradorDetalhes from './pages/ReservaColaborador/ReservaColaborador';
+import ReservaColaborador from './pages/ReservaColaborador/ReservaColaborador';
+import ReservaCliente from './pages/ReservaCliente/ReservaCliente';
+import Receitas from './pages/Receitas/Receitas';
+import ReceitasDetalhes from './pages/ReceitasDetalhes/ReceitasDetalhes';
+import PerfilColaborador from './pages/PerfilColaborador/PerfilColaborador';
+import Perfil from './pages/Perfil/Perfil';
+import Duvidas from './pages/Duvidas/Duvidas';
+import Termos from './pages/Termos/Termos';
+import CadastroProduto from './pages/CadastroProduto/CadastroProduto';
+import CadastroReceita from './pages/CadastroReceita/CadastroReceita';
+import NotFound from './pages/NotFound/NotFound';
+import Login from './pages/Login/Login';
+import Registrar from './pages/Registrar/Registrar';
 
 const PermissaoCliente = ({ component : Component }) => (
     <Route render={props =>
