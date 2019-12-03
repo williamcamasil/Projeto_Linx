@@ -1,123 +1,186 @@
 import React, { Component } from 'react'
 // import { parseJwt } from '../../services/auth';
-// import api from '../../services/api';
+import api from '../../services/api';
+// MDBBtn, MDBInput, MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter
+import { MDBAlert} from "mdbreact";
 
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 
 class Registrar extends Component {
-    
-    
-    // constructor() {
-    //     super();
+    constructor() {
+        super()
+        this.state = {
+            senhaIgual: "",
 
-    //     this.state = {
-    //         emailUsuario: "",
-    //         senhaUsuario: "",
-    //         erroMsg: "",
-    //         isLoading: false,
-    //     }
-    // }
+            postUsuario: {
+                nomeUsuario: "",
+                emailUsuario: "",
 
-    // atualizaEstado = (e) => {
-    //     this.setState({ [e.target.name]: e.target.value })
-    // }
+                senhaUsuario: "",
 
-    // realizarLogin(e) {
-    //     e.preventDefault();
+                tipoUsuario: "",
+                receberNotif: "",
+            },
 
-    //     this.setState({ erroMsg: "" })
+            erroMsg: "",
+            sucessMsg: "",
+        }
+    }
 
-    //     this.setState({ isLoading: true })
+    UNSAFE_componentWillMount() {
+        console.log("Carregando");
+        document.title = this.props.titulo_pagina;
+    }
+    componentDidMount() {
+        console.log("Carregado");
+    }
+    componentDidUpdate() {
+        console.log("Atualizando");
+    }
+    componentWillUnmount() {
+        console.log("Saindo");
+    }
 
-    //     let usuario = {
-    //         emailUsuario: this.state.emailUsuario,
-    //         senhaUsuario: this.state.senhaUsuario
-    //     }
+    postSetState = (input) => {
+        this.setState({
+            postUsuario: {
+                ...this.state.postUsuario, [input.target.name]: input.target.value
+            }
+        })
+    }
 
-    //     api.post("/Login", usuario)
-    //         .then(response => {
-    //             console.log("Retorno do login: ", response);
+    senhaSetState = (input) => {
+        this.setState({
+            [input.target.name]: input.target.value
+        })
+    }
+    postUsuario = () => {
+        if (this.state.postUsuario.receberNotif === "0") {
+            this.setState.postUsuario.receberNotif = false
+        } else {
+            this.setState.postUsuario.receberNotif = true
+        }
 
-    //             if (response.status === 200) {
-    //                 localStorage.setItem('usuario-xepa', response.data.token)
-    //                 this.setState({ isLoading: false })
+        api.post("/Usuario", this.state.postUsuario)
+            .then(response => {
+                console.log(response)
+                this.setState({ successMsg: "Conta criada com sucesso!" });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível criar a conta" });
+            })
+        setTimeout(() => {
+            this.setState({ successMsg: "" });
+            this.setState({ erroMsg: "" });
+        }, 3500);
+    }
 
-    //                 var base64 = localStorage.getItem('usuario-xepa').split('.')[1]
+    confirmaSenha = (e) => {
+        e.preventDefault();
 
-    //                 console.log(base64)
-    //                 console.log(window.atob(base64))
-    //                 console.log(JSON.parse(window.atob(base64)))
-    //                 console.log(parseJwt().Role)
+        let { postUsuario, senhaIgual } = this.state;
 
-    //                 // if (parseJwt().Role === 'Administrador') {
+        console.log(senhaIgual);
+        console.log(postUsuario.senhaUsuario);
 
-    //                 //     this.props.history.push('/Inicio');
-    //                 // }
-    //                 // else {
-
-    //                 //     this.props.history.push('/Inicio');
-    //                 // }
-    //             }
-    //         })
-    //         .catch(erro => {
-    //             console.log("Erro: ", erro)
-    //             this.setState({ erroMsg: 'E-mail ou senha inválidos!' })
-    //             this.setState({ isLoading: false })
-    //         })
-    // }
+        if (postUsuario.senhaUsuario !== senhaIgual) {
+            this.setState({ erroMsg: "A senha inserida não é igual" });
+        } else {
+            this.postUsuario();
+        }
+    }
 
     render() {
         return (
             <div>
-                <Header/>    
+                <Header />
                 <main className="fundo">
                     <div className="container-login">
                         <div className="card-login card">
                             <div className="registrar-se">
-                                <h2 className="tituloh2-sm">Registrar-se</h2>                    
+                                <h2 className="tituloh2-sm">Registrar-se</h2>
 
                                 {/* REGISTRAR */}
-                                <form id="registrar-se" className="texto" method="POST">
+                                <form onSubmit={this.confirmaSenha} id="registrar-se" className="texto" method="POST">
                                     <div id="opcao_login">
-                                        <input type="radio" name="escolha"/> Colaborador 
-                                        <input type="radio" name="escolha"/> Cliente
+                                        <input type="radio"
+                                            value="Colaborador"
+                                            name="tipoUsuario"
+                                            onChange={this.postSetState}  />Colaborador
+                                        <input type="radio"
+                                            value="Cliente"
+                                            name="tipoUsuario"
+                                            onChange={this.postSetState} defaultChecked  />Cliente
                                     </div>
+
+                                    {/* NOME */}
+                                    <label aria-label="Seu nome">Seu nome</label>
+                                    <input className="caixa-texto" type="text" placeholder="Digite seu nome"
+                                        name="nomeUsuario"
+                                        value={this.state.postUsuario.nomeUsuario}
+                                        onChange={this.postSetState}
+                                    />
                                     
-                                    <label htmlFor="nome" aria-label="Seu nome"> Seu nome</label>
-                                    <input className="caixa-texto" type="email" placeholder="Digite seu nome" name="nome" id="nome"/>
-
-
+                                    {/* EMAIL */}
                                     <label htmlFor="email" aria-label="Seu E-mail">E-mail</label>
-                                    <input className="caixa-texto" type="email" placeholder="Digite seu e-mail" name="email"/>
+                                    <input className="caixa-texto" type="email" placeholder="Digite seu e-mail"
+                                        name="emailUsuario"
+                                        value={this.state.postUsuario.emailUsuario}
+                                        onChange={this.postSetState}
+                                    />
 
-
+                                    {/* SENHA */}
                                     <label htmlFor="senha" aria-label="Senha">Senha</label>
-                                    <input className="caixa-texto" type="password" placeholder="Crie sua senha" name="senha"/>
+                                    <input className="caixa-texto" type="password" placeholder="Crie sua senha"
+                                        name="senhaUsuario"
+                                        value={this.state.postUsuario.senhaUsuario}
+                                        onChange={this.postSetState}
+                                    />
 
-
+                                    {/* CONFIRMAÇÃO DE SENHA */}
                                     <label htmlFor="confirmar senha" aria-label="Confirme sua senha"> Confirme sua senha</label>
                                     <input className="caixa-texto" type="password" placeholder="Confirme sua senha"
-                                        name="confirmar_senha" id="confirmar_senha"/>
+                                        name="senhaIgual"
+                                        value={this.state.senhaIgual}
+                                        onChange={this.senhaSetState}
+                                    />
 
-                                    <button className="botao" type="button" name="Criar conta">Criar sua Conta</button>
-                                    <p>Criando sua conta você aceita e concorda com as 
-                                        {/* <a href="#" title="Condições">condições</a> e */}
-                                        {/* <a href="#" title="termos de uso">termos de uso</a> */}
-                                    </p>
-                                    <label className="texto-horizontal" htmlFor="atualizacoes"
-                                        aria-label="Desejo receber notificações e atualizações por e-mail?">
-                                        <input className="check" type="checkbox" name="atualizacoes" id="atualizacoes"/>
-                                        <span>
-                                            Deseja receber notificações e atualizações por email?
-                                        </span>
+                                    {   
+                                        this.state.erroMsg && 
+                                        <MDBAlert color="danger" >
+                                            {this.state.erroMsg}
+                                        </MDBAlert>
+                                    }
+                        
+                                    {
+                                        this.state.successMsg && 
+                                        <MDBAlert color="success" >
+                                            {this.state.successMsg}
+                                        </MDBAlert>
+                                    }
+
+                                    <button className="botao" type="submit">Criar sua Conta</button>
+
+                                    <p>Criando sua conta você aceita e concorda com os <a href="/Termos" target="_blank" title="termos de uso">termos de uso</a></p>
+                                    
+                                    <label className="texto-horizontal" aria-label="Deseja receber notificações e atualizações por e-mail?">
+                                        <input className="check" type="checkbox"
+                                            name="receberNotif"
+                                            
+                                            onChange={this.postSetState}
+                                            />
+                                            <span>
+                                                Deseja receber notificações e atualizações por email?
+                                            </span>
                                     </label>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </main>
-                <Footer/>
+                <Footer />
             </div>
         )
     }
