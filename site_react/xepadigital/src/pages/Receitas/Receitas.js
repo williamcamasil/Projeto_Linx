@@ -2,52 +2,26 @@ import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import lupa from '../../assets/img/Lupa.svg';
-import food from '../../assets/img/food.png';
-// import mais from '../../assets/img/mais.png';
+import { Link } from "react-router-dom";
 
 class Receitas extends Component {
     constructor(){
         super();
         this.state = {
             listaReceitas : []
-
-            // informacoes : {
-            //     idReceita : "",
-            //     nomeReceita : "",
-            //     descricaoIngrediente : ""
-            // }
         }
     }
-    
-    // //ComponentWillMound
-    // UNSAFE_componentWillMount() { ///
-    //     document.title = this.props.titulo_pagina;
-    //     console.log("Carregando");
-    // }
 
-    //Com o didmount o listaAtualizado é mostrado no front
     componentDidMount(){
         console.log("Carregado")
         this.getReceita();
-        
     }
 
-    //GET - Listar (é feito no didmount)
     getReceita = () =>{
         fetch("http://localhost:5000/api/Receita")
             .then(response => response.json())
             .then(data => this.setState( {listaReceitas : data} ))
     }
-
-    // atualizaInformacoes(input){
-    //     this.setState({
-    //         informacoes : {
-    //             idReceita : this.state.informacoes.idReceita,
-    //             nomeReceita : input.target.value,
-    //             descricaoIngrediente : input.target.value
-    //         }
-    //     })
-    // }
 
     render() {
         return (
@@ -82,21 +56,19 @@ class Receitas extends Component {
 
                                                         <div className="card cards">
                                                             <div className="img">
-                                                                {/* <img src={"http://localhost:5000" + (receita.ImgReceita).split('\\')[6]} alt="imagem ilustrativa de comida" /> */}
+                                                                <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
                                                             </div>
                                 
                                                             <p className="card_titulo">{receita.nomeReceita}</p>
                                                             <p className="card_subtitulo">Ingredientes</p>
-                                                            <p className="card_conteudo">
-                                                                {receita.descricaoIngrediente}   
-                                                            </p>
+                                                            <p className="card_conteudo">{receita.descricaoIngrediente}</p>
                                                             <p className="card_subtitulo">Mode de Preparo</p>
                                                             <p className="card_conteudo">
                                                                 {receita.descricaoPreparo}   
                                                             </p>
-                                                            
                                                             <div className="botao_mais">
-                                                                <a className="btn_link_click_receita" href="Receitas_Detalhes" >Mais Informações</a>
+                                                                {/* transferindo informações de um ID especifico para outra página */}
+                                                                <Link to={{ pathname: '/ReceitasDetalhes', state: { idReceita: receita.idReceita} }} >Leia mais</Link>
                                                             </div>  
                                                     </div>
                                                 </div>

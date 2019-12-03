@@ -47,6 +47,22 @@ namespace backend.Controllers {
             return Usuario;
         }
 
+        // //GET: api/Usuario/Colaborador
+        // [HttpGet ("{tipo}")]
+        // public async Task<ActionResult<Usuario>> Get (string tipo) {
+        //     var Usuario = await _repositorio.BuscarPorROLE (tipo);
+
+        //     if (Usuario == null) {
+        //         return NotFound (
+        //             new {
+        //                 Mensagem = "Não foi possível obter o Usuário"
+        //             }
+        //         );
+        //     }
+
+        //     return Usuario;
+        // }
+
         //FAZENDO ENVIO PARA O BANCO
         //POST api/Usuario
         [HttpPost]
