@@ -59,19 +59,19 @@ const Rotas = (
         <div>
             <Switch>
                 <Route exact path="/" component ={Inicial}/>
-                <Route path="/Colaboradores" component = {() => <Colaboradores titulo_pagina="Colaboradores - XepaDigital" />}/> 
-                <Route path="/ColaboradorDetalhes" component = {() => <ColaboradorDetalhes titulo_pagina="Colaborador Detalhes - XepaDigital" />}/> 
-                <Route path="/ReservaColaborador" component = {() => <ReservaColaborador titulo_pagina="Reserva Colaborador - XepaDigital" />}/> 
-                <Route path="/ReservaCliente" component = {() => <ReservaCliente titulo_pagina="Reserva Cliente - XepaDigital" />}/> 
-                <Route path="/Receitas" component = {() => <Receitas titulo_pagina="Receitas - XepaDigital" />}/> 
-                <Route path="/ReceitasDetalhes" component = {() => <ReceitasDetalhes titulo_pagina="Receitas Detalhes - XepaDigital" />}/> 
-                <Route path="/Duvidas" component = {() => <Duvidas titulo_pagina="Duvidas - XepaDigital" />}/> 
-                <Route path="/Termos" component = {() => <Termos titulo_pagina="Termos - XepaDigital" />}/> 
-                <PermissaoColaborador path="/CadastroProduto" component = {() => <CadastroProduto titulo_pagina="Cadastro Produtos - XepaDigital" />}/> 
-                <PermissaoCliente path="/CadastroReceita" component = {() => <CadastroReceita titulo_pagina="Cadastro Receitas - XepaDigital" />}/>
-                <PermissaoColaborador path="/PerfilColaborador" component = {() => <PerfilColaborador titulo_pagina="Perfil Colaborador - XepaDigital" />}/>
-                <Route path="/Perfil" component = {() => <Perfil titulo_pagina="Perfil Cliente - XepaDigital" />}/>
-                <Route path="/NotFound" component = {() => <NotFound titulo_pagina="página não encontrada - XepaDigital" />}/>
+                <Route path="/Colaboradores" component = {Colaboradores} />
+                <Route path="/ColaboradorDetalhes" component = {ColaboradorDetalhes }/> 
+                <Route path="/ReservaColaborador" component = {ReservaColaborador}/> 
+                <Route path="/ReservaCliente" component = {ReservaCliente}/> 
+                <Route path="/Receitas" component = {Receitas}/> 
+                <Route path="/ReceitasDetalhes" component = {ReceitasDetalhes}/> 
+                <Route path="/Duvidas" component = {Duvidas}/> 
+                <Route path="/Termos" component = {Termos}/> 
+                <PermissaoColaborador path="/CadastroProduto" component = {CadastroProduto}/> 
+                <PermissaoCliente path="/CadastroReceita" component = {CadastroReceita}/>
+                <PermissaoColaborador path="/PerfilColaborador" component = {PerfilColaborador}/>
+                <Route path="/Perfil" component = {Perfil}/>
+                <Route path="/NotFound" component = {NotFound}/>
 
                 <Route path="/Registrar" component={Registrar}/>
                 <Route path="/Login" component={Login}/>

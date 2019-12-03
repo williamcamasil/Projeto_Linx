@@ -84,7 +84,7 @@ namespace backend {
                         Path.Combine (Directory.GetCurrentDirectory (), "Resources")),
                     RequestPath = "/Resources"
 
-                    //localhost:5000/Resources/Images/Produtos/20191108_125330_beterraba.jpg
+                    //c20191108_125330_beterraba.jpg
             });
 
             //Usamos efetivamente a autenticação

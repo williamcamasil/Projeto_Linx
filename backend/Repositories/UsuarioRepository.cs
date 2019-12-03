@@ -28,6 +28,17 @@ namespace backend.Repositories {
             }
         }
 
+        // public async Task<Usuario> BuscarPorROLE (string tipo) {
+        //     using (XepaDigitalContext _contexto = new XepaDigitalContext ()) {
+        //         var usuario = await _contexto.Usuario.FirstOrDefaultAsync (e => e.TipoUsuario == tipo);
+
+        //         usuario.EmailUsuario = null;
+        //         usuario.SenhaUsuario = null;
+
+        //         return usuario;
+        //     }
+        // }
+
         public async Task<Usuario> Excluir (Usuario Usuario) {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()) {
                 //Selecionando o objeto a ser removido
