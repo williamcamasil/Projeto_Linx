@@ -4,6 +4,26 @@ import Footer from '../../componentes/Footer/Footer';
 import colaborador_3 from '../../assets/img/colaborador_3.png';
 
 class PerfilColaborador extends Component {
+    constructor(){
+        super();
+        this.state = {
+            informacoesProdutor : []
+        }
+    }
+
+    componentDidMount(){
+        console.log("Carregado")
+        // this.getInformacoesProdutor();
+    }
+
+    // getInformacoesProdutor = () => {
+    //     api.get('/Usuario').then(response => {
+    //         if (response.status === 200) {
+    //             this.setState({ informacoesProdutor: response.data })
+    //         }
+    //     })
+    // }
+
     render() {
         return (
             <div>

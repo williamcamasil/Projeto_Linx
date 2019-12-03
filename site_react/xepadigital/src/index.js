@@ -14,7 +14,7 @@ import './assets/css/style.css';
 //PAGINAS
 import Inicial from './pages/Inicial/Inicial';
 import Colaboradores from './pages/Colaboradores/Colaboradores';
-import ColaboradorDetalhes from './pages/ReservaColaborador/ReservaColaborador';
+import ColaboradorDetalhes from './pages/ColaboradorDetalhes/ColaboradorDetalhes';
 import ReservaColaborador from './pages/ReservaColaborador/ReservaColaborador';
 import ReservaCliente from './pages/ReservaCliente/ReservaCliente';
 import Receitas from './pages/Receitas/Receitas';
@@ -27,7 +27,7 @@ import CadastroProduto from './pages/CadastroProduto/CadastroProduto';
 import CadastroReceita from './pages/CadastroReceita/CadastroReceita';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/Login/Login';
-import Registrar from './pages/Registrar/Registrar';
+// import Registrar from './pages/Registrar/Registrar';
 
 const PermissaoCliente = ({ component : Component }) => (
     <Route render={props =>
@@ -60,7 +60,7 @@ const Rotas = (
             <Switch>
                 <Route exact path="/" component ={Inicial}/>
                 <Route path="/Colaboradores" component = {Colaboradores} />
-                <Route path="/ColaboradorDetalhes" component = {ColaboradorDetalhes }/> 
+                <Route path="/ColaboradorDetalhes" component = {ColaboradorDetalhes}/> 
                 <Route path="/ReservaColaborador" component = {ReservaColaborador}/> 
                 <Route path="/ReservaCliente" component = {ReservaCliente}/> 
                 <Route path="/Receitas" component = {Receitas}/> 
@@ -72,8 +72,7 @@ const Rotas = (
                 <PermissaoColaborador path="/PerfilColaborador" component = {PerfilColaborador}/>
                 <Route path="/Perfil" component = {Perfil}/>
                 <Route path="/NotFound" component = {NotFound}/>
-
-                <Route path="/Registrar" component={Registrar}/>
+                {/* <Route path="/Registrar" component={Registrar}/> */}
                 <Route path="/Login" component={Login}/>
             </Switch>
         </div>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
+import api from '../../services/api'
 
 // import food from '../../assets/img/food.png';
 
@@ -24,6 +25,15 @@ class ReceitasDetalhes extends Component {
                 .then(data => this.setState( {listarReceita :[data]} ))    
         }, 1000);
     }
+
+    // getReceita = () => {
+    //     let id = this.props.location.state.idReceita;
+    //     api.get('/Receita/'+id).then(response => {
+    //         if (response.status === 200) {
+    //             this.setState({ listarReceita: response.data })
+    //         }
+    //     })
+    // }
 
 
     render() {

@@ -163,7 +163,8 @@ class Registrar extends Component {
 
                                     <button className="botao" type="submit">Criar sua Conta</button>
 
-                                    <p>Criando sua conta você aceita e concorda com os <a href="/Termos" target="_blank" title="termos de uso">termos de uso</a></p>
+                                    <p>Criando sua conta você aceita e concorda com os <a href="Termos" target="_blank" title="Saiba mais sobre nossos termos.">
+                                        termos de uso</a></p>
                                     
                                     <label className="texto-horizontal" aria-label="Deseja receber notificações e atualizações por e-mail?">
                                         <input className="check" type="checkbox"

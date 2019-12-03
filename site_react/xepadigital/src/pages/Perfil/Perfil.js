@@ -2,8 +2,29 @@ import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import colaborador_3 from '../../assets/img/colaborador_3.png';
+import api from '../../services/api'
 
 class Perfil extends Component {
+    constructor(){
+        super();
+        this.state = {
+            informacoesCliente : []
+        }
+    }
+
+    componentDidMount(){
+        console.log("Carregado")
+        // this.getInformacoesCliente();
+    }
+
+    // getInformacoesCliente = () => {
+    //     api.get('/Usuario').then(response => {
+    //         if (response.status === 200) {
+    //             this.setState({ informacoesCliente: response.data })
+    //         }
+    //     })
+    // }
+
     render() {
         return (
             <div>

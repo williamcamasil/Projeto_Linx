@@ -3,8 +3,29 @@ import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import foto_legume from '../../assets/img/foto_legume.png';
 import mais from '../../assets/img/mais.png';
+import api from '../../services/api'
+import { Link } from "react-router-dom";
 
 class CadastroProduto extends Component {
+    constructor(){
+        super();
+        this.state = {
+            listaCadProdutos : []
+        }
+    }
+
+    componentDidMount(){
+        this.getCadProduto();
+    }
+
+    getCadProduto = () => {
+        api.get('/Produto').then(response => {
+            if (response.status === 200) {
+                this.setState({ listaCadProdutos: response.data })
+            }
+        })
+    }
+
     render() {
         return (
             <div>
@@ -63,8 +84,8 @@ class CadastroProduto extends Component {
                                             </div>
 
                                             <div className="caixa_texto_botoes">
-                                                <button className="botao" type="button" name="Salvar">Salvar</button>
-                                                <button className="botao" type="button" name="Excluir">Excluir</button>
+                                                <button className="botao" type="button" name="Salvar"><Link>Salvar</Link></button>
+                                                <button className="botao" type="button" name="Excluir"><Link>Excluir</Link></button>
                                             </div>
                                         </form>  
                                     </div>
@@ -76,44 +97,28 @@ class CadastroProduto extends Component {
                                 <span>PRODUTOS CADASTRADOS</span>
                             </div>
 
-                            <div className="card_">
-                                <div className="card_branco">
-                                    <img src={foto_legume} alt="Cartão de produtos já cadastrados"/>
-                                    <p>Alcachofra</p>
-                                    <p>Legumes Orgânicos</p>
-                                    <p>Disponível</p>
-                                    <button className="botao" type="button" name="Editar_Card">Editar</button>
-                                </div>
+                            {
+                                this.state.listaCadProdutos.map(function(produto){
+                                    return(
+                                        <div className="card_">
+                                            <div className="card_branco">
+                                                <img src={"http://localhost:5000/" + produto.imgReceita} alt="imagem ilustrativa de comida" />
+                                                <p>{produto.nomeProduto}</p>
+                                                <p>{(produto.organico) ? 'Produto Orgânico':'Produto não Orgânico'}</p>
+                                                <p>{produto.disponibilidade} Kg</p>
+                                                {/* <button className="botao" type="button" name="Editar_Card">Editar</button> */}
+                                                <button className="botao" type="button" name="Editar_Card"><Link>Editar</Link></button>
+                                            </div>
+                                        </div>
 
-                                <div className="card_branco">
-                                    <img src={foto_legume} alt="Cartão de produtos já cadastrados"/>
-                                    <p>Alcachofra</p>
-                                    <p>Legumes Orgânicos</p>
-                                    <p>Disponível</p>
-                                    <button className="botao" type="button" name="Editar_Card">Editar</button>
-                                </div>
+                                        // <div className="mais">
+                                        //     <a href="#" title="Ver mais receitas">
+                                        //     <img src={mais} alt="Ícone de adição, representando ver mais."/></a>
+                                        // </div>
+                                    );
+                                }.bind(this))
+                            }
 
-                                <div className="card_branco">
-                                    <img src={foto_legume} alt="Cartão de produtos já cadastrados"/>
-                                    <p>Alcachofra</p>
-                                    <p>Legumes Orgânicos</p>
-                                    <p>Disponível</p>
-                                    <button className="botao" type="button" name="Editar_Card">Editar</button>
-                                </div>
-
-                                <div className="card_branco">
-                                    <img src={foto_legume} alt="Cartão de produtos já cadastrados"/>
-                                    <p>Alcachofra</p>
-                                    <p>Legumes Orgânicos</p>
-                                    <p>Disponível</p>
-                                    <button className="botao" type="button" name="Editar_Card">Editar</button>
-                                </div>
-                            </div>
-
-                            <div className="mais">
-                                <a href="#" title="Ver mais receitas">
-                                <img src={mais} alt="Ícone de adição, representando ver mais."/></a>
-                            </div>
 
                         </div>
                     </section>                    

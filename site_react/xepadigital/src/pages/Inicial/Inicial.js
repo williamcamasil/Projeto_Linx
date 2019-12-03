@@ -68,7 +68,7 @@ class Inicial extends Component {
                     </div>
                 </section>
                 
-                <section id="colaboradores"> 
+                {/* <section id="colaboradores"> 
                     <div className="container_home">
                         <h2 className="tituloh2">TERMOS DE USO </h2>
                         <div className="text_home2">
@@ -82,9 +82,9 @@ class Inicial extends Component {
                         </div>
                         <a href="Termos" title="Saiba mais sobre nossos termos." className="saiba">Saiba Mais>></a>
                     </div>
-                </section>
+                </section> */}
 
-                <section id="receitas"> 
+                <section id="colaboradores"> 
                     <div className="Home_bg"></div>
                     <div className="container_home">
                         <h2 className="tituloh2">DUVIDAS</h2>

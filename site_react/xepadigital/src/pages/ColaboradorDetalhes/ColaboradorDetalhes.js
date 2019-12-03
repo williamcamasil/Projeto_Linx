@@ -4,6 +4,7 @@ import Footer from '../../componentes/Footer/Footer';
 
 import colaborador from '../../assets/img/colaborador.png';
 import foto_cenoura from '../../assets/img/foto_cenoura.png';
+import { Link } from "react-router-dom";
 
 class ColaboradorDetalhes extends Component {
     render() {
@@ -128,8 +129,10 @@ class ColaboradorDetalhes extends Component {
                             </div>
                         </div>
                         <div id="box_colab_produtor">
-                            <button className="botao" type="buttonReservar" name="Reservar">Reservar</button>
-                            <button className="botao" type="buttonCancelarReserva" name="CancelarReserva">Cancelar</button>
+                            {/* <Link to={{ pathname: '/ReceitasDetalhes', state: { idReceita: receita.idReceita} }} >Reservar</Link> */}
+                            <button className="botao" type="buttonReservar" name="Reservar"><Link to={{ pathname: '/ReservaCliente'}} >Reservar</Link></button>
+                            {/* <button className="botao" type="buttonReservar" name="Reservar">Reservar</button> */}
+                            <button className="botao" type="buttonCancelarReserva" name="CancelarReserva"><Link to={{ pathname: '/Colaboradores'}} >Cancelar</Link></button>
                         </div>
                     </div>
 

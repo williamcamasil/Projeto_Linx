@@ -3,6 +3,7 @@ import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import lupa from '../../assets/img/Lupa.svg';
 import { Link } from "react-router-dom";
+import api from '../../services/api'
 
 class Receitas extends Component {
     constructor(){
@@ -15,13 +16,25 @@ class Receitas extends Component {
     componentDidMount(){
         console.log("Carregado")
         this.getReceita();
+        // this.getFiltroReceita();
     }
 
-    getReceita = () =>{
-        fetch("http://localhost:5000/api/Receita")
-            .then(response => response.json())
-            .then(data => this.setState( {listaReceitas : data} ))
+    getReceita = () => {
+        api.get('/Receita').then(response => {
+            if (response.status === 200) {
+                this.setState({ listaReceitas: response.data })
+            }
+        })
     }
+
+    // COMO INSERIR FILTRO?
+    // getFiltroReceita = () => {
+    //     api.get('/FiltroReceita').then(response => {
+    //         if (response.status === 200) {
+    //             this.setState({ listaReceitas: response.data })
+    //         }
+    //     })    
+    // }
 
     render() {
         return (

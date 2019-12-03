@@ -2,8 +2,29 @@ import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import Lupa from '../../assets/img/Lupa.svg';
+import api from '../../services/api'
 
 class ReservaColaborador extends Component {
+    constructor(){
+        super();
+        this.state = {
+            listaProdutosReservados : []
+        }
+    }
+
+    componentDidMount(){
+        console.log("Carregado")
+        this.getProdutoReservado();
+    }
+
+    getProdutoReservado = () => {
+        api.get('/RegistroProduto').then(response => {
+            if (response.status === 200) {
+                this.setState({ listaProdutosReservados: response.data })
+            }
+        })
+    }
+
     render() {
         return (
             <div>
@@ -49,38 +70,22 @@ class ReservaColaborador extends Component {
 
                             <tbody id="tabela-lista-corpo">
                                 {
-                                    // this.state.lista.map(function (evento) {
-                                    //     return (
-
-                                    //         <tr key={evento.eventoId}>
-                                    //             <td>{evento.eventoId}</td>
-                                    //             <td>{evento.titulo}</td>
-                                    //             {/* Para trazer o nome ao invés do id de outra tabela, puxamos o categoria da outra tabela com o titulo do mesmo */}
-                                    //             <td>{evento.categoria.titulo}</td>
-                                    //             {/* Usamos o operador ternario para mostrar a variavel booleana */}
-                                    //             <td>{(evento.acessoLivre) ? 'Livre' : 'Restrito'}</td>
-                                    //             <td>{(evento.dataEvento).split('T')[0]}</td>
-                                    //             <td>{evento.localizacaoId}</td>
-                                    //             <td>
-                                    //                 <button onClick={e => this.alterarEvento(evento)}>Alterar</button>
-                                    //                 <button onClick={e => this.deletarEvento(evento.eventoId)}>Excluir</button>
-                                    //             </td>
-                                    //         </tr>
-                                    //     )
-                                    // }.bind(this))
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Fernanda</td>
-                                        <td>(11) 96075-4257</td>
-                                        <td>15,45</td>
-                                        <td>Banana</td>
-                                        <td>1,5 Kg</td>
-                                        <td>
-                                            <button>Cancelar</button>
-                                            <button>Aprovar</button>
-                                        </td>
-                                    </tr>
+                                    this.state.listaProdutosReservados.map(function (registro) {
+                                        return (                                     
+                                            <tr>
+                                                <td>{registro.idRegistro}</td>
+                                                <td>{registro.idUsuarioNavigation.nomeUsuario}</td> {/* Está certo ?*/}
+                                                <td>{registro.idUsuarioNavigation.telefone1}</td>
+                                                <td>15,45</td>
+                                                <td>Banana</td>
+                                                <td>1,5 Kg</td>
+                                                <td>
+                                                    <button>Cancelar</button>
+                                                    <button>Aprovar</button>
+                                                </td>
+                                            </tr>
+                                        );
+                                    }.bind(this))
                                 }
                             </tbody>
                         </table>

@@ -2,8 +2,30 @@ import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import Lupa from '../../assets/img/Lupa.svg';
+import { Link } from "react-router-dom";
+import api from '../../services/api'
 
 class ReservaCliente extends Component {
+    constructor(){
+        super();
+        this.state = {
+            listaReservasCliente : []
+        }
+    }
+
+    componentDidMount(){
+        console.log("Carregado")
+        this.getReservasCliente();
+    }
+
+    getReservasCliente = () => {
+        api.get('/ReservaProduto').then(response => {
+            if (response.status === 200) {
+                this.setState({ listaReservasCliente: response.data })
+            }
+        })
+    }
+
     render() {
         return (
             <div>
@@ -50,46 +72,30 @@ class ReservaCliente extends Component {
 
                             <tbody id="tabela-lista-corpo">
                                 {
-                                    // this.state.lista.map(function (evento) {
-                                    //     return (
-
-                                    //         <tr key={evento.eventoId}>
-                                    //             <td>{evento.eventoId}</td>
-                                    //             <td>{evento.titulo}</td>
-                                    //             {/* Para trazer o nome ao invés do id de outra tabela, puxamos o categoria da outra tabela com o titulo do mesmo */}
-                                    //             <td>{evento.categoria.titulo}</td>
-                                    //             {/* Usamos o operador ternario para mostrar a variavel booleana */}
-                                    //             <td>{(evento.acessoLivre) ? 'Livre' : 'Restrito'}</td>
-                                    //             <td>{(evento.dataEvento).split('T')[0]}</td>
-                                    //             <td>{evento.localizacaoId}</td>
-                                    //             <td>
-                                    //                 <button onClick={e => this.alterarEvento(evento)}>Alterar</button>
-                                    //                 <button onClick={e => this.deletarEvento(evento.eventoId)}>Excluir</button>
-                                    //             </td>
-                                    //         </tr>
-                                    //     )
-                                    // }.bind(this))
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Joselito</td>
-                                        <td>(11) 96075-4257</td>
-                                        <td>15,45</td>
-                                        <td>Banana</td>
-                                        <td>1,5 Kg</td>
-                                        <td>Analisando</td>
-                                        <td>
-                                            <button>Cancelar</button>
-                                            <button>Editar</button>
-                                        </td>
-                                    </tr>
+                                    this.state.listaReservasCliente.map(function(reserva){
+                                        return(
+                                            <tr>
+                                                <td>{reserva.idReserva}</td>
+                                                <td>{reserva.idUsuarioNavigation.nomeUsuario}</td>
+                                                <td>{reserva.idUsuarioNavigation.telefone1}</td>
+                                                <td>15,45</td> {/* fazer operação matemática aqui */}
+                                                <td>Banana</td> {/* como puxar o produto? */}
+                                                <td>{reserva.quantidadeReserva} Kg</td>
+                                                <td>{reserva.situacao}</td>
+                                                <td>
+                                                    <button>Cancelar</button>
+                                                    <button>Editar</button>
+                                                </td>
+                                            </tr>
+                                        );
+                                    }.bind(this))
                                 }
                             </tbody>
                         </table>
                     </div>
 
                     <div className="reserva_preco">
-                        <span>Preço total dos pedidos R$ 23,14</span>
+                        <span>Preço total dos pedidos R$ 23,14</span> {/* [REPLICAR] fazer operação matemática aqui */}
                     </div>
                 </main>
                 <Footer />

@@ -10,6 +10,7 @@ import foto_alface from '../../assets/img/foto_alface.png';
 import Lupa from '../../assets/img/Lupa.svg';
 // import api from '../../services/api';
 import { Link } from "react-router-dom";
+import api from '../../services/api'
 
 class Colaboradores extends Component {
     constructor() {
@@ -22,6 +23,7 @@ class Colaboradores extends Component {
     componentDidMount() {
         console.log("Carregado")
         this.getListarColaboradores();
+        // this.getFiltro();  //filtro de produtor e produtos
 
         // setTimeout(() => {
         //     console.log(this.state.lista)    
@@ -29,16 +31,34 @@ class Colaboradores extends Component {
         
     }
     
+    // getListarColaboradores = () => {
+    //     fetch("http://localhost:5000/api/RegistroProduto")
+    //         .then(response => response.json())
+    //         .then(data => this.setState({ lista: data }))            
+    // }
+
     getListarColaboradores = () => {
-        fetch("http://localhost:5000/api/RegistroProduto")
-            .then(response => response.json())
-            .then(data => this.setState({ lista: data }))            
+        api.get('/RegistroProduto').then(response => {
+            if (response.status === 200) {
+                this.setState({ lista: response.data })
+            }
+        })
     }
 
     // getListarUsuario = () => {
     //     fetch("http://localhost:5000/api/Usuario")
     //         .then(response => response.json())
     //         .then(data => this.setState({ lista: data }))            
+    // }
+
+
+    // COMO INSERIR FILTRO?
+    // getFiltro = () => {
+    //     api.get('/FiltroReceita').then(response => {
+    //         if (response.status === 200) {
+    //             this.setState({ listaReceitas: response.data })
+    //         }
+    //     })    
     // }
 
     
@@ -64,7 +84,6 @@ class Colaboradores extends Component {
                     <div className="colab_section"></div>
                     <br/><br/>
 
-                    {/* ESPAÇO */}
                     {
                         this.state.lista.map(function(informacoes){
                             return(
@@ -106,7 +125,7 @@ class Colaboradores extends Component {
                                                     R$10,20 kg</p>
                                                 </div>
                                             </div>
-                                            <a className="btn_link_click" href="Colaborador_Detalhes">+ Informações</a>
+                                            <a className="btn_link_click" href="ColaboradorDetalhes">+ Informações</a>
                                         </div>
                                     </div>
                                 </section>
@@ -114,8 +133,6 @@ class Colaboradores extends Component {
                         }.bind(this))
                     }  
 
-                    {/* ESPAÇO */}
-                    
                     <div className="colab_section"></div>
                 </main>
                 <Footer />

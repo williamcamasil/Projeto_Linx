@@ -2,10 +2,30 @@ import React , {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import food from '../../assets/img/food_af.jpg';
-import mais from '../../assets/img/mais.png'
-
+// import mais from '../../assets/img/mais.png'
+import api from '../../services/api'
+import { Link } from "react-router-dom";
 
 class CadastroReceita extends Component {
+    constructor(){
+        super();
+        this.state = {
+            listaCadReceitas : []
+        }
+    }
+
+    componentDidMount(){
+        this.getCadReceita();
+    }
+
+    getCadReceita = () => {
+        api.get('/Receita').then(response => {
+            if (response.status === 200) {
+                this.setState({ listaCadReceitas: response.data })
+            }
+        })
+    }
+
     render() {
         return (
             <>
@@ -44,8 +64,12 @@ class CadastroReceita extends Component {
                                         </div>                             
 
                                         <div className="caixa_texto_botoes">
-                                            <button className="botao" type="button" name="Salvar">Salvar</button>
-                                            <button className="botao" type="button" name="Excluir">Excluir</button>
+                                            {/* <button className="botao" type="button" name="Salvar">Salvar</button>
+                                            <button className="botao" type="button" name="Excluir">Excluir</button> */}
+                                            <button className="botao" type="button" name="Salvar"><Link>Salvar</Link></button>
+                                            <button className="botao" type="button" name="Excluir"><Link>Excluir</Link></button>
+                                            
+                                            {/* <Link to={{ pathname: '/ReceitasDetalhes', state: { idReceita: receita.idReceita} }} >Leia mais</Link> */}
                                         </div>
                                     </form>  
                                 </div>
@@ -57,47 +81,32 @@ class CadastroReceita extends Component {
                             <span>RECEITAS CADASTRADAS</span>
                         </div>
 
-                        <div className="card_">
-                            <div className="card_branco">
-                                <img src={food} alt="Cartão de receitas já cadastrados" />
-                                <p>Xepa 1</p>
-                                <p>Ingredientes</p>
-                                <p>Modo de Preparo</p>
-                                <button className="botao" type="button" name="Editar_Card">Editar</button>
-                            </div>
+                        {
+                            this.state.listaCadReceitas.map(function(receita){
+                                return(
+                                    <div>
+                                        <div className="card_">
+                                            <div className="card_branco">
+                                                <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
+                                                <p>{receita.nomeReceita}</p>
+                                                <p>Ingredientes</p>
+                                                <p>Modo de Preparo</p>
+                                                {/* <button className="botao" type="button" name="Editar_Card">Editar</button> */}
+                                                <button className="botao" type="button" name="Editar_Card"><Link>Editar</Link></button>
+                                            </div>
+                                        </div>
 
-                            <div className="card_branco">
-                                <img src={food} alt="Cartão de receitas já cadastrados" />
-                                <p>Xepa 2</p>
-                                <p>Ingredientes</p>
-                                <p>Modo de Preparo</p>
-                                <button className="botao" type="button" name="Editar_Card">Editar</button>
-                            </div>
+                                        {/* <div className="mais">
+                                            <a href="#" title="Ver mais receitas">
+                                            <img src={mais}
+                                            alt="Ícone de adição, representando ver mais." /></a>
+                                        </div> */}
 
-                            <div className="card_branco">
-                                <img src={food} alt="Cartão de receitas já cadastrados" />
-                                <p>Xepa 3</p>
-                                <p>Ingredientes</p>
-                                <p>Modo de Preparo</p>
-                                <button className="botao" type="button" name="Editar_Card">Editar</button>
-                            </div>
-
-                            <div className="card_branco">
-                                <img src={food} alt="Cartão de receitas já cadastrados" />
-                                <p>Xepa 4</p>
-                                <p>Ingredientes</p>
-                                <p>Modo de Preparo</p>
-                                <button className="botao" type="button" name="Editar_Card">Editar</button>
-                            </div>
-                        </div>
-
-                        <div className="mais">
-                            <a href="#" title="Ver mais receitas">
-                            <img src={mais}
-                            alt="Ícone de adição, representando ver mais." /></a>
-                        </div>
-
-                    </div>
+                                    </div>
+                                );
+                            }.bind(this))
+                        }
+                    </div>   
                 </section>                    
             </main>
     

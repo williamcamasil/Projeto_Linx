@@ -7,9 +7,9 @@ class NotFound extends Component {
         return (
             <div>
                 <Header />
-                <div className='texto_pagina_404'>
-                    <h1>Página não encontrada</h1>
-                </div>
+                    <div className='texto_pagina_404'>
+                        <h1>Página não encontrada</h1>
+                    </div>
                 <Footer />
             </div>
         );
