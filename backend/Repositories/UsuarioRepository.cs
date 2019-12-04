@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using backend.Domains;
 using backend.Interfaces;
@@ -28,16 +29,18 @@ namespace backend.Repositories {
             }
         }
 
-        // public async Task<Usuario> BuscarPorROLE (string tipo) {
-        //     using (XepaDigitalContext _contexto = new XepaDigitalContext ()) {
-        //         var usuario = await _contexto.Usuario.FirstOrDefaultAsync (e => e.TipoUsuario == tipo);
+        public async Task<List<Usuario>> ListarPorROLE () {
+            using (XepaDigitalContext _contexto = new XepaDigitalContext ()) {
+                List<Usuario> ListaColaborador = new List<Usuario> ();
+                ListaColaborador = await _contexto.Usuario.Where (u => u.TipoUsuario == "Colaborador").ToListAsync ();
 
-        //         usuario.EmailUsuario = null;
-        //         usuario.SenhaUsuario = null;
-
-        //         return usuario;
-        //     }
-        // }
+                foreach (var colab in ListaColaborador) {
+                    // colab.EmailUsuario = null;
+                    colab.SenhaUsuario = null;
+                }
+                return ListaColaborador;
+            }
+        }
 
         public async Task<Usuario> Excluir (Usuario Usuario) {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()) {

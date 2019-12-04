@@ -8,7 +8,7 @@ namespace backend.Interfaces {
 
         Task<Usuario> BuscarPorID (int id);
 
-        // Task<Usuario> BuscarPorROLE (string tipo);
+        Task<List<Usuario>> ListarPorROLE ();
 
         Task<Usuario> Salvar (Usuario Usuario);
 

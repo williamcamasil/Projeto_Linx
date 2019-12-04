@@ -46,7 +46,8 @@ class Login extends Component {
                     console.log("PAYLOAD: "+base64)
                     console.log("PAYLOAD STRING: "+window.atob(base64))
                     console.log(JSON.parse(window.atob(base64)))
-                    console.log("ROLE: "+parseJwt().Role)
+                    console.log("ROLE: ",parseJwt().Role)
+                    console.log("ID: ",parseJwt().Id)
                     console.log("AUTH: "+usuarioAutenticado())
 
                     if (parseJwt().Role === "Colaborador") {

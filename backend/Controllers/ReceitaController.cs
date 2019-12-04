@@ -51,7 +51,7 @@ namespace backend.Controllers {
         //FAZENDO ENVIO PARA O BANCO
         //POST api/Receita
         [HttpPost]
-        [Authorize (Roles = "Administrador, Cliente")]
+        [Authorize (Roles = "Cliente")]
         public async Task<ActionResult<Receita>> Post ([FromForm] Receita Receita) {
             try {
                 // var idPostagemRec = HttpContext.User.Identity as ClaimsIdentity;
