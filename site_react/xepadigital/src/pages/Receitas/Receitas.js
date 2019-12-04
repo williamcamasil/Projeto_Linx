@@ -27,14 +27,16 @@ class Receitas extends Component {
         })
     }
 
-    // COMO INSERIR FILTRO?
+    // // COMO INSERIR FILTRO?
     // getFiltroReceita = () => {
-    //     api.get('/FiltroReceita').then(response => {
+    //     api.get('/FiltroReceita', this.state...).then(response => {
     //         if (response.status === 200) {
     //             this.setState({ listaReceitas: response.data })
     //         }
     //     })    
     // }
+
+
 
     render() {
         return (
