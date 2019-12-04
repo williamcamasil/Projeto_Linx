@@ -16,11 +16,9 @@ class Registrar extends Component {
             postUsuario: {
                 nomeUsuario: "",
                 emailUsuario: "",
-
                 senhaUsuario: "",
-
                 tipoUsuario: "",
-                receberNotif: "",
+                // receberNotif: false,
             },
 
             erroMsg: "",
@@ -55,12 +53,8 @@ class Registrar extends Component {
             [input.target.name]: input.target.value
         })
     }
+
     postUsuario = () => {
-        if (this.state.postUsuario.receberNotif === "0") {
-            this.setState.postUsuario.receberNotif = false
-        } else {
-            this.setState.postUsuario.receberNotif = true
-        }
 
         api.post("/Usuario", this.state.postUsuario)
             .then(response => {
@@ -82,11 +76,16 @@ class Registrar extends Component {
 
         let { postUsuario, senhaIgual } = this.state;
 
-        console.log(senhaIgual);
-        console.log(postUsuario.senhaUsuario);
+        // console.log("senha1: "+postUsuario.senhaUsuario);
+        // console.log("senha2: "+senhaIgual);
+        // console.log("role: "+postUsuario.tipoUsuario);
 
         if (postUsuario.senhaUsuario !== senhaIgual) {
             this.setState({ erroMsg: "A senha inserida não é igual" });
+
+            setTimeout(() => {
+                this.setState({ erroMsg: "" });
+            }, 3500);
         } else {
             this.postUsuario();
         }
@@ -108,11 +107,13 @@ class Registrar extends Component {
                                         <input type="radio"
                                             value="Colaborador"
                                             name="tipoUsuario"
-                                            onChange={this.postSetState}  />Colaborador
+                                            onChange={this.postSetState}  
+                                            />Colaborador
                                         <input type="radio"
                                             value="Cliente"
                                             name="tipoUsuario"
-                                            onChange={this.postSetState} defaultChecked  />Cliente
+                                            onChange={this.postSetState} 
+                                            />Cliente
                                     </div>
 
                                     {/* NOME */}
@@ -146,17 +147,17 @@ class Registrar extends Component {
                                         value={this.state.senhaIgual}
                                         onChange={this.senhaSetState}
                                     />
-
+                                    <br/>
                                     {   
                                         this.state.erroMsg && 
-                                        <MDBAlert color="danger" >
+                                        <MDBAlert className="text-center" color="danger" >
                                             {this.state.erroMsg}
                                         </MDBAlert>
                                     }
                         
                                     {
                                         this.state.successMsg && 
-                                        <MDBAlert color="success" >
+                                        <MDBAlert className="text-center" color="success" >
                                             {this.state.successMsg}
                                         </MDBAlert>
                                     }
@@ -166,16 +167,17 @@ class Registrar extends Component {
                                     <p>Criando sua conta você aceita e concorda com os <a href="Termos" target="_blank" title="Saiba mais sobre nossos termos.">
                                         termos de uso</a></p>
                                     
-                                    <label className="texto-horizontal" aria-label="Deseja receber notificações e atualizações por e-mail?">
+                                    {/* <label className="texto-horizontal" aria-label="Deseja receber notificações e atualizações por e-mail?">
                                         <input className="check" type="checkbox"
                                             name="receberNotif"
+                                            defaultChecked={this.state.postUsuario.receberNotif}
                                             
-                                            onChange={this.postSetState}
+                                            onChange={() => this.setState ({ checked: this.state.postUsuario.receberNotif })}
                                             />
                                             <span>
                                                 Deseja receber notificações e atualizações por email?
                                             </span>
-                                    </label>
+                                    </label> */}
                                 </form>
                             </div>
                         </div>

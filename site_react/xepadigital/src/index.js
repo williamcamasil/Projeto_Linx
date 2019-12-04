@@ -11,6 +11,10 @@ import { usuarioAutenticado, parseJwt } from './services/auth';
 //CSS
 import './assets/css/style.css';
 
+// import '@fortawesome/fontawesome-free/css/all.min.css';
+// import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+
 //PAGINAS
 import Inicial from './pages/Inicial/Inicial';
 import Colaboradores from './pages/Colaboradores/Colaboradores';
@@ -27,7 +31,7 @@ import CadastroProduto from './pages/CadastroProduto/CadastroProduto';
 import CadastroReceita from './pages/CadastroReceita/CadastroReceita';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/Login/Login';
-// import Registrar from './pages/Registrar/Registrar';
+import Registrar from './pages/Registrar/Registrar';
 
 const PermissaoCliente = ({ component : Component }) => (
     <Route render={props =>
@@ -72,7 +76,7 @@ const Rotas = (
                 <PermissaoColaborador path="/PerfilColaborador" component = {PerfilColaborador}/>
                 <Route path="/Perfil" component = {Perfil}/>
                 <Route path="/NotFound" component = {NotFound}/>
-                {/* <Route path="/Registrar" component={Registrar}/> */}
+                <Route path="/Registrar" component={Registrar}/>
                 <Route path="/Login" component={Login}/>
             </Switch>
         </div>

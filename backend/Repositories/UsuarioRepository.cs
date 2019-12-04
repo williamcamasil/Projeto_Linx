@@ -55,7 +55,7 @@ namespace backend.Repositories {
                 ListaUsuario = await _contexto.Usuario.ToListAsync ();
                 // Tratamos 
                 foreach (var user in ListaUsuario) {
-                    user.EmailUsuario = null;
+                    // user.EmailUsuario = null;
                     user.SenhaUsuario = null;
                 }
                 return ListaUsuario;
