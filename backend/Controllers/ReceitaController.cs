@@ -51,20 +51,21 @@ namespace backend.Controllers {
         //FAZENDO ENVIO PARA O BANCO
         //POST api/Receita
         [HttpPost]
-        [Authorize (Roles = "Administrador, Cliente")]
+        [Authorize (Roles = "Cliente")]
         public async Task<ActionResult<Receita>> Post ([FromForm] Receita Receita) {
             try {
                 var imagem = Request.Form.Files[0];
 
                 var idPostagemRec = HttpContext.User.Identity as ClaimsIdentity;
                 IEnumerable<Claim> claim = idPostagemRec.Claims;
-                var idClaim = claim.Where (x => x.Type == ClaimTypes.PrimarySid).FirstOrDefault ();
+                // var idClaim = claim.Where (x => x.Type == ClaimTypes.PrimarySid).FirstOrDefault ();
+                var idClaim = claim.Where (x => x.Type == "Id").FirstOrDefault ();
 
                 Receita.ImgReceita = _UploadImg.Upload (imagem, "Receitas");
                 Receita.NomeReceita = Request.Form["NomeReceita"].ToString ();
                 Receita.DescricaoIngrediente = Request.Form["DescricaoIngrediente"].ToString ();
                 Receita.DescricaoPreparo = Request.Form["DescricaoPreparo"].ToString ();
-                Receita.IdUsuario = Convert.ToInt32 (idClaim.Value);
+                Receita.IdUsuario = int.Parse(idClaim.Value);
 
                 await _repositorio.Salvar (Receita);
             } catch (DbUpdateConcurrencyException) {
