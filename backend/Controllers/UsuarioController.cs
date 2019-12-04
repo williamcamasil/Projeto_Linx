@@ -72,7 +72,7 @@ namespace backend.Controllers {
         //FAZENDO UPDATE NO BANCO
         [HttpPut ("{id}")]
         [Authorize]
-        public async Task<ActionResult> Put (int id, Usuario Usuario) {
+        public async Task<ActionResult> Put ([FromForm] int id, Usuario Usuario) {
             //Se o Id do objeto não existir
             //ele retorna 400 
             if (id != Usuario.IdUsuario) {
@@ -82,10 +82,25 @@ namespace backend.Controllers {
                     }
                 );
             }
+
             try {
+
+                var imagem = Request.Form.Files[0];
+
+                Usuario.ImgPerfil = _UploadImg.Upload (imagem, "Perfil");
+                Usuario.NomeUsuario = Request.Form["NomeReceita"].ToString ();
+                Usuario.DescricaoIngrediente = Request.Form["DescricaoIngrediente"].ToString ();
+                Usuario.DescricaoPreparo = Request.Form["DescricaoPreparo"].ToString ();
+                Usuario.IdUsuario = int.Parse(Request.Form["IdUsuario"]);
+
                 await _repositorio.Alterar (Usuario);
             } catch (DbUpdateConcurrencyException) {
                 //Verificamos se o objeto inserido realmente existe no banco
+
+
+
+
+
                 var Usuario_valido = await _repositorio.BuscarPorID (id);
                 if (Usuario_valido == null) {
                     return NotFound (
