@@ -28,6 +28,7 @@ namespace backend.Domains
             {
                 // DESKTOP-LNH3DKI - fabiano(senai)
                 // DESKTOP-DJ0P3UG - fabiano(casa)
+                // DESKTOP-IN4K5BB - will (senai)
 // #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=DESKTOP-IN4K5BB\\SQLEXPRESS; Database=XepaDigital; User Id=sa; Password=132");
             }
