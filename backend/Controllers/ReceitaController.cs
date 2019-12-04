@@ -54,17 +54,20 @@ namespace backend.Controllers {
         [Authorize (Roles = "Administrador, Cliente")]
         public async Task<ActionResult<Receita>> Post ([FromForm] Receita Receita) {
             try {
-                var imagem = Request.Form.Files[0];
+                // var idPostagemRec = HttpContext.User.Identity as ClaimsIdentity;
+                // IEnumerable<Claim> claim = idPostagemRec.Claims;
+                // var idClaim = claim.Where (x => x.Type == "Id").FirstOrDefault ();
 
-                var idPostagemRec = HttpContext.User.Identity as ClaimsIdentity;
-                IEnumerable<Claim> claim = idPostagemRec.Claims;
-                var idClaim = claim.Where (x => x.Type == ClaimTypes.PrimarySid).FirstOrDefault ();
+                // Receita.IdUsuario = int.Parse(idClaim.Value);
+
+
+                var imagem = Request.Form.Files[0];
 
                 Receita.ImgReceita = _UploadImg.Upload (imagem, "Receitas");
                 Receita.NomeReceita = Request.Form["NomeReceita"].ToString ();
                 Receita.DescricaoIngrediente = Request.Form["DescricaoIngrediente"].ToString ();
                 Receita.DescricaoPreparo = Request.Form["DescricaoPreparo"].ToString ();
-                Receita.IdUsuario = Convert.ToInt32 (idClaim.Value);
+                Receita.IdUsuario = int.Parse(Request.Form["IdUsuario"]);
 
                 await _repositorio.Salvar (Receita);
             } catch (DbUpdateConcurrencyException) {
