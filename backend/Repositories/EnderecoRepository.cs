@@ -20,7 +20,7 @@ namespace backend.Repositories {
 
         public async Task<Endereco> BuscarPorID (int id) {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()){
-                return await _contexto.Endereco.Include("IdUsuarioNavigation").FirstOrDefaultAsync (e => e.IdEndereco == id);
+                return await _contexto.Endereco.Include("IdUsuarioNavigation").FirstOrDefaultAsync (e => e.IdUsuario == id);
             }
         }
 

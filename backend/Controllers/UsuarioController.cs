@@ -13,6 +13,8 @@ namespace backend.Controllers {
     public class UsuarioController : ControllerBase {
         UsuarioRepository _repositorio = new UsuarioRepository ();
         EnderecoRepository _repositorioEndereco = new EnderecoRepository ();
+
+        UploadRepository _UploadImg = new UploadRepository ();
         //GET: api/Usuario
         [HttpGet]
         [Authorize (Roles = "Administrador")]
@@ -84,14 +86,17 @@ namespace backend.Controllers {
             }
 
             try {
-
                 var imagem = Request.Form.Files[0];
 
                 Usuario.ImgPerfil = _UploadImg.Upload (imagem, "Perfil");
-                Usuario.NomeUsuario = Request.Form["NomeReceita"].ToString ();
-                Usuario.DescricaoIngrediente = Request.Form["DescricaoIngrediente"].ToString ();
-                Usuario.DescricaoPreparo = Request.Form["DescricaoPreparo"].ToString ();
-                Usuario.IdUsuario = int.Parse(Request.Form["IdUsuario"]);
+                Usuario.NomeUsuario = Request.Form["NomeUsuario"].ToString ();
+                Usuario.EmailUsuario = Request.Form["EmailUsuario"].ToString ();
+                Usuario.Telefone1 = Request.Form["Telefone1"].ToString ();
+                Usuario.Telefone2 = Request.Form["Telefone2"].ToString ();
+                Usuario.Documento = Request.Form["Documento"].ToString ();
+                Usuario.ReceberNotif = bool.Parse(Request.Form["ReceberNotif"]);
+                Usuario.RazaoSocial = Request.Form["RazaoSocial"].ToString ();
+                Usuario.FazEntrega = bool.Parse(Request.Form["FazEntrega"]);
 
                 await _repositorio.Alterar (Usuario);
             } catch (DbUpdateConcurrencyException) {

@@ -74,7 +74,17 @@ class CadastroReceita extends Component {
         console.log('meu state postReceita: ' , this.state.postReceita.imgReceita)
     }
 
+<<<<<<< HEAD
     // POST
+=======
+    imgSetState = (i) => {
+        this.setState({
+            file: URL.createObjectURL(i.target.files[0])
+        })
+    }
+
+    // POST - Cadastrar
+>>>>>>> e6ea4c84028809b7f388d8b1442ff08e41658629
     postCadReceita = (event) => {
         event.preventDefault();
         console.log("Cadastrando");
@@ -169,10 +179,18 @@ class CadastroReceita extends Component {
                                                 placeholder="Coloque uma foto sua"
                                                 aria-label="Coloque uma foto sua"
                                                 name="imgReceita"
+<<<<<<< HEAD
                                                 onChange={this.imgSetState}
                                                 ref={this.state.postReceita.imgReceita}
                                             />
                                            <img className="img_cad_receita" src={this.state.file} alt="Imagem de um prato com macarrão ao molho" /> 
+=======
+                                                // value={this.state.postUsuario.fotoUsuario}
+                                                onChange={this.imgSetState}
+                                                ref={this.state.postReceita.imgReceita}
+                                            />
+                                            <img className="img_cad_receita" src={this.state.file} alt="imagem ilustrativa de comida" />
+>>>>>>> e6ea4c84028809b7f388d8b1442ff08e41658629
                                         </div>
 
                                         {/* NOME */}
