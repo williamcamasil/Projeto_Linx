@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import perfil from '../../assets/img/perfil.png';
-// import api from '../../services/api'
+import api from '../../services/api';
+import { parseJwt } from '../../services/auth';
+
 
 class Perfil extends Component {
     constructor(){
