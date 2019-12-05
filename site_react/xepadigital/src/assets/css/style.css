@@ -693,6 +693,16 @@ h2 {
     text-align: center;    
 }
 
+.caixa_cad_img{
+    width: 300px;
+    height: 300px;
+}
+
+.caixa_cad_img img{
+    width: 250px;
+    height: 300px;
+}
+
 .c_text{
     text-align: center;
     font-size: 30px;

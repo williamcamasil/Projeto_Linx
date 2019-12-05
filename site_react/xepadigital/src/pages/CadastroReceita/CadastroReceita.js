@@ -13,7 +13,8 @@ class CadastroReceita extends Component {
         super();
         this.state = {
             listaCadReceitas : [],
-            
+            file: null,
+
             postReceita:{
                 nomeReceita: "",
                 descricaoPreparo: "",
@@ -48,6 +49,12 @@ class CadastroReceita extends Component {
 
         console.log('meu state postReceita: ' , this.state.postReceita)
         console.log('meu state postReceita: ' , this.state.postReceita.imgReceita)
+    }
+
+    imgSetState = (i) => {
+        this.setState({
+            file: URL.createObjectURL(i.target.files[0])
+        })
     }
 
     // POST - Cadastrar
@@ -104,10 +111,10 @@ class CadastroReceita extends Component {
                                                 aria-label="Coloque uma foto sua"
                                                 name="imgReceita"
                                                 // value={this.state.postUsuario.fotoUsuario}
-                                                // onChange={this.imgSetState}
+                                                onChange={this.imgSetState}
                                                 ref={this.state.postReceita.imgReceita}
                                             />
-                                            <img className="img_cad_receita" src={food} alt="imagem ilustrativa de comida" />
+                                            <img className="img_cad_receita" src={this.state.file} alt="imagem ilustrativa de comida" />
                                         </div>
                                         {/* <a className="btn_link_click_receita" href="#">Inserir IMG</a> */}
 
