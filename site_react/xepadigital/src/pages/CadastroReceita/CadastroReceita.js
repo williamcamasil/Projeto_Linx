@@ -3,7 +3,7 @@ import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import food from '../../assets/img/food_af.jpg';
 // import food from 'C:/Users/fic/Pictures/imagens/morango.jpg';
-// import mais from '../../assets/img/mais.png'
+import mais from '../../assets/img/mais.png'
 import api from '../../services/api'
 // import { Link } from "react-router-dom";
 import { parseJwt } from "../../services/auth"
@@ -13,7 +13,8 @@ class CadastroReceita extends Component {
         super();
         this.state = {
             listaCadReceitas : [],
-            
+            file: null,
+
             postReceita:{
                 nomeReceita: "",
                 descricaoPreparo: "",
@@ -24,11 +25,33 @@ class CadastroReceita extends Component {
         }
     }
 
+    //Mostrar Imagem
+    imgSetState = (i) =>{
+        this.setState({
+            file : URL.createObjectURL(i.target.files[0])
+        })
+    }
+
     componentDidMount(){
         this.getCadReceita();
     }
 
+    //GET - Inserir nos Inputs
+    getInputReceita = (id) => {
+        api.get('/Receita/' +  id)
+            .then(response => {
+            if (response.status === 200) {
+                this.setState({ postReceita: response.data })
+                // console.log('DEU CERTO')
+            }
+        })
+        // setTimeout(() => {
+        //     console.log('Nome receita: ', this.state.postReceita.nomeReceita)    
+        // }, 1000);
+        
+    }
 
+    //GET -  Receitas
     getCadReceita = () => {
         api.get('/Receita')
             .then(response => {
@@ -38,6 +61,7 @@ class CadastroReceita extends Component {
         })
     }
 
+    //POST - PEGAR INPUTS
     postSetState = (input) => {
         this.setState({
             postReceita: {
@@ -50,7 +74,7 @@ class CadastroReceita extends Component {
         console.log('meu state postReceita: ' , this.state.postReceita.imgReceita)
     }
 
-    // POST - Cadastrar
+    // POST
     postCadReceita = (event) => {
         event.preventDefault();
         console.log("Cadastrando");
@@ -71,9 +95,57 @@ class CadastroReceita extends Component {
         .then(response => response.json())
         .then(response => {
             console.log(response);
-            // console.log(receita);
         })
         .catch(error => console.log('Não foi possível cadastrar:' + error))
+    }
+
+     //DELETE - Deletar categoria
+     deleteCadReceita = (id) => {
+        console.log("excluindo");
+
+        // this.setState({ erroMsg: "" })
+
+        fetch("http://localhost:5000/api/Receita/" + id, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+
+            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                this.getCadReceita();
+                this.setState(() => ({ lista: this.state.listaCadReceitas }))
+            })
+
+            // .catch(error => {
+            //     console.log(error);
+            //     this.setState({ erroMsg: "Não é possível excluir está categoria, verifique se não há eventos que a utilizem" })
+            // })
+    }
+
+    //PUT
+    putCadReceita = (event) => {
+        //Previne que a oagina seja recarregada
+        event.preventDefault();
+
+        fetch("http://localhost:5000/api/Receita/" + this.state.postReceita.idReceita, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(this.state.postReceita)
+        })
+
+            .then(response => response.json())
+            .catch(error => console.log(error))
+
+        //Atraso na requisição, pois as requests possuem intervalos muito próximos
+        setTimeout(() => {
+            this.getCadReceita();
+        }, 1000);
     }
 
     render() {
@@ -87,29 +159,21 @@ class CadastroReceita extends Component {
                             <span>CADASTRO DE RECEITA</span>
                             
                             <div id="caixa_total">
-                                {/* <div id="caixa_parte_imagem">
-                                    <img className="img_cad_receita" src={food} alt="Imagem de um prato com macarrão ao molho" />
-                                    <form action="GET">
-                                        <a className="btn_link_click_receita" href="#">Inserir IMG</a>
-                                    </form>                            
-                                </div> */}
-
                                 <div id="caixa_parte_conteudo">
-                                    <form className="form_caixa" onSubmit={this.postCadReceita}>
+                                    <form className="form_caixa" onSubmit={this.putCadReceita}>
+                                    {/* <form className="form_caixa" onSubmit={this.postCadReceita}> */}
+                                        {/* IMAGEM */}
                                         <div id="caixa_parte_imagem">
-                                            
                                             <input
                                                 type="file"
                                                 placeholder="Coloque uma foto sua"
                                                 aria-label="Coloque uma foto sua"
                                                 name="imgReceita"
-                                                // value={this.state.postUsuario.fotoUsuario}
-                                                // onChange={this.imgSetState}
+                                                onChange={this.imgSetState}
                                                 ref={this.state.postReceita.imgReceita}
                                             />
-                                            <img className="img_cad_receita" src={food} alt="imagem ilustrativa de comida" />
+                                           <img className="img_cad_receita" src={this.state.file} alt="Imagem de um prato com macarrão ao molho" /> 
                                         </div>
-                                        {/* <a className="btn_link_click_receita" href="#">Inserir IMG</a> */}
 
                                         {/* NOME */}
                                         <div className="padronizar_campo2">
@@ -141,8 +205,9 @@ class CadastroReceita extends Component {
                                         </div>                             
 
                                         <div className="caixa_texto_botoes">
+                                            {/* COMO 1 BOTÃO CRIAR E ALTERAR AO MESMO TEMPO??? */}
                                             <button className="botao" type="submit" name="Salvar">Salvar</button>
-                                            <button className="botao" type="button" name="Excluir">Excluir</button>
+                                            <button className="botao" type="button" name="Editar_Card" onClick={e => this.deleteCadReceita(this.state.postReceita.idReceita)}>Excluir</button>
                                         </div>
                                     </form>
                                 </div>
@@ -160,26 +225,23 @@ class CadastroReceita extends Component {
                                     <div>
                                         <div className="card_">
                                             <div className="card_branco">
-                                                {/* <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" /> */}
+                                                <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
                                                 <p>{receita.nomeReceita}</p>
                                                 <p>Ingredientes</p>
                                                 <p>Modo de Preparo</p>
-                                                {/* <button className="botao" type="button" name="Editar_Card">Editar</button> */}
-                                                {/* <button className="botao" type="button" name="Editar_Card"><Link>Editar</Link></button> */}
-                                                <button className="botao" type="button" name="Editar_Card">Editar</button>
+                                                <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputReceita(receita.idReceita)}>Editar</button>
                                             </div>
                                         </div>
-
-                                        {/* <div className="mais">
-                                            <a href="#" title="Ver mais receitas">
-                                            <img src={mais}
-                                            alt="Ícone de adição, representando ver mais." /></a>
-                                        </div> */}
-
                                     </div>
                                 );
                             }.bind(this))
                         }
+
+                        <div className="mais">
+                            <a href="#" title="Ver mais receitas">
+                            <img src={mais}
+                            alt="Ícone de adição, representando ver mais." /></a>
+                        </div>
                     </div>   
                 </section>                    
             </main>

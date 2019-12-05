@@ -38,7 +38,7 @@ class Colaboradores extends Component {
     // }
 
     getListarColaboradores = () => {
-        api.get('/RegistroProduto').then(response => {
+        api.get('/Colaborador').then(response => {
             if (response.status === 200) {
                 this.setState({ lista: response.data })
             }
@@ -90,13 +90,10 @@ class Colaboradores extends Component {
                                 <section className="container">
                                     <div className="card card_colab">
                                         <div className="card_size">
-                                            <h3>{informacoes.idUsuarioNavigation.nomeUsuario}</h3>
+                                            <h3>{informacoes.nomeUsuario}</h3>
                                             <div className="card_style">
                                                 <img src={mulher_3} className="colaboradores_img"  alt="Foto de perfil do colaborador"/>
-                                                <p className="text_1">Nascida no Brasil mas Ayana 45 anos, é filha de imigrantes, negra 
-                                                    casada com 2 filhas, acorda todos os dias às 5:00 AM para cuidar de suas plantações 
-                                                    junto ao seu marido. Mora num humilde terreno em Rio Pequeno, SP onde plantam seus 
-                                                    produtos orgânicos. Ayana tem ensino médio e técnico em agricultura completo.</p>
+                                                <p className="text_1">{informacoes.sobreColab}</p>
                                             </div>
                                             <p className="Contato_Colaborador">Tel: (11) 5672-0992 | Rua Guilherme da Cruz, 148</p>
                                         </div>
@@ -125,7 +122,8 @@ class Colaboradores extends Component {
                                                     R$10,20 kg</p>
                                                 </div>
                                             </div>
-                                            <a className="btn_link_click" href="ColaboradorDetalhes">+ Informações</a>
+                                            {/* <a className="btn_link_click" href="ColaboradorDetalhes">+ Informações</a> */}
+                                            <Link to={{ pathname: '/ColaboradorDetalhes', state: { idColaborador: informacoes.idColaborador} }} >+ Informações</Link>
                                         </div>
                                     </div>
                                 </section>
