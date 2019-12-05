@@ -21,7 +21,8 @@ class CadastroReceita extends Component {
                 descricaoIngrediente: "",
                 imgReceita: React.createRef(),
                 idUsuario: parseJwt().Id,
-            }
+            },
+            idReceitaAlterada : 0
         }
     }
 
@@ -31,6 +32,8 @@ class CadastroReceita extends Component {
 
     //GET - Inserir nos Inputs
     getInputReceita = (id) => {
+        console.log('id da receita selecionada: ' + id)
+        console.log('meu token: ' + localStorage.getItem('usuario-xepa'));
         api.get('/Receita/' +  id)
             .then(response => {
             if (response.status === 200) {
@@ -90,6 +93,10 @@ class CadastroReceita extends Component {
 
         fetch("http://localhost:5000/api/Receita", {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : "Bearer " + localStorage.getItem('usuario-xepa')
+            },
             body: receita
         })
         .then(response => response.json())
@@ -100,15 +107,18 @@ class CadastroReceita extends Component {
     }
 
      //DELETE - Deletar categoria
-     deleteCadReceita = (id) => {
+    deleteCadReceita = (id) => {
         console.log("excluindo");
+        console.log('id da receita que será excluída: ' + id);
+        
 
         // this.setState({ erroMsg: "" })
 
-        fetch("http://localhost:5000/api/Receita/" + id, {
+        fetch("https://localhost:5001/api/Receita/" + id, {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization" : "Bearer " + localStorage.getItem('usuario-xepa')
             }
         })
 
@@ -133,7 +143,8 @@ class CadastroReceita extends Component {
         fetch("http://localhost:5000/api/Receita/" + this.state.postReceita.idReceita, {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization" : "Bearer " + localStorage.getItem('usuario-xepa')
             },
 
             body: JSON.stringify(this.state.postReceita)
