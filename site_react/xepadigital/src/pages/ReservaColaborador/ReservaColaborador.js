@@ -85,7 +85,9 @@ class ReservaColaborador extends Component {
                                                 </td>
                                             </tr>
                                         );
-                                    }.bind(this))
+                                    }
+                                    // .bind(this)
+                                    )
                                 }
                             </tbody>
                         </table>

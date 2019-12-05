@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 // import colaborador_3 from '../../assets/img/colaborador_3.png';
-import profile from '../../assets/img/profile.png';
+// import profile from '../../assets/img/profile.png';
 import { parseJwt } from '../../services/auth';
 import api from '../../services/api';
 

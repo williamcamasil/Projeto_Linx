@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
-import api from '../../services/api'
+// import api from '../../services/api'
 
 // import food from '../../assets/img/food.png';
 

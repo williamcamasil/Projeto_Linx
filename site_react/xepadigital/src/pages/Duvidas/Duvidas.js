@@ -22,7 +22,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="#"><img src={mais} alt="" /></a>
+                                    <a href="/#"><img src={mais} alt="" /></a>
                                 </div>                
                             </div>
 
@@ -32,7 +32,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="#"><img src={mais} alt="" /></a>
+                                    <a href="/#"><img src={mais} alt="" /></a>
                                 </div>                
                             </div>
                         </div>
@@ -46,7 +46,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="#"><img src={mais} alt="" /></a>
+                                    <a href="/#"><img src={mais} alt="" /></a>
                                 </div>                
                             </div>
 
@@ -56,7 +56,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="#"><img src={mais} alt="" /></a>
+                                    <a href="/#"><img src={mais} alt="" /></a>
                                 </div>                
                             </div>
                         </div>
@@ -69,7 +69,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="#"><img src={mais} alt="" /></a>
+                                    <a href="/#"><img src={mais} alt="" /></a>
                                 </div>                
                             </div>
 
@@ -79,7 +79,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="#"><img src={mais} alt="" /></a>
+                                    <a href="/#"><img src={mais} alt="" /></a>
                                 </div>                
                             </div>
                         </div>
@@ -93,7 +93,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="#"><img src={mais} alt="" /></a>
+                                    <a href="/#"><img src={mais} alt="" /></a>
                                 </div>                
                             </div>
 
@@ -103,7 +103,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="#"><img src={mais} alt="" /></a>
+                                    <a href="/#"><img src={mais} alt="" /></a>
                                 </div>                
                             </div>
 

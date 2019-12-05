@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import Lupa from '../../assets/img/Lupa.svg';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import api from '../../services/api'
 
 class ReservaCliente extends Component {
@@ -88,7 +88,9 @@ class ReservaCliente extends Component {
                                                 </td>
                                             </tr>
                                         );
-                                    }.bind(this))
+                                    }
+                                    // .bind(this)
+                                    )
                                 }
                             </tbody>
                         </table>
