@@ -3,28 +3,27 @@ import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import perfil from '../../assets/img/perfil.png';
 import api from '../../services/api';
-import { parseJwt } from '../../services/auth';
-
+import { parseJwt } from "../../services/auth";
 
 class Perfil extends Component {
     constructor(){
         super();
         this.state = {
-            informacoesCliente : [],
-            // informacoesCliente:{
-            //     nomeUsuario: "",
-            //     emailUsuario: "",
-            //     receberNotif: false,
-            //     documento: "",
-            //     imgPerfil: React.createRef(),
-            //     telefone1: "",
-            //     telefone2: "",
-            //     sobreColab: "",
-            //     fazEntrega: false,
-            //     razaoSocial: "",
-            //     // endereco: "",
-            //     // idUsuario: parseJwt().Id,
-            // }
+            // informacoesCliente : [],
+            informacoesCliente:{
+                nomeUsuario: "",
+                emailUsuario: "",
+                receberNotif: false,
+                documento: "",
+                imgPerfil: React.createRef(),
+                telefone1: "",
+                telefone2: "",
+                sobreColab: "",
+                fazEntrega: false,
+                razaoSocial: "",
+                // endereco: "",
+                // idUsuario: parseJwt().Id,
+            }
         }
     }
 
@@ -38,12 +37,7 @@ class Perfil extends Component {
             if (response.status === 200) {
                 this.setState({ informacoesCliente: response.data })
             }
-        })
-
-        // setTimeout(() => {
-        //     console.log(this.state.informacoesCliente.nomeUsuario)    
-        // }, 1000);
-        
+        })        
     }  
 
     render() {
@@ -60,7 +54,7 @@ class Perfil extends Component {
                             <div className="linha_perfil_colab"></div>
                             
                             {/* <!-- form --> */}
-                            <form onSubmit={this.informacoesCliente}>
+                            <form>
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_esquerda">
                                         <img src={perfil} alt="Imagem do usuario cadastrado"/>
