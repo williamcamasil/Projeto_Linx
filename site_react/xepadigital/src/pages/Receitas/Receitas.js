@@ -90,7 +90,9 @@ class Receitas extends Component {
                                             </div>
                                         </div>
                                     );
-                                }.bind(this))
+                                }
+                                // .bind(this)
+                                )
                             }                            
 
                         <p className="linha_laranja"></p>

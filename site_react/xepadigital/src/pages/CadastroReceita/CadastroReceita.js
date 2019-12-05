@@ -1,7 +1,7 @@
 import React , {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
-import food from '../../assets/img/food_af.jpg';
+// import food from '../../assets/img/food_af.jpg';
 // import food from 'C:/Users/fic/Pictures/imagens/morango.jpg';
 import mais from '../../assets/img/mais.png'
 import api from '../../services/api'
@@ -23,13 +23,6 @@ class CadastroReceita extends Component {
                 idUsuario: parseJwt().Id,
             }
         }
-    }
-
-    //Mostrar Imagem
-    imgSetState = (i) =>{
-        this.setState({
-            file : URL.createObjectURL(i.target.files[0])
-        })
     }
 
     componentDidMount(){
@@ -74,9 +67,7 @@ class CadastroReceita extends Component {
         console.log('meu state postReceita: ' , this.state.postReceita.imgReceita)
     }
 
-<<<<<<< HEAD
-    // POST
-=======
+    //Mostrar Imagem
     imgSetState = (i) => {
         this.setState({
             file: URL.createObjectURL(i.target.files[0])
@@ -84,7 +75,6 @@ class CadastroReceita extends Component {
     }
 
     // POST - Cadastrar
->>>>>>> e6ea4c84028809b7f388d8b1442ff08e41658629
     postCadReceita = (event) => {
         event.preventDefault();
         console.log("Cadastrando");
@@ -179,18 +169,11 @@ class CadastroReceita extends Component {
                                                 placeholder="Coloque uma foto sua"
                                                 aria-label="Coloque uma foto sua"
                                                 name="imgReceita"
-<<<<<<< HEAD
-                                                onChange={this.imgSetState}
-                                                ref={this.state.postReceita.imgReceita}
-                                            />
-                                           <img className="img_cad_receita" src={this.state.file} alt="Imagem de um prato com macarrão ao molho" /> 
-=======
                                                 // value={this.state.postUsuario.fotoUsuario}
                                                 onChange={this.imgSetState}
                                                 ref={this.state.postReceita.imgReceita}
                                             />
                                             <img className="img_cad_receita" src={this.state.file} alt="imagem ilustrativa de comida" />
->>>>>>> e6ea4c84028809b7f388d8b1442ff08e41658629
                                         </div>
 
                                         {/* NOME */}
@@ -256,7 +239,7 @@ class CadastroReceita extends Component {
                         }
 
                         <div className="mais">
-                            <a href="#" title="Ver mais receitas">
+                            <a href="/#" title="Ver mais receitas">
                             <img src={mais}
                             alt="Ícone de adição, representando ver mais." /></a>
                         </div>

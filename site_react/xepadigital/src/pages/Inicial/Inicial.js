@@ -4,7 +4,7 @@ import Footer from '../../componentes/Footer/Footer';
 import logo_slogan from '../../assets/img/logo_slogan.svg';
 import colab from '../../assets/img/colab.jpg';
 import receitas from '../../assets/img/receitas.jpg';
-import termos from '../../assets/img/termos.png';
+// import termos from '../../assets/img/termos.png';
 import duvida from '../../assets/img/duvida.png';
 
 

@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import mulher_3 from '../../assets/img/mulher_3.jpg';
-import mulher_4 from '../../assets/img/mulher_4.jpg';
-import colaborador from '../../assets/img/colaborador.png';
-import fazendeiro from '../../assets/img/fazendeiro.png';
+// import mulher_4 from '../../assets/img/mulher_4.jpg';
+// import colaborador from '../../assets/img/colaborador.png';
+// import fazendeiro from '../../assets/img/fazendeiro.png';
 import foto_cenoura from '../../assets/img/foto_cenoura.png';
-import foto_alface from '../../assets/img/foto_alface.png';
+// import foto_alface from '../../assets/img/foto_alface.png';
 import Lupa from '../../assets/img/Lupa.svg';
 // import api from '../../services/api';
 import { Link } from "react-router-dom";
@@ -128,7 +128,9 @@ class Colaboradores extends Component {
                                     </div>
                                 </section>
                             );
-                        }.bind(this))
+                        }
+                        // .bind(this)
+                        )
                     }  
 
                     <div className="colab_section"></div>
