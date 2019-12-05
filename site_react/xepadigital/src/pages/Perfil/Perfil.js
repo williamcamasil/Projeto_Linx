@@ -3,30 +3,47 @@ import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import perfil from '../../assets/img/perfil.png';
 import api from '../../services/api'
+import { parseJwt } from "../../services/auth"
 
 class Perfil extends Component {
     constructor(){
         super();
         this.state = {
-            informacoesCliente : []
+            informacoesCliente : [],
+            // informacoesCliente:{
+            //     nomeUsuario: "",
+            //     emailUsuario: "",
+            //     receberNotif: false,
+            //     documento: "",
+            //     imgPerfil: React.createRef(),
+            //     telefone1: "",
+            //     telefone2: "",
+            //     sobreColab: "",
+            //     fazEntrega: false,
+            //     razaoSocial: "",
+            //     // endereco: "",
+            //     // idUsuario: parseJwt().Id,
+            // }
         }
     }
 
     componentDidMount(){
         console.log("Carregado")
-        // this.getInformacoesCliente();
+        this.getInformacoesCliente();
     }
 
-    // getInformacoesCliente = () => {
-    //     api.get('/Usuario').then(response => {
-    //         if (response.status === 200) {
-    //             this.setState({ informacoesCliente: response.data })
-    //         }
-    //     })
-    // }
+    getInformacoesCliente = () => {
+        api.get('/Usuario/' + parseJwt().Id).then(response => {
+            if (response.status === 200) {
+                this.setState({ informacoesCliente: response.data })
+            }
+        })
 
-    
-
+        // setTimeout(() => {
+        //     console.log(this.state.informacoesCliente.nomeUsuario)    
+        // }, 1000);
+        
+    }  
 
     render() {
         return (
@@ -42,7 +59,7 @@ class Perfil extends Component {
                             <div className="linha_perfil_colab"></div>
                             
                             {/* <!-- form --> */}
-                            <form>
+                            <form onSubmit={this.informacoesCliente}>
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_esquerda">
                                         <img src={perfil} alt="Imagem do usuario cadastrado"/>
@@ -52,28 +69,38 @@ class Perfil extends Component {
                                         <div className="caixa_cad_direita">
                                             <label htmlFor="nome_prod_lbl" aria-label="nome_prod_lbl">Nome</label>
                                             <br/>
-                                            <input className="caixa-texto_1 caixa_style" type="nome_produtor" placeholder="Digite seu nome" name="nome_prod" id="nome_prod"/>
+                                            <input className="caixa-texto_1 caixa_style" type="nome_produtor" 
+                                            placeholder="Digite seu nome" name="nome_prod" id="nome_prod"
+                                            value={this.state.informacoesCliente.nomeUsuario}/>
                                             <br/>
                                             <label htmlFor="email_lbl" aria-label="email_lbl">E-mail</label>
                                             <br/>
-                                            <input className="caixa-texto_1 caixa_style" type="email" placeholder="exemplo@exemplo.com.br" name="email_produtor" id="email_produto"/>
+                                            <input className="caixa-texto_1 caixa_style" type="email" 
+                                            placeholder="exemplo@exemplo.com.br" name="email_produtor" id="email_produto"
+                                            value={this.state.informacoesCliente.emailUsuario}/>
                                         </div>
                                         {/* <!-- precisa de displ flex wrap --> */}
                                         <div className="caixa_cad_direita c_disp_wrap">
                                             <div className="caixa_input_2">
                                                 <label htmlFor="telefone_lbl" aria-label="telefone_lbl">Telefone:</label>
                                                 <br/>
-                                                <input className="caixa-texto_2 caixa_style" type="telefone" placeholder="(xx) xxxxx - xxxx" name="telefone_produtor" id="telefone_produto"/> 
+                                                <input className="caixa-texto_2 caixa_style" type="telefone" 
+                                                placeholder="(xx) xxxxx - xxxx" name="telefone_produtor" id="telefone_produto"
+                                                value={this.state.informacoesCliente.telefone1}/> 
                                             </div>
                                             <div className="caixa_input_2">
                                                 <label htmlFor="telefone2_lbl" aria-label="telefone2_lbl">Telefone 2° Opção:</label>
                                                 <br/>
-                                                <input className="caixa-texto_2 caixa_style" type="telefone2" placeholder="(xx) xxxxx - xxxx" name="telefone2_produtor" id="telefone2_produto"/> 
+                                                <input className="caixa-texto_2 caixa_style" type="telefone2" 
+                                                placeholder="(xx) xxxxx - xxxx" name="telefone2_produtor" id="telefone2_produto"
+                                                value={this.state.informacoesCliente.telefone2}/> 
                                             </div>
                                             <div className="caixa_input_2">
                                                 <label htmlFor="documento_lbl" aria-label="documento_lbl">CPF/CNPJ:</label>
                                                 <br/>
-                                                <input className="caixa-texto_2 caixa_style" type="documento" placeholder="Digite um documento (CPF/CNPJ)" name="documento" id="documento"/>
+                                                <input className="caixa-texto_2 caixa_style" type="documento" 
+                                                placeholder="Digite um documento (CPF/CNPJ)" name="documento" id="documento"
+                                                value={this.state.informacoesCliente.documento}/>
                                             </div>
                                             <div className="caixa_input_2">
                                                 <label htmlFor="notificacao_lbl" aria-label="notificacao_lbl">Deseja receber notificações?</label>
@@ -85,6 +112,7 @@ class Perfil extends Component {
                                             </div>
                                         </div>
                                     </div>
+                                    {/* <button className="botao" type="submit" name="Inserir IMG">Mostrar</button> */}
                                 </div>
                             </form>
 

@@ -17,7 +17,7 @@ namespace backend.Controllers {
         UploadRepository _UploadImg = new UploadRepository ();
         //GET: api/Usuario
         [HttpGet]
-        [Authorize (Roles = "Administrador")]
+        // [Authorize (Roles = "Administrador")]
         public async Task<ActionResult<List<Usuario>>> Get () {
             var Usuarios = await _repositorio.Listar ();
 
@@ -34,7 +34,7 @@ namespace backend.Controllers {
         //FAZENDO SELECT NO BANCO
         //GET: api/Usuario/2
         [HttpGet ("{id}")]
-        [Authorize] // SOMENTE PODE VOLTAR O ID = AO ID QUE ESTÁ LOGADO
+        // [Authorize] // SOMENTE PODE VOLTAR O ID = AO ID QUE ESTÁ LOGADO
         public async Task<ActionResult<Usuario>> Get (int id) {
             var Usuario = await _repositorio.BuscarPorID (id);
 

@@ -112,7 +112,7 @@ namespace backend.Controllers {
 
         //FAZENDO DELETE NO BANCO
         [HttpDelete ("{id}")]
-        [Authorize (Roles = "Administrador")]
+        [Authorize (Roles = "Cliente")]
         public async Task<ActionResult<Receita>> Delete (int id) {
             var Receita = await _repositorio.BuscarPorID (id);
             if (Receita == null) {
