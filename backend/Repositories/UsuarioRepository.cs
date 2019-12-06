@@ -22,7 +22,7 @@ namespace backend.Repositories {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()) {
                 var usuario = await _contexto.Usuario.FirstOrDefaultAsync (e => e.IdUsuario == id);
 
-                usuario.EmailUsuario = null;
+                // usuario.EmailUsuario = null;
                 usuario.SenhaUsuario = null;
 
                 return usuario;

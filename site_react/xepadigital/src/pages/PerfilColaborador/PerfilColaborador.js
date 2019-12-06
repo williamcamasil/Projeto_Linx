@@ -10,8 +10,8 @@ class PerfilColaborador extends Component {
     constructor() {
         super();
         this.state = {
-            usuarioPorId: [],
-            enderecoPorId: [],
+            // usuarioPorId: [],
+            // enderecoPorId: [],
 
             putUsuario: {
                 idUsuario: parseJwt().Id,
@@ -58,9 +58,9 @@ class PerfilColaborador extends Component {
         api.get("/Usuario/" + idUser)
             .then(response => {
                 if (response.status === 200) {
-                    this.setState({ usuarioPorId: response.data })
+                    this.setState({ putUsuario: response.data })
                 }
-                console.log("respUser: ", this.state.usuarioPorId)
+                console.log("respUser: ", this.state.putUsuario)
 
             })
 
@@ -68,28 +68,20 @@ class PerfilColaborador extends Component {
 
     getEnderecoId = () => {
         let idEnd = this.state.putEndereco.idUsuario;
+        let idEndPut = this.state.putEndereco.enderecoId;
+
         console.log("idEnd: ", idEnd);
+        console.log("idEndPut: ", idEndPut);
 
         api.get("/Endereco/" + idEnd)
             .then(response => {
                 if (response.status === 200) {
-                    this.setState({ enderecoPorId: response.data })
+                    this.setState({ putEndereco: response.data })
                 }
-                console.log("respEnd: ", this.state.enderecoPorId)
+                console.log("respEnd: ", this.state.putEndereco)
 
             })
     }
-    //#endregion
-
-    //#region ATRIBUINDO O BANCO
-    // usuarioDoBanco = (i) => {
-    //     this.setState({
-    //         putUsuario: {
-    //             ...this.state.usuarioPorId, [i.target.name]: i.target.value
-    //         }
-    //     })
-    //     console.log("respUserCnst: ", this.state.putUsuario)
-    // }
     //#endregion
 
     //#region SET STATES
@@ -105,9 +97,62 @@ class PerfilColaborador extends Component {
     putSetStateEndereco = (input) => {
         this.setState({
             putEndereco: {
-                ...this.state.enderecoPorId, [input.target.name]: input.target.value
+                ...this.state.putEndereco, [input.target.name]: input.target.value
             }
         })
+        setTimeout(() => {
+            console.log("setStateEnd: ", this.state.putEndereco)
+        }, 500);
+    }
+    //#endregion
+
+    //#region PUTS
+    putAltUsuario = (e) => {
+        e.preventDefault();
+        let idUser = this.state.putUsuario.idUsuario;
+        let usuario = new FormData();
+
+        usuario.set('imgPerfil', this.state.putUsuario.imgReceita.current.files[0]);
+        usuario.set('nomeUsuario', this.state.putUsuario.nomeUsuario);
+        usuario.set('emailUsuario', this.state.putUsuario.emailUsuario);
+        usuario.set('telefone1', this.state.putUsuario.telefone1);
+        usuario.set('telefone2', this.state.putUsuario.telefone2);
+        usuario.set('documento', this.state.putUsuario.documento);
+        usuario.set('receberNotif', this.state.putUsuario.receberNotif);
+        usuario.set('razaoSocial', this.state.putUsuario.razaoSocial);
+        usuario.set('fazEntrega', this.state.putUsuario.fazEntrega);
+        usuario.set('sobreColab', this.state.putUsuario.sobreColab);
+
+        api.put("/Usuario/" + idUser)
+            // body: usuario
+            .then(response => {
+                if (response.status === 200){
+                    console.log(response);
+                }
+            })
+            .catch(error => console.log("error: ", error))
+
+            setTimeout(() => {
+                this.getUsuarioId();
+            }, 500);
+    }
+
+    putAltEndereco = (e) => {
+        e.preventDefault();
+        let idEndPut = this.state.putEndereco.enderecoId;
+        let endAtualizado = this.state.putEndereco;
+
+        api.put("/Endereco/" + idEndPut, endAtualizado)
+            .then(response => {
+                if (response.status === 200){
+                    console.log(response);
+                }
+            })
+            .catch(error => console.log("error: ", error))
+
+            setTimeout(() => {
+                this.getEnderecoId();
+            }, 500);
     }
     //#endregion
 
@@ -130,10 +175,9 @@ class PerfilColaborador extends Component {
 
                             <form>
                                 <div className="c_disp_flex">
-                                    {/* <!-- displ flex --> */}
                                     <div className="caixa_cad_esquerda">
                                         <div className="caixa_cad_img">
-                                            {/* <img src={profile} alt="" /> */}
+                                                                                                                    {/* <img src={profile} alt="" /> */}
 
                                             <img alt="Imagem de perfil do Usuário"
                                                 src={"http://localhost:5000/" + this.state.putUsuario.imgPerfil} />
@@ -142,69 +186,66 @@ class PerfilColaborador extends Component {
                                     </div>
                                     <div>
                                         <div className="caixa_cad_direita">
-                                            {/* <!-- 2 input --> */}
-                                            {/* <!-- nome --> */}
+                                                                                                                    {/* <!-- nome --> */}
                                             <label aria-label="nome_prod_lbl">Nome</label>
                                             <br />
                                             <input className="caixa-texto_1 caixa_style" type="text" placeholder="Digite seu nome"
                                                 name="nomeUsuario"
-                                                value={this.state.usuarioPorId.nomeUsuario}
+                                                value={this.state.putUsuario.nomeUsuario}
                                                 onChange={this.putSetStateUsuario}
                                             />
                                             <br />
-                                            {/* <!-- email --> */}
+                                                                                                                    {/* <!-- email --> */}
                                             <label aria-label="email_lbl">E-mail</label>
                                             <br />
                                             <input className="caixa-texto_1 caixa_style" type="email" placeholder="exemplo@exemplo.com.br"
                                                 name="emailUsuario"
-                                                value={this.state.usuarioPorId.emailUsuario}
+                                                value={this.state.putUsuario.emailUsuario}
                                                 onChange={this.putSetStateUsuario}
                                             />
                                         </div>
-                                        {/* <!-- precisa de displ flex wrap --> */}
                                         <div className="caixa_cad_direita c_disp_wrap">
-                                            {/* <!-- 6 input --> */}
-                                            {/* <!-- tel1 --> */}
+                                                                                                                    {/* <!-- tel1 --> */}
                                             <div className="caixa_input_2">
                                                 <label aria-label="telefone_lbl">Telefone:</label>
                                                 <br />
                                                 <input className="caixa-texto_2 caixa_style" type="text" placeholder="(xx) xxxxx - xxxx"
                                                     name="telefone1"
-                                                    value={this.state.usuarioPorId.telefone1}
+                                                    value={this.state.putUsuario.telefone1}
                                                     onChange={this.putSetStateUsuario}
                                                 />
                                             </div>
                                             <div className="caixa_input_2">
-                                                {/* <!-- tel2 --> */}
+                                                                                                                    {/* <!-- tel2 --> */}
                                                 <label aria-label="telefone2_lbl">Telefone 2° Opção:</label>
                                                 <br />
                                                 <input className="caixa-texto_2 caixa_style" type="text" placeholder="(xx) xxxxx - xxxx"
                                                     name="telefone2"
-                                                    value={this.state.usuarioPorId.telefone2}
+                                                    value={this.state.putUsuario.telefone2}
                                                     onChange={this.putSetStateUsuario}
                                                 />
                                             </div>
                                             <div className="caixa_input_2">
-                                                {/* <!-- cpf --> */}
+                                                                                                                    {/* <!-- cpf --> */}
                                                 <label aria-label="documento_lbl">CPF/CNPJ:</label>
                                                 <br />
                                                 <input className="caixa-texto_2 caixa_style" type="text" placeholder="Digite um documento (CPF/CNPJ)"
                                                     name="documento"
-                                                    value={this.state.usuarioPorId.documento}
+                                                    value={this.state.putUsuario.documento}
                                                     onChange={this.putSetStateUsuario}
                                                 />
                                             </div>
                                             <div className="caixa_input_2">
-                                                {/* <!-- notificacao --> */}
+                                                                                                                    {/* <!-- notificacao --> */}
                                                 <label aria-label="notificacao_lbl">Deseja receber notificações?</label>
                                                 <br />
                                                 <select className="caixa-texto_3 caixa_style"
                                                     name="receberNotif"
-                                                    value={this.state.usuarioPorId.receberNotif}
+                                                    value={this.state.putUsuario.receberNotif}
                                                     onChange={this.putSetStateUsuario}
                                                 >
                                                 {
-                                                    (this.state.usuarioPorId.receberNotif === true) ?
+                                                    (this.state.putUsuario.receberNotif === true) ?
                                                         (
                                                             <>
                                                                 <option value="true">Sim</option>
@@ -220,26 +261,26 @@ class PerfilColaborador extends Component {
                                                 </select>
                                             </div>
                                             <div className="caixa_input_2">
-                                                {/* <!-- razao --> */}
+                                                                                                                    {/* <!-- razao --> */}
                                                 <label aria-label="razao_social_lbl">Razão Social:</label>
                                                 <br />
                                                 <input className="caixa-texto_2 caixa_style" type="text" placeholder="Digite o nome da razao social"
                                                     name="razaoSocial"
-                                                    value={this.state.usuarioPorId.razaoSocial}
+                                                    value={this.state.putUsuario.razaoSocial}
                                                     onChange={this.putSetStateUsuario}
                                                 />
                                             </div>
                                             <div className="caixa_input_2">
-                                                {/* <!-- entrega --> */}
+                                                                                                                    {/* <!-- entrega --> */}
                                                 <label aria-label="entrega_lbl">Faz entrega?</label>
                                                 <br />
                                                 <select className="caixa-texto_3 caixa_style"
                                                     name="fazEntrega"
-                                                    value={this.state.usuarioPorId.fazEntrega}
+                                                    value={this.state.putUsuario.fazEntrega}
                                                     onChange={this.putSetStateUsuario}
                                                 >
                                                 {
-                                                    (this.state.usuarioPorId.fazEntrega === true) ?
+                                                    (this.state.putUsuario.fazEntrega === true) ?
                                                         (
                                                             <>
                                                                 <option value="true">Sim</option>
@@ -260,7 +301,7 @@ class PerfilColaborador extends Component {
                                             <br />
                                             <input disabled className="caixa-texto_4 caixa_style" type="text" placeholder="Sobre o colaborador"
                                                 name="sobreColab"
-                                                value={this.state.usuarioPorId.sobreColab}
+                                                value={this.state.putUsuario.sobreColab}
                                                 onChange={this.putSetStateUsuario}
                                             />
                                         </div>
@@ -282,7 +323,7 @@ class PerfilColaborador extends Component {
                                         <br />
                                         <input className="caixa-texto_1 caixa_style" type="text" placeholder="Avenida..."
                                             name="endereco1"
-                                            value={this.state.enderecoPorId.endereco1}
+                                            value={this.state.putEndereco.endereco1}
                                             onChange={this.putSetStateEndereco}
                                         />
 
@@ -292,7 +333,7 @@ class PerfilColaborador extends Component {
                                                 <br />
                                                 <input className="caixa-texto_5 caixa_style" type="text" placeholder="São Paulo"
                                                     name="cidade"
-                                                    value={this.state.enderecoPorId.cidade}
+                                                    value={this.state.putEndereco.cidade}
                                                     onChange={this.putSetStateEndereco}
                                                 />
                                             </div>
@@ -301,7 +342,7 @@ class PerfilColaborador extends Component {
                                                 <br />
                                                 <input className="caixa-texto_5 caixa_style" type="text" placeholder="Jardins"
                                                     name="bairro"
-                                                    value={this.state.enderecoPorId.bairro}
+                                                    value={this.state.putEndereco.bairro}
                                                     onChange={this.putSetStateEndereco}
                                                 />
                                             </div>
@@ -310,7 +351,7 @@ class PerfilColaborador extends Component {
                                                 <br />
                                                 <select className="caixa-texto_5 caixa_style"
                                                     name="estado"
-                                                    value={this.state.enderecoPorId.estado}
+                                                    value={this.state.putEndereco.estado}
                                                     onChange={this.putSetStateEndereco}
                                                 >
                                                     <option value="disponibilidade_nao">SP</option>
@@ -324,7 +365,7 @@ class PerfilColaborador extends Component {
                                         <br />
                                         <input className="caixa-texto_6 caixa_style" type="text" placeholder="00"
                                             name="numero"
-                                            value={this.state.enderecoPorId.numero}
+                                            value={this.state.putEndereco.numero}
                                             onChange={this.putSetStateEndereco}
                                         />
                                         <br />
@@ -332,7 +373,7 @@ class PerfilColaborador extends Component {
                                         <br />
                                         <input className="caixa-texto_6 caixa_style" type="text" placeholder="xxxxx-xxx"
                                             name="cep"
-                                            value={this.state.enderecoPorId.cep}
+                                            value={this.state.putEndereco.cep}
                                             onChange={this.putSetStateEndereco}
                                         />
                                     </div>
