@@ -6,6 +6,14 @@ import Footer from '../../componentes/Footer/Footer';
 import { parseJwt } from '../../services/auth';
 import api, { apiForm } from '../../services/api';
 
+import IconButton from '@material-ui/core/IconButton';
+import ImageSearchIcon from '@material-ui/icons/ImageSearch';
+
+
+// npm install @material-ui/core
+// npm install @material-ui/icons
+
+
 class PerfilColaborador extends Component {
     constructor() {
         super();
@@ -18,7 +26,6 @@ class PerfilColaborador extends Component {
                 imgPerfil: React.createRef(),
                 nomeUsuario: "",
                 emailUsuario: "",
-                senhaUsuario: "",
                 telefone1: "",
                 telefone2: "",
                 documento: "",
@@ -26,6 +33,10 @@ class PerfilColaborador extends Component {
                 razaoSocial: "",
                 fazEntrega: "",
                 sobreColab: "",
+
+                //tenho que declarar mais não estou utilizando
+                senhaUsuario: "",
+                tipoUsuario: "",
             },
 
             putEndereco: {
@@ -125,8 +136,8 @@ class PerfilColaborador extends Component {
     //#endregion
 
     //#region PUTS
-    putAltUsuario = (e) => {
-        e.preventDefault();
+    putAltUsuario = () => {
+        // e.preventDefault();
         let idUser = this.state.putUsuario.idUsuario;
 
         let usuarioForm = new FormData();
@@ -143,6 +154,7 @@ class PerfilColaborador extends Component {
         usuarioForm.set('fazEntrega', this.state.putUsuario.fazEntrega);
         usuarioForm.set('sobreColab', this.state.putUsuario.sobreColab);
         usuarioForm.set('senhaUsuario', this.state.putUsuario.senhaUsuario);
+        usuarioForm.set('tipoUsuario', this.state.putUsuario.tipoUsuario);
 
         console.log("formUsu: ", usuarioForm);
 
@@ -169,8 +181,8 @@ class PerfilColaborador extends Component {
         }, 500);
     }
 
-    putAltEndereco = (e) => {
-        e.preventDefault();
+    putAltEndereco = () => {
+        // e.preventDefault();
         let idEndPut = this.state.putEndereco.idEndereco;
         let endAtualizado = this.state.putEndereco;
 
@@ -219,18 +231,31 @@ class PerfilColaborador extends Component {
                                     <div className="caixa_cad_esquerda">
                                         <div className="caixa_cad_img">
                                             {/* <img src={profile} alt="" /> */}
-                                            
-                                            
-                                        <img alt="Imagem de perfil do Usuário" src={"http://localhost:5000/" + this.state.putUsuario.imgPerfil} />
-
+                                            <img alt="Imagem de perfil do Usuário" src={"http://localhost:5000/" + this.state.putUsuario.imgPerfil} />
                                         </div>
+                                        <br/>
+
+                                        {/* teste */}
+                                        <label htmlFor="icon-button-file">   
+                                            <IconButton color="primary"  aria-label="upload picture" component="span">
+                                                <input
+                                                    hidden
+                                                    id="icon-button-file"
+                                                    type="file"
+                                                    name="imgPerfil"
+                                                    onChange={this.putSetStateImg}
+                                                    ref={this.state.putUsuario.imgPerfil}
+                                                /><ImageSearchIcon color="action" fontSize="large"/>
+                                            </IconButton>
+                                        </label>
+
                                         {/* <button className="botao"  name="imgPerfil" onChange={this.putSetStateImg} ref={this.state.putUsuario.imgPerfil}> */}
-                                        <input 
+                                        {/* <input 
                                         type="file"
                                         name="imgPerfil"
                                         onChange={this.putSetStateImg}
                                         ref={this.state.putUsuario.imgPerfil}
-                                        />
+                                        /> */}
                                         {/* </button> */}
                                     </div>
                                     <div>
