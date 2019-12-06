@@ -36,8 +36,6 @@ class Receitas extends Component {
     //     })    
     // }
 
-
-
     render() {
         return (
             <div>
