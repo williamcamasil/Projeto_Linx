@@ -50,12 +50,15 @@ class Login extends Component {
                     console.log("ID: ",parseJwt().Id)
                     console.log("AUTH: "+usuarioAutenticado())
 
-                    if (parseJwt().Role === "Colaborador") {
-                        this.props.history.push("/PerfilColaborador");
-                    }
-                    else {
-                        this.props.history.push("/Perfil");
-                    }
+                    setTimeout(() => {
+                        if (parseJwt().Role === "Colaborador") {
+                            this.props.history.push("/PerfilColaborador");
+                        }
+                        else {
+                            this.props.history.push("/Perfil");
+                        }
+                    }, 200);
+                    
                 }
             })
             .catch(erro => {

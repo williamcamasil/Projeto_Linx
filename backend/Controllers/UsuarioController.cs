@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Domains;
 using backend.Repositories;
+using backend.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,8 +14,10 @@ namespace backend.Controllers {
     public class UsuarioController : ControllerBase {
         UsuarioRepository _repositorio = new UsuarioRepository ();
         EnderecoRepository _repositorioEndereco = new EnderecoRepository ();
-
         UploadRepository _UploadImg = new UploadRepository ();
+
+        updateUsuarioViewModel _view = new updateUsuarioViewModel ();
+
         //GET: api/Usuario
         [HttpGet]
         // [Authorize (Roles = "Administrador")]
@@ -34,7 +37,7 @@ namespace backend.Controllers {
         //FAZENDO SELECT NO BANCO
         //GET: api/Usuario/2
         [HttpGet ("{id}")]
-        // [Authorize] // SOMENTE PODE VOLTAR O ID = AO ID QUE ESTÁ LOGADO
+        [Authorize] // SOMENTE PODE VOLTAR O ID = AO ID QUE ESTÁ LOGADO
         public async Task<ActionResult<Usuario>> Get (int id) {
             var Usuario = await _repositorio.BuscarPorID (id);
 
@@ -74,7 +77,7 @@ namespace backend.Controllers {
         //FAZENDO UPDATE NO BANCO
         [HttpPut ("{id}")]
         [Authorize]
-        public async Task<ActionResult> Put ([FromForm] int id, Usuario Usuario) {
+        public async Task<ActionResult> Put (int id, [FromForm] Usuario Usuario) {
             //Se o Id do objeto não existir
             //ele retorna 400 
             if (id != Usuario.IdUsuario) {
@@ -101,8 +104,6 @@ namespace backend.Controllers {
                 await _repositorio.Alterar (Usuario);
             } catch (DbUpdateConcurrencyException) {
                 //Verificamos se o objeto inserido realmente existe no banco
-
-
 
 
 

@@ -759,6 +759,12 @@ h2 {
     padding: 5.5px 4px;
     margin: 0px 0px 13.5px;
 }
+.caixa_style_2{
+    border: 1px solid #707070;
+    border-radius: 4px;
+    padding: 5.5px 4px 54.5px;
+    margin: 0px 0px 13.5px;
+}
 .caixa-texto_1 {
     width: 95%;
 }
@@ -769,8 +775,8 @@ h2 {
     width: 92.23%;
 }
 .caixa-texto_4 {
-    width: 95%;
-    height: 60px;
+    max-width: 95%;
+    min-width: 95%;
 }
 .caixa-texto_5 {
     width: 87.8%;

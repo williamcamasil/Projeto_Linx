@@ -4,7 +4,7 @@ import Footer from '../../componentes/Footer/Footer';
 // import colaborador_3 from '../../assets/img/colaborador_3.png';
 // import profile from '../../assets/img/profile.png';
 import { parseJwt } from '../../services/auth';
-import api from '../../services/api';
+import api, { apiForm } from '../../services/api';
 
 class PerfilColaborador extends Component {
     constructor() {
@@ -18,6 +18,7 @@ class PerfilColaborador extends Component {
                 imgPerfil: React.createRef(),
                 nomeUsuario: "",
                 emailUsuario: "",
+                senhaUsuario: "",
                 telefone1: "",
                 telefone2: "",
                 documento: "",
@@ -28,7 +29,7 @@ class PerfilColaborador extends Component {
             },
 
             putEndereco: {
-                enderecoId: "",
+                idEndereco: "",
                 endereco1: "",
                 numero: "",
                 cep: "",
@@ -42,12 +43,23 @@ class PerfilColaborador extends Component {
 
 
     //#region COMPONENTS
+    
+    // componentDidUpdate(){
+    //     window.location.reload(true);
+    // }
+
     componentDidMount() {
         console.log("Carregado")
-        this.getUsuarioId();
+            this.getUsuarioId();
+            // window.location.reload(false);
+        
         this.getEnderecoId();
         // this.usuarioDoBanco();
     }
+
+    
+
+
     //#endregion
 
     //#region GETS
@@ -61,17 +73,14 @@ class PerfilColaborador extends Component {
                     this.setState({ putUsuario: response.data })
                 }
                 console.log("respUser: ", this.state.putUsuario)
-
             })
 
     }
 
     getEnderecoId = () => {
         let idEnd = this.state.putEndereco.idUsuario;
-        let idEndPut = this.state.putEndereco.enderecoId;
 
         console.log("idEnd: ", idEnd);
-        console.log("idEndPut: ", idEndPut);
 
         api.get("/Endereco/" + idEnd)
             .then(response => {
@@ -79,7 +88,6 @@ class PerfilColaborador extends Component {
                     this.setState({ putEndereco: response.data })
                 }
                 console.log("respEnd: ", this.state.putEndereco)
-
             })
     }
     //#endregion
@@ -88,10 +96,12 @@ class PerfilColaborador extends Component {
     putSetStateUsuario = (input) => {
         this.setState({
             putUsuario: {
-                ...this.state.usuarioPorId, [input.target.name]: input.target.value
+                ...this.state.putUsuario, [input.target.name]: input.target.value
             }
         })
-        console.log("putSst: ", this.state.putUsuario)
+        setTimeout(() => {
+            console.log("SetStateUser: ", this.state.putUsuario)
+        }, 500);
     }
 
     putSetStateEndereco = (input) => {
@@ -104,57 +114,89 @@ class PerfilColaborador extends Component {
             console.log("setStateEnd: ", this.state.putEndereco)
         }, 500);
     }
+
+    putSetStateImg = (input) => {
+        this.setState({
+            putUsuario: {
+                ...this.state.putUsuario, [input.target.name]: input.target.files[0]
+            }
+        })
+    }
     //#endregion
 
     //#region PUTS
     putAltUsuario = (e) => {
         e.preventDefault();
         let idUser = this.state.putUsuario.idUsuario;
-        let usuario = new FormData();
 
-        usuario.set('imgPerfil', this.state.putUsuario.imgReceita.current.files[0]);
-        usuario.set('nomeUsuario', this.state.putUsuario.nomeUsuario);
-        usuario.set('emailUsuario', this.state.putUsuario.emailUsuario);
-        usuario.set('telefone1', this.state.putUsuario.telefone1);
-        usuario.set('telefone2', this.state.putUsuario.telefone2);
-        usuario.set('documento', this.state.putUsuario.documento);
-        usuario.set('receberNotif', this.state.putUsuario.receberNotif);
-        usuario.set('razaoSocial', this.state.putUsuario.razaoSocial);
-        usuario.set('fazEntrega', this.state.putUsuario.fazEntrega);
-        usuario.set('sobreColab', this.state.putUsuario.sobreColab);
+        let usuarioForm = new FormData();
 
-        api.put("/Usuario/" + idUser)
-            // body: usuario
+        usuarioForm.set('idUsuario', this.state.putUsuario.idUsuario);
+        usuarioForm.set('imgPerfil', this.state.putUsuario.imgPerfil.current.files[0], this.state.putUsuario.imgPerfil.value);
+        usuarioForm.set('nomeUsuario', this.state.putUsuario.nomeUsuario);
+        usuarioForm.set('emailUsuario', this.state.putUsuario.emailUsuario);
+        usuarioForm.set('telefone1', this.state.putUsuario.telefone1);
+        usuarioForm.set('telefone2', this.state.putUsuario.telefone2);
+        usuarioForm.set('documento', this.state.putUsuario.documento);
+        usuarioForm.set('receberNotif', this.state.putUsuario.receberNotif);
+        usuarioForm.set('razaoSocial', this.state.putUsuario.razaoSocial);
+        usuarioForm.set('fazEntrega', this.state.putUsuario.fazEntrega);
+        usuarioForm.set('sobreColab', this.state.putUsuario.sobreColab);
+        usuarioForm.set('senhaUsuario', this.state.putUsuario.senhaUsuario);
+
+        console.log("formUsu: ", usuarioForm);
+
+        apiForm.put("/Usuario/" + idUser, usuarioForm)
             .then(response => {
-                if (response.status === 200){
-                    console.log(response);
+                if (response.status === 200) {
+                    this.setState({ putEndereco: response.data })
                 }
+                console.log("respEnd: ", this.state.putEndereco)
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    console.log("putFormUsuResp: ",response);
+                }
+            })
+            .then(response => response.json())
+            .then(response => {
+                console.log(response)
             })
             .catch(error => console.log("error: ", error))
 
-            setTimeout(() => {
-                this.getUsuarioId();
-            }, 500);
+        setTimeout(() => {
+            this.getUsuarioId();
+        }, 500);
     }
 
     putAltEndereco = (e) => {
         e.preventDefault();
-        let idEndPut = this.state.putEndereco.enderecoId;
+        let idEndPut = this.state.putEndereco.idEndereco;
         let endAtualizado = this.state.putEndereco;
+
+        console.log("idEndPut: ", idEndPut);
 
         api.put("/Endereco/" + idEndPut, endAtualizado)
             .then(response => {
-                if (response.status === 200){
-                    console.log(response);
+                if (response.status === (200 || 204)) {
+                    console.log("putEndResp: ",response);
                 }
             })
             .catch(error => console.log("error: ", error))
 
-            setTimeout(() => {
-                this.getEnderecoId();
-            }, 500);
+        setTimeout(() => {
+            this.getEnderecoId();
+        }, 500);
     }
     //#endregion
+
+    putGeral = (e) => {
+        e.preventDefault();
+        this.putAltUsuario();
+        this.putAltEndereco();
+    }
+
+    
 
     render() {
         return (
@@ -165,28 +207,35 @@ class PerfilColaborador extends Component {
                         <div className="container">
                             <h1 className="c_text">PERFIL COLABORADOR</h1>
 
+                            {/* <!-- form DUPLO--> */}
+
+                            {/* <!-- USUARIO--> */}
                             <span className="d_text">Informações</span>
                             <div className="linha_perfil_colab"></div>
 
-                            {/* <!-- form DUPLO--> */}
 
-
-                            {/* <!-- USUARIO--> */}
-
-                            <form>
+                            <form onSubmit={this.putGeral}>
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_esquerda">
                                         <div className="caixa_cad_img">
-                                                                                                                    {/* <img src={profile} alt="" /> */}
+                                            {/* <img src={profile} alt="" /> */}
+                                            
+                                            
+                                        <img alt="Imagem de perfil do Usuário" src={"http://localhost:5000/" + this.state.putUsuario.imgPerfil} />
 
-                                            <img alt="Imagem de perfil do Usuário"
-                                                src={"http://localhost:5000/" + this.state.putUsuario.imgPerfil} />
                                         </div>
-                                        <button className="botao" type="button" name="Inserir IMG">Inserir IMG</button>
+                                        {/* <button className="botao"  name="imgPerfil" onChange={this.putSetStateImg} ref={this.state.putUsuario.imgPerfil}> */}
+                                        <input 
+                                        type="file"
+                                        name="imgPerfil"
+                                        onChange={this.putSetStateImg}
+                                        ref={this.state.putUsuario.imgPerfil}
+                                        />
+                                        {/* </button> */}
                                     </div>
                                     <div>
                                         <div className="caixa_cad_direita">
-                                                                                                                    {/* <!-- nome --> */}
+                                            {/* <!-- nome --> */}
                                             <label aria-label="nome_prod_lbl">Nome</label>
                                             <br />
                                             <input className="caixa-texto_1 caixa_style" type="text" placeholder="Digite seu nome"
@@ -195,7 +244,7 @@ class PerfilColaborador extends Component {
                                                 onChange={this.putSetStateUsuario}
                                             />
                                             <br />
-                                                                                                                    {/* <!-- email --> */}
+                                            {/* <!-- email --> */}
                                             <label aria-label="email_lbl">E-mail</label>
                                             <br />
                                             <input className="caixa-texto_1 caixa_style" type="email" placeholder="exemplo@exemplo.com.br"
@@ -205,7 +254,7 @@ class PerfilColaborador extends Component {
                                             />
                                         </div>
                                         <div className="caixa_cad_direita c_disp_wrap">
-                                                                                                                    {/* <!-- tel1 --> */}
+                                            {/* <!-- tel1 --> */}
                                             <div className="caixa_input_2">
                                                 <label aria-label="telefone_lbl">Telefone:</label>
                                                 <br />
@@ -216,7 +265,7 @@ class PerfilColaborador extends Component {
                                                 />
                                             </div>
                                             <div className="caixa_input_2">
-                                                                                                                    {/* <!-- tel2 --> */}
+                                                {/* <!-- tel2 --> */}
                                                 <label aria-label="telefone2_lbl">Telefone 2° Opção:</label>
                                                 <br />
                                                 <input className="caixa-texto_2 caixa_style" type="text" placeholder="(xx) xxxxx - xxxx"
@@ -226,7 +275,7 @@ class PerfilColaborador extends Component {
                                                 />
                                             </div>
                                             <div className="caixa_input_2">
-                                                                                                                    {/* <!-- cpf --> */}
+                                                {/* <!-- cpf --> */}
                                                 <label aria-label="documento_lbl">CPF/CNPJ:</label>
                                                 <br />
                                                 <input className="caixa-texto_2 caixa_style" type="text" placeholder="Digite um documento (CPF/CNPJ)"
@@ -236,7 +285,7 @@ class PerfilColaborador extends Component {
                                                 />
                                             </div>
                                             <div className="caixa_input_2">
-                                                                                                                    {/* <!-- notificacao --> */}
+                                                {/* <!-- notificacao --> */}
                                                 <label aria-label="notificacao_lbl">Deseja receber notificações?</label>
                                                 <br />
                                                 <select className="caixa-texto_3 caixa_style"
@@ -244,24 +293,14 @@ class PerfilColaborador extends Component {
                                                     value={this.state.putUsuario.receberNotif}
                                                     onChange={this.putSetStateUsuario}
                                                 >
-                                                {
-                                                    (this.state.putUsuario.receberNotif === true) ?
-                                                        (
-                                                            <>
-                                                                <option value="true">Sim</option>
-                                                                <option value="false">Não</option>
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                <option value="false">Não</option>
-                                                                <option value="true">Sim</option>
-                                                            </>
-                                                        )
-                                                }
+
+                                                    <option value="true">Sim</option>
+                                                    <option value="false">Não</option>
+
                                                 </select>
                                             </div>
                                             <div className="caixa_input_2">
-                                                                                                                    {/* <!-- razao --> */}
+                                                {/* <!-- razao --> */}
                                                 <label aria-label="razao_social_lbl">Razão Social:</label>
                                                 <br />
                                                 <input className="caixa-texto_2 caixa_style" type="text" placeholder="Digite o nome da razao social"
@@ -271,7 +310,7 @@ class PerfilColaborador extends Component {
                                                 />
                                             </div>
                                             <div className="caixa_input_2">
-                                                                                                                    {/* <!-- entrega --> */}
+                                                {/* <!-- entrega --> */}
                                                 <label aria-label="entrega_lbl">Faz entrega?</label>
                                                 <br />
                                                 <select className="caixa-texto_3 caixa_style"
@@ -279,27 +318,17 @@ class PerfilColaborador extends Component {
                                                     value={this.state.putUsuario.fazEntrega}
                                                     onChange={this.putSetStateUsuario}
                                                 >
-                                                {
-                                                    (this.state.putUsuario.fazEntrega === true) ?
-                                                        (
-                                                            <>
-                                                                <option value="true">Sim</option>
-                                                                <option value="false">Não</option>
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                <option value="false">Não</option>
-                                                                <option value="true">Sim</option>
-                                                            </>
-                                                        )
-                                                }
+
+                                                    <option value="true">Sim</option>
+                                                    <option value="false">Não</option>
+
                                                 </select>
                                             </div>
                                         </div>
                                         <div className="caixa_cad_direita">
                                             <label aria-label="sobre_lbl">Sobre</label>
                                             <br />
-                                            <input disabled className="caixa-texto_4 caixa_style" type="text" placeholder="Sobre o colaborador"
+                                            <textarea className="caixa-texto_4 caixa_style_2" type="text" placeholder="Sobre o colaborador"
                                                 name="sobreColab"
                                                 value={this.state.putUsuario.sobreColab}
                                                 onChange={this.putSetStateUsuario}
@@ -307,16 +336,32 @@ class PerfilColaborador extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </form>
 
-                            <span className="d_text">Endereço</span>
-                            <div className="linha_perfil_colab"></div>
-
-
-                            {/* ENDEREÇO */}
+                                {/* Button */}
+                                {/* <div className="c_disp_just">
+                                    <div className="caixa_input_3">
 
 
-                            <form>
+                                        <button className="botao" type="submit" name="Editar">Editar</button>
+
+
+                                    </div>
+                                    <div className="caixa_input_3">
+
+
+                                        <button className="botao" type="submit" name="Salvar">Salvar</button>
+
+
+                                    </div>
+                                </div> */}
+
+                                {/* </form> */}
+
+                                {/* ENDEREÇO */}
+                                <span className="d_text">Endereço</span>
+                                <div className="linha_perfil_colab"></div>
+
+                                {/* <form onSubmit={this.putAltEndereco}> */}
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_direita">
                                         <label aria-label="logradouro_prod_lbl">Logradouro:</label>
@@ -354,8 +399,8 @@ class PerfilColaborador extends Component {
                                                     value={this.state.putEndereco.estado}
                                                     onChange={this.putSetStateEndereco}
                                                 >
-                                                    <option value="disponibilidade_nao">SP</option>
-                                                    <option value="disponibilidade_sim">RJ</option>
+                                                    <option value="SP">SP</option>
+                                                    <option value="RJ">RJ</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -378,25 +423,35 @@ class PerfilColaborador extends Component {
                                         />
                                     </div>
                                 </div>
+
+                                {/* btn */}
+                                <div className="c_disp_just">
+                                    <div className="caixa_input_3">
+
+
+                                        <button className="botao" type="submit"  name="Editar">Editar</button>
+
+
+                                    </div>
+                                    <div className="caixa_input_3">
+
+
+                                        <button className="botao" type="submit" name="Salvar">Salvar</button>
+
+
+                                    </div>
+                                </div>
                             </form>
 
 
-                            {/* btn */}
-                            <div className="c_disp_just">
-                                <div className="caixa_input_3">
-                                    <button className="botao" type="button" name="Editar">Editar</button>
-                                </div>
-                                <div className="caixa_input_3">
-                                    <button className="botao" type="button" name="Salvar">Salvar</button>
-                                </div>
-                            </div>
+                            
 
 
                         </div>
                     </section>
                 </main>
                 <Footer />
-            </div>
+            </div >
         );
     }
 }

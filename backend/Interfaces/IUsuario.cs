@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Domains;
+using backend.ViewModels;
 
 namespace backend.Interfaces {
     public interface IUsuario {

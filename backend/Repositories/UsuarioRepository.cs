@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using backend.Domains;
 using backend.Interfaces;
+using backend.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Repositories {
@@ -23,7 +24,7 @@ namespace backend.Repositories {
                 var usuario = await _contexto.Usuario.FirstOrDefaultAsync (e => e.IdUsuario == id);
 
                 // usuario.EmailUsuario = null;
-                usuario.SenhaUsuario = null;
+                // usuario.SenhaUsuario = null;
 
                 return usuario;
             }
