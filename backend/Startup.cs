@@ -12,11 +12,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.FileProviders;
 
 namespace backend {
     public class Startup {
@@ -79,13 +79,6 @@ namespace backend {
                 c.SwaggerEndpoint ("/swagger/v1/swagger.json", "API V1");
             });
 
-            app.UseStaticFiles (new StaticFileOptions {
-                FileProvider = new PhysicalFileProvider (
-                        Path.Combine (Directory.GetCurrentDirectory (), "Resources")),
-                    RequestPath = "/Resources"
-
-                    //c20191108_125330_beterraba.jpg
-            });
 
             //Usamos efetivamente a autenticação
             app.UseAuthentication ();
@@ -98,6 +91,16 @@ namespace backend {
             app.UseRouting ();
 
             app.UseAuthorization ();
+            
+            app.UseStaticFiles ();
+
+            app.UseStaticFiles (new StaticFileOptions {
+                FileProvider = new PhysicalFileProvider (
+                        Path.Combine (Directory.GetCurrentDirectory (), "Resources")),
+                    RequestPath = "/Resources"
+
+                //c20191108_125330_beterraba.jpg
+            });
 
             app.UseEndpoints (endpoints => {
                 endpoints.MapControllers ();

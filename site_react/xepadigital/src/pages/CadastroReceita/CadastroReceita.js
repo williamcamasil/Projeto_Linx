@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 // import food from '../../assets/img/food_af.jpg';
@@ -9,108 +9,154 @@ import api from '../../services/api'
 import { parseJwt } from "../../services/auth"
 
 class CadastroReceita extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            listaCadReceitas : [],
+            listaCadReceitas: [],
             file: null,
 
-            postReceita:{
+            put_post_Receita: {
                 nomeReceita: "",
                 descricaoPreparo: "",
                 descricaoIngrediente: "",
                 imgReceita: React.createRef(),
                 idUsuario: parseJwt().Id,
             },
-            idReceitaAlterada : 0
+            idReceitaAlterada: 0
         }
     }
 
-    componentDidMount(){
+    postSetState = (input) => {
+        this.setState({
+            put_post_Receita: {
+                ...this.state.put_post_Receita, [input.target.name]: input.target.value
+            }
+        })
+    }
+
+    componentDidMount() {
         this.getCadReceita();
     }
 
     //GET - Inserir nos Inputs
     getInputReceita = (id) => {
-        console.log('id da receita selecionada: ' + id)
-        console.log('meu token: ' + localStorage.getItem('usuario-xepa'));
-        api.get('/Receita/' +  id)
+        this.state.idReceitaAlterada = id;
+        // console.log('id da receita selecionada: ' + id)
+        // console.log('meu token: ' + localStorage.getItem('usuario-xepa'));
+        api.get('/Receita/' + id)
             .then(response => {
-            if (response.status === 200) {
-                this.setState({ postReceita: response.data })
-                // console.log('DEU CERTO')
-            }
-        })
+                if (response.status === 200) {
+                    this.setState({ put_post_Receita: response.data }, () => console.log("Objeto a ser atualizado:", this.state.put_post_Receita))
+                }
+
+                console.log()
+            })
+
         // setTimeout(() => {
-        //     console.log('Nome receita: ', this.state.postReceita.nomeReceita)    
+        //     console.log('imagem ', this.state.put_post_Receita)    
         // }, 1000);
-        
+
     }
 
     //GET -  Receitas
     getCadReceita = () => {
         api.get('/Receita')
             .then(response => {
-            if (response.status === 200) {
-                this.setState({ listaCadReceitas: response.data })
-            }
-        })
-    }
-
-    //POST - PEGAR INPUTS
-    postSetState = (input) => {
-        this.setState({
-            postReceita: {
-                ...this.state.postReceita,
-                [input.target.name]: input.target.value
-            }
-        })
-
-        console.log('meu state postReceita: ' , this.state.postReceita)
-        console.log('meu state postReceita: ' , this.state.postReceita.imgReceita)
+                if (response.status === 200) {
+                    this.setState({ listaCadReceitas: response.data })
+                }
+            })
     }
 
     //Mostrar Imagem
     imgSetState = (i) => {
-        this.setState({
-            file: URL.createObjectURL(i.target.files[0])
-        })
+        if (this.state.idReceitaAlterada !== 0) {
+            //PUT
+            this.setState({
+                put_post_Receita: {
+                    ...this.state.put_post_Receita, [i.target.name]: i.target.files[0]
+                }
+            })
+        } else {
+            // POST
+            this.setState({
+                file: URL.createObjectURL(i.target.files[0])
+            })
+        }
     }
 
-    // POST - Cadastrar
-    postCadReceita = (event) => {
+    post_put_CadReceita = (event) => {
         event.preventDefault();
-        console.log("Cadastrando");
-        console.log("postReceita: ", this.state.postReceita);
 
-        let receita = new FormData();
+        if (this.state.idReceitaAlterada !== 0) {
+            //PUT 
+            let receita = new FormData();
 
-        receita.set('nomeReceita', this.state.postReceita.nomeReceita);
-        receita.set('descricaoPreparo', this.state.postReceita.descricaoPreparo);
-        receita.set('descricaoIngrediente', this.state.postReceita.descricaoIngrediente);
-        receita.set('imgReceita', this.state.postReceita.imgReceita.current.files[0]);
-        receita.set('idUsuario', this.state.postReceita.idUsuario);
+            receita.set('idReceita', this.state.put_post_Receita.idReceita);
+            receita.set('nomeReceita', this.state.put_post_Receita.nomeReceita);
+            receita.set('descricaoPreparo', this.state.put_post_Receita.descricaoPreparo);
+            receita.set('descricaoIngrediente', this.state.put_post_Receita.descricaoIngrediente);
+            receita.set('imgReceita', this.state.put_post_Receita.imgReceita.current.files[0], this.state.put_post_Receita.imgReceita.value);
+            // receita.set('imgReceita', this.state.put_post_Receita.imgReceita.value);
 
-        fetch("http://localhost:5000/api/Receita", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization" : "Bearer " + localStorage.getItem('usuario-xepa')
-            },
-            body: receita
-        })
-        .then(response => response.json())
-        .then(response => {
-            console.log(response);
-        })
-        .catch(error => console.log('Não foi possível cadastrar:' + error))
-    }
+            receita.set('idUsuario', this.state.put_post_Receita.idUsuario);
 
-     //DELETE - Deletar categoria
+            console.log("puts: ", receita)
+            console.log("puts: ", this.state.put_post_Receita)
+
+            fetch("http://localhost:5000/api/Receita/" + this.state.put_post_Receita.idReceita, {
+                method: "PUT",
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem('usuario-xepa')
+                },
+                body: receita
+            })
+
+                // .then(response => {
+                //     console.log("form: ",receita.imgReceita)
+                //     console.log(response)
+                // })
+
+                .catch(error => console.log(error))
+
+            setTimeout(() => {
+                this.getCadReceita();
+            }, 1000);
+
+            this.state.idReceitaAlterada = 0;
+        } else {
+            //POST - Padrão
+            let receita = new FormData();
+
+            receita.set('nomeReceita', this.state.put_post_Receita.nomeReceita);
+            receita.set('descricaoPreparo', this.state.put_post_Receita.descricaoPreparo);
+            receita.set('descricaoIngrediente', this.state.put_post_Receita.descricaoIngrediente);
+            receita.set('imgReceita', this.state.put_post_Receita.imgReceita.current.files[0]);
+            receita.set('idUsuario', this.state.put_post_Receita.idUsuario);
+
+            // console.log("puts: ",receita)
+
+            fetch("http://localhost:5000/api/Receita", {
+                method: "POST",
+                headers: {
+                    // "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('usuario-xepa')
+                },
+                body: receita
+            })
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => console.log('Não foi possível cadastrar:' + error))
+        }
+    };
+
+    //DELETE - Deletar categoria
     deleteCadReceita = (id) => {
         console.log("excluindo");
         console.log('id da receita que será excluída: ' + id);
-        
+
 
         // this.setState({ erroMsg: "" })
 
@@ -118,7 +164,7 @@ class CadastroReceita extends Component {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization" : "Bearer " + localStorage.getItem('usuario-xepa')
+                "Authorization": "Bearer " + localStorage.getItem('usuario-xepa')
             }
         })
 
@@ -129,138 +175,150 @@ class CadastroReceita extends Component {
                 this.setState(() => ({ lista: this.state.listaCadReceitas }))
             })
 
-            // .catch(error => {
-            //     console.log(error);
-            //     this.setState({ erroMsg: "Não é possível excluir está categoria, verifique se não há eventos que a utilizem" })
-            // })
-    }
-
-    //PUT
-    putCadReceita = (event) => {
-        //Previne que a oagina seja recarregada
-        event.preventDefault();
-
-        fetch("http://localhost:5000/api/Receita/" + this.state.postReceita.idReceita, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization" : "Bearer " + localStorage.getItem('usuario-xepa')
-            },
-
-            body: JSON.stringify(this.state.postReceita)
-        })
-
-            .then(response => response.json())
-            .catch(error => console.log(error))
-
-        //Atraso na requisição, pois as requests possuem intervalos muito próximos
-        setTimeout(() => {
-            this.getCadReceita();
-        }, 1000);
+        // .catch(error => {
+        //     console.log(error);
+        //     this.setState({ erroMsg: "Não é possível excluir está categoria, verifique se não há eventos que a utilizem" })
+        // })
     }
 
     render() {
         return (
             <>
-            <Header />
-            <main>
-                <section>
-                    <div className="container">
-                        <div id="card_cadastro">
-                            <span>CADASTRO DE RECEITA</span>
-                            
-                            <div id="caixa_total">
-                                <div id="caixa_parte_conteudo">
-                                    <form className="form_caixa" onSubmit={this.putCadReceita}>
-                                    {/* <form className="form_caixa" onSubmit={this.postCadReceita}> */}
-                                        {/* IMAGEM */}
-                                        <div id="caixa_parte_imagem">
-                                            <input
-                                                type="file"
-                                                placeholder="Coloque uma foto sua"
-                                                aria-label="Coloque uma foto sua"
-                                                name="imgReceita"
-                                                // value={this.state.postUsuario.fotoUsuario}
-                                                onChange={this.imgSetState}
-                                                ref={this.state.postReceita.imgReceita}
-                                            />
-                                            <img className="img_cad_receita" src={this.state.file} alt="imagem ilustrativa de comida" />
-                                        </div>
+                <Header />
+                <main>
+                    <section>
+                        <div className="container">
+                            <div id="card_cadastro">
+                                <span>CADASTRO DE RECEITA</span>
 
-                                        {/* NOME */}
-                                        <div className="padronizar_campo2">
-                                            <label htmlFor="nome_lbl" aria-label="nome_lbl"> Nome</label>
-                                            <input className="caixa_texto_componente" type="nome_receita" 
-                                            placeholder="Digite o nome da receita" name="nomeReceita" id="nome_receita" 
-                                            value={this.state.postReceita.nomeReceita}
-                                            onChange={this.postSetState}/>  
-                                        </div>
+                                <div id="caixa_total">
+                                    <div id="caixa_parte_conteudo">
+                                        <form className="form_caixa" onSubmit={this.post_put_CadReceita}>
+                                            {/* <form className="form_caixa" onSubmit={this.postCadReceita}> */}
+                                            {/* IMAGEM */}
+                                            <div id="caixa_parte_imagem">
 
-                                        <div className="caixa_texto">
-                                            {/* INGREDIENTES */}
-                                            <div className="caixa_texto_sub">
-                                                <label htmlFor="ingrediente_lbl" aria-label="ingrediente_lbl"> Ingredientes</label><br/>
-                                                <input className="caixa_texto_componente_bt" type="ingrediente_receita" 
-                                                placeholder="Digite os ingredientes" name="descricaoIngrediente" id="ingrediente_receita"
-                                                value={this.state.postReceita.descricaoIngrediente}
-                                                onChange={this.postSetState} /> 
+                                                {this.state.idReceitaAlterada !== 0 ? (
+                                                    // PUT
+                                                    <>
+                                                        {/* <span>EDITANDOO</span> */}
+                                                        <input
+                                                            type="file"
+                                                            placeholder="Coloque uma foto sua"
+                                                            aria-label="Coloque uma foto sua"
+                                                            name="imgReceita"
+                                                            // value={this.state.postUsuario.fotoUsuario}
+                                                            onChange={this.imgSetState}
+                                                            // value={this.state.put_post_Receita.imgReceita}
+                                                            ref={this.state.put_post_Receita.imgReceita}
+                                                        />
+                                                        <img src={"http://localhost:5000/" + this.state.put_post_Receita.imgReceita} />
+                                                    </>
+                                                ) : (
+                                                        //POST
+                                                        <input
+                                                            type="file"
+                                                            placeholder="Coloque uma foto sua"
+                                                            aria-label="Coloque uma foto sua"
+                                                            name="imgReceita"
+                                                            // value={this.state.postUsuario.fotoUsuario}
+                                                            onChange={this.imgSetState}
+                                                            // value={this.state.put_post_Receita.imgReceita}
+                                                            ref={this.state.put_post_Receita.imgReceita}
+                                                        />
+                                                    )
+                                                }
+
+                                                {/* <input
+                                                    type="file"
+                                                    placeholder="Coloque uma foto sua"
+                                                    aria-label="Coloque uma foto sua"
+                                                    name="imgReceita"
+                                                    // value={this.state.postUsuario.fotoUsuario}
+                                                    onChange={this.imgSetState}
+                                                    // value={this.state.put_post_Receita.imgReceita}
+                                                    ref={this.state.put_post_Receita.imgReceita}
+                                                /> */}
+
+                                                {/* <span>Nome da imagem: {this.state.put_post_Receita.imgReceita.value}</span> */}
+                                                <img className="img_cad_receita" src={this.state.file} alt="imagem ilustrativa de comida" />
                                             </div>
 
-                                            {/* PREPARO */}
-                                            <div className="caixa_texto_sub">
-                                                <label htmlFor="modo_lbl" aria-label="modo_lbl"> Modo de Preparo</label><br/>
-                                                <input className="caixa_texto_componente_bt" type="modo_receita" 
-                                                placeholder="Digite o modo de preparo" name="descricaoPreparo" id="modoReceita" 
-                                                value={this.state.postReceita.descricaoPreparo}
-                                                onChange={this.postSetState}/> 
+                                            {/* NOME */}
+                                            <div className="padronizar_campo2">
+                                                <label htmlFor="nome_lbl" aria-label="nome_lbl"> Nome</label>
+                                                <input className="caixa_texto_componente" type="nome_receita"
+                                                    placeholder="Digite o nome da receita" name="nomeReceita" id="nome_receita"
+                                                    value={this.state.put_post_Receita.nomeReceita}
+                                                    onChange={this.postSetState} />
                                             </div>
-                                        </div>                             
 
-                                        <div className="caixa_texto_botoes">
-                                            {/* COMO 1 BOTÃO CRIAR E ALTERAR AO MESMO TEMPO??? */}
-                                            <button className="botao" type="submit" name="Salvar">Salvar</button>
-                                            <button className="botao" type="button" name="Editar_Card" onClick={e => this.deleteCadReceita(this.state.postReceita.idReceita)}>Excluir</button>
-                                        </div>
-                                    </form>
+                                            <div className="caixa_texto">
+                                                {/* INGREDIENTES */}
+                                                <div className="caixa_texto_sub">
+                                                    <label htmlFor="ingrediente_lbl" aria-label="ingrediente_lbl"> Ingredientes</label><br />
+                                                    <input className="caixa_texto_componente_bt" type="ingrediente_receita"
+                                                        placeholder="Digite os ingredientes" name="descricaoIngrediente" id="ingrediente_receita"
+                                                        value={this.state.put_post_Receita.descricaoIngrediente}
+                                                        onChange={this.postSetState} />
+                                                </div>
+
+                                                {/* PREPARO */}
+                                                <div className="caixa_texto_sub">
+                                                    <label htmlFor="modo_lbl" aria-label="modo_lbl"> Modo de Preparo</label><br />
+                                                    <input className="caixa_texto_componente_bt" type="modo_receita"
+                                                        placeholder="Digite o modo de preparo" name="descricaoPreparo" id="modoReceita"
+                                                        value={this.state.put_post_Receita.descricaoPreparo}
+                                                        onChange={this.postSetState} />
+                                                </div>
+                                            </div>
+
+                                            <div className="caixa_texto_botoes">
+                                                {/* COMO 1 BOTÃO CRIAR E ALTERAR AO MESMO TEMPO??? */}
+                                                <button className="botao" type="submit" name="Salvar">Salvar</button>
+
+                                                <button className="botao" type="button" name="Editar_Card" onClick={e => this.deleteCadReceita(this.state.put_post_Receita.idReceita)}>Excluir</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>  
-                        
-                        <div className="linha"></div>
-                        <div className="tit_receita">
-                            <span>RECEITAS CADASTRADAS</span>
-                        </div>
 
-                        {
-                            this.state.listaCadReceitas.map(function(receita){
-                                return(
-                                    <div>
-                                        <div className="card_">
-                                            <div className="card_branco">
-                                                <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
-                                                <p>{receita.nomeReceita}</p>
-                                                <p>Ingredientes</p>
-                                                <p>Modo de Preparo</p>
-                                                <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputReceita(receita.idReceita)}>Editar</button>
+                            <div className="linha"></div>
+                            <div className="tit_receita">
+                                <span>RECEITAS CADASTRADAS</span>
+                            </div>
+
+                            {
+                                this.state.listaCadReceitas.map(function (receita) {
+                                    return (
+                                        <div>
+                                            <div className="card_">
+                                                <div className="card_branco">
+                                                    <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
+                                                    <p>{receita.nomeReceita}</p>
+                                                    <p>Ingredientes</p>
+                                                    <p>Modo de Preparo</p>
+                                                    <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputReceita(receita.idReceita)}>Editar</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            }.bind(this))
-                        }
+                                    );
+                                }.bind(this))
+                            }
 
-                        <div className="mais">
-                            <a href="/#" title="Ver mais receitas">
-                            <img src={mais}
-                            alt="Ícone de adição, representando ver mais." /></a>
+                            <div className="mais">
+                                <a href="/#" title="Ver mais receitas">
+                                    <img src={mais}
+                                        alt="Ícone de adição, representando ver mais." /></a>
+                            </div>
                         </div>
-                    </div>   
-                </section>                    
-            </main>
-    
-            <Footer />
+                    </section>
+                </main>
+
+                <Footer />
             </>
-            
+
         )
     }
 }
