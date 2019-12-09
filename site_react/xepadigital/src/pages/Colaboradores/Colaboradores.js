@@ -123,7 +123,7 @@ class Colaboradores extends Component {
                                                 </div>
                                             </div>
                                             {/* <a className="btn_link_click" href="ColaboradorDetalhes">+ Informações</a> */}
-                                            <Link to={{ pathname: '/ColaboradorDetalhes', state: { idColaborador: informacoes.idColaborador} }} >+ Informações</Link>
+                                            <Link to={{ pathname: '/ColaboradorDetalhes', state: { idUsuario: informacoes.idUsuario} }} >+ Informações</Link>
                                         </div>
                                     </div>
                                 </section>
