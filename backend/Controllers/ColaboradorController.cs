@@ -19,5 +19,21 @@ namespace backend.Controllers {
 
             return ListaColaborador;
         }
+    
+
+        [HttpGet ("{id}")]
+        public async Task<ActionResult<Usuario>> Get (int id) {
+            var Usuario = await _repositorio.BuscarPorID (id);
+
+            if (Usuario == null) {
+                return NotFound (
+                    new {
+                        Mensagem = "Não foi possível obter o Usuário"
+                    }
+                );
+            }
+
+            return Usuario;
+        }
     }
 }

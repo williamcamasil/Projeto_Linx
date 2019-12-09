@@ -80,7 +80,7 @@ namespace backend.Controllers {
         [HttpPut ("{id}")]
         [Authorize (Roles = "Administrador, Cliente")]
 
-        public async Task<ActionResult> Put (int id, Receita Receita) {
+        public async Task<ActionResult> Put (int id, [FromForm] Receita Receita) {
             //Se o Id do objeto não existir
             //ele retorna 400 
             if (id != Receita.IdReceita) {
@@ -91,6 +91,14 @@ namespace backend.Controllers {
                 );
             }
             try {
+                var imagem = Request.Form.Files[0];
+
+                Receita.ImgReceita = _UploadImg.Upload (imagem, "Receitas");
+                Receita.NomeReceita = Request.Form["NomeReceita"].ToString ();
+                Receita.DescricaoIngrediente = Request.Form["DescricaoIngrediente"].ToString ();
+                Receita.DescricaoPreparo = Request.Form["DescricaoPreparo"].ToString ();
+                Receita.IdUsuario = int.Parse(Request.Form["IdUsuario"]);
+
                 await _repositorio.Alterar (Receita);
             } catch (DbUpdateConcurrencyException) {
                 //Verificamos se o objeto inserido realmente existe no banco
