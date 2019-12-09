@@ -10,9 +10,17 @@ namespace backend.Repositories {
     public class UsuarioRepository : IUsuario {
         public async Task<Usuario> Alterar (Usuario Usuario) {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()) {
+
+                //Chamamos um usuario novo
+                Usuario _usuarioNovo = new Usuario();
+                _usuarioNovo = await _contexto.Usuario.FirstOrDefaultAsync (e => e.IdUsuario == Usuario.IdUsuario);
+                //fala q a senha e o que ta no banco
+                var senhaAntiga = _usuarioNovo.SenhaUsuario;
                 //Faz uma comparação do que foi mudado no Banco
                 //Comparamos os atributos que foram modificados através do EF
                 _contexto.Entry (Usuario).State = EntityState.Modified;
+                _contexto.Entry (Usuario.SenhaUsuario = senhaAntiga).State = EntityState.Modified;
+
                 //UPDATE Usuario SET titulo = "nt" where id =2
                 await _contexto.SaveChangesAsync ();
                 return Usuario;
