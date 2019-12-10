@@ -9,7 +9,8 @@ class Receitas extends Component {
     constructor() {
         super();
         this.state = {
-            listaReceitas: []
+            listaReceitas: [],
+            nomeReceita: ""
         }
     }
 
@@ -36,6 +37,27 @@ class Receitas extends Component {
     //     })    
     // }
 
+    postSetState = (input) => {
+        this.setState({
+            nomeReceita : input.target.value
+        })
+    }
+
+    getFiltrarInformacao = () => {
+        console.log(this.state.nomeReceita);
+
+        let filtro = {
+            nomeReceita: this.state.nomeReceita
+        }
+        
+        api.post('/FiltroReceita', filtro).then(response => {
+            if (response.status === 200) {
+                this.setState({ listaReceitas: response.data })
+                console.log('Lista ' , this.state.listaReceitas)
+            }
+        })     
+    }
+
     render() {
         return (
             <div>
@@ -51,10 +73,13 @@ class Receitas extends Component {
 
                         <div className="container search_bar off">
                             <form method="GET" className="form_style">
-                                <input className="input_style" type="search" placeholder="Pesquisar" />
+                                {/* <input className="input_style" type="search" placeholder="Pesquisar" />
                                 <button className="button_conj" type="button" name="Pesquisa">
                                     <img src={lupa} alt="Lupa branca, representando a busca." />
-                                </button>
+                                </button> */}
+
+                                <input className="input_style" type="search" value={this.state.nomeReceita}  onChange={this.postSetState} placeholder="Pesquisar" />
+                                <button className="button_conj" type="button" name="Pesquisa" onClick={this.getFiltrarInformacao}><img src={lupa} alt="Lupa branca, representando a busca." /></button>
                             </form>
                         </div>
 
