@@ -26,7 +26,7 @@ namespace backend.Domains
         {
             if (!optionsBuilder.IsConfigured)
             {
-                // Server=DESKTOP-LNH3DKI\\SQLEXPRESS; Database=XepaDigital; User Id=sa; Password=132 - fabiano(senai)
+                // DESKTOP-LNH3DKI - fabiano(senai)          \\SQLEXPRESS; Database=XepaDigital; User Id=sa; Password=132
                 // DESKTOP-DJ0P3UG - fabiano(casa)
                 // DESKTOP-IN4K5BB - will (senai)
                 // WILLIAM\\SQLEXPRESS; Database=XepaDigital; Trusted_Connection=True; - will (Casa)

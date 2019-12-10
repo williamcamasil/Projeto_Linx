@@ -30,6 +30,8 @@ class PerfilColaborador extends Component {
                 telefone2: "",
                 documento: "",
                 receberNotif: "",
+
+                //uso exclusivo de colaborador
                 razaoSocial: "",
                 fazEntrega: "",
                 sobreColab: "",
@@ -53,27 +55,15 @@ class PerfilColaborador extends Component {
     }
 
 
-    //#region COMPONENTS
-    
-    // componentDidUpdate(){
-    //     window.location.reload(true);
-    // }
-
+    //#region COMPONENT's
     componentDidMount() {
         console.log("Carregado")
-            this.getUsuarioId();
-            // window.location.reload(false);
-        
+        this.getUsuarioId();
         this.getEnderecoId();
-        // this.usuarioDoBanco();
     }
-
-    
-
-
     //#endregion
 
-    //#region GETS
+    //#region GET's
     getUsuarioId = () => {
         let idUser = this.state.putUsuario.idUsuario;
         console.log("idUser: ", idUser);
@@ -84,6 +74,10 @@ class PerfilColaborador extends Component {
                     this.setState({ putUsuario: response.data })
                 }
                 console.log("respUser: ", this.state.putUsuario)
+            })
+            .catch(error => {
+                console.log("error: ", error)
+                window.location.reload();
             })
 
     }
@@ -100,10 +94,14 @@ class PerfilColaborador extends Component {
                 }
                 console.log("respEnd: ", this.state.putEndereco)
             })
+            .catch(error => {
+                console.log("error: ", error)
+                window.location.reload();
+            })
     }
     //#endregion
 
-    //#region SET STATES
+    //#region SET STATE's
     putSetStateUsuario = (input) => {
         this.setState({
             putUsuario: {
@@ -135,9 +133,9 @@ class PerfilColaborador extends Component {
     }
     //#endregion
 
-    //#region PUTS
-    putAltUsuario = () => {
-        // e.preventDefault();
+    //#region PUT's
+    putAltUsuario = (e) => {
+        e.preventDefault();
         let idUser = this.state.putUsuario.idUsuario;
 
         let usuarioForm = new FormData();
@@ -167,7 +165,7 @@ class PerfilColaborador extends Component {
             })
             .then(response => {
                 if (response.status === 200) {
-                    console.log("putFormUsuResp: ",response);
+                    console.log("putFormUsuResp: ", response);
                 }
             })
             .then(response => response.json())
@@ -181,8 +179,8 @@ class PerfilColaborador extends Component {
         }, 500);
     }
 
-    putAltEndereco = () => {
-        // e.preventDefault();
+    putAltEndereco = (e) => {
+        e.preventDefault();
         let idEndPut = this.state.putEndereco.idEndereco;
         let endAtualizado = this.state.putEndereco;
 
@@ -191,7 +189,7 @@ class PerfilColaborador extends Component {
         api.put("/Endereco/" + idEndPut, endAtualizado)
             .then(response => {
                 if (response.status === (200 || 204)) {
-                    console.log("putEndResp: ",response);
+                    console.log("putEndResp: ", response);
                 }
             })
             .catch(error => console.log("error: ", error))
@@ -203,12 +201,11 @@ class PerfilColaborador extends Component {
     //#endregion
 
     putGeral = (e) => {
-        e.preventDefault();
         this.putAltUsuario();
         this.putAltEndereco();
     }
 
-    
+
 
     render() {
         return (
@@ -226,18 +223,18 @@ class PerfilColaborador extends Component {
                             <div className="linha_perfil_colab"></div>
 
 
-                            <form onSubmit={this.putGeral}>
+                            <form onSubmit={this.putAltUsuario}>
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_esquerda">
                                         <div className="caixa_cad_img">
                                             {/* <img src={profile} alt="" /> */}
                                             <img alt="Imagem de perfil do Usuário" src={"http://localhost:5000/" + this.state.putUsuario.imgPerfil} />
                                         </div>
-                                        <br/>
+                                        <br />
 
                                         {/* teste */}
-                                        <label htmlFor="icon-button-file">   
-                                            <IconButton color="primary"  aria-label="upload picture" component="span">
+                                        <label htmlFor="icon-button-file">
+                                            <IconButton color="primary" aria-label="upload picture" component="span">
                                                 <input
                                                     hidden
                                                     id="icon-button-file"
@@ -245,7 +242,7 @@ class PerfilColaborador extends Component {
                                                     name="imgPerfil"
                                                     onChange={this.putSetStateImg}
                                                     ref={this.state.putUsuario.imgPerfil}
-                                                /><ImageSearchIcon color="action" fontSize="large"/>
+                                                /><ImageSearchIcon color="action" fontSize="large" />
                                             </IconButton>
                                         </label>
 
@@ -363,7 +360,7 @@ class PerfilColaborador extends Component {
                                 </div>
 
                                 {/* Button */}
-                                {/* <div className="c_disp_just">
+                                <div className="c_disp_just">
                                     <div className="caixa_input_3">
 
 
@@ -378,15 +375,15 @@ class PerfilColaborador extends Component {
 
 
                                     </div>
-                                </div> */}
+                                </div>
 
-                                {/* </form> */}
+                            </form>
 
-                                {/* ENDEREÇO */}
-                                <span className="d_text">Endereço</span>
-                                <div className="linha_perfil_colab"></div>
+                            {/* ENDEREÇO */}
+                            <span className="d_text">Endereço</span>
+                            <div className="linha_perfil_colab"></div>
 
-                                {/* <form onSubmit={this.putAltEndereco}> */}
+                            <form onSubmit={this.putAltEndereco}>
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_direita">
                                         <label aria-label="logradouro_prod_lbl">Logradouro:</label>
@@ -450,7 +447,7 @@ class PerfilColaborador extends Component {
                                 </div>
 
                                 {/* btn */}
-                                <div className="c_disp_just">
+                                {/* <div className="c_disp_just">
                                     <div className="caixa_input_3">
 
 
@@ -465,11 +462,11 @@ class PerfilColaborador extends Component {
 
 
                                     </div>
-                                </div>
+                                </div> */}
                             </form>
 
 
-                            
+
 
 
                         </div>

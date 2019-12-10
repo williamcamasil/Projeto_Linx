@@ -80,7 +80,7 @@ class Header extends Component {
                         <div id="menu_cabecalho">    
                             <div>
                                 <a 
-                                    href="index.html" 
+                                    href="/" 
                                     title="Página inicial">
                                         <img src={logo_xepa} 
                                             className="App-logo" 
