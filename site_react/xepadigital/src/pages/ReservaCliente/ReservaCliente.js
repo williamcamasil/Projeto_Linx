@@ -1,19 +1,24 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import Lupa from '../../assets/img/Lupa.svg';
 // import { Link } from "react-router-dom";
 import api from '../../services/api'
 
+
 class ReservaCliente extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            listaReservasCliente : []
+            listaReservasCliente: [],
+
+            contador: 0,
+
+            nomeColaborador: "",
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log("Carregado")
         this.getReservasCliente();
     }
@@ -25,6 +30,19 @@ class ReservaCliente extends Component {
             }
         })
     }
+
+    // retornaNome = (id) => {
+    //     setTimeout(() => {
+    //     api.get('/Colaborador/' + id)
+    //     .then(response => {
+    //         this.setState({ nomeColaborador: response.data.nomeUsuario })
+    //         // console.log("colab: ", this.state.nomeColaborador)
+    //     })
+    //     console.log("return: ", this.state.nomeColaborador)
+    //     // return this.state.nomeColaborador;
+
+    //     }, 5000);
+    // }
 
     render() {
         return (
@@ -40,11 +58,11 @@ class ReservaCliente extends Component {
 
                     <div className="container search_bar">
                         <form method="GET" className="form_style">
-                            <input className="input_style" type="search" placeholder="Pesquisar"/>
-                            <button className="button_conj" type="button" name="Pesquisa"><img src={Lupa} alt="Lupa branca, representando a busca."/></button>
+                            <input className="input_style" type="search" placeholder="Pesquisar" />
+                            <button className="button_conj" type="button" name="Pesquisa"><img src={Lupa} alt="Lupa branca, representando a busca." /></button>
                         </form>
                     </div>
-                    
+
                     <div className="colab_section"></div>
 
                     <div className="caixa_produtor">
@@ -71,25 +89,50 @@ class ReservaCliente extends Component {
                             </thead>
 
                             <tbody id="tabela-lista-corpo">
+
+
+
+
+
+
                                 {
-                                    this.state.listaReservasCliente.map(function(reserva){
-                                        return(
-                                            <tr>
+                                    this.state.listaReservasCliente.map(function (reserva) {
+                                        
+                                        if (this.state.contador < this.state.listaReservasCliente.length) {
+
+                                            this.setState({ contador: this.state.contador + 1 })
+                                            console.log("cont: ", this.state.contador)
+
+
+                                            api.get('/Colaborador/' + reserva.idRegistroNavigation.idUsuario)
+                                                .then(response => {
+                                                    this.setState({ nomeColaborador: response.data.nomeUsuario })
+                                                    console.log("colab: ", this.state.nomeColaborador)
+                                                })
+
+
+                                        }
+
+                                        console.log("res: ", reserva)
+                                        return (
+                                            <tr key={reserva.idReserva}>
                                                 <td>{reserva.idReserva}</td>
-                                                <td>{reserva.idUsuarioNavigation.nomeUsuario}</td>
+                                                <td>{this.state.nomeColaborador}</td>
+                                                {/* <td>{
+                                                    this.retornaNome(
+                                                        reserva.idRegistroNavigation.idUsuario
+                                                        )
+                                                        }</td> */}
                                                 <td>{reserva.idUsuarioNavigation.telefone1}</td>
                                                 <td>15,45</td> {/* fazer operação matemática aqui */}
                                                 <td>Banana</td> {/* como puxar o produto? */}
                                                 <td>{reserva.quantidadeReserva} Kg</td>
                                                 <td>{reserva.situacao}</td>
-                                                <td>
-                                                    <button>Cancelar</button>
-                                                    <button>Editar</button>
-                                                </td>
+                                                <td><button>Cancelar</button></td>
                                             </tr>
                                         );
                                     }
-                                    // .bind(this)
+                                        .bind(this)
                                     )
                                 }
                             </tbody>

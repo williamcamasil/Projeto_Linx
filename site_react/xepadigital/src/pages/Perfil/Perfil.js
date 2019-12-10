@@ -327,11 +327,11 @@ class Perfil extends Component {
                                 </div>
 
                                 {/* Button */}
-                                {/* <div className="c_disp_just">
+                                <div className="c_disp_just">
                                     <div className="caixa_input_3">
 
 
-                                        <button className="botao" type="submit" name="Editar">Editar</button>
+                                        <button className="botao" type="submit" name="Editar"><a href="/ReservaCliente">Reservas</a></button>
 
 
                                     </div>
@@ -342,15 +342,15 @@ class Perfil extends Component {
 
 
                                     </div>
-                                </div> */}
+                                </div>
 
-                                {/* </form> */}
+                                </form>
 
                                 {/* ENDEREÇO */}
                                 <span className="d_text">Endereço</span>
                                 <div className="linha_perfil_colab"></div>
 
-                                {/* <form onSubmit={this.putAltEndereco}> */}
+                                <form onSubmit={this.putAltEndereco}>
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_direita">
                                         <label aria-label="logradouro_prod_lbl">Logradouro:</label>
@@ -414,7 +414,7 @@ class Perfil extends Component {
                                 </div>
 
                                 {/* btn */}
-                                <div className="c_disp_just">
+                                {/* <div className="c_disp_just">
                                     <div className="caixa_input_3">
 
 
@@ -429,7 +429,7 @@ class Perfil extends Component {
 
 
                                     </div>
-                                </div>
+                                </div> */}
                             </form>
 
 
