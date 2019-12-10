@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using backend.Domains;
 using backend.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace backend.Repositories {
     public class RegistroProdutoRepository : IRegistroProduto {
@@ -14,6 +15,15 @@ namespace backend.Repositories {
                 //UPDATE RegistroProduto SET titulo = "nt" where id =2
                 await _contexto.SaveChangesAsync();
                 return RegistroProduto;
+            }
+        }
+
+        public async Task<List<RegistroProduto>> BuscarProdutosPorIdUser (int id) {
+            using (XepaDigitalContext _contexto = new XepaDigitalContext ()){
+                List<RegistroProduto> ListaRegistro = new List<RegistroProduto> ();
+                ListaRegistro = await _contexto.RegistroProduto.Include("IdProdutoNavigation").Include("IdUsuarioNavigation").Where(e => e.IdUsuario == id).ToListAsync ();
+                
+                return ListaRegistro;
             }
         }
 

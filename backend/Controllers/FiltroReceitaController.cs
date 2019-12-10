@@ -12,8 +12,8 @@ namespace backend.Controllers {
     [ApiController]
     public class FiltroReceitaController : ControllerBase {
         XepaDigitalContext _context = new XepaDigitalContext ();
-        [HttpGet]
-        public async Task<ActionResult<List<Receita>>> GetProdutos (FiltroReceitaViewModel search) {
+        [HttpPost]
+        public async Task<ActionResult<List<Receita>>> PostProdutos (FiltroReceitaViewModel search) {
             var rec = await _context.Receita.Where (p =>
                 p.NomeReceita.Contains (search.NomeReceita)).ToListAsync ();
             if (rec.Count == 0) {

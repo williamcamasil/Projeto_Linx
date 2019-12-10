@@ -12,8 +12,8 @@ namespace backend.Controllers {
     [ApiController]
     public class FiltroProdutoController : ControllerBase {
         XepaDigitalContext _context = new XepaDigitalContext ();
-        [HttpGet]
-        public async Task<ActionResult<List<Produto>>> GetProdutos (FiltroProdutoViewModel search) {
+        [HttpPost]
+        public async Task<ActionResult<List<Produto>>> PostProdutos (FiltroProdutoViewModel search) {
             if (search.NomeProduto == "") {
                 return BadRequest (
                     new {
@@ -23,7 +23,7 @@ namespace backend.Controllers {
             }
             // TRATAMENTO DE ERRO ESTÁ CORRETO É NECESSÁRIO NO CONTEXTO ATUAL???
             var prod = await _context.Produto.Where (p =>
-                p.NomeProduto.Contains (search.NomeProduto)).ToListAsync ();
+                p.NomeProduto.StartsWith (search.NomeProduto)).ToListAsync ();
             if (prod.Count == 0) {
                 return NotFound (
                     new {
