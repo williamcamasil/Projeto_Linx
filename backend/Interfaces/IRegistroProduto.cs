@@ -6,6 +6,8 @@ namespace backend.Interfaces {
     public interface IRegistroProduto {
         Task<List<RegistroProduto>> Listar ();
 
+        Task<List<RegistroProduto>> BuscarProdutosPorIdUser (int id);
+
         Task<RegistroProduto> BuscarPorID (int id);
 
         Task<RegistroProduto> Salvar (RegistroProduto RegistroProduto);

@@ -30,10 +30,12 @@ namespace backend.Controllers {
         //FAZENDO SELECT NO BANCO
         //GET: api/RegistroProduto/2
         [HttpGet ("{id}")]
-        public async Task<ActionResult<RegistroProduto>> Get (int id) {
-            var RegistroProduto = await _repositorio.BuscarPorID (id);
-
-            if (RegistroProduto == null) {
+        public async Task<ActionResult<List<RegistroProduto>>> GetProdutosColaborador (int id) {
+            
+            List<RegistroProduto> ListaRegistro = new List<RegistroProduto> ();
+            ListaRegistro = await _repositorio.BuscarProdutosPorIdUser (id);
+            
+            if (ListaRegistro == null) {
                 return NotFound (
                     new {
                         Mensagem = "Não foi possível obter o Registro"
@@ -41,7 +43,7 @@ namespace backend.Controllers {
                 );
             }
 
-            return RegistroProduto;
+            return ListaRegistro;
         }
 
         //FAZENDO ENVIO PARA O BANCO

@@ -52,13 +52,15 @@ namespace backend.Controllers {
         [HttpPost]
         public async Task<ActionResult<ReservaProduto>> Post (ReservaProduto ReservaProduto) {
             try {
-                var idPostagemRec = HttpContext.User.Identity as ClaimsIdentity;
-                IEnumerable<Claim> claim = idPostagemRec.Claims;
-                var idClaim = claim.Where (x => x.Type == ClaimTypes.PrimarySid).FirstOrDefault ();
+                // var idPostagemRec = HttpContext.User.Identity as ClaimsIdentity;
+                // IEnumerable<Claim> claim = idPostagemRec.Claims;
+                // var idClaim = claim.Where (x => x.Type == ClaimTypes.PrimarySid).FirstOrDefault ();
+                // ReservaProduto.IdUsuario = Convert.ToInt32 (idClaim.Value);
                 
                 ReservaProduto.Situacao = "Aguardando";
-                ReservaProduto.IdUsuario = Convert.ToInt32 (idClaim.Value);
                 
+        
+
                 await _repositorio.Salvar (ReservaProduto);
             } catch (DbUpdateConcurrencyException) {
                 throw;
