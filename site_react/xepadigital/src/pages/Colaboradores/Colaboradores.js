@@ -127,8 +127,8 @@ class Colaboradores extends Component {
                                         <div className="card_size">
                                             <h3>{informacoes.nomeUsuario}</h3>
                                             <div className="card_style">
-                                                <img src={mulher_3} className="colaboradores_img" alt="Foto de perfil do colaborador" />
-                                                {/* <img src={"http://localhost:5000/" + produto.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" /> */}
+                                                {/* <img src={mulher_3} className="colaboradores_img" alt="Foto de perfil do colaborador" /> */}
+                                                <img src={"http://localhost:5000/" + informacoes.imgPerfil} alt="Foto de perfil do colaborador" />
                                                 <p className="text_1">{informacoes.sobreColab}</p>
                                             </div>
                                             <p className="Contato_Colaborador">Tel: (11) 5672-0992 | Rua Guilherme da Cruz, 148</p>

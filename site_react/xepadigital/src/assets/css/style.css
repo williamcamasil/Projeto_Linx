@@ -47,6 +47,9 @@
       
 }
 
+.fa-arrow-circle-left{
+    color: yellow;
+}
 
 .respostaDuvidas{
     margin: 20px;
@@ -55,6 +58,22 @@
 .respostaDuvidas p{
     font-family: var(--lato);
     font-size: 18px;
+}
+
+.respostaDuvidas_perfis{
+    text-align: center;
+    /* margin: 20px; */
+    margin: 20px auto;
+    width: 700px;
+}
+
+.respostaDuvidas_perfis p{
+    font-family: var(--lato);
+    font-size: 18px;
+}
+
+.respostaDuvidas_perfis img{
+    padding: 20px;
 }
 
 

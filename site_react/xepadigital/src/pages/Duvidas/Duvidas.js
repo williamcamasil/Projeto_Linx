@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import mais from '../../assets/img/mais.png';
-
-import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
-
+import menos from '../../assets/img/menos.jpg';
+import william from '../../assets/img/William.svg';
+import karina from '../../assets/img/Karina.svg';
+// import fabiano from '../../assets/img/fabiano.svg';
+// import gustavo from '../../assets/img/gustavo.svg';
+// import giovani from '../../assets/img/giovani.svg';
+import linx from '../../assets/img/Linx.svg';
 
 class Duvidas extends Component {
     constructor() {
@@ -70,13 +74,13 @@ class Duvidas extends Component {
                                         {
                                             this.state.pergunta1?
                                             <p>
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
+                                                {/* Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
                                                 por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas  
+                                                utilizar dos produtos orgânicos para fazer marmitas   */}
 
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas 
+                                                A palavra Xepa tem relação com comida  e o termo digital relacionado com a tecnologia  
+                                                resultando basicamente em uma feira online  no qual você pode comprar produtos 100% 
+                                                orgânicos.
                                             </p>
                                             :null
                                         }
@@ -90,15 +94,21 @@ class Duvidas extends Component {
                             <div className="pergunta card">
                                 <div>
                                     <h5 className="letra_pagina_duvida">Nosso time de desenvolvedores</h5>
-                                    <div className="respostaDuvidas">
+                                    <div className="respostaDuvidas_perfis">
                                             {
                                                 this.state.pergunta2?
                                                 <p>
-                                                    OLALAOALLAOALAOOALOALAOAOLO
-
-                                                    Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                    por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                    utilizar dos produtos orgânicos para fazer marmitas 
+                                                     {/* Nosso time de desenvolvedores é composto por 5 pessoas: <br/> */}
+                                                    {/* <img src={fabiano} alt="Desenvolvedor" /><br/>
+                                                    Fabiano Oliveira<br/>
+                                                    <img src={giovani} alt="Desenvolvedor" /><br/>
+                                                    Giovanni Canalli Silva<br/>
+                                                    <img src={gustavo} alt="Desenvolvedor" /><br/>
+                                                    Gustavo Mendes Brito<br/> */}
+                                                    <img src={karina} alt="Desenvolvedor" /><br/>
+                                                    Karina Karen Watanabe | Designer<br/>
+                                                    <img src={william} alt="Desenvolvedor" /><br/>
+                                                    William Camargo da Silva  | Backend<br/>
                                                 </p>
                                                 :null
                                             }
@@ -119,13 +129,9 @@ class Duvidas extends Component {
                                         {
                                             this.state.pergunta3?
                                             <p>
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas  
-
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas 
+                                                Nossos colaboradores possuem a função de publicar suas 
+                                                mercadorias no site para outras  poderem comprar, considerando 
+                                                que o site depende desses colaboradores para se manter ativo.
                                             </p>
                                             :null
                                         }
@@ -144,13 +150,10 @@ class Duvidas extends Component {
                                         {
                                             this.state.pergunta4?
                                             <p>
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas  
-
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas 
+                                                Qualquer pessoa poderá se registrar como Colaborador 
+                                                exceto indivíduos com nome sujo, facilitando ainda mais 
+                                                a aprovação se o Individuo for autônomo  e tiver uma 
+                                                empresa registrada.
                                             </p>
                                             :null
                                         }
@@ -172,13 +175,10 @@ class Duvidas extends Component {
                                         {
                                             this.state.pergunta5?
                                             <p>
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas  
-
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas 
+                                                O nosso programa de geração de renda tem por objetivo oferecer 
+                                                um contrato com qualquer colaborador que queira vender seus 
+                                                produtos através do nosso site, tendo foco em buscar parcerias 
+                                                para podermos ampliarmos  nosso site nesse mercado.
                                             </p>
                                             :null
                                         }
@@ -221,18 +221,15 @@ class Duvidas extends Component {
                             <h2 className="sub_tit_duvida">Sobre Nosso Propósito</h2>
                             <div className="pergunta card">
                                 <div>
-                                    <h5 className="letra_pagina_duvida">O que...?</h5>
+                                    <h5 className="letra_pagina_duvida">Propósito</h5>
                                     <div className="respostaDuvidas">
                                         {
                                             this.state.pergunta7?
                                             <p>
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas  
-
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas 
+                                                Nosso Proposito é gerar  fontes de rendas, ganhar espaço nesse ramo , 
+                                                dar ao nosso cliente  confortabilidade ao realizar uma compra ,  facilidade 
+                                                ao procurar um produto  desejado tudo pela internet sem ter esforço algum 
+                                                para se locomover se.
                                             </p>
                                             :null
                                         }
@@ -246,18 +243,13 @@ class Duvidas extends Component {
 
                             <div className="pergunta card">
                                 <div>
-                                    <h5 className="letra_pagina_duvida">Como...?</h5>
-                                    <div className="respostaDuvidas">
+                                    <h5 className="letra_pagina_duvida">Patrocinadores</h5>
+                                    <div className="respostaDuvidas_perfis">
                                         {
                                             this.state.pergunta8?
                                             <p>
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas  
-
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas 
+                                                <img src={linx} alt="Imagem da logo da empresa linx" /><br/>
+                                                Empresa Linx
                                             </p>
                                             :null
                                         }
