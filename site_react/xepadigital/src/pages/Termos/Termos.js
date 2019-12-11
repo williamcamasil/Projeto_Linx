@@ -28,9 +28,11 @@ class Termos extends Component {
                                 <p>
                                     De acordo com os termos exercidos pelo site  os mesmo podem ser modificados excluídos através da administração.
                                 </p>
-                            </div>     
+                            </div>  
+                            <i className="fas fa-arrow-circle-left"></i>   
                         </div>
                     </div>
+
                 </main>
                 <Footer />
             </div>

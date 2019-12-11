@@ -165,7 +165,7 @@ class Registrar extends Component {
                                     <button className="botao" type="submit">Criar sua Conta</button>
 
                                     <p>Criando sua conta você aceita e concorda com os <a href="Termos" target="_blank" title="Saiba mais sobre nossos termos.">
-                                        termos de uso</a></p>
+                                        termos de uso</a> | Já possui uma conta? Acesse <a href="Login" target="_blank" title="Faça o login."> Login</a></p>
                                     
                                     {/* <label className="texto-horizontal" aria-label="Deseja receber notificações e atualizações por e-mail?">
                                         <input className="check" type="checkbox"
