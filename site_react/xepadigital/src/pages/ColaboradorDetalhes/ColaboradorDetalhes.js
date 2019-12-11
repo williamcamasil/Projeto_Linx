@@ -124,7 +124,7 @@ class ColaboradorDetalhes extends Component {
             <div>
                 <Header />
                 <main>
-                    <div className="colab">
+                    <div className="colab_banner_detalhe">
                         <div className="colab_banner">
                             <h1 className="tituloh1">COLABORADORES</h1>
                             <p className="p_colab">AUXILIANDO EM NOSSA MISSÃO</p>
@@ -192,9 +192,11 @@ class ColaboradorDetalhes extends Component {
                                 {/* <button className="botao" type="buttonReservar" name="Reservar">Reservar</button> */}
                                 {/* <button className="botao" type="buttonCancelarReserva" name="CancelarReserva"><Link to={{ pathname: '/Colaboradores'}} >Cancelar</Link></button> */}
                             {/* </div> */}
+                            
                         </div>
                                     
                     <div className="colab_section"></div>
+                    {/* <i className="fas fa-arrow-circle-left"></i>   */}
                 </main>
                 <Footer />
             </div>

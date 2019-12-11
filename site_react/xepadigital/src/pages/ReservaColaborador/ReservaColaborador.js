@@ -90,7 +90,7 @@ class ReservaColaborador extends Component {
             <div>
                 <Header />
                 <main>
-                    <div className="colab">
+                    <div className="pedidos">
                         <div className="colab_banner">
                             <h1 className="tituloh1">PEDIDOS</h1>
                             <p className="p_colab">PRODUTORES</p>

@@ -6,11 +6,13 @@ class NotFound extends Component {
     render() {
         return (
             <div>
-                <Header />
+                {/* <Header /> */}
                     <div className='texto_pagina_404'>
-                        <h1>Página não encontrada</h1>
+                        <div><span>Página não encontrada</span></div>
+                        {/* <div><button className="botao" onClick="/">Página Inicial</button></div> */}
+                        {/* <button className="botao" onClick="/">Página Inicial</button> */}
                     </div>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         );
     }

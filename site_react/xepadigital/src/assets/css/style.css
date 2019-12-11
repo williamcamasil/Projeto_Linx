@@ -34,22 +34,28 @@
 }
 
 .texto_pagina_404{   
-    background: #FFB65C;
-    height: 70vh;
+    background: #472A4C;
+    height: 84vh;
     padding: 146px 0px 0px;
     display: flex;
     justify-content: center;
-    align-items: center;      
+    align-items: center;  
+     
 }
 
-.texto_pagina_404 h1{
+.texto_pagina_404 span{
     color: white;
-      
+    font-size: 40px;    
 }
 
-.fa-arrow-circle-left{
-    color: yellow;
-}
+
+/* .fa-arrow-circle-left{
+    color:var(--roxo);
+} */
+
+/* .imgColabDet{
+    width: 30px;
+} */
 
 .respostaDuvidas{
     margin: 20px;
@@ -297,7 +303,33 @@ body {
 
 /*#endregion */
 
+.pedidos {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/banner_pedidos.jpg);
+    height: 620px;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /*#region PÁGINA COLABORADORES*/
+.colab_banner_detalhe {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/banner_colabdetalhes.jpg);
+    height: 620px;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .colab {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/banner_colaboradores.svg);
     height: 620px;
@@ -360,7 +392,9 @@ body {
 
 .colaboradores_img{
     width: 150px;
-    height: 200px
+    height: 200px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .button_conj {
@@ -1294,7 +1328,8 @@ h2 {
 }
 
 .caixa_produtor img{
-    padding-bottom: 30px; 
+    padding-bottom: 30px;
+    width:10vw; 
 }
 
 #box_informacoes{
@@ -1315,12 +1350,17 @@ h2 {
     margin: 30px auto;
     width: 1000px;
     border-radius: 16px;
-    height: 12vw;
+    /* height: 12vw; */
+    /* margin-left: 20px; */
 }
 
 .produto p{
     color: var(--branco);
     font-size: 20px;
+}
+.input_produtos{
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .input_produtos label{
@@ -1723,6 +1763,9 @@ h2 {
     .produtos_colab p {
         font-size: 15px;
         width: 400px;
+
+        /* margin-left: 200px; */
+        /* margin-right: 20px; */
     }
 
     #box_informacoes{
