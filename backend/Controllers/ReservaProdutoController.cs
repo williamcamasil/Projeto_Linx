@@ -33,10 +33,11 @@ namespace backend.Controllers {
         //FAZENDO SELECT NO BANCO
         //GET: api/ReservaProduto/2
         [HttpGet ("{id}")]
-        public async Task<ActionResult<ReservaProduto>> Get (int id) {
-            var ReservaProduto = await _repositorio.BuscarPorID (id);
+        public async Task<ActionResult<List<ReservaProduto>>> GetReservasCliente (int id) {
+            List<ReservaProduto> ListaReserva = new List<ReservaProduto> ();
+            ListaReserva = await _repositorio.BuscarReservaPorIdCliente (id);
 
-            if (ReservaProduto == null) {
+            if (ListaReserva == null) {
                 return NotFound (
                     new {
                         Mensagem = "Não foi possível obter a Reserva"
@@ -44,7 +45,7 @@ namespace backend.Controllers {
                 );
             }
 
-            return ReservaProduto;
+            return ListaReserva;
         }
 
         //FAZENDO ENVIO PARA O BANCO

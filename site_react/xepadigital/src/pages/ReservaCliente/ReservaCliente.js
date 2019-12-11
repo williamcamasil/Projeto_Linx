@@ -2,47 +2,43 @@ import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import Lupa from '../../assets/img/Lupa.svg';
-// import { Link } from "react-router-dom";
 import api from '../../services/api'
+import { parseJwt } from '../../services/auth';
 
 
 class ReservaCliente extends Component {
     constructor() {
         super();
         this.state = {
-            listaReservasCliente: [],
-
-            contador: 0,
-
-            nomeColaborador: "",
+            listaProdutosReservados: [],
+            nomeUsuarioLogado: "",
         }
     }
 
     componentDidMount() {
         console.log("Carregado")
         this.getReservasCliente();
+        this.getUsuarioLogado();
     }
 
+    //#region GET's
     getReservasCliente = () => {
-        api.get('/ReservaProduto').then(response => {
+        api.get('/ReservaProduto/'+parseJwt().Id).then(response => {
             if (response.status === 200) {
-                this.setState({ listaReservasCliente: response.data })
+                this.setState({ listaProdutosReservados: response.data })
             }
         })
     }
 
-    // retornaNome = (id) => {
-    //     setTimeout(() => {
-    //     api.get('/Colaborador/' + id)
-    //     .then(response => {
-    //         this.setState({ nomeColaborador: response.data.nomeUsuario })
-    //         // console.log("colab: ", this.state.nomeColaborador)
-    //     })
-    //     console.log("return: ", this.state.nomeColaborador)
-    //     // return this.state.nomeColaborador;
-
-    //     }, 5000);
-    // }
+    getUsuarioLogado = () => {
+        api.get("/Usuario/" + parseJwt().Id)
+            .then(response => {
+                if (response.status === 200) {
+                    this.setState({ nomeUsuarioLogado: response.data.nomeUsuario })
+                }
+            })
+    }
+    //#endregion
 
     render() {
         return (
@@ -66,7 +62,7 @@ class ReservaCliente extends Component {
                     <div className="colab_section"></div>
 
                     <div className="caixa_produtor">
-                        <h3>Fernanda de Souza</h3>
+                        <h3>{this.state.nomeUsuarioLogado}</h3>
                     </div>
 
                     <div className="tit_produtor">
@@ -87,52 +83,23 @@ class ReservaCliente extends Component {
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-
                             <tbody id="tabela-lista-corpo">
-
-
-
-
-
-
                                 {
-                                    this.state.listaReservasCliente.map(function (reserva) {
-                                        
-                                        if (this.state.contador < this.state.listaReservasCliente.length) {
-
-                                            this.setState({ contador: this.state.contador + 1 })
-                                            console.log("cont: ", this.state.contador)
-
-
-                                            api.get('/Colaborador/' + reserva.idRegistroNavigation.idUsuario)
-                                                .then(response => {
-                                                    this.setState({ nomeColaborador: response.data.nomeUsuario })
-                                                    console.log("colab: ", this.state.nomeColaborador)
-                                                })
-
-
-                                        }
-
-                                        console.log("res: ", reserva)
+                                    this.state.listaProdutosReservados.map(function (reserva) {
                                         return (
                                             <tr key={reserva.idReserva}>
-                                                <td>{reserva.idReserva}</td>
-                                                <td>{this.state.nomeColaborador}</td>
-                                                {/* <td>{
-                                                    this.retornaNome(
-                                                        reserva.idRegistroNavigation.idUsuario
-                                                        )
-                                                        }</td> */}
-                                                <td>{reserva.idUsuarioNavigation.telefone1}</td>
-                                                <td>15,45</td> {/* fazer operação matemática aqui */}
-                                                <td>Banana</td> {/* como puxar o produto? */}
+                                                <td>Reserva Nº {reserva.idReserva}</td>
+                                                <td>{reserva.idRegistroNavigation.idUsuarioNavigation.nomeUsuario}</td>
+                                                <td>{(reserva.idRegistroNavigation.idUsuarioNavigation.telefone1 === null || "") ? "Telefone Indisponível" : reserva.idRegistroNavigation.idUsuarioNavigation.telefone1}</td>
+                                                <td>R${reserva.idRegistroNavigation.idProdutoNavigation.preco} /Kg</td> {/* fazer operação matemática aqui */}
+                                                <td>{reserva.idRegistroNavigation.idProdutoNavigation.nomeProduto}</td> {/* como puxar o produto? */}
                                                 <td>{reserva.quantidadeReserva} Kg</td>
                                                 <td>{reserva.situacao}</td>
                                                 <td><button>Cancelar</button></td>
                                             </tr>
                                         );
                                     }
-                                        .bind(this)
+                                        // .bind(this)
                                     )
                                 }
                             </tbody>
@@ -140,7 +107,7 @@ class ReservaCliente extends Component {
                     </div>
 
                     <div className="reserva_preco">
-                        <span>Preço total dos pedidos R$ 23,14</span> {/* [REPLICAR] fazer operação matemática aqui */}
+                            <span>Preço total dos pedidos R$ 23,14 </span> {/* [REPLICAR] fazer operação matemática aqui */}
                     </div>
                 </main>
                 <Footer />

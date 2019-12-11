@@ -8,6 +8,10 @@ namespace backend.Interfaces
     {
         Task<List<ReservaProduto>> Listar ();
 
+        Task<List<ReservaProduto>> BuscarReservaPorIdCliente (int id);
+        
+        Task<List<ReservaProduto>> BuscarReservaPorIdColaborador (int id);
+
         Task<ReservaProduto> BuscarPorID (int id);
 
         Task<ReservaProduto> Salvar (ReservaProduto ReservaProduto);

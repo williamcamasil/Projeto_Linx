@@ -1,29 +1,44 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import Lupa from '../../assets/img/Lupa.svg';
 import api from '../../services/api'
+import { parseJwt } from '../../services/auth';
+import { parse } from 'path';
 
 class ReservaColaborador extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            listaProdutosReservados : []
+            listaProdutosReservados: [],
+            nomeUsuarioLogado: "",
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log("Carregado")
-        this.getProdutoReservado();
+        this.getReservasColaborador();
+        this.getUsuarioLogado();
     }
 
-    getProdutoReservado = () => {
-        api.get('/RegistroProduto').then(response => {
+    //#region GET`s
+    getReservasColaborador = () => {
+        api.get('/ReservaColaborador/' + parseJwt().Id).then(response => {
             if (response.status === 200) {
                 this.setState({ listaProdutosReservados: response.data })
             }
         })
     }
+
+    getUsuarioLogado = () => {
+        api.get("/Usuario/" + parseJwt().Id)
+            .then(response => {
+                if (response.status === 200) {
+                    this.setState({ nomeUsuarioLogado: response.data.nomeUsuario })
+                }
+            })
+    }
+    //#endregion
 
     render() {
         return (
@@ -39,15 +54,15 @@ class ReservaColaborador extends Component {
 
                     <div className="container search_bar">
                         <form method="GET" className="form_style">
-                            <input className="input_style" type="search" placeholder="Pesquisar"/>
-                            <button className="button_conj" type="button" name="Pesquisa"><img src={Lupa} alt="Lupa branca, representando a busca."/></button>
+                            <input className="input_style" type="search" placeholder="Pesquisar" />
+                            <button className="button_conj" type="button" name="Pesquisa"><img src={Lupa} alt="Lupa branca, representando a busca." /></button>
                         </form>
                     </div>
-                    
+
                     <div className="colab_section"></div>
 
                     <div className="caixa_produtor">
-                        <h3>Joselito Ferreira Vass</h3>
+                        <h3>{this.state.nomeUsuarioLogado}</h3>
                     </div>
 
                     <div className="tit_produtor">
@@ -70,36 +85,36 @@ class ReservaColaborador extends Component {
 
                             <tbody id="tabela-lista-corpo">
                                 {
-                                    this.state.listaProdutosReservados.map(function (registro) {
-                                        return (                                     
+                                    this.state.listaProdutosReservados.map(function (reserva) {
+                                        return (
                                             <tr>
-                                                <td>{registro.idRegistro}</td>
-                                                <td>{registro.idUsuarioNavigation.nomeUsuario}</td> {/* Está certo ?*/}
-                                                <td>{registro.idUsuarioNavigation.telefone1}</td>
-                                                <td>15,45</td>
-                                                <td>Banana</td>
-                                                <td>1,5 Kg</td>
+                                                <td>Pedido Nº {reserva.idReserva}</td>
+                                                <td>{reserva.idUsuarioNavigation.nomeUsuario}</td>
+                                                <td>{(reserva.idUsuarioNavigation.telefone1 === null || "") ? "Telefone Indisponível" : reserva.idUsuarioNavigation.telefone1}</td>
+                                                <td>R${reserva.idRegistroNavigation.idProdutoNavigation.preco} /Kg</td>
+                                                <td>{reserva.idRegistroNavigation.idProdutoNavigation.nomeProduto}</td>
+                                                <td>{reserva.quantidadeReserva} Kg</td>
                                                 <td>
-                                                    <button>Cancelar</button>
-                                                    <button>Aprovar</button>
+                                                    <button>Cancelar</button> {/* PUT para modificar Status para cancelado */}
+                                                    <button>Aprovar</button> {/* PUT para modificar Status para Aprovado */}
                                                 </td>
                                             </tr>
                                         );
                                     }
-                                    // .bind(this)
+                                        // .bind(this)
                                     )
                                 }
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div className="reserva_preco">
                         <span>Preço total dos pedidos R$ 59,75</span>
                     </div>
                     <div className="colab_section"></div>
                 </main>
                 <Footer />
-            </div>
+            </div >
         );
     }
 }

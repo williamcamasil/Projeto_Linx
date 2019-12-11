@@ -173,7 +173,7 @@ class ColaboradorDetalhes extends Component {
                                                         /><br/>
                                                         
                                                         
-                                                        <button className="botao" type="submit" onClick={() => this.ReservarProduto(vp.idRegistro)} name="Reservar">Reservar</button>
+                                                        <button className="botao" type="submit" onClick={() => this.postPedido(vp.idRegistro)} name="Reservar">Reservar</button>
                                                         {/* <button className="botao" type="submit" onClick={this.postPedido(vp.idRegistro)} name="Reservar"><Link to={{ pathname: '/ReservaCliente'}} >Reservar</Link></button> */}
                                                     </>
                                                 </div>

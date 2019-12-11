@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using backend.Domains;
 using backend.Interfaces;
@@ -17,9 +18,26 @@ namespace backend.Repositories {
             }
         }
 
+        public async Task<List<ReservaProduto>> BuscarReservaPorIdCliente (int id) {
+            using (XepaDigitalContext _contexto = new XepaDigitalContext()){
+                List<ReservaProduto> ListaReserva = new List<ReservaProduto> ();
+                ListaReserva = await _contexto.ReservaProduto.Include("IdRegistroNavigation.IdUsuarioNavigation").Include("IdRegistroNavigation.IdProdutoNavigation").Include("IdUsuarioNavigation").Where(e => e.IdUsuario == id).ToListAsync ();
+
+                return ListaReserva;
+            }
+        }
+        public async Task<List<ReservaProduto>> BuscarReservaPorIdColaborador (int id) {
+            using (XepaDigitalContext _contexto = new XepaDigitalContext()){
+                List<ReservaProduto> ListaReserva = new List<ReservaProduto> ();
+                ListaReserva = await _contexto.ReservaProduto.Include("IdRegistroNavigation.IdUsuarioNavigation").Include("IdRegistroNavigation.IdProdutoNavigation").Include("IdUsuarioNavigation").Where(e => e.IdRegistroNavigation.IdUsuarioNavigation.IdUsuario == id).ToListAsync ();
+
+                return ListaReserva;
+            }
+        }
+
         public async Task<ReservaProduto> BuscarPorID (int id) {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()){
-                return await _contexto.ReservaProduto.Include("IdRegistroNavigation").Include("IdUsuarioNavigation").FirstOrDefaultAsync(e => e.IdReserva == id);
+                return await _contexto.ReservaProduto.Include("IdRegistroNavigation.IdUsuarioNavigation").Include("IdRegistroNavigation.IdProdutoNavigation").Include("IdUsuarioNavigation").FirstOrDefaultAsync(e => e.IdReserva == id);
             }
         }
 
@@ -35,7 +53,7 @@ namespace backend.Repositories {
 
         public async Task<List<ReservaProduto>> Listar () {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()){
-                return await _contexto.ReservaProduto.Include("IdRegistroNavigation").Include("IdUsuarioNavigation").ToListAsync();
+                return await _contexto.ReservaProduto.Include("IdRegistroNavigation.IdUsuarioNavigation").Include("IdRegistroNavigation.IdProdutoNavigation").Include("IdUsuarioNavigation").ToListAsync();
             }
         }
 
