@@ -1303,6 +1303,17 @@ h2 {
     width: 150px;
     margin: 20px;
 }
+
+/* teste */
+.spc_botao {
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
 /*#endregion */
 
 /*#region PAGINA RECEITA_DETALHES*/

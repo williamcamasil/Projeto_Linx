@@ -11,7 +11,7 @@ import { usuarioAutenticado, parseJwt } from './services/auth';
 //CSS
 import './assets/css/style.css';
 
-// import '@fortawesome/fontawesome-free/css/all.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 // import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 

@@ -5,6 +5,7 @@ import Lupa from '../../assets/img/Lupa.svg';
 import api from '../../services/api'
 import { parseJwt } from '../../services/auth';
 
+import { MDBBtn } from 'mdbreact';
 
 class ReservaCliente extends Component {
     constructor() {
@@ -23,7 +24,7 @@ class ReservaCliente extends Component {
 
     //#region GET's
     getReservasCliente = () => {
-        api.get('/ReservaProduto/'+parseJwt().Id).then(response => {
+        api.get('/ReservaProduto/' + parseJwt().Id).then(response => {
             if (response.status === 200) {
                 this.setState({ listaProdutosReservados: response.data })
             }
@@ -37,6 +38,23 @@ class ReservaCliente extends Component {
                     this.setState({ nomeUsuarioLogado: response.data.nomeUsuario })
                 }
             })
+    }
+    //#endregion
+
+    //#region DELETE
+    deleteReserva = (id) => {
+
+        api.delete("/ReservaProduto/" + id)
+            .then(response => {
+                if (response.status === (200 || 204)) {
+                    console.log("Deletando: ", response.data);
+                }
+            })
+            .catch(error => console.log("error: ", error))
+
+        setTimeout(() => {
+            this.getReservasCliente();
+        }, 200);
     }
     //#endregion
 
@@ -95,11 +113,18 @@ class ReservaCliente extends Component {
                                                 <td>{reserva.idRegistroNavigation.idProdutoNavigation.nomeProduto}</td> {/* como puxar o produto? */}
                                                 <td>{reserva.quantidadeReserva} Kg</td>
                                                 <td>{reserva.situacao}</td>
-                                                <td><button>Cancelar</button></td>
+
+                                                <td>
+                                                    <MDBBtn color="danger" size="sm" onClick={() => this.deleteReserva(reserva.idReserva)}>
+                                                        <div className="spc_botao">
+                                                            <span>Excluir</span>
+                                                        </div>
+                                                    </MDBBtn>
+                                                </td>
                                             </tr>
                                         );
                                     }
-                                        // .bind(this)
+                                        .bind(this)
                                     )
                                 }
                             </tbody>
@@ -107,7 +132,7 @@ class ReservaCliente extends Component {
                     </div>
 
                     <div className="reserva_preco">
-                            <span>Preço total dos pedidos R$ 23,14 </span> {/* [REPLICAR] fazer operação matemática aqui */}
+                        <span>Preço total dos pedidos R$ 23,14 </span> {/* [REPLICAR] fazer operação matemática aqui */}
                     </div>
                 </main>
                 <Footer />

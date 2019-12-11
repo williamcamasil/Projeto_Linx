@@ -4,7 +4,8 @@ import Footer from '../../componentes/Footer/Footer';
 import Lupa from '../../assets/img/Lupa.svg';
 import api from '../../services/api'
 import { parseJwt } from '../../services/auth';
-import { parse } from 'path';
+
+import { MDBBtn } from 'mdbreact';
 
 class ReservaColaborador extends Component {
     constructor() {
@@ -38,6 +39,50 @@ class ReservaColaborador extends Component {
                 }
             })
     }
+    //#endregion
+
+    //#region PUT's
+    putStatusAprovado = (reserva) => {
+
+        // console.log("id ",reserva.idReserva)
+
+        reserva.situacao = "Aprovado";
+
+        console.log("reserva: ", reserva)
+
+        api.put("/ReservaProduto/" + reserva.idReserva, reserva)
+            .then(response => {
+                if (response.status === (200 || 204)) {
+                    console.log("Situação: ", response.data);
+                }
+            })
+            .catch(error => console.log("error: ", error))
+
+        setTimeout(() => {
+            this.getReservasColaborador();
+        }, 200);
+    }
+
+    putStatusRecusado = (reserva) => {
+
+        reserva.situacao = "Cancelado";
+
+        console.log("reserva: ", reserva)
+
+        api.put("/ReservaProduto/" + reserva.idReserva, reserva)
+            .then(response => {
+                if (response.status === (200 || 204)) {
+                    console.log("Situação: ", response.data);
+                }
+            })
+            .catch(error => console.log("error: ", error))
+
+        setTimeout(() => {
+            this.getReservasColaborador();
+        }, 200);
+    }
+
+
     //#endregion
 
     render() {
@@ -79,6 +124,7 @@ class ReservaColaborador extends Component {
                                     <th>Valor R$</th>
                                     <th>Produto</th>
                                     <th>Quantidade</th>
+                                    <th>Situação</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
@@ -86,6 +132,7 @@ class ReservaColaborador extends Component {
                             <tbody id="tabela-lista-corpo">
                                 {
                                     this.state.listaProdutosReservados.map(function (reserva) {
+                                        // console.log(reserva.idReserva)
                                         return (
                                             <tr>
                                                 <td>Pedido Nº {reserva.idReserva}</td>
@@ -94,14 +141,26 @@ class ReservaColaborador extends Component {
                                                 <td>R${reserva.idRegistroNavigation.idProdutoNavigation.preco} /Kg</td>
                                                 <td>{reserva.idRegistroNavigation.idProdutoNavigation.nomeProduto}</td>
                                                 <td>{reserva.quantidadeReserva} Kg</td>
+                                                <td>{reserva.situacao}</td>
                                                 <td>
-                                                    <button>Cancelar</button> {/* PUT para modificar Status para cancelado */}
-                                                    <button>Aprovar</button> {/* PUT para modificar Status para Aprovado */}
+                                                    <MDBBtn color="success" size="sm" onClick={() => this.putStatusAprovado(reserva)}>
+                                                        <div className="spc_botao">
+                                                            <span>Aprovar</span>
+                                                        </div>
+                                                    </MDBBtn>
+                                                    <br />
+                                                    <MDBBtn color="danger" size="sm" onClick={() => this.putStatusRecusado(reserva)}>
+                                                        <div className="spc_botao">
+                                                            <span>Cancelar</span>
+                                                        </div>
+                                                    </MDBBtn>
+                                                    {/* <button>Cancelar</button>
+                                                    <button>Aprovar</button> */}
                                                 </td>
                                             </tr>
                                         );
                                     }
-                                        // .bind(this)
+                                        .bind(this)
                                     )
                                 }
                             </tbody>
