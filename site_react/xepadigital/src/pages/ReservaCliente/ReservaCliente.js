@@ -122,6 +122,8 @@ class ReservaCliente extends Component {
                                                     </MDBBtn>
                                                 </td>
                                             </tr>
+
+                                            
                                         );
                                     }
                                         .bind(this)

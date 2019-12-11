@@ -26,7 +26,7 @@
 
 .reserva_preco{
     background: #FFB65C;
-    width: 1200px; 
+    width: auto; 
     margin: 40px auto;
     text-align: center;
     padding: 20px 0px;
@@ -46,6 +46,19 @@
     color: white;
       
 }
+
+
+.respostaDuvidas{
+    margin: 20px;
+}
+
+.respostaDuvidas p{
+    font-family: var(--lato);
+    font-size: 18px;
+}
+
+
+
 /*#endregion*/
 
 /*#region TABELA*/
@@ -505,6 +518,7 @@ h3 {
     justify-content: space-between;
     width: 1100px;
     flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
 .cards {
@@ -554,6 +568,7 @@ h3 {
     display: flex;
     justify-content: flex-end;
     padding: 10px 45px;
+    /* border-radius: 20px; */
 }
 /*#endregion */
 
@@ -793,6 +808,7 @@ h2 {
     margin-bottom: 4vw;
     margin-top: 13vw;
     text-align: center; 
+    border-radius: 30px;
 }
 
 #card_cadastro span{
@@ -861,6 +877,7 @@ h2 {
     background: var(--branco);
     width: 200px;
     padding: 10px 0px;
+    border-radius: 20px;
 }
 
 .card_branco img{
@@ -1217,6 +1234,7 @@ h2 {
     background: var(--branco);
     border-radius: 16px;
     padding: 20px;
+    height: 600px;
 }
 
 .caixa_termos h1{
@@ -1242,6 +1260,7 @@ h2 {
     padding-bottom: 30px;
     width: 1200px;
     background: var(--branco);
+    border-radius: 30px;
 }
 
 .caixa_produtor{
@@ -1251,6 +1270,8 @@ h2 {
     text-align: center;
     padding: 50px;
     color: var(--branco);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 }
 
 .caixa_produtor img{
@@ -1806,6 +1827,17 @@ h2 {
 /*#region SMARTPHONE 360px to 767px*/
 @media(min-width: 360px) and (max-width: 767px) {
     /*#region GERAL MOBILE*/
+
+    #tabela-lista-corpo td{
+            display: flex;
+            flex-direction: column;
+    }
+
+    #tabela-lista th{
+        display: none;  
+    }
+
+
     #lbl_menu {
         display: block;
         cursor: pointer;

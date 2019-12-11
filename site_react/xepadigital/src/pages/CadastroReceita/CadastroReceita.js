@@ -261,23 +261,23 @@ class CadastroReceita extends Component {
                                 <span>RECEITAS CADASTRADAS</span>
                             </div>
 
-                            {
-                                this.state.listaCadReceitas.map(function (receita) {
-                                    return (
-                                        <div>
-                                            <div className="card_">
-                                                <div className="card_branco">
-                                                    <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
-                                                    <p>{receita.nomeReceita}</p>
-                                                    <p>Ingredientes</p>
-                                                    <p>Modo de Preparo</p>
-                                                    <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputReceita(receita.idReceita)}>Editar</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                }.bind(this))
-                            }
+                            <div className="card_">
+                                {
+                                    this.state.listaCadReceitas.map(function (receita) {
+                                        return (
+                                            <>
+                                                    <div className="card_branco card">
+                                                        <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
+                                                        <p>{receita.nomeReceita}</p>
+                                                        <p>Ingredientes</p>
+                                                        <p>Modo de Preparo</p>
+                                                        <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputReceita(receita.idReceita)}>Editar</button>
+                                                    </div>
+                                            </>
+                                        );
+                                    }.bind(this))
+                                }
+                            </div>
 
                             <div className="mais">
                                 <a href="/#" title="Ver mais receitas">
