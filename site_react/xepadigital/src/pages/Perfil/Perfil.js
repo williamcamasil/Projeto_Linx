@@ -134,8 +134,8 @@ class Perfil extends Component {
     //#endregion
 
     //#region PUTS
-    putAltUsuario = () => {
-        // e.preventDefault();
+    putAltUsuario = (e) => {
+        e.preventDefault();
         let idUser = this.state.putUsuario.idUsuario;
 
         let usuarioForm = new FormData();
@@ -215,7 +215,7 @@ class Perfil extends Component {
                 <main>
                     <section className="card card_size_cad">
                         <div className="container">
-                            <h1 className="c_text">PERFIL COLABORADOR</h1>
+                            <h1 className="c_text">PERFIL CLIENTE</h1>
 
                             {/* <!-- form DUPLO--> */}
 
@@ -224,7 +224,7 @@ class Perfil extends Component {
                             <div className="linha_perfil_colab"></div>
 
 
-                            <form onSubmit={this.putGeral}>
+                            <form onSubmit={this.putAltUsuario}>
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_esquerda">
                                         <div className="caixa_cad_img">
@@ -239,6 +239,7 @@ class Perfil extends Component {
                                                 <input
                                                     hidden
                                                     id="icon-button-file"
+                                                    accept="image/*"
                                                     type="file"
                                                     name="imgPerfil"
                                                     onChange={this.putSetStateImg}
