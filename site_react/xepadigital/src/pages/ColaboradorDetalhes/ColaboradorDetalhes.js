@@ -194,18 +194,6 @@ class ColaboradorDetalhes extends Component {
                             }
 
                             {/* </form>      */}
-<<<<<<< HEAD
-                            </div>
-                            
-                            {/* <div id="box_colab_produtor"> */}
-                                {/* <Link to={{ pathname: '/ReceitasDetalhes', state: { idReceita: receita.idReceita} }} >Reservar</Link> */}
-                                {/* <button className="botao" type="buttonReservar" name="Reservar"><Link to={{ pathname: '/ReservaCliente'}} >Reservar</Link></button> */}
-                                {/* <button className="botao" type="buttonReservar" name="Reservar">Reservar</button> */}
-                                {/* <button className="botao" type="buttonCancelarReserva" name="CancelarReserva"><Link to={{ pathname: '/Colaboradores'}} >Cancelar</Link></button> */}
-                            {/* </div> */}
-                            
-=======
->>>>>>> 032103c0592e749140cb33ef6db6e5a83ea6e803
                         </div>
 
                         {/* <div id="box_colab_produtor"> */}
