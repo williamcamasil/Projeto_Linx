@@ -97,6 +97,8 @@ class ReservaCliente extends Component {
                                                 <td>{reserva.situacao}</td>
                                                 <td><button>Cancelar</button></td>
                                             </tr>
+
+                                            
                                         );
                                     }
                                         // .bind(this)

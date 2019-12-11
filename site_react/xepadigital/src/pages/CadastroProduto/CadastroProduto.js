@@ -3,6 +3,7 @@ import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import api from '../../services/api'
 import { parseJwt } from "../../services/auth"
+import mais from '../../assets/img/mais.png'
 
 class CadastroProduto extends Component {
     constructor(){
@@ -276,7 +277,7 @@ class CadastroProduto extends Component {
                                                 </div>
                                                 <div className="caixa_texto_sub">
                                                     <label htmlFor="data_lbl" aria-label="data_lbl"> Data de Validade</label><br/>
-                                                    <input className="caixa_texto_componente" type="data_produto" 
+                                                    <input className="caixa_texto_componente" type="date" 
                                                     placeholder="26/10/2019" name="validade" id="data_produto"
                                                     value={this.state.put_post_Produto.validade}
                                                     onChange={this.postSetState}   
@@ -326,31 +327,30 @@ class CadastroProduto extends Component {
                             <div className="tit_produtor">
                                 <span>PRODUTOS CADASTRADOS</span>
                             </div>
+                            
+                            <div className="card_">
+                                {
+                                    this.state.listaCadProdutos.map(function(produto){
+                                        return(
+                                            
+                                                <div className="card_branco card">
+                                                    <img src={"http://localhost:5000/" + produto.imgProduto} alt="imagem ilustrativa de comida" />
+                                                    <p>{produto.nomeProduto}</p>
+                                                    <p>{(produto.organico) ? 'Produto Orgânico':'Produto não Orgânico'}</p>
+                                                    <p>{produto.disponibilidade} Kg</p>
+                                                    {/* <button className="botao" type="button" name="Editar_Card">Editar</button> */}
+                                                    {/* <button className="botao" type="button" name="Editar_Card">Editar</button> */}
+                                                    <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputProduto(produto.idProduto)}>Editar</button>
+                                                </div>
+                                        );
+                                    }.bind(this))
+                                }
+                            </div>
 
-                            {
-                                this.state.listaCadProdutos.map(function(produto){
-                                    return(
-                                        <div className="card_">
-                                            <div className="card_branco">
-                                                <img src={"http://localhost:5000/" + produto.imgProduto} alt="imagem ilustrativa de comida" />
-                                                <p>{produto.nomeProduto}</p>
-                                                <p>{(produto.organico) ? 'Produto Orgânico':'Produto não Orgânico'}</p>
-                                                <p>{produto.disponibilidade} Kg</p>
-                                                {/* <button className="botao" type="button" name="Editar_Card">Editar</button> */}
-                                                {/* <button className="botao" type="button" name="Editar_Card">Editar</button> */}
-                                                <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputProduto(produto.idProduto)}>Editar</button>
-                                            </div>
-                                        </div>
-
-                                        // <div className="mais">
-                                        //     <a href="#" title="Ver mais receitas">
-                                        //     <img src={mais} alt="Ícone de adição, representando ver mais."/></a>
-                                        // </div>
-                                    );
-                                }.bind(this))
-                            }
-
-
+                            <div className="mais">
+                                 <a href="#" title="Ver mais receitas">
+                                <img src={mais} alt="Ícone de adição, representando ver mais."/></a>
+                            </div>
                         </div>
                     </section>                    
                 </main>
