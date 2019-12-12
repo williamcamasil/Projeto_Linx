@@ -182,7 +182,7 @@ class ColaboradorDetalhes extends Component {
                                                             onChange={this.postSetState}
                                                         /><br/> */}
 
-
+                                                        {/* COLOCAR UMA CONDIÇÃO AQUI */}
                                                         <button className="botao" type="submit" onClick={() => this.abrirModal(vp.idRegistro)} name="Reservar">Reservar</button>
                                                         {/* <button className="botao" type="submit" onClick={this.postPedido(vp.idRegistro)} name="Reservar"><Link to={{ pathname: '/ReservaCliente'}} >Reservar</Link></button> */}
                                                     </>
@@ -213,7 +213,7 @@ class ColaboradorDetalhes extends Component {
                 <MDBContainer>
                     <form onSubmit={this.postPedido}>
                         <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-                            <MDBModalHeader toggle={this.toggle}>Reservar Produto</MDBModalHeader>
+                            <MDBModalHeader>Reservar Produto</MDBModalHeader>
                             <MDBModalBody>
                                 <MDBInput
                                     label="Quantidade"

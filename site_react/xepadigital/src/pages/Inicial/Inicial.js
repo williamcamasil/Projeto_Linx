@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import HeaderHome from '../../componentes/Header/HeaderHome';
 import Footer from '../../componentes/Footer/Footer';
+import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 import logo_slogan from '../../assets/img/logo_slogan.svg';
 import colab from '../../assets/img/colab.jpg';
 import receitas from '../../assets/img/receitas.jpg';
 // import termos from '../../assets/img/termos.png';
-import duvida from '../../assets/img/duvida.png';
+import duvida from '../../assets/img/banner_duvida.jpg';
 
 
 class Inicial extends Component {
@@ -13,7 +14,7 @@ class Inicial extends Component {
         return (
         <div>
             <HeaderHome />
-            
+            <ScrollTop />
             <main className="home">
                 <div className="banner_home">
                     <div className="logoslogan_home">

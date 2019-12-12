@@ -49,6 +49,10 @@
     font-size: 40px;    
 }
 
+.imgTime{
+    width: 200px;
+}
+
 .fa-arrow-circle-left{
     color: white;
 }
@@ -103,6 +107,35 @@
 
 
 /*#endregion*/
+
+/*#region SCROLLTOP*/
+.person{
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 2px #ccc;
+    width: 200px;
+    padding: 20px;
+  }
+  .go-top {
+    position: fixed;
+    cursor: pointer;
+    bottom: 30px;
+    right: 0;
+    color: #000000;
+    background-color: #ffffff;
+    z-index: 1;
+    width: 90px;
+    text-align: center;
+    height:50px;
+    border-radius: 10px 0 0 10px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+  }
+ 
+/*#endregion
 
 /*#region TABELA*/
 #conteudoPrincipal-lista {
@@ -179,7 +212,7 @@ header ul {
 
 #menu_superior {
     background-color: #472A4C;
-    padding: 4px 0px;
+    padding: 8px 0px;
 }
 
 #menu_superior ul li {
@@ -187,7 +220,7 @@ header ul {
     border-radius: 20px;
     text-align: center;
     width: 140px;
-    padding: 2px 0px;
+    padding: 6px 0px;
     margin: 5px 0px 5px 20px;
 }
 
@@ -411,8 +444,11 @@ body {
 .colaboradores_img{
     width: 150px;
     height: 200px;
-    margin-left: 20px;
+    /* margin-left: 20px;
     margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px; */
+    margin: 20px 20px;
 }
 
 .button_conj {
@@ -466,9 +502,14 @@ body {
 
 .card_style {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     text-align: justify;
     margin: 15px 0px;
+}
+
+.card_style img{
+    height: 100px;
+    width: 100px;
 }
 
 .card_info, .card_info img {
@@ -1264,7 +1305,7 @@ button{
 
 /*#region PAGINA DUVIDAS*/
 #banner_duvidas span{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/duvida.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/banner_duvida.jpg);
     height: 30vh;
     background-repeat: no-repeat;
     background-position: top center;
@@ -1311,8 +1352,8 @@ button{
 
 /*#region PAGINA TERMOS DE USO*/
 #banner_termos span{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/termos.png);
-    height: 30vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/banner_termos.jpg);
+    height: 40vh;
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
@@ -2191,6 +2232,7 @@ button{
 
     .caixa-texto {
         width: 100%;
+        
     }
 
     #caixa_parte_imagem img{
@@ -2206,7 +2248,7 @@ button{
     }
     
     #caixa_parte_conteudo input{
-        width: 340px;
+        width: 300px;
     }
 
     .caixa_texto{
@@ -2214,7 +2256,8 @@ button{
     }
 
     .caixa_texto_sub{
-        width: 350px;
+        width: 300px;
+        /* text-align: center; */
     }
 
     .caixa_texto{
@@ -2225,8 +2268,14 @@ button{
         width: 350px;
     }
 
+    .form_caixa {
+        margin-left: 20px;
+    }
+
     .padronizar_campo2{
         margin-top: 20px;
+        /* text-align: center; */
+        width: 300px;
     } 
      
     .card_{
@@ -2236,6 +2285,17 @@ button{
     .card_branco{
         margin-bottom: 10px;
     }
+
+    .caixa_texto_componente{
+        width: 310px;
+        /* background: chartreuse; */
+    }
+
+    /* .caixa_texto_componente_campo{
+        width: 10px;
+        background: chartreuse;
+    } */
+
     /*#endregion */
 
     /*#region LOGIN MOBILE*/
@@ -2355,7 +2415,7 @@ button{
     }
 
     .saiba {
-        font-size: 15px;
+        font-size: 20px;
         margin-bottom: 20px;
         margin: auto;
         text-align: center;
@@ -2402,6 +2462,20 @@ button{
         height: 400px;
         flex-direction: column;
     }
+
+    .produtos_colab p {
+        font-size: 15px;
+        width: 300px;
+    }
+
+    .caixa_texto_botoes{
+        width: 310px;   
+    }
+
+    .caixa_texto_botoes .botao{
+        width: 100px;
+    }
+
     /*#endregion */
     
     /*#region TERMOS_DE_USO*/
@@ -2435,6 +2509,10 @@ button{
 
     .caixa_duvidas{
         width: 350px;    
+    }
+
+    .respostaDuvidas_perfis{
+        width: 300px;
     }
     /*#endregion */
 

@@ -22,7 +22,8 @@ class CadastroProduto extends Component {
                 imgProduto: React.createRef(),
                 idUsuario: parseJwt().Id,
             },
-            idProdutoAlterada: 0
+            idProdutoAlterada: 0,
+            more: 4
         }
     }
 
@@ -62,14 +63,32 @@ class CadastroProduto extends Component {
     }
 
     //GET - Produtos
+    // getCadProduto = () => {
+    //     api.get('/RegistroProduto/'+parseJwt().Id)
+    //     .then(response => {
+    //         if (response.status === 200) {
+    //             this.setState({ listaCadProdutos: response.data })
+    //         }
+    //     })
+    // }
+
     getCadProduto = () => {
-        api.get('/RegistroProduto/'+parseJwt().Id)
-        .then(response => {
-            if (response.status === 200) {
-                this.setState({ listaCadProdutos: response.data })
-            }
-        })
+        fetch('http://localhost:5000/api/RegistroProduto/' + parseJwt().Id)
+            .then(response => response.json())
+            .then(response => {
+                var redux = response.slice(0, this.state.more)
+
+                this.setState({ listaCadProdutos: redux })
+            })
+
     }
+
+    incrementarMais = () => {
+        this.state.more += 4; 
+        console.log('Mostrar: ', this.state.more) //this.state.more)  
+        this.getCadProduto();
+    }
+
     //#endregion
 
     //Mostrar Imagem
@@ -290,7 +309,7 @@ class CadastroProduto extends Component {
                                             </div>
 
                                             <div className="caixa_texto">
-                                                <div>
+                                                <div className="caixa_texto_sub">
                                                     <label htmlFor="organico_lbl" aria-label="organico_lbl"> Este produto é orgânico?</label><br/>
                                                     <select className="caixa_texto_componente" name="organico_produto" id="organico_produto">
                                                         <option value="organico_nao">Não</option>
@@ -352,7 +371,7 @@ class CadastroProduto extends Component {
                             </div>
 
                             <div className="mais">
-                                 <a href="/#" title="Ver mais receitas">
+                                <a onClick = { () => {this.incrementarMais()}} title="Ver mais receitas">
                                 <img src={mais} alt="Ícone de adição, representando ver mais."/></a>
                             </div>
                         </div>
