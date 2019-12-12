@@ -3,12 +3,12 @@ import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import mais from '../../assets/img/mais.png';
 // import menos from '../../assets/img/menos.jpg';
-import william from '../../assets/img/William.svg';
-import karina from '../../assets/img/Karina.svg';
+// import william from '../../assets/img/William.svg';
+// import karina from '../../assets/img/Karina.svg';
 // import fabiano from '../../assets/img/fabiano.svg';
 // import gustavo from '../../assets/img/gustavo.svg';
 // import giovani from '../../assets/img/giovani.svg';
-import linx from '../../assets/img/Linx.svg';
+// import linx from '../../assets/img/Linx.svg';
 
 class Duvidas extends Component {
     constructor() {
@@ -105,9 +105,9 @@ class Duvidas extends Component {
                                                     Giovanni Canalli Silva<br/>
                                                     <img src={gustavo} alt="Desenvolvedor" /><br/>
                                                     Gustavo Mendes Brito<br/> */}
-                                                    <img src={karina} alt="Desenvolvedor" /><br/>
+                                                    {/* <img src={karina} alt="Desenvolvedor" /><br/> */}
                                                     Karina Karen Watanabe | Designer<br/>
-                                                    <img src={william} alt="Desenvolvedor" /><br/>
+                                                    {/* <img src={william} alt="Desenvolvedor" /><br/> */}
                                                     William Camargo da Silva  | Backend<br/>
                                                 </p>
                                                 :null
@@ -248,7 +248,7 @@ class Duvidas extends Component {
                                         {
                                             this.state.pergunta8?
                                             <p>
-                                                <img src={linx} alt="Imagem da logo da empresa linx" /><br/>
+                                                {/* <img src={linx} alt="Imagem da logo da empresa linx" /><br/> */}
                                                 Empresa Linx
                                             </p>
                                             :null

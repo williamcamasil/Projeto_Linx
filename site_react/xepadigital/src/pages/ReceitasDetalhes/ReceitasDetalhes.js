@@ -41,7 +41,7 @@ class ReceitasDetalhes extends Component {
             <div>
                 <Header />
                 <main>
-                    <div className="banner">
+                    <div className="banner_receitaDetalhes">
                         <div className="bloco">
                             <h1 className="tituloh1">RECEITAS</h1>
                             <p className="bloco_titulo_2">SELECIONADAS COM MUITO CARINHO</p>
@@ -79,6 +79,10 @@ class ReceitasDetalhes extends Component {
                         }
                     )
                 }
+
+                <div className='goback'>
+                    <a href="/Receitas" title="Página inicial"><i class="fas fa-arrow-circle-left fa-5x"></i></a>
+                </div>
                 
                 <div className="colab_section"></div>
                 </main>

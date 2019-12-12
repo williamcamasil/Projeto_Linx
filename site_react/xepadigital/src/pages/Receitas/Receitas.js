@@ -20,12 +20,23 @@ class Receitas extends Component {
         // this.getFiltroReceita();
     }
 
+    // getReceita = () => {
+    //     api.get('/Receita').then(response => {
+    //         if (response.status === 200) {
+    //             this.setState({ listaReceitas: response.data })
+    //         }
+    //     })
+    // }
+
     getReceita = () => {
-        api.get('/Receita').then(response => {
-            if (response.status === 200) {
-                this.setState({ listaReceitas: response.data })
-            }
-        })
+        fetch('http://localhost:5000/api/Receita')
+            .then(response => response.json())
+            .then(response => {
+                var redux = response.slice(0, 6)
+
+                this.setState({ listaReceitas: redux })
+            })
+
     }
 
     // // COMO INSERIR FILTRO?
