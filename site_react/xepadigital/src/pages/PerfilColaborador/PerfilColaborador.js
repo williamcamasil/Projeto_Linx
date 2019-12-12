@@ -310,7 +310,7 @@ class PerfilColaborador extends Component {
                                                 {/* <!-- notificacao --> */}
                                                 <label aria-label="notificacao_lbl">Deseja receber notificações?</label>
                                                 <br />
-                                                <select className="caixa-texto_3 caixa_style"
+                                                <select className="caixa-texto_3 style_selec caixa_style"
                                                     name="receberNotif"
                                                     value={this.state.putUsuario.receberNotif}
                                                     onChange={this.putSetStateUsuario}
@@ -335,7 +335,7 @@ class PerfilColaborador extends Component {
                                                 {/* <!-- entrega --> */}
                                                 <label aria-label="entrega_lbl">Faz entrega?</label>
                                                 <br />
-                                                <select className="caixa-texto_3 caixa_style"
+                                                <select className="caixa-texto_3 style_selec caixa_style"
                                                     name="fazEntrega"
                                                     value={this.state.putUsuario.fazEntrega}
                                                     onChange={this.putSetStateUsuario}
@@ -361,14 +361,14 @@ class PerfilColaborador extends Component {
 
                                 {/* Button */}
                                 <div className="c_disp_just">
-                                    <div className="caixa_input_3">
+                                    <div className="caixa_input_33">
 
 
                                         <button className="botao" type="submit" name="Editar"><a href="/ReservaColaborador">Reservas</a></button>
 
 
                                     </div>
-                                    <div className="caixa_input_3">
+                                    <div className="caixa_input_33">
 
 
                                         <button className="botao" type="submit" name="Salvar">Salvar</button>
@@ -388,7 +388,7 @@ class PerfilColaborador extends Component {
                                     <div className="caixa_cad_direita">
                                         <label aria-label="logradouro_prod_lbl">Logradouro:</label>
                                         <br />
-                                        <input className="caixa-texto_1 caixa_style" type="text" placeholder="Avenida..."
+                                        <input className="caixa-texto_11 caixa_style" type="text" placeholder="Avenida..."
                                             name="endereco1"
                                             value={this.state.putEndereco.endereco1}
                                             onChange={this.putSetStateEndereco}
@@ -416,7 +416,7 @@ class PerfilColaborador extends Component {
                                             <div className="caixa_input_3">
                                                 <label aria-label="estado_prod_lbl">Estado</label>
                                                 <br />
-                                                <select className="caixa-texto_5 caixa_style"
+                                                <select className="caixa-texto_5 caixa-texto_7 style_selec caixa_style"
                                                     name="estado"
                                                     value={this.state.putEndereco.estado}
                                                     onChange={this.putSetStateEndereco}
@@ -448,14 +448,14 @@ class PerfilColaborador extends Component {
 
                                 {/* btn */}
                                 {/* <div className="c_disp_just">
-                                    <div className="caixa_input_3">
+                                    <div className="caixa_input_33">
 
 
                                         <button className="botao" type="submit"  name="Editar">Editar</button>
 
 
                                     </div>
-                                    <div className="caixa_input_3">
+                                    <div className="caixa_input_33">
 
 
                                         <button className="botao" type="submit" name="Salvar">Salvar</button>

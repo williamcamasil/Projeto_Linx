@@ -6,7 +6,9 @@ namespace backend.Interfaces {
     public interface IEndereco {
         Task<List<Endereco>> Listar ();
 
-        Task<Endereco> BuscarPorID (int id);
+        Task<Endereco> BuscarPorIdUsuario (int id);
+
+        Task<Endereco> BuscarPorIdEndereco (int id);
 
         Task<Endereco> Salvar (Endereco endereco);
 

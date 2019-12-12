@@ -48,6 +48,22 @@ namespace backend.Controllers {
             return Receita;
         }
 
+        [HttpGet ("Usuario/{id}")]
+        public async Task<ActionResult<List<Receita>>> GetPorId (int id) {
+            List<Receita> ListaReceita = new List<Receita>();
+            ListaReceita = await _repositorio.BuscarPorIdUser (id);
+
+            if (ListaReceita == null) {
+                return NotFound (
+                    new {
+                        Mensagem = "Não foi possível obter a Receita"
+                    }
+                );
+            }
+
+            return ListaReceita;
+        }
+
         //FAZENDO ENVIO PARA O BANCO
         //POST api/Receita
         [HttpPost]

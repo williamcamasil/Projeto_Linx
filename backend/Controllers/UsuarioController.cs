@@ -58,12 +58,26 @@ namespace backend.Controllers {
         [AllowAnonymous]
         public async Task<ActionResult<Usuario>> Post (Usuario Usuario) {
             try {
+                // atribuimos vazio para os campos que serão atualizados no perfil
+                Usuario.ImgPerfil = "Resources\\Images\\Perfil\\profile.png";
+                Usuario.Telefone1 = "";
+                Usuario.Telefone2 = "";
+                Usuario.Documento = "";
+                Usuario.RazaoSocial = "";
+                Usuario.SobreColab = "";
                 await _repositorio.Salvar (Usuario);
-
+                
                 // Instanciamos o Endereco para chama-lo
                 Endereco endereco = new Endereco();
                 // Falamos que a chave estrangeira dentro de endereço será o Id do usuario que foi criado
                 endereco.IdUsuario = Usuario.IdUsuario;
+                endereco.Endereco1 = "";     
+                endereco.Numero = "";
+                endereco.Cidade = "";
+                endereco.Bairro = "";
+                endereco.Estado = "";
+                endereco.Cep = "";
+
                 // Criamos a tabela de Endereco com o IdUsuario nela, para poder atualiza-la no perfil
                 await _repositorioEndereco.Salvar (endereco);
             } catch (DbUpdateConcurrencyException) {
@@ -100,6 +114,7 @@ namespace backend.Controllers {
                 Usuario.ReceberNotif = bool.Parse(Request.Form["ReceberNotif"]);
                 Usuario.RazaoSocial = Request.Form["RazaoSocial"].ToString ();
                 Usuario.FazEntrega = bool.Parse(Request.Form["FazEntrega"]);
+                Usuario.SobreColab = Request.Form["SobreColab"].ToString ();
 
                 await _repositorio.Alterar (Usuario);
             } catch (DbUpdateConcurrencyException) {

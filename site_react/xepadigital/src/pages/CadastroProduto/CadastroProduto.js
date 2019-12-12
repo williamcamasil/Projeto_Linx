@@ -26,6 +26,7 @@ class CadastroProduto extends Component {
         }
     }
 
+    //#region POST
     //Mostrar Imagem
     imgSetState = (i) =>{
         this.setState({
@@ -46,10 +47,12 @@ class CadastroProduto extends Component {
     componentDidMount(){
         this.getCadProduto();
     }
+    //#endregion
 
+    //#region GET
     //GET - Inserir nos Inputs
     getInputProduto = (id) => {
-        this.state.idProdutoAlterada = id;
+        this.setState({idProdutoAlterada: id});
         api.get('/Produto/' +  id)
             .then(response => {
             if (response.status === 200) {
@@ -60,13 +63,14 @@ class CadastroProduto extends Component {
 
     //GET - Produtos
     getCadProduto = () => {
-        api.get('/Produto')
+        api.get('/RegistroProduto/'+parseJwt().Id)
         .then(response => {
             if (response.status === 200) {
                 this.setState({ listaCadProdutos: response.data })
             }
         })
     }
+    //#endregion
 
     //Mostrar Imagem
     imgSetState = (i) => {
@@ -115,7 +119,7 @@ class CadastroProduto extends Component {
                 this.limparCampos();
             }, 1000);
 
-            this.state.idProdutoAlterada = 0;
+            this.setState({idProdutoAlterada: 0});
         } else { 
             //POST
             let produto = new FormData();
@@ -225,7 +229,7 @@ class CadastroProduto extends Component {
                                                             onChange={this.imgSetState}
                                                             ref={this.state.put_post_Produto.imgProduto}
                                                         />
-                                                        <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} />
+                                                        <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt=""/>
                                                     </>
                                                 ) : (
                                                         //POST
@@ -334,13 +338,13 @@ class CadastroProduto extends Component {
                                         return(
                                             
                                                 <div className="card_branco card">
-                                                    <img src={"http://localhost:5000/" + produto.imgProduto} alt="imagem ilustrativa de comida" />
-                                                    <p>{produto.nomeProduto}</p>
-                                                    <p>{(produto.organico) ? 'Produto Orgânico':'Produto não Orgânico'}</p>
-                                                    <p>{produto.disponibilidade} Kg</p>
+                                                    <img src={"http://localhost:5000/" + produto.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
+                                                    <p>{produto.idProdutoNavigation.nomeProduto}</p>
+                                                    <p>{(produto.idProdutoNavigation.organico === true) ? 'Produto Orgânico':'Produto não Orgânico'}</p>
+                                                    <p>{produto.idProdutoNavigation.disponibilidade} Kg</p>
                                                     {/* <button className="botao" type="button" name="Editar_Card">Editar</button> */}
                                                     {/* <button className="botao" type="button" name="Editar_Card">Editar</button> */}
-                                                    <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputProduto(produto.idProduto)}>Editar</button>
+                                                    <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputProduto(produto.idProdutoNavigation.idProduto)}>Editar</button>
                                                 </div>
                                         );
                                     }.bind(this))
@@ -348,7 +352,7 @@ class CadastroProduto extends Component {
                             </div>
 
                             <div className="mais">
-                                 <a href="#" title="Ver mais receitas">
+                                 <a href="/#" title="Ver mais receitas">
                                 <img src={mais} alt="Ícone de adição, representando ver mais."/></a>
                             </div>
                         </div>

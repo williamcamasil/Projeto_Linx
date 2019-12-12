@@ -8,6 +8,8 @@ namespace backend.Interfaces {
 
         Task<Receita> BuscarPorID (int id);
 
+        Task<List<Receita>> BuscarPorIdUser (int id);
+
         Task<Receita> Salvar (Receita Receita);
 
         Task<Receita> Alterar (Receita Receita);

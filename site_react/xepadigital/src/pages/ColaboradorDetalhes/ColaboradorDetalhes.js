@@ -7,7 +7,8 @@ import Footer from '../../componentes/Footer/Footer';
 import api from '../../services/api'
 import { parseJwt } from '../../services/auth';
 
-import { MDBBtn, MDBInput, MDBAlert, MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
+// , MDBAlert
+import { MDBBtn, MDBInput, MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
 
 
 class ColaboradorDetalhes extends Component {

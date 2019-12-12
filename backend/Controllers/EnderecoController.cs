@@ -34,7 +34,7 @@ namespace backend.Controllers {
         [HttpGet ("{id}")]
         [Authorize]
         public async Task<ActionResult<Endereco>> Get (int id) {
-            var Endereco = await _repositorio.BuscarPorID (id);
+            var Endereco = await _repositorio.BuscarPorIdUsuario (id);
 
             if (Endereco == null) {
                 return NotFound (
@@ -80,7 +80,7 @@ namespace backend.Controllers {
                 await _repositorio.Alterar (Endereco);
             } catch (DbUpdateConcurrencyException) {
                 //Verificamos se o objeto inserido realmente existe no banco
-                var Endereco_valido = await _repositorio.BuscarPorID (id);
+                var Endereco_valido = await _repositorio.BuscarPorIdEndereco (id);
                 if (Endereco_valido == null) {
                     return NotFound (
                         new {
@@ -97,10 +97,10 @@ namespace backend.Controllers {
         }
 
         //FAZENDO DELETE NO BANCO
-        [HttpDelete ("{id}")]
+        [HttpDelete ("Delete/{id}")]
         [Authorize (Roles = "Administrador")]
         public async Task<ActionResult<Endereco>> Delete (int id) {
-            var Endereco = await _repositorio.BuscarPorID (id);
+            var Endereco = await _repositorio.BuscarPorIdEndereco (id);
             if (Endereco == null) {
                 return NotFound (
                     new {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
-import mulher_3 from '../../assets/img/mulher_3.jpg';
+// import mulher_3 from '../../assets/img/mulher_3.jpg';
 // import mulher_4 from '../../assets/img/mulher_4.jpg';
 // import colaborador from '../../assets/img/colaborador.png';
 // import fazendeiro from '../../assets/img/fazendeiro.png';
@@ -16,52 +16,44 @@ class Colaboradores extends Component {
     constructor() {
         super();
         this.state = {
-            lista: [],
-            listaProdutos: [],
-            nomeProduto: ""
+            listaColaborador: [],
+            listaRegistro: [],
 
-            // filtroProduto: 
-            // idLista : {
-            //     id : 0
-            // }
+            idColab: "",
+            nomeProduto: ""
         }
     }
 
     componentDidMount() {
         console.log("Carregado")
-        this.getListarColaboradores();
-        this.getListarProdutos();
-        // this.getFiltro();  //filtro de produtor e produtos
-
-        // setTimeout(() => {
-        //     console.log(this.state.lista)    
-        // }, 1000);
-
+        this.getListaColaboradores();
+        this.getListaRegistros();
     }
 
-    getListarProdutos = () => {
+    getListaRegistros = () => {
         // let id = this.state.lista.idUsuario;
         api.get('/RegistroProduto').then(response => {
             if (response.status === 200) {
-                this.setState({ listaProdutos: response.data })
+                this.setState({ listaRegistro: response.data })
             }
+            console.log("Registros: ", this.state.listaRegistro)
         })
 
         // console.log('id: ', id)
     }
 
-    getListarColaboradores = () => {
+    getListaColaboradores = () => {
         api.get('/Colaborador').then(response => {
             if (response.status === 200) {
-                this.setState({ lista: response.data })
-                console.log('Lista ' , this.state.lista)
+                this.setState({ listaColaborador: response.data })
             }
-        }) 
+            console.log("Colaboradores: ", this.state.listaColaborador)
+        })
     }
 
     postSetState = (input) => {
         this.setState({
-            nomeProduto : input.target.value
+            nomeProduto: input.target.value
         })
     }
 
@@ -71,13 +63,13 @@ class Colaboradores extends Component {
         let filtro = {
             nomeProduto: this.state.nomeProduto
         }
-        
+
         api.post('/FiltroProduto', filtro).then(response => {
             if (response.status === 200) {
                 this.setState({ lista: response.data })
-                console.log('Lista ' , this.state.lista)
+                console.log('Lista ', this.state.lista)
             }
-        })     
+        })
     }
 
     // getListarUsuario = () => {
@@ -111,7 +103,7 @@ class Colaboradores extends Component {
 
                     <div className="container search_bar">
                         <form method="GET" className="form_style">
-                            <input className="input_style" type="search" value={this.state.nomeProduto}  onChange={this.postSetState} placeholder="Pesquisar" />
+                            <input className="input_style" type="search" value={this.state.nomeProduto} onChange={this.postSetState} placeholder="Pesquisar" />
                             <button className="button_conj" type="button" name="Pesquisa" onClick={this.getFiltrarInformacao}><img src={Lupa} alt="Lupa branca, representando a busca." /></button>
                         </form>
                     </div>
@@ -120,40 +112,42 @@ class Colaboradores extends Component {
                     <br /><br />
 
                     {
-                        this.state.lista.map(  (informacoes) => {
+                        this.state.listaColaborador.map((colaborador) => {
+                            // this.state.idColab = colaborador.idUsuario
+                            // console.log("idMap: ", this.state.idColab)
+
                             return (
-                                <section className="container">
+                                <section key={colaborador.idUsuario} className="container">
                                     <div className="card card_colab">
                                         <div className="card_size">
-                                            <h3>{informacoes.nomeUsuario}</h3>
+                                            <h3>{colaborador.nomeUsuario}</h3>
                                             <div className="card_style">
                                                 {/* <img src={mulher_3} className="colaboradores_img" alt="Foto de perfil do colaborador" /> */}
-                                                <img src={"http://localhost:5000/" + informacoes.imgPerfil} alt="Foto de perfil do colaborador" />
-                                                <p className="text_1">{informacoes.sobreColab}</p>
+                                                <img src={"http://localhost:5000/" + colaborador.imgPerfil} alt="Foto de perfil do colaborador" />
+                                                <p className="text_1">{colaborador.sobreColab}</p>
                                             </div>
                                             <p className="Contato_Colaborador">Tel: (11) 5672-0992 | Rua Guilherme da Cruz, 148</p>
                                         </div>
-                                    
+
                                         <div className="sp_border"></div>
-                                        
+
                                         <div className="card_size">
                                             <h3>Produtos fornecidos</h3>
                                             <div className="card_style">
-                                            {
-                                                this.state.listaProdutos.map(
-                                                    function (produto) {
-                                                        return (
-                                                            <div className="card_info">
-                                                                <img src={"http://localhost:5000/" + produto.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
-                                                                <p>{produto.idUsuarioNavigation.idUsuario}</p>
-                                                                {/* R${produto.idProdutoNavigation.preco} /kg</p> */}
-                                                            </div>
-                                                        );
-                                                    }
-                                                )
-                                            }
+                                                {
+                                                    this.state.listaRegistro.map(
+                                                        function (registro) {
+                                                            return (
+                                                                <div key={registro.idRegistro} className="card_info">
+                                                                    <img src={"http://localhost:5000/" + registro.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
+                                                                    <p>{registro.idUsuarioNavigation.idUsuario}</p>
+                                                                </div>
+                                                            );
+                                                        }
+                                                    )
+                                                }
                                             </div>
-                                            <Link to={{ pathname: '/ColaboradorDetalhes', state: { idUsuario: informacoes.idUsuario} }} >+ Informações</Link>
+                                            <Link to={{ pathname: '/ColaboradorDetalhes', state: { idUsuario: colaborador.idUsuario } }} >+ Informações</Link>
                                         </div>
                                     </div>
                                 </section>

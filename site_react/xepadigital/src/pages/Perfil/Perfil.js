@@ -77,7 +77,9 @@ class Perfil extends Component {
             })
             .catch(error => {
                 console.log("error: ", error)
-                window.location.reload();
+                setTimeout(() => {
+                    window.location.reload();
+                }, 400);
             })
 
     }
@@ -96,7 +98,9 @@ class Perfil extends Component {
             })
             .catch(error => {
                 console.log("error: ", error)
-                window.location.reload();
+                setTimeout(() => {
+                    window.location.reload();
+                }, 400);
             })
     }
     //#endregion
@@ -165,7 +169,7 @@ class Perfil extends Component {
             })
             .then(response => {
                 if (response.status === 200) {
-                    console.log("putFormUsuResp: ",response);
+                    console.log("putFormUsuResp: ", response);
                 }
             })
             .then(response => response.json())
@@ -189,7 +193,7 @@ class Perfil extends Component {
         api.put("/Endereco/" + idEndPut, endAtualizado)
             .then(response => {
                 if (response.status === (200 || 204)) {
-                    console.log("putEndResp: ",response);
+                    console.log("putEndResp: ", response);
                 }
             })
             .catch(error => console.log("error: ", error))
@@ -206,7 +210,7 @@ class Perfil extends Component {
         this.putAltEndereco();
     }
 
-    
+
 
     render() {
         return (
@@ -231,11 +235,11 @@ class Perfil extends Component {
                                             {/* <img src={profile} alt="" /> */}
                                             <img alt="Imagem de perfil do Usuário" src={"http://localhost:5000/" + this.state.putUsuario.imgPerfil} />
                                         </div>
-                                        <br/>
+                                        <br />
 
                                         {/* teste */}
-                                        <label htmlFor="icon-button-file">   
-                                            <IconButton color="primary"  aria-label="upload picture" component="span">
+                                        <label htmlFor="icon-button-file">
+                                            <IconButton color="primary" aria-label="upload picture" component="span">
                                                 <input
                                                     hidden
                                                     id="icon-button-file"
@@ -244,7 +248,7 @@ class Perfil extends Component {
                                                     name="imgPerfil"
                                                     onChange={this.putSetStateImg}
                                                     ref={this.state.putUsuario.imgPerfil}
-                                                /><ImageSearchIcon color="action" fontSize="large"/>
+                                                /><ImageSearchIcon color="action" fontSize="large" />
                                             </IconButton>
                                         </label>
 
@@ -312,7 +316,7 @@ class Perfil extends Component {
                                                 {/* <!-- notificacao --> */}
                                                 <label aria-label="notificacao_lbl">Deseja receber notificações?</label>
                                                 <br />
-                                                <select className="caixa-texto_3 caixa_style"
+                                                <select className="caixa-texto_3 style_selec caixa_style"
                                                     name="receberNotif"
                                                     value={this.state.putUsuario.receberNotif}
                                                     onChange={this.putSetStateUsuario}
@@ -329,14 +333,14 @@ class Perfil extends Component {
 
                                 {/* Button */}
                                 <div className="c_disp_just">
-                                    <div className="caixa_input_3">
+                                    <div className="caixa_input_33">
 
 
                                         <button className="botao" type="submit" name="Editar"><a href="/ReservaCliente">Reservas</a></button>
 
 
                                     </div>
-                                    <div className="caixa_input_3">
+                                    <div className="caixa_input_33">
 
 
                                         <button className="botao" type="submit" name="Salvar">Salvar</button>
@@ -345,18 +349,18 @@ class Perfil extends Component {
                                     </div>
                                 </div>
 
-                                </form>
+                            </form>
 
-                                {/* ENDEREÇO */}
-                                <span className="d_text">Endereço</span>
-                                <div className="linha_perfil_colab"></div>
+                            {/* ENDEREÇO */}
+                            <span className="d_text">Endereço</span>
+                            <div className="linha_perfil_colab"></div>
 
-                                <form onSubmit={this.putAltEndereco}>
+                            <form onSubmit={this.putAltEndereco}>
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_direita">
                                         <label aria-label="logradouro_prod_lbl">Logradouro:</label>
                                         <br />
-                                        <input className="caixa-texto_1 caixa_style" type="text" placeholder="Avenida..."
+                                        <input className="caixa-texto_11 caixa_style" type="text" placeholder="Avenida..."
                                             name="endereco1"
                                             value={this.state.putEndereco.endereco1}
                                             onChange={this.putSetStateEndereco}
@@ -384,7 +388,7 @@ class Perfil extends Component {
                                             <div className="caixa_input_3">
                                                 <label aria-label="estado_prod_lbl">Estado</label>
                                                 <br />
-                                                <select className="caixa-texto_5 caixa_style"
+                                                <select className="caixa-texto_5 caixa-texto_7 style_selec caixa_style"
                                                     name="estado"
                                                     value={this.state.putEndereco.estado}
                                                     onChange={this.putSetStateEndereco}
@@ -416,14 +420,14 @@ class Perfil extends Component {
 
                                 {/* btn */}
                                 {/* <div className="c_disp_just">
-                                    <div className="caixa_input_3">
+                                    <div className="caixa_input_33">
 
 
                                         <button className="botao" type="submit"  name="Editar">Editar</button>
 
 
                                     </div>
-                                    <div className="caixa_input_3">
+                                    <div className="caixa_input_33">
 
 
                                         <button className="botao" type="submit" name="Salvar">Salvar</button>
@@ -434,7 +438,7 @@ class Perfil extends Component {
                             </form>
 
 
-                            
+
 
 
                         </div>

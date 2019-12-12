@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import mais from '../../assets/img/mais.png';
-import menos from '../../assets/img/menos.jpg';
+// import menos from '../../assets/img/menos.jpg';
 import william from '../../assets/img/William.svg';
 import karina from '../../assets/img/Karina.svg';
 // import fabiano from '../../assets/img/fabiano.svg';
@@ -87,7 +87,7 @@ class Duvidas extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("1")}><img src={mais} alt="Mais informações" /></a>
+                                    <a href="/#" onClick={() => this.maisInformacoes("1")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
 
@@ -115,7 +115,7 @@ class Duvidas extends Component {
                                         </div>
                                     </div>
                                     <div>
-                                        <a onClick={() => this.maisInformacoes("2")}><img src={mais} alt="Mais informações" /></a>
+                                        <a href="/#" onClick={() => this.maisInformacoes("2")}><img src={mais} alt="Mais informações" /></a>
                                     </div>
                             </div>
                         </div>
@@ -139,7 +139,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("3")}><img src={mais} alt="Mais informações" /></a>
+                                    <a href="/#" onClick={() => this.maisInformacoes("3")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
 
@@ -161,7 +161,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("4")}><img src={mais} alt="Mais informações" /></a>
+                                    <a href="/#" onClick={() => this.maisInformacoes("4")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +186,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("5")}><img src={mais} alt="Mais informações" /></a>
+                                    <a href="/#" onClick={() => this.maisInformacoes("5")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
 
@@ -211,7 +211,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("6")}><img src={mais} alt="Mais informações" /></a>
+                                    <a href="/#" onClick={() => this.maisInformacoes("6")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +237,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("7")}><img src={mais} alt="Mais informações" /></a>
+                                    <a href="/#" onClick={() => this.maisInformacoes("7")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
 
@@ -257,7 +257,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("8")}><img src={mais} alt="Mais informações" /></a>
+                                    <a href="/#" onClick={() => this.maisInformacoes("8")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
 

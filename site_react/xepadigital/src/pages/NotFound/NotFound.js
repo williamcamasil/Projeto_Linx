@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Header from '../../componentes/Header/Header';
-import Footer from '../../componentes/Footer/Footer';
+// import Header from '../../componentes/Header/Header';
+// import Footer from '../../componentes/Footer/Footer';
 
 class NotFound extends Component {
     render() {

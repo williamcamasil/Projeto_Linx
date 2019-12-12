@@ -24,9 +24,9 @@ class CadastroReceita extends Component {
     }
 
     //Mostrar Imagem
-    imgSetState = (i) =>{
+    imgSetState = (i) => {
         this.setState({
-            file : URL.createObjectURL(i.target.files[0])
+            file: URL.createObjectURL(i.target.files[0])
         })
     }
 
@@ -44,23 +44,23 @@ class CadastroReceita extends Component {
 
     //GET - Inserir nos Inputs
     getInputReceita = (id) => {
-        this.state.idReceitaAlterada = id;
+        this.setState({ idReceitaAlterada: id });
         api.get('/Receita/' + id)
-        .then(response => {
-            if (response.status === 200) {
-                this.setState({ put_post_Receita: response.data }, () => console.log("Objeto a ser atualizado:", this.state.put_post_Receita))
-            }
-        })
+            .then(response => {
+                if (response.status === 200) {
+                    this.setState({ put_post_Receita: response.data }, () => console.log("Objeto a ser atualizado:", this.state.put_post_Receita))
+                }
+            })
     }
 
     //GET -  Receitas
     getCadReceita = () => {
-        api.get('/Receita')
-        .then(response => {
-            if (response.status === 200) {
-                this.setState({ listaCadReceitas: response.data })
-            }
-        })
+        api.get('/Receita/Usuario/' + parseJwt().Id)
+            .then(response => {
+                if (response.status === 200) {
+                    this.setState({ listaCadReceitas: response.data })
+                }
+            })
     }
 
     //Mostrar Imagem
@@ -100,14 +100,14 @@ class CadastroReceita extends Component {
                 },
                 body: receita
             })
-            .catch(error => console.log(error))
+                .catch(error => console.log(error))
 
             setTimeout(() => {
                 this.getCadReceita();
                 this.limparCampos();
             }, 1000);
 
-            this.state.idReceitaAlterada = 0;
+            this.setState({ idReceitaAlterada: 0 });
         } else {
             //POST - Padrão
             let receita = new FormData();
@@ -124,11 +124,11 @@ class CadastroReceita extends Component {
                 },
                 body: receita
             })
-            .then(response => response.json())
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => console.log('Não foi possível cadastrar:' + error))
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => console.log('Não foi possível cadastrar:' + error))
 
             setTimeout(() => {
                 this.getCadReceita();
@@ -147,12 +147,12 @@ class CadastroReceita extends Component {
             }
         })
 
-        .then(response => response.json())
-        .then(response => {
-            console.log(response);
-            this.getCadReceita();
-            this.setState(() => ({ lista: this.state.listaCadReceitas }))
-        })
+            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                this.getCadReceita();
+                this.setState(() => ({ lista: this.state.listaCadReceitas }))
+            })
 
 
         setTimeout(() => {
@@ -162,7 +162,7 @@ class CadastroReceita extends Component {
     }
 
     limparCampos = () => {
-        this.setState({    
+        this.setState({
             put_post_Receita: {
                 nomeReceita: "",
                 descricaoPreparo: "",
@@ -200,7 +200,7 @@ class CadastroReceita extends Component {
                                                             onChange={this.imgSetState}
                                                             ref={this.state.put_post_Receita.imgReceita}
                                                         />
-                                                        <img src={"http://localhost:5000/" + this.state.put_post_Receita.imgReceita} />
+                                                        <img src={"http://localhost:5000/" + this.state.put_post_Receita.imgReceita} alt="" />
                                                     </>
                                                 ) : (
                                                         //POST
@@ -266,16 +266,18 @@ class CadastroReceita extends Component {
                                     this.state.listaCadReceitas.map(function (receita) {
                                         return (
                                             <>
-                                                    <div className="card_branco card">
-                                                        <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
-                                                        <p>{receita.nomeReceita}</p>
-                                                        <p>Ingredientes</p>
-                                                        <p>Modo de Preparo</p>
-                                                        <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputReceita(receita.idReceita)}>Editar</button>
-                                                    </div>
+                                                <div className="card_branco card">
+                                                    <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
+                                                    <p>{receita.nomeReceita}</p>
+                                                    <p>Ingredientes</p>
+                                                    <p>Modo de Preparo</p>
+                                                    <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputReceita(receita.idReceita)}>Editar</button>
+                                                </div>
                                             </>
                                         );
-                                    }.bind(this))
+                                    }
+                                        .bind(this)
+                                    )
                                 }
                             </div>
 
