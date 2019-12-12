@@ -4,13 +4,15 @@ import Footer from '../../componentes/Footer/Footer';
 import lupa from '../../assets/img/Lupa.svg';
 import { Link } from "react-router-dom";
 import api from '../../services/api'
+import mais from '../../assets/img/mais.png'
 
 class Receitas extends Component {
     constructor() {
         super();
         this.state = {
             listaReceitas: [],
-            nomeReceita: ""
+            nomeReceita: "",
+            more: 3
         }
     }
 
@@ -32,7 +34,7 @@ class Receitas extends Component {
         fetch('http://localhost:5000/api/Receita')
             .then(response => response.json())
             .then(response => {
-                var redux = response.slice(0, 6)
+                var redux = response.slice(0, this.state.more)
 
                 this.setState({ listaReceitas: redux })
             })
@@ -69,6 +71,12 @@ class Receitas extends Component {
         })     
     }
 
+    incrementarMais = () => {
+        this.state.more += 3; 
+        console.log('Mostrar: ', this.state.more) //this.state.more)  
+        this.getReceita();
+    }
+
     render() {
         return (
             <div>
@@ -97,7 +105,6 @@ class Receitas extends Component {
                         <p className="linha_laranja"></p>
                         <div className="caixa_central">
                             <div className="grupo">
-                                
 
                                 {
                                     this.state.listaReceitas.map(function (receita) {
@@ -123,10 +130,12 @@ class Receitas extends Component {
                                                 </div>
                                             </>
                                         );
-                                    }
-                                        // .bind(this)
-                                    )
+                                    })
                                 }
+                            </div>
+                            <div className="mais">
+                                <a onClick = { () => {this.incrementarMais()}} title="Ver mais receitas">
+                                <img src={mais} alt="Ícone de adição, representando ver mais."/></a>
                             </div>
                         </div>
 

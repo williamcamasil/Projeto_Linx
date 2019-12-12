@@ -49,6 +49,10 @@
     font-size: 40px;    
 }
 
+.imgTime{
+    width: 200px;
+}
+
 .fa-arrow-circle-left{
     color: white;
 }
@@ -179,7 +183,7 @@ header ul {
 
 #menu_superior {
     background-color: #472A4C;
-    padding: 4px 0px;
+    padding: 8px 0px;
 }
 
 #menu_superior ul li {
@@ -187,7 +191,7 @@ header ul {
     border-radius: 20px;
     text-align: center;
     width: 140px;
-    padding: 2px 0px;
+    padding: 6px 0px;
     margin: 5px 0px 5px 20px;
 }
 
@@ -411,8 +415,11 @@ body {
 .colaboradores_img{
     width: 150px;
     height: 200px;
-    margin-left: 20px;
+    /* margin-left: 20px;
     margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px; */
+    margin: 20px 20px;
 }
 
 .button_conj {
@@ -466,9 +473,14 @@ body {
 
 .card_style {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     text-align: justify;
     margin: 15px 0px;
+}
+
+.card_style img{
+    height: 100px;
+    width: 100px;
 }
 
 .card_info, .card_info img {
@@ -1261,7 +1273,7 @@ h2 {
 
 /*#region PAGINA DUVIDAS*/
 #banner_duvidas span{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/duvida.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/banner_duvida.jpg);
     height: 30vh;
     background-repeat: no-repeat;
     background-position: top center;
@@ -1308,8 +1320,8 @@ h2 {
 
 /*#region PAGINA TERMOS DE USO*/
 #banner_termos span{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/termos.png);
-    height: 30vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/banner_termos.jpg);
+    height: 40vh;
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
@@ -2188,6 +2200,7 @@ h2 {
 
     .caixa-texto {
         width: 100%;
+        
     }
 
     #caixa_parte_imagem img{
@@ -2203,7 +2216,7 @@ h2 {
     }
     
     #caixa_parte_conteudo input{
-        width: 340px;
+        width: 300px;
     }
 
     .caixa_texto{
@@ -2211,7 +2224,8 @@ h2 {
     }
 
     .caixa_texto_sub{
-        width: 350px;
+        width: 300px;
+        /* text-align: center; */
     }
 
     .caixa_texto{
@@ -2222,8 +2236,14 @@ h2 {
         width: 350px;
     }
 
+    .form_caixa {
+        margin-left: 20px;
+    }
+
     .padronizar_campo2{
         margin-top: 20px;
+        /* text-align: center; */
+        width: 300px;
     } 
      
     .card_{
@@ -2233,6 +2253,17 @@ h2 {
     .card_branco{
         margin-bottom: 10px;
     }
+
+    .caixa_texto_componente{
+        width: 310px;
+        /* background: chartreuse; */
+    }
+
+    /* .caixa_texto_componente_campo{
+        width: 10px;
+        background: chartreuse;
+    } */
+
     /*#endregion */
 
     /*#region LOGIN MOBILE*/
@@ -2352,7 +2383,7 @@ h2 {
     }
 
     .saiba {
-        font-size: 15px;
+        font-size: 20px;
         margin-bottom: 20px;
         margin: auto;
         text-align: center;
@@ -2399,6 +2430,20 @@ h2 {
         height: 400px;
         flex-direction: column;
     }
+
+    .produtos_colab p {
+        font-size: 15px;
+        width: 300px;
+    }
+
+    .caixa_texto_botoes{
+        width: 310px;   
+    }
+
+    .caixa_texto_botoes .botao{
+        width: 100px;
+    }
+
     /*#endregion */
     
     /*#region TERMOS_DE_USO*/
@@ -2432,6 +2477,10 @@ h2 {
 
     .caixa_duvidas{
         width: 350px;    
+    }
+
+    .respostaDuvidas_perfis{
+        width: 300px;
     }
     /*#endregion */
 

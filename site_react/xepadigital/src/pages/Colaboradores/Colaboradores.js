@@ -11,6 +11,7 @@ import Lupa from '../../assets/img/Lupa.svg';
 // import api from '../../services/api';
 import { Link } from "react-router-dom";
 import api from '../../services/api'
+import mais from '../../assets/img/mais.png'
 
 class Colaboradores extends Component {
     constructor() {
@@ -20,7 +21,8 @@ class Colaboradores extends Component {
             listaRegistro: [],
 
             idColab: "",
-            nomeProduto: ""
+            nomeProduto: "",
+            more: 3
         }
     }
 
@@ -38,17 +40,35 @@ class Colaboradores extends Component {
             }
             console.log("Registros: ", this.state.listaRegistro)
         })
-
-        // console.log('id: ', id)
     }
 
+    // getListaRegistros = () => {
+    //     fetch('http://localhost:5000/api/RegistroProduto')
+    //         .then(response => response.json())
+    //         .then(response => {
+    //             var redux = response.slice(0, 3)
+
+    //             this.setState({ listaRegistro: redux })
+    //         })
+    // }
+
+    // getListaColaboradores = () => {
+    //     api.get('/Colaborador').then(response => {
+    //         if (response.status === 200) {
+    //             this.setState({ listaColaborador: response.data })
+    //         }
+    //         console.log("Colaboradores: ", this.state.listaColaborador)
+    //     })
+    // }
+
     getListaColaboradores = () => {
-        api.get('/Colaborador').then(response => {
-            if (response.status === 200) {
-                this.setState({ listaColaborador: response.data })
-            }
-            console.log("Colaboradores: ", this.state.listaColaborador)
-        })
+        fetch('http://localhost:5000/api/Colaborador')
+            .then(response => response.json())
+            .then(response => {
+                var redux = response.slice(0, this.state.more)
+
+                this.setState({ listaColaborador: redux })
+            })
     }
 
     postSetState = (input) => {
@@ -70,6 +90,12 @@ class Colaboradores extends Component {
                 console.log('Lista ', this.state.lista)
             }
         })
+    }
+
+    incrementarMais = () => {
+        this.state.more += 3; 
+        console.log('Mostrar: ', this.state.more) //this.state.more)  
+        this.getListaColaboradores();
     }
 
     // getListarUsuario = () => {
@@ -122,7 +148,6 @@ class Colaboradores extends Component {
                                         <div className="card_size">
                                             <h3>{colaborador.nomeUsuario}</h3>
                                             <div className="card_style">
-                                                {/* <img src={mulher_3} className="colaboradores_img" alt="Foto de perfil do colaborador" /> */}
                                                 <img src={"http://localhost:5000/" + colaborador.imgPerfil} alt="Foto de perfil do colaborador" />
                                                 <p className="text_1">{colaborador.sobreColab}</p>
                                             </div>
@@ -135,19 +160,18 @@ class Colaboradores extends Component {
                                             <h3>Produtos fornecidos</h3>
                                             <div className="card_style">
                                                 {
-                                                    this.state.listaRegistro.map(
-                                                        function (registro) {
-                                                            return (
-                                                                <div key={registro.idRegistro} className="card_info">
-                                                                    <img src={"http://localhost:5000/" + registro.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
-                                                                    <p>{registro.idUsuarioNavigation.idUsuario}</p>
-                                                                </div>
-                                                            );
-                                                        }
-                                                    )
+                                                    this.state.listaRegistro.filter(e => e.idUsuario === colaborador.idUsuario).map(function (registro) {
+                                                        return (
+                                                            <div key={registro.idRegistro} className="card_info">
+                                                                <img src={"http://localhost:5000/" + registro.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
+                                                                <p>{registro.idUsuarioNavigation.nomeProduto}</p>
+                                                                <p>R$ {registro.idUsuarioNavigation.preco} /Kg</p>
+                                                            </div>
+                                                        );
+                                                    })
                                                 }
                                             </div>
-                                            <Link to={{ pathname: '/ColaboradorDetalhes', state: { idUsuario: colaborador.idUsuario } }} >+ Informações</Link>
+                                            <Link className="btn_link_click" to={{ pathname: '/ColaboradorDetalhes', state: { idUsuario: colaborador.idUsuario } }} >+ Informações</Link>
                                         </div>
                                     </div>
                                 </section>
@@ -155,6 +179,11 @@ class Colaboradores extends Component {
                         })
                     }
 
+                    <div className="mais container">
+                        <a onClick={() => { this.incrementarMais() }} title="Ver mais receitas">
+                            <img src={mais} alt="Ícone de adição, representando ver mais." /></a>
+                    </div>
+                    
                     <div className="colab_section"></div>
                 </main>
                 <Footer />

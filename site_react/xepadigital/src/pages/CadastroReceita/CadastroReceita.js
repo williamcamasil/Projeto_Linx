@@ -19,7 +19,8 @@ class CadastroReceita extends Component {
                 imgReceita: React.createRef(),
                 idUsuario: parseJwt().Id,
             },
-            idReceitaAlterada: 0
+            idReceitaAlterada: 0,
+            more: 4
         }
     }
 
@@ -54,13 +55,24 @@ class CadastroReceita extends Component {
     }
 
     //GET -  Receitas
+    // getCadReceita = () => {
+    //     api.get('/Receita/Usuario/' + parseJwt().Id)
+    //         .then(response => {
+    //             if (response.status === 200) {
+    //                 this.setState({ listaCadReceitas: response.data })
+    //             }
+    //         })
+    // }
+
     getCadReceita = () => {
-        api.get('/Receita/Usuario/' + parseJwt().Id)
+        fetch('http://localhost:5000/api/Receita/Usuario/' + parseJwt().Id)
+            .then(response => response.json())
             .then(response => {
-                if (response.status === 200) {
-                    this.setState({ listaCadReceitas: response.data })
-                }
+                var redux = response.slice(0, this.state.more)
+
+                this.setState({ listaCadReceitas: redux })
             })
+
     }
 
     //Mostrar Imagem
@@ -78,6 +90,12 @@ class CadastroReceita extends Component {
                 file: URL.createObjectURL(i.target.files[0])
             })
         }
+    }
+
+    incrementarMais = () => {
+        this.state.more += 4; 
+        console.log('Mostrar: ', this.state.more) //this.state.more)  
+        this.getCadReceita();
     }
 
     //POST & PUT
@@ -281,10 +299,14 @@ class CadastroReceita extends Component {
                                 }
                             </div>
 
-                            <div className="mais">
+                            {/* <div className="mais">
                                 <a href="/#" title="Ver mais receitas">
                                     <img src={mais}
                                         alt="Ícone de adição, representando ver mais." /></a>
+                            </div> */}
+                            <div className="mais">
+                                <a onClick = { () => {this.incrementarMais()}} title="Ver mais receitas">
+                                <img src={mais} alt="Ícone de adição, representando ver mais."/></a>
                             </div>
                         </div>
                     </section>

@@ -3,12 +3,12 @@ import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import mais from '../../assets/img/mais.png';
 // import menos from '../../assets/img/menos.jpg';
-// import william from '../../assets/img/William.svg';
-// import karina from '../../assets/img/Karina.svg';
-// import fabiano from '../../assets/img/fabiano.svg';
-// import gustavo from '../../assets/img/gustavo.svg';
-// import giovani from '../../assets/img/giovani.svg';
-// import linx from '../../assets/img/Linx.svg';
+import william from '../../assets/img/William.svg';
+import karina from '../../assets/img/Karina.svg';
+import fabiano from '../../assets/img/Fabiano.svg';
+import gustavo from '../../assets/img/Gustavo.svg';
+import giovani from '../../assets/img/Giovani.svg';
+import linx from '../../assets/img/Linx.svg';
 
 class Duvidas extends Component {
     constructor() {
@@ -87,7 +87,7 @@ class Duvidas extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="/#" onClick={() => this.maisInformacoes("1")}><img src={mais} alt="Mais informações" /></a>
+                                    <a onClick={() => this.maisInformacoes("1")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
 
@@ -99,15 +99,15 @@ class Duvidas extends Component {
                                                 this.state.pergunta2?
                                                 <p>
                                                      {/* Nosso time de desenvolvedores é composto por 5 pessoas: <br/> */}
-                                                    {/* <img src={fabiano} alt="Desenvolvedor" /><br/>
+                                                    <img className="imgTime" src={fabiano} alt="Desenvolvedor" /><br/>
                                                     Fabiano Oliveira<br/>
-                                                    <img src={giovani} alt="Desenvolvedor" /><br/>
+                                                    <img className="imgTime" src={giovani} alt="Desenvolvedor" /><br/>
                                                     Giovanni Canalli Silva<br/>
-                                                    <img src={gustavo} alt="Desenvolvedor" /><br/>
-                                                    Gustavo Mendes Brito<br/> */}
-                                                    {/* <img src={karina} alt="Desenvolvedor" /><br/> */}
+                                                    <img className="imgTime" src={gustavo} alt="Desenvolvedor" /><br/>
+                                                    Gustavo Mendes Brito<br/>
+                                                    <img className="imgTime" src={karina} alt="Desenvolvedor" /><br/>
                                                     Karina Karen Watanabe | Designer<br/>
-                                                    {/* <img src={william} alt="Desenvolvedor" /><br/> */}
+                                                    <img className="imgTime" src={william} alt="Desenvolvedor" /><br/>
                                                     William Camargo da Silva  | Backend<br/>
                                                 </p>
                                                 :null
@@ -115,7 +115,7 @@ class Duvidas extends Component {
                                         </div>
                                     </div>
                                     <div>
-                                        <a href="/#" onClick={() => this.maisInformacoes("2")}><img src={mais} alt="Mais informações" /></a>
+                                        <a onClick={() => this.maisInformacoes("2")}><img src={mais} alt="Mais informações" /></a>
                                     </div>
                             </div>
                         </div>
@@ -139,7 +139,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="/#" onClick={() => this.maisInformacoes("3")}><img src={mais} alt="Mais informações" /></a>
+                                    <a onClick={() => this.maisInformacoes("3")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
 
@@ -161,7 +161,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="/#" onClick={() => this.maisInformacoes("4")}><img src={mais} alt="Mais informações" /></a>
+                                    <a onClick={() => this.maisInformacoes("4")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +186,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="/#" onClick={() => this.maisInformacoes("5")}><img src={mais} alt="Mais informações" /></a>
+                                    <a onClick={() => this.maisInformacoes("5")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
 
@@ -211,7 +211,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="/#" onClick={() => this.maisInformacoes("6")}><img src={mais} alt="Mais informações" /></a>
+                                    <a onClick={() => this.maisInformacoes("6")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +237,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="/#" onClick={() => this.maisInformacoes("7")}><img src={mais} alt="Mais informações" /></a>
+                                    <a onClick={() => this.maisInformacoes("7")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
 
@@ -248,7 +248,7 @@ class Duvidas extends Component {
                                         {
                                             this.state.pergunta8?
                                             <p>
-                                                {/* <img src={linx} alt="Imagem da logo da empresa linx" /><br/> */}
+                                                <img src={linx} alt="Imagem da logo da empresa linx" /><br/>
                                                 Empresa Linx
                                             </p>
                                             :null
@@ -257,7 +257,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a href="/#" onClick={() => this.maisInformacoes("8")}><img src={mais} alt="Mais informações" /></a>
+                                    <a onClick={() => this.maisInformacoes("8")}><img src={mais} alt="Mais informações" /></a>
                                 </div>
                             </div>
 
