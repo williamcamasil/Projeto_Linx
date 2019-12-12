@@ -857,6 +857,9 @@ h2 {
 .caixa_input_33{
     width: 300px;
 }
+button{
+    cursor:pointer;
+}
 .caixa_style{
     border: 1px solid #707070;
     border-radius: 4px;
@@ -1541,7 +1544,7 @@ h2 {
     }
     .caixa_cad_img{
         width: 200px;
-        height: 250px;
+        height: 220px;
     }
     .caixa_cad_img img{
         width: 180px;

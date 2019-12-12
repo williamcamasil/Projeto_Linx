@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
-// import colaborador_3 from '../../assets/img/colaborador_3.png';
-// import profile from '../../assets/img/profile.png';
 import { parseJwt } from '../../services/auth';
 import api, { apiForm } from '../../services/api';
 
@@ -21,6 +19,7 @@ class PerfilColaborador extends Component {
             // usuarioPorId: [],
             // enderecoPorId: [],
 
+            usuarioCadastrado: {},
             putUsuario: {
                 idUsuario: parseJwt().Id,
                 imgPerfil: React.createRef(),
@@ -72,6 +71,7 @@ class PerfilColaborador extends Component {
             .then(response => {
                 if (response.status === 200) {
                     this.setState({ putUsuario: response.data })
+                    this.setState({ usuarioCadastrado: response.data })
                 }
                 console.log("respUser: ", this.state.putUsuario)
             })
@@ -79,7 +79,6 @@ class PerfilColaborador extends Component {
                 console.log("error: ", error)
                 window.location.reload();
             })
-
     }
 
     getEnderecoId = () => {
@@ -140,8 +139,12 @@ class PerfilColaborador extends Component {
 
         let usuarioForm = new FormData();
 
+        if (this.state.putUsuario.imgPerfil.current !== undefined) {
+            // Seta a nova imagem.
+            usuarioForm.set('imgPerfil', this.state.putUsuario.imgPerfil.current.files[0], this.state.putUsuario.imgPerfil.value);
+        }
+
         usuarioForm.set('idUsuario', this.state.putUsuario.idUsuario);
-        usuarioForm.set('imgPerfil', this.state.putUsuario.imgPerfil.current.files[0], this.state.putUsuario.imgPerfil.value);
         usuarioForm.set('nomeUsuario', this.state.putUsuario.nomeUsuario);
         usuarioForm.set('emailUsuario', this.state.putUsuario.emailUsuario);
         usuarioForm.set('telefone1', this.state.putUsuario.telefone1);
@@ -154,29 +157,17 @@ class PerfilColaborador extends Component {
         usuarioForm.set('senhaUsuario', this.state.putUsuario.senhaUsuario);
         usuarioForm.set('tipoUsuario', this.state.putUsuario.tipoUsuario);
 
-        console.log("formUsu: ", usuarioForm);
-
         apiForm.put("/Usuario/" + idUser, usuarioForm)
-            .then(response => {
-                if (response.status === 200) {
-                    this.setState({ putEndereco: response.data })
-                }
-                console.log("respEnd: ", this.state.putEndereco)
-            })
-            .then(response => {
-                if (response.status === 200) {
-                    console.log("putFormUsuResp: ", response);
-                }
-            })
             .then(response => response.json())
             .then(response => {
                 console.log(response)
+                console.log("putRespUser: ", response.data);
             })
             .catch(error => console.log("error: ", error))
 
         setTimeout(() => {
             this.getUsuarioId();
-        }, 500);
+        }, 300);
     }
 
     putAltEndereco = (e) => {
@@ -184,25 +175,24 @@ class PerfilColaborador extends Component {
         let idEndPut = this.state.putEndereco.idEndereco;
         let endAtualizado = this.state.putEndereco;
 
-        console.log("idEndPut: ", idEndPut);
-
         api.put("/Endereco/" + idEndPut, endAtualizado)
+            .then(response => response.json())
             .then(response => {
-                if (response.status === (200 || 204)) {
-                    console.log("putEndResp: ", response);
-                }
+                console.log(response)
+                console.log("putRespEnd: ", response.data);
             })
             .catch(error => console.log("error: ", error))
 
         setTimeout(() => {
             this.getEnderecoId();
-        }, 500);
+        }, 300);
     }
     //#endregion
 
     putGeral = (e) => {
-        this.putAltUsuario();
-        this.putAltEndereco();
+        e.preventDefault();
+        this.putAltUsuario(e);
+        this.putAltEndereco(e);
     }
 
 
@@ -223,7 +213,7 @@ class PerfilColaborador extends Component {
                             <div className="linha_perfil_colab"></div>
 
 
-                            <form onSubmit={this.putAltUsuario}>
+                            <form onSubmit={this.putGeral}>
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_esquerda">
                                         <div className="caixa_cad_img">
@@ -238,6 +228,7 @@ class PerfilColaborador extends Component {
                                                 <input
                                                     hidden
                                                     id="icon-button-file"
+                                                    accept="image/*"
                                                     type="file"
                                                     name="imgPerfil"
                                                     onChange={this.putSetStateImg}
@@ -246,13 +237,6 @@ class PerfilColaborador extends Component {
                                             </IconButton>
                                         </label>
 
-                                        {/* <button className="botao"  name="imgPerfil" onChange={this.putSetStateImg} ref={this.state.putUsuario.imgPerfil}> */}
-                                        {/* <input 
-                                        type="file"
-                                        name="imgPerfil"
-                                        onChange={this.putSetStateImg}
-                                        ref={this.state.putUsuario.imgPerfil}
-                                        /> */}
                                         {/* </button> */}
                                     </div>
                                     <div>
@@ -360,7 +344,7 @@ class PerfilColaborador extends Component {
                                 </div>
 
                                 {/* Button */}
-                                <div className="c_disp_just">
+                                {/* <div className="c_disp_just">
                                     <div className="caixa_input_33">
 
 
@@ -375,15 +359,15 @@ class PerfilColaborador extends Component {
 
 
                                     </div>
-                                </div>
+                                </div> */}
 
-                            </form>
+                                {/* </form> */}
 
-                            {/* ENDEREÇO */}
-                            <span className="d_text">Endereço</span>
-                            <div className="linha_perfil_colab"></div>
+                                {/* ENDEREÇO */}
+                                <span className="d_text">Endereço</span>
+                                <div className="linha_perfil_colab"></div>
 
-                            <form onSubmit={this.putAltEndereco}>
+                                {/* <form onSubmit={this.putAltEndereco}> */}
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_direita">
                                         <label aria-label="logradouro_prod_lbl">Logradouro:</label>
@@ -447,11 +431,11 @@ class PerfilColaborador extends Component {
                                 </div>
 
                                 {/* btn */}
-                                {/* <div className="c_disp_just">
+                                <div className="c_disp_just">
                                     <div className="caixa_input_33">
 
 
-                                        <button className="botao" type="submit"  name="Editar">Editar</button>
+                                        <button className="botao" type="submit" name="Editar"><a href="/ReservaColaborador">Reservas</a></button>
 
 
                                     </div>
@@ -462,12 +446,8 @@ class PerfilColaborador extends Component {
 
 
                                     </div>
-                                </div> */}
+                                </div>
                             </form>
-
-
-
-
 
                         </div>
                     </section>

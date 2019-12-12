@@ -66,12 +66,12 @@ namespace backend.Controllers {
                 Usuario.RazaoSocial = "";
                 Usuario.SobreColab = "";
                 await _repositorio.Salvar (Usuario);
-                
+
                 // Instanciamos o Endereco para chama-lo
-                Endereco endereco = new Endereco();
+                Endereco endereco = new Endereco ();
                 // Falamos que a chave estrangeira dentro de endereço será o Id do usuario que foi criado
                 endereco.IdUsuario = Usuario.IdUsuario;
-                endereco.Endereco1 = "";     
+                endereco.Endereco1 = "";
                 endereco.Numero = "";
                 endereco.Cidade = "";
                 endereco.Bairro = "";
@@ -103,24 +103,29 @@ namespace backend.Controllers {
             }
 
             try {
-                var imagem = Request.Form.Files[0];
 
-                Usuario.ImgPerfil = _UploadImg.Upload (imagem, "Perfil");
+                if(Request.Form.Files.Count != 0){
+                    var imagem = Request.Form.Files[0];
+                    Usuario.ImgPerfil = _UploadImg.Upload (imagem, "Perfil");
+                }else{
+                    Usuario usuarioCadastrado = await _repositorio.BuscarPorID(int.Parse (Request.Form["IdUsuario"]));
+                    Usuario.ImgPerfil = usuarioCadastrado.ImgPerfil;
+                }
+
+                Usuario.IdUsuario = int.Parse (Request.Form["IdUsuario"]);
                 Usuario.NomeUsuario = Request.Form["NomeUsuario"].ToString ();
                 Usuario.EmailUsuario = Request.Form["EmailUsuario"].ToString ();
                 Usuario.Telefone1 = Request.Form["Telefone1"].ToString ();
                 Usuario.Telefone2 = Request.Form["Telefone2"].ToString ();
                 Usuario.Documento = Request.Form["Documento"].ToString ();
-                Usuario.ReceberNotif = bool.Parse(Request.Form["ReceberNotif"]);
+                Usuario.ReceberNotif = bool.Parse (Request.Form["ReceberNotif"]);
                 Usuario.RazaoSocial = Request.Form["RazaoSocial"].ToString ();
-                Usuario.FazEntrega = bool.Parse(Request.Form["FazEntrega"]);
+                Usuario.FazEntrega = bool.Parse (Request.Form["FazEntrega"]);
                 Usuario.SobreColab = Request.Form["SobreColab"].ToString ();
 
                 await _repositorio.Alterar (Usuario);
             } catch (DbUpdateConcurrencyException) {
                 //Verificamos se o objeto inserido realmente existe no banco
-
-
 
                 var Usuario_valido = await _repositorio.BuscarPorID (id);
                 if (Usuario_valido == null) {
@@ -150,7 +155,7 @@ namespace backend.Controllers {
                     }
                 );
             }
-            await _repositorio.Excluir(Usuario);
+            await _repositorio.Excluir (Usuario);
             return Usuario;
         }
     }
