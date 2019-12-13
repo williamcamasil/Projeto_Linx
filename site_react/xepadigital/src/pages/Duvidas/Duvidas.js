@@ -9,6 +9,8 @@ import fabiano from '../../assets/img/Fabiano.svg';
 import gustavo from '../../assets/img/Gustavo.svg';
 import giovani from '../../assets/img/Giovani.svg';
 import linx from '../../assets/img/Linx.svg';
+import senai from '../../assets/img/Senai.png';
+import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 
 class Duvidas extends Component {
     constructor() {
@@ -59,6 +61,7 @@ class Duvidas extends Component {
         return (
             <>
                 <Header />
+                <ScrollTop />
                 <main>
                     <div id="banner_duvidas">
                         <span>DÚVIDAS</span>
@@ -100,11 +103,11 @@ class Duvidas extends Component {
                                                 <p>
                                                      {/* Nosso time de desenvolvedores é composto por 5 pessoas: <br/> */}
                                                     <img className="imgTime" src={fabiano} alt="Desenvolvedor" /><br/>
-                                                    Fabiano Oliveira<br/>
+                                                    Fabiano Oliveira | Backend<br/>
                                                     <img className="imgTime" src={giovani} alt="Desenvolvedor" /><br/>
-                                                    Giovanni Canalli Silva<br/>
+                                                    Giovanni Canalli Silva | Frontend<br/>
                                                     <img className="imgTime" src={gustavo} alt="Desenvolvedor" /><br/>
-                                                    Gustavo Mendes Brito<br/>
+                                                    Gustavo Mendes Brito | Frontend<br/>
                                                     <img className="imgTime" src={karina} alt="Desenvolvedor" /><br/>
                                                     Karina Karen Watanabe | Designer<br/>
                                                     <img className="imgTime" src={william} alt="Desenvolvedor" /><br/>
@@ -243,13 +246,15 @@ class Duvidas extends Component {
 
                             <div className="pergunta card">
                                 <div>
-                                    <h5 className="letra_pagina_duvida">Patrocinadores</h5>
+                                    <h5 className="letra_pagina_duvida">Apoio</h5>
                                     <div className="respostaDuvidas_perfis">
                                         {
                                             this.state.pergunta8?
                                             <p>
-                                                <img src={linx} alt="Imagem da logo da empresa linx" /><br/>
-                                                Empresa Linx
+                                                <img className="imgSenai" src={senai} alt="Imagem da logo do senai" /><br/>
+                                                Senai de Informática <br/>
+                                                <img src={linx} alt="Imagem da logo da linx" /><br/>
+                                                Linx
                                             </p>
                                             :null
                                         }

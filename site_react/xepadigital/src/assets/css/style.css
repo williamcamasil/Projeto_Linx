@@ -53,6 +53,10 @@
     width: 200px;
 }
 
+.imgSenai{
+    width: 200px;
+}
+
 .fa-arrow-circle-left{
     color: white;
 }
@@ -86,11 +90,11 @@
 .respostaDuvidas p{
     font-family: var(--lato);
     font-size: 18px;
+
 }
 
 .respostaDuvidas_perfis{
     text-align: center;
-    /* margin: 20px; */
     margin: 20px auto;
     width: 700px;
 }
@@ -98,6 +102,7 @@
 .respostaDuvidas_perfis p{
     font-family: var(--lato);
     font-size: 18px;
+    margin-left: 100px;
 }
 
 .respostaDuvidas_perfis img{
@@ -2513,6 +2518,14 @@ button{
 
     .respostaDuvidas_perfis{
         width: 300px;
+    }
+
+    .respostaDuvidas_perfis img{
+        width: 150px;
+    }
+
+    .respostaDuvidas_perfis p{
+        margin-left: 40px;
     }
     /*#endregion */
 

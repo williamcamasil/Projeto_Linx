@@ -4,6 +4,7 @@ import Footer from '../../componentes/Footer/Footer';
 import api from '../../services/api'
 import { parseJwt } from "../../services/auth"
 import mais from '../../assets/img/mais.png'
+import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 
 class CadastroProduto extends Component {
     constructor(){
@@ -225,6 +226,7 @@ class CadastroProduto extends Component {
         return (
             <div>
                 <Header />
+                <ScrollTop />
                 <main>
                     <section>
                         <div className="container">

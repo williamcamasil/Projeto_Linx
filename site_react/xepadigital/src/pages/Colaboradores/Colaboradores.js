@@ -12,6 +12,7 @@ import Lupa from '../../assets/img/Lupa.svg';
 import { Link } from "react-router-dom";
 import api from '../../services/api'
 import mais from '../../assets/img/mais.png'
+import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 
 class Colaboradores extends Component {
     constructor() {
@@ -119,6 +120,7 @@ class Colaboradores extends Component {
         return (
             <div>
                 <Header />
+                <ScrollTop />
                 <main>
                     <div className="colab">
                         <div className="colab_banner">

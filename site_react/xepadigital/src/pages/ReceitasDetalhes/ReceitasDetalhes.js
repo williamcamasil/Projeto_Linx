@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
+import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 // import api from '../../services/api'
 
 // import food from '../../assets/img/food.png';
@@ -40,6 +41,7 @@ class ReceitasDetalhes extends Component {
         return (
             <div>
                 <Header />
+                <ScrollTop />
                 <main>
                     <div className="banner_receitaDetalhes">
                         <div className="bloco">

@@ -6,6 +6,7 @@ import Footer from '../../componentes/Footer/Footer';
 // import foto_cenoura from '../../assets/img/foto_cenoura.png';
 import api from '../../services/api'
 import { parseJwt } from '../../services/auth';
+import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 
 // , MDBAlert
 import { MDBBtn, MDBInput, MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
@@ -133,6 +134,7 @@ class ColaboradorDetalhes extends Component {
         return (
             <div>
                 <Header />
+                <ScrollTop />
                 <main>
                     <div className="colab_banner_detalhe">
                         <div className="colab_banner">

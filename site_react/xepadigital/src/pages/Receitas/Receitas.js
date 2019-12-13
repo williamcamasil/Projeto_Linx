@@ -5,6 +5,7 @@ import lupa from '../../assets/img/Lupa.svg';
 import { Link } from "react-router-dom";
 import api from '../../services/api'
 import mais from '../../assets/img/mais.png'
+import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 
 class Receitas extends Component {
     constructor() {
@@ -81,6 +82,7 @@ class Receitas extends Component {
         return (
             <div>
                 <Header />
+                <ScrollTop />
                 <main>
                     <section>
                         <div className="banner">

@@ -125,9 +125,9 @@ class Login extends Component {
                                         this.state.isLoading === false &&
                                         <button type="submit" className="botao">Acessar</button>
                                     }
-                                    <span className="linha_link">Ainda não possuí uma conta? Cadastre-se</span>
-
-                                    <button type="button" className="botao"><a href="/Registrar">Cadastre-se</a></button>
+                                    <span className="linha_link">Ainda não possuí uma conta? </span>
+                                    <span><a href="/Registrar" title="Cadastre-se.">Cadastre-se</a></span>
+                                    {/* <button type="button" className="botao"><a href="/Registrar">Cadastre-se</a></button> */}
                                 </form>
 
                             </div>
