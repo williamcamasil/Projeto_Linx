@@ -23,94 +23,6 @@
     margin: auto;
 }
 
-
-.reserva_preco{
-    background: #FFB65C;
-    width: auto; 
-    margin: 40px auto;
-    text-align: center;
-    padding: 20px 0px;
-    color: var(--branco);
-}
-
-.texto_pagina_404{   
-    background: #472A4C;
-    height: 84vh;
-    padding: 146px 0px 0px;
-    /* display: flex;
-    justify-content: center; */
-    /* align-items: center;  */
-    text-align: center; 
-     
-}
-
-.texto_pagina_404 span{
-    color: white;
-    font-size: 40px;    
-}
-
-.imgTime{
-    width: 200px;
-}
-
-.imgSenai{
-    width: 200px;
-}
-
-.fa-arrow-circle-left{
-    color: white;
-}
-
-.p_404{
-    margin-top: 40px;
-    height: 100px;
-}
-
-.goback{
-    text-align: center;
-    padding: 20px;
-}
-
-.goback .fa-arrow-circle-left{
-    color: var(--roxo);
-}
-
-/* .fa-arrow-circle-left{
-    color:var(--roxo);
-} */
-
-/* .imgColabDet{
-    width: 30px;
-} */
-
-.respostaDuvidas{
-    margin: 20px;
-}
-
-.respostaDuvidas p{
-    font-family: var(--lato);
-    font-size: 18px;
-
-}
-
-.respostaDuvidas_perfis{
-    text-align: center;
-    margin: 20px auto;
-    width: 700px;
-}
-
-.respostaDuvidas_perfis p{
-    font-family: var(--lato);
-    font-size: 18px;
-    margin-left: 100px;
-}
-
-.respostaDuvidas_perfis img{
-    padding: 20px;
-}
-
-
-
 /*#endregion*/
 
 /*#region SCROLLTOP*/
@@ -143,52 +55,6 @@
 /*#endregion
 
 /*#region TABELA*/
-#conteudoPrincipal-lista {
-    /* background-color: #ffffff; */
-    min-height: 100px;
-    text-align: center;
-  }
-  
-  #tabela-lista {
-    font-weight: lighter;
-    border-collapse: collapse;
-    text-align: left;
-    table-layout: fixed;
-    width: 100%;
-    white-space: nowrap;
-    font-size: 12px;
-  }
-  
-  #tabela-lista td {
-    white-space: nowrap;
-    overflow: hidden;
-    text-align: left;
-    text-overflow: ellipsis;
-  }
-  
-  #tabela-lista td,
-  #tabela-lista th {
-    text-align: left;
-    border: 1px solid #f6f6f6;
-    padding: 8px;
-  }
-  
-  #tabela-lista tr:nth-child(even) {
-    background-color: #fff;
-  }
-  
-  #tabela-lista tr:hover {
-    background-color: #ddd;
-  }
-  
-  #tabela-lista th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #8D7B90;
-    color: white;
-  }
-/*#endregion*/
 
 /*#region HEADER*/
 
@@ -359,19 +225,6 @@ body {
 
 /*#endregion */
 
-.pedidos {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/banner_pedidos.jpg);
-    height: 620px;
-    z-index: -1;
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: cover;
-    background-attachment: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /*#region PÁGINA COLABORADORES*/
 .colab_banner_detalhe {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/banner_colabdetalhes.jpg);
@@ -507,7 +360,7 @@ body {
 
 .card_style {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     text-align: justify;
     margin: 15px 0px;
 }
@@ -515,6 +368,13 @@ body {
 .card_style img{
     height: 100px;
     width: 100px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.card_style p{
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
 .card_info, .card_info img {
@@ -1024,6 +884,7 @@ button{
     width: 200px;
     padding: 10px 0px;
     border-radius: 20px;
+    margin: 20px 12px;
 }
 
 .card_branco img{
@@ -1041,7 +902,11 @@ button{
     text-align: center;
     margin-bottom: 30px;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 900px;
+    margin: auto;
+    
 }
 
 .tit_produtor{
@@ -1167,8 +1032,12 @@ button{
     border: 1px solid #707070;
     border-radius: 4px;
     padding: 5px;
-    width: 350px; 
-    height: 200px;       
+    /* width: 350px;  */
+    max-width: 350px;
+    min-width: 350px;
+    max-height: 200px;
+    min-height: 200px;
+    /* height: 200px;        */
 }
 
 .tit_receita{
@@ -1353,6 +1222,40 @@ button{
 .letra_pagina_duvida{
     font-size: 25px; 
 }
+
+.imgTime{
+    width: 200px;
+}
+
+.imgSenai{
+    width: 200px;
+}
+
+.respostaDuvidas{
+    margin: 20px;
+}
+
+.respostaDuvidas p{
+    font-family: var(--lato);
+    font-size: 18px;
+
+}
+
+.respostaDuvidas_perfis{
+    text-align: center;
+    margin: 20px auto;
+    width: 700px;
+}
+
+.respostaDuvidas_perfis p{
+    font-family: var(--lato);
+    font-size: 18px;
+    margin-left: 100px;
+}
+
+.respostaDuvidas_perfis img{
+    padding: 20px;
+}
 /*#endregion */
 
 /*#region PAGINA TERMOS DE USO*/
@@ -1513,11 +1416,119 @@ button{
 #p_estado .caixa-texto{
     width: 100%;    
 }
+
+.goback{
+    text-align: center;
+    padding: 20px;
+}
+
+.goback .fa-arrow-circle-left{
+    color: var(--roxo);
+}
 /*#endregion */
+
+/*#region PÁGINA NOTFOUND*/
+.texto_pagina_404{   
+    background: #472A4C;
+    height: 84vh;
+    padding: 146px 0px 0px;
+    text-align: center; 
+     
+}
+
+.texto_pagina_404 span{
+    color: white;
+    font-size: 40px;    
+}
+
+.p_404{
+    margin-top: 40px;
+    height: 100px;
+}
+
+.fa-arrow-circle-left{
+    color: white;
+}
+/*#endregion*/
+
+/*#region PÁGINA RESERVA*/
+.reserva_preco{
+    background: #FFB65C;
+    width: auto; 
+    margin: 40px auto;
+    text-align: center;
+    padding: 20px 0px;
+    color: var(--branco);
+}
+
+.pedidos {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/banner_pedidos.jpg);
+    height: 620px;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#conteudoPrincipal-lista {
+    min-height: 100px;
+    text-align: center;
+  }
+  
+  #tabela-lista {
+    font-weight: lighter;
+    border-collapse: collapse;
+    text-align: left;
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+  
+  #tabela-lista td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+  }
+  
+  #tabela-lista td,
+  #tabela-lista th {
+    text-align: left;
+    border: 1px solid #f6f6f6;
+    padding: 8px;
+  }
+  
+  #tabela-lista tr:nth-child(even) {
+    background-color: #fff;
+  }
+  
+  #tabela-lista tr:hover {
+    background-color: #ddd;
+  }
+  
+  #tabela-lista th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #8D7B90;
+    color: white;
+  }
+/*#endregion*/
+
+/* MENU SANDUICHE */
+@media(min-width: 1200px){
+    #menu_cabecalho {
+        display: none;
+    }
+}
 
 /*#region RESPONSIVO*/
 
-/*#region TABLET 768px to 1200 px*/
 @media (min-width:768px) and (max-width: 1200px) {
     /*#region EDIÇÃO GERAL TABLET*/
     .container {
@@ -1955,7 +1966,6 @@ button{
 }
 /*#endregion */
 
-/*#region SMARTPHONE 360px to 767px*/
 @media(min-width: 360px) and (max-width: 767px) {
     /*#region GERAL MOBILE*/
 
@@ -2626,14 +2636,5 @@ button{
     /*#endregion */
 }
 /*#endregion */
-
-@media(min-width: 1200px){
-    /* .registrar-se {
-        border-left: 1px solid #707070;
-    } */
-    #menu_cabecalho {
-        display: none;
-    }
-}
 
 /*#endregion */

@@ -13,7 +13,7 @@ import duvida from '../../assets/img/banner_duvida.jpg';
 // import home2 from "../../assets/img/home2.jpg";
 // import home3 from "../../assets/img/home3.jpg";
 // import home4 from "../../assets/img/home4.jpg";
-// import home1 from "../../assets/img/home1.jpeg";
+import home1 from "../../assets/img/home1.jpeg";
 
 
 // const content = [
@@ -47,6 +47,21 @@ class Inicial extends Component {
                         <img src={logo_slogan} alt="logo Xepa Digital com o slogan da página"/>
                     </div>
                 </div>
+
+                {/* <div class="carousel-item">
+                    <img src={home1} alt="..."/>
+                    <img src={home1} alt="..."/>
+                    <img src={home1} alt="..."/>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>asdsadassda.</h5>
+                        <h5>asdsadassda.</h5>
+                        <h5>asdsadassda.</h5>
+                        <h5>asdsadassda.</h5>
+                        <h5>asdsadassda.</h5>
+                        <p>...</p>
+                    </div>
+                </div> */}
+
 
                 {/* <div class="carousel-item">
                     <img src="..." alt="...">

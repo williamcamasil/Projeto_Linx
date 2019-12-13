@@ -269,19 +269,27 @@ class CadastroReceita extends Component {
                                                 {/* INGREDIENTES */}
                                                 <div className="caixa_texto_sub">
                                                     <label htmlFor="ingrediente_lbl" aria-label="ingrediente_lbl"> Ingredientes</label><br />
-                                                    <input className="caixa_texto_componente_bt" type="ingrediente_receita"
+                                                    {/* <input className="caixa_texto_componente_bt" type="ingrediente_receita"
                                                         placeholder="Digite os ingredientes" name="descricaoIngrediente" id="ingrediente_receita"
                                                         value={this.state.put_post_Receita.descricaoIngrediente}
-                                                        onChange={this.postSetState} />
+                                                        onChange={this.postSetState} /> */}
+                                                    <textarea className="caixa_texto_componente_bt" type="text" placeholder="Digite os ingredientes"
+                                                    id="ingrediente_receita" name="descricaoIngrediente"
+                                                    value={this.state.put_post_Receita.descricaoIngrediente}
+                                                    onChange={this.postSetState}   />
                                                 </div>
 
                                                 {/* PREPARO */}
                                                 <div className="caixa_texto_sub">
                                                     <label htmlFor="modo_lbl" aria-label="modo_lbl"> Modo de Preparo</label><br />
-                                                    <input className="caixa_texto_componente_bt" type="modo_receita"
+                                                    {/* <input className="caixa_texto_componente_bt" type="modo_receita"
                                                         placeholder="Digite o modo de preparo" name="descricaoPreparo" id="modoReceita"
                                                         value={this.state.put_post_Receita.descricaoPreparo}
-                                                        onChange={this.postSetState} />
+                                                        onChange={this.postSetState} /> */}
+                                                    <textarea className="caixa_texto_componente_bt" type="text" placeholder="Digite o modo de preparo"
+                                                    id="modoReceita" name="descricaoPreparo"
+                                                    value={this.state.put_post_Receita.descricaoPreparo}
+                                                    onChange={this.postSetState}   />
                                                 </div>
                                             </div>
 

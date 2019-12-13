@@ -328,23 +328,31 @@ class CadastroProduto extends Component {
                                                 </div>
 
                                                 <div className="caixa_texto_sub">
-                                                    <label htmlFor="disponibilidade_lbl" aria-label="disponibilidade_lbl"> Disponibilidade</label><br />
-                                                    <input className="caixa_texto_componente" type="detalhe_produto"
-                                                        placeholder="1 kg" name="disponibilidade" id="detalhe_produto"
-                                                        value={this.state.put_post_Produto.disponibilidade}
-                                                        onChange={this.postSetState}
+                                                    <label htmlFor="disponibilidade_lbl" aria-label="disponibilidade_lbl"> Disponibilidade</label><br/>
+                                                    <input className="caixa_texto_componente" type="detalhe_produto" 
+                                                    placeholder="1 kg" name="disponibilidade" 
+                                                    value={this.state.put_post_Produto.disponibilidade}
+                                                    onChange={this.postSetState}   
                                                     />
                                                 </div>
                                             </div>
 
                                             <div className="caixa_texto_sub">
-                                                <label htmlFor="detalhe_lbl" aria-label="detalhe_lbl"> Detalhe</label><br />
-                                                <input className="caixa_texto_componente_campo" type="detalhe_produto"
-                                                    placeholder="Digite os detalhes desse produto" name="descricaoProduto" id="detalhe_produto"
-                                                    value={this.state.put_post_Produto.descricaoProduto}
-                                                    onChange={this.postSetState}
-                                                />
+                                                <label htmlFor="detalhe_lbl" aria-label="detalhe_lbl"> Detalhe</label><br/>
+                                                {/* <input className="caixa_texto_componente_campo" type="detalhe_produto" 
+                                                placeholder="Digite os detalhes desse produto" name="descricaoProduto" id="detalhe_produto"
+                                                value={this.state.put_post_Produto.descricaoProduto}
+                                                onChange={this.postSetState}   
+                                                />  */}
+                                                <textarea className="caixa-texto_4 caixa_style_2" name="descricaoProduto" 
+                                                type="text" placeholder="Digite os detalhes desse produto"
+                                                id="modoReceita" name="descricaoPreparo"
+                                                value={this.state.put_post_Produto.descricaoProduto}
+                                                onChange={this.postSetState}    />
                                             </div>
+
+
+                                            
 
                                             <div className="caixa_texto_botoes">
                                                 <button className="botao" type="submit" name="Salvar">Salvar</button>
@@ -363,18 +371,16 @@ class CadastroProduto extends Component {
 
                             <div className="card_">
                                 {
-                                    this.state.listaCadProdutos.map(function (produto) {
-                                        return (
-
-                                            <div className="card_branco card">
-                                                <img src={"http://localhost:5000/" + produto.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
-                                                <p>{produto.idProdutoNavigation.nomeProduto}</p>
-                                                <p>{(produto.idProdutoNavigation.organico === true) ? 'Produto Orgânico' : 'Produto não Orgânico'}</p>
-                                                <p>{produto.idProdutoNavigation.disponibilidade} Kg</p>
-                                                {/* <button className="botao" type="button" name="Editar_Card">Editar</button> */}
-                                                {/* <button className="botao" type="button" name="Editar_Card">Editar</button> */}
-                                                <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputProduto(produto.idProdutoNavigation.idProduto)}>Editar</button>
-                                            </div>
+                                    this.state.listaCadProdutos.map(function(produto){
+                                        return(
+                                            
+                                                <div className="card_branco card">
+                                                    <img src={"http://localhost:5000/" + produto.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
+                                                    <p>{produto.idProdutoNavigation.nomeProduto}</p>
+                                                    <p>{(produto.idProdutoNavigation.organico === true) ? 'Produto Orgânico':'Produto não Orgânico'}</p>
+                                                    <p>{produto.idProdutoNavigation.disponibilidade} Kg</p>
+                                                    <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputProduto(produto.idProdutoNavigation.idProduto)}>Editar</button>
+                                                </div>
                                         );
                                     }.bind(this))
                                 }
