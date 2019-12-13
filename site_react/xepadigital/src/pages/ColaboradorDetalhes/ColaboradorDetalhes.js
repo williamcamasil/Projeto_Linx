@@ -8,8 +8,12 @@ import api from '../../services/api'
 import { parseJwt } from '../../services/auth';
 import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 
-// , MDBAlert
-import { MDBBtn, MDBInput, MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 class ColaboradorDetalhes extends Component {
@@ -39,7 +43,6 @@ class ColaboradorDetalhes extends Component {
                 // reservaProduto: []
             },
             modal: false,
-
             idRegistro: "",
             quantidadeReserva: 0,
         }
@@ -48,6 +51,15 @@ class ColaboradorDetalhes extends Component {
     toggle = () => {
         this.setState({
             modal: !this.state.modal
+        });
+    }
+
+    abrirModal = (id) => {
+        // Abre modal
+        this.toggle();
+        // atribui qual oferta está sendo reservada
+        this.setState({
+            idRegistro: id,
         });
     }
 
@@ -74,7 +86,7 @@ class ColaboradorDetalhes extends Component {
             if (response.status === 200) {
                 this.setState({ listaProdutos: response.data })
             }
-            console.log('Id ', this.state.listaProdutos.idRegistro)
+            // console.log('Id ', this.state.listaProdutos.idRegistro)
         })
     }
     //#endregion
@@ -87,20 +99,12 @@ class ColaboradorDetalhes extends Component {
         })
     }
 
-    abrirModal = (id) => {
-        // abre modal
-        this.toggle();
-        // atribui qual oferta está sendo reservada
-        this.setState({
-            idRegistro: id,
-        });
-    }
     //#endregion
 
     //#region POST
 
     postPedido = (e) => {
-        e.preventDefault();        
+        e.preventDefault();
 
         fetch("http://localhost:5000/api/ReservaProduto", {
             method: "POST",
@@ -122,13 +126,11 @@ class ColaboradorDetalhes extends Component {
 
         this.toggle();
 
-            setTimeout(() => {
-                this.getListarProdutos();
-            }, 200);
+        setTimeout(() => {
+            this.getListarProdutos();
+        }, 200);
     }
     //#endregion
-
-
 
     render() {
         return (
@@ -162,33 +164,28 @@ class ColaboradorDetalhes extends Component {
                                 this.state.listaProdutos.map(
                                     function (vp) {
                                         return (
-                                            <div className="produtos_colab">
-                                                <div>
-                                                    <img className="colaboradores_img" src={"http://localhost:5000/" + vp.idProdutoNavigation.imgProduto} alt="imagem ilustrativa do colaborador" />
+                                            <div className="produtos_colab card">
+                                                <div className="prod_colab_top">
+                                                    <div>
+                                                        <img className="colaboradores_img" src={"http://localhost:5000/" + vp.idProdutoNavigation.imgProduto} alt="imagem ilustrativa do colaborador" />
+                                                    </div>
+                                                    <div className="produto">
+                                                        <p>
+                                                            Nome: {vp.idProdutoNavigation.nomeProduto} <br />
+                                                            Orgânico: {(vp.idProdutoNavigation.organico === true) ? "Sim" : "Não"} <br />
+                                                            Preço: R${vp.idProdutoNavigation.preco} /Kg <br />
+                                                            Data de validade: {(vp.idProdutoNavigation.validade).split('T')[0]} <br />
+                                                            Disponível: {vp.idProdutoNavigation.disponibilidade} Kg<br />
+                                                            {vp.idProdutoNavigation.descricaoProduto} <br />
+                                                        </p>
+                                                    </div>
+                                                    <div className="input_produtos">
+                                                        <>
+                                                            <button className="botao" type="submit" onClick={() => this.abrirModal(vp.idRegistro)} name="Reservar">Reservar</button>
+                                                        </>
+                                                    </div>
                                                 </div>
-                                                <div className="produto">
-                                                    <p>
-                                                        Nome: {vp.idProdutoNavigation.nomeProduto} <br />
-                                                        Orgânico: {(vp.idProdutoNavigation.organico === true) ? "Sim" : "Não"} <br />
-                                                        Preço: R${vp.idProdutoNavigation.preco} /Kg <br />
-                                                        Data de validade: {(vp.idProdutoNavigation.validade).split('T')[0]} <br />
-                                                        Disponível: {vp.idProdutoNavigation.disponibilidade} Kg<br />
-                                                        {vp.idProdutoNavigation.descricaoProduto} <br />
-                                                    </p>
-                                                </div>
-                                                <div className="input_produtos">
-                                                    <>
-                                                        {/* <label htmlFor="qtd_produto" aria-label="qtd_produto"> Quantidade:</label><br/>
-                                                        <input className="caixa-texto" type="number" placeholder="1 Kg" name="quantidadeReserva" id="Quantidade"
-                                                            value={this.state.quantidadeReserva}
-                                                            onChange={this.postSetState}
-                                                        /><br/> */}
 
-                                                        {/* COLOCAR UMA CONDIÇÃO AQUI */}
-                                                        <button className="botao" type="submit" onClick={() => this.abrirModal(vp.idRegistro)} name="Reservar">Reservar</button>
-                                                        {/* <button className="botao" type="submit" onClick={this.postPedido(vp.idRegistro)} name="Reservar"><Link to={{ pathname: '/ReservaCliente'}} >Reservar</Link></button> */}
-                                                    </>
-                                                </div>
                                             </div>
                                         );
                                     }
@@ -212,28 +209,39 @@ class ColaboradorDetalhes extends Component {
                 </main>
 
 
-                <MDBContainer>
-                    <form onSubmit={this.postPedido}>
-                        <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-                            <MDBModalHeader>Reservar Produto</MDBModalHeader>
-                            <MDBModalBody>
-                                <MDBInput
-                                    label="Quantidade"
-                                    type="number"
-                                    placeholder="Quantidade em Kg"
-                                    name="quantidadeReserva"
-                                    value={this.state.quantidadeReserva}
-                                    onChange={this.postSetState}
-                                />
-                            </MDBModalBody>
-                            <MDBModalFooter>
-                                <MDBBtn color="secondary" onClick={this.toggle}>Fechar</MDBBtn>
-                                <MDBBtn color="primary" type="submit">Salvar</MDBBtn>
-                            </MDBModalFooter>
-                        </MDBModal>
-                    </form>
-                </MDBContainer>
+                
 
+
+                
+                <Dialog open={this.state.modal} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Reserva de Produto</DialogTitle>
+                    <DialogContent>
+                        <form onSubmit={this.postPedido}>
+                            <TextField
+
+                                label="Quantidade"
+                                type="number"
+                                placeholder="Quantidade em Kg"
+                                name="quantidadeReserva"
+                                value={this.state.quantidadeReserva}
+                                onChange={this.postSetState}
+
+                                autoFocus
+                                margin="dense"
+                                id="name"
+                                fullWidth
+                            />
+                            <DialogActions>
+                                <Button onClick={this.toggle} color="primary">
+                                    Fechar
+                        </Button>
+                                <Button type="submit" color="primary">
+                                    Salvar
+                        </Button>
+                            </DialogActions>
+                        </form>
+                    </DialogContent>
+                </Dialog>
 
                 <Footer />
             </div>
