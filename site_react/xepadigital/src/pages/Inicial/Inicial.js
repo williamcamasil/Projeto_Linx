@@ -3,36 +3,12 @@ import HeaderHome from '../../componentes/Header/HeaderHome';
 import Footer from '../../componentes/Footer/Footer';
 import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 import logo_slogan from '../../assets/img/logo_slogan.svg';
+// import Notificacao from '../../componentes/Notificacao/Notificacao';
 import colab from '../../assets/img/colab.jpg';
 import receitas from '../../assets/img/receitas.jpg';
-// import termos from '../../assets/img/termos.png';
 import duvida from '../../assets/img/banner_duvida.jpg';
+import Carousel from "../../componentes/Carousel/Carousel";
 
-
-// import Slider from "react-animated-slider";
-// import home2 from "../../assets/img/home2.jpg";
-// import home3 from "../../assets/img/home3.jpg";
-// import home4 from "../../assets/img/home4.jpg";
-import home1 from "../../assets/img/home1.jpeg";
-
-
-// const content = [
-//     {
-//       image: home1,
-//     },
-//     {
-//       title: "Somos um Sacolão Digital",
-//       image: home2,
-//     },
-//     {
-//       title: "Oferecemos maior variedade de produtos com ótimos preços",
-//       image: home3,
-//     },
-//     {
-//       title: "Encontre nossos produtos pertinho de você",
-//       image: home4,
-//     },
-//   ];
 
 class Inicial extends Component {
     render() {
@@ -40,50 +16,17 @@ class Inicial extends Component {
         <div>
             <HeaderHome />
             <ScrollTop />
+            
             <main className="home">
                 
-                <div className="banner_home">
+                {/* <div className="banner_home">
                     <div className="logoslogan_home">
                         <img src={logo_slogan} alt="logo Xepa Digital com o slogan da página"/>
                     </div>
-                </div>
-
-                {/* <div class="carousel-item">
-                    <img src={home1} alt="..."/>
-                    <img src={home1} alt="..."/>
-                    <img src={home1} alt="..."/>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>asdsadassda.</h5>
-                        <h5>asdsadassda.</h5>
-                        <h5>asdsadassda.</h5>
-                        <h5>asdsadassda.</h5>
-                        <h5>asdsadassda.</h5>
-                        <p>...</p>
-                    </div>
                 </div> */}
 
-
-                {/* <div class="carousel-item">
-                    <img src="..." alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>teste</h5>
-                        <p>1etet</p>
-                    </div>
-                </div>
-                https://getbootstrap.com/docs/4.0/components/carousel/</div> */}
-
-                {/* <Slider className="slider-wrapper">
-                    {content.map((item, index) => (
-                        <div key={index} className="slider-content"
-                        style={{ background: `url('${item.image}') no-repeat center center` }} >
-                        <div className="inner">
-                            <h1>{item.title}</h1>
-                        </div>
-                        </div>
-                    ))}
-                </Slider>   */}
-
-
+                <Carousel/>
+                
                 <section id="historia">
                     <div className="container_home">
                         <h2 className="tituloh2">NOSSA HISTÓRIA</h2>
@@ -160,7 +103,7 @@ class Inicial extends Component {
                         </div>
                         <a href="Duvidas" title="Saiba mais sobre colaboradores." className="saiba">Saiba Mais>></a>
                     </div>
-                </section>
+                </section>                
             </main>
         
             <Footer />

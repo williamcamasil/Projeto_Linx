@@ -26,6 +26,11 @@ namespace backend.Repositories {
                 return ListaRegistro;
             }
         }
+        public async Task<RegistroProduto> BuscarProdutosPorIdProduto (int id) {
+            using (XepaDigitalContext _contexto = new XepaDigitalContext ()){
+                return await _contexto.RegistroProduto.Include("IdProdutoNavigation").Include("IdUsuarioNavigation").FirstOrDefaultAsync(e => e.IdProduto == id);
+            }
+        }
 
         public async Task<RegistroProduto> BuscarPorID (int id) {
             using (XepaDigitalContext _contexto = new XepaDigitalContext ()){

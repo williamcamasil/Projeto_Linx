@@ -344,9 +344,9 @@ class CadastroProduto extends Component {
                                                 value={this.state.put_post_Produto.descricaoProduto}
                                                 onChange={this.postSetState}   
                                                 />  */}
-                                                <textarea className="caixa-texto_4 caixa_style_2" name="descricaoProduto" 
+                                                <textarea className="caixa-texto_4 caixa_style_2" 
                                                 type="text" placeholder="Digite os detalhes desse produto"
-                                                id="modoReceita" name="descricaoPreparo"
+                                                id="detalhe_produto" name="descricaoProduto"
                                                 value={this.state.put_post_Produto.descricaoProduto}
                                                 onChange={this.postSetState}    />
                                             </div>
