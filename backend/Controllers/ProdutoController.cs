@@ -146,6 +146,9 @@ namespace backend.Controllers {
                     }
                 );
             }
+            RegistroProduto registro = new RegistroProduto();
+            var Reg = await _repositorioRegistro.BuscarProdutosPorIdProduto(id);
+            await _repositorioRegistro.Excluir(Reg);
             await _repositorio.Excluir (Produto);
             return Produto;
         }

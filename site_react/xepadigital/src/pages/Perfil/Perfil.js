@@ -10,6 +10,7 @@ import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 
 // npm install @material-ui/core
 // npm install @material-ui/icons
+// npm install @material-ui/icons/ImageSearch
 
 
 class Perfil extends Component {

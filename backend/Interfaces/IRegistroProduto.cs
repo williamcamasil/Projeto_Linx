@@ -9,6 +9,7 @@ namespace backend.Interfaces {
         Task<List<RegistroProduto>> BuscarProdutosPorIdUser (int id);
 
         Task<RegistroProduto> BuscarPorID (int id);
+        Task<RegistroProduto> BuscarProdutosPorIdProduto (int id);
 
         Task<RegistroProduto> Salvar (RegistroProduto RegistroProduto);
 
