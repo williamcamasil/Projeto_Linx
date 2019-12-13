@@ -90,7 +90,7 @@ class Duvidas extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("1")}><img src={mais} alt="Mais informações" /></a>
+                                    <button className="limparBotao" onClick={() => this.maisInformacoes("1")}><img src={mais} alt="Mais informações" /></button>
                                 </div>
                             </div>
 
@@ -118,7 +118,7 @@ class Duvidas extends Component {
                                         </div>
                                     </div>
                                     <div>
-                                        <a onClick={() => this.maisInformacoes("2")}><img src={mais} alt="Mais informações" /></a>
+                                        <button className="limparBotao" onClick={() => this.maisInformacoes("2")}><img src={mais} alt="Mais informações" /></button>
                                     </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("3")}><img src={mais} alt="Mais informações" /></a>
+                                    <button className="limparBotao" onClick={() => this.maisInformacoes("3")}><img src={mais} alt="Mais informações" /></button>
                                 </div>
                             </div>
 
@@ -164,7 +164,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("4")}><img src={mais} alt="Mais informações" /></a>
+                                    <button className="limparBotao" onClick={() => this.maisInformacoes("4")}><img src={mais} alt="Mais informações" /></button>
                                 </div>
                             </div>
                         </div>
@@ -189,7 +189,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("5")}><img src={mais} alt="Mais informações" /></a>
+                                    <button className="limparBotao" onClick={() => this.maisInformacoes("5")}><img src={mais} alt="Mais informações" /></button>
                                 </div>
                             </div>
 
@@ -214,7 +214,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("6")}><img src={mais} alt="Mais informações" /></a>
+                                    <button className="limparBotao" onClick={() => this.maisInformacoes("6")}><img src={mais} alt="Mais informações" /></button>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +240,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("7")}><img src={mais} alt="Mais informações" /></a>
+                                    <button className="limparBotao" onClick={() => this.maisInformacoes("7")}><img src={mais} alt="Mais informações" /></button>
                                 </div>
                             </div>
 
@@ -262,7 +262,7 @@ class Duvidas extends Component {
                                 </div>
 
                                 <div>
-                                    <a onClick={() => this.maisInformacoes("8")}><img src={mais} alt="Mais informações" /></a>
+                                    <button className="limparBotao" onClick={() => this.maisInformacoes("8")}><img src={mais} alt="Mais informações" /></button>
                                 </div>
                             </div>
 

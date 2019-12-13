@@ -10,6 +10,31 @@ import duvida from '../../assets/img/banner_duvida.jpg';
 import Carousel from "../../componentes/Carousel/Carousel";
 
 
+// import Slider from "react-animated-slider";
+// import home2 from "../../assets/img/home2.jpg";
+// import home3 from "../../assets/img/home3.jpg";
+// import home4 from "../../assets/img/home4.jpg";
+// import home1 from "../../assets/img/home1.jpeg";
+
+
+// const content = [
+//     {
+//       image: home1,
+//     },
+//     {
+//       title: "Somos um Sacolão Digital",
+//       image: home2,
+//     },
+//     {
+//       title: "Oferecemos maior variedade de produtos com ótimos preços",
+//       image: home3,
+//     },
+//     {
+//       title: "Encontre nossos produtos pertinho de você",
+//       image: home4,
+//     },
+//   ];
+
 class Inicial extends Component {
     render() {
         return (

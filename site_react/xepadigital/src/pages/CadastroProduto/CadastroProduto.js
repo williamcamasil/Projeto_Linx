@@ -5,7 +5,7 @@ import api from '../../services/api'
 import { parseJwt } from "../../services/auth"
 import mais from '../../assets/img/mais.png'
 import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
-import defaultimg from '../../assets/img/profile.png';
+// import defaultimg from '../../assets/img/profile.png';
 
 import IconButton from '@material-ui/core/IconButton';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
@@ -89,7 +89,7 @@ class CadastroProduto extends Component {
     }
 
     incrementarMais = () => {
-        this.state.more += 4;
+        this.setState({more: this.state.more + 4});
         console.log('Mostrar: ', this.state.more) //this.state.more)  
         this.getCadProduto();
     }
@@ -344,9 +344,8 @@ class CadastroProduto extends Component {
                                                 value={this.state.put_post_Produto.descricaoProduto}
                                                 onChange={this.postSetState}   
                                                 />  */}
-                                                <textarea className="caixa-texto_4 caixa_style_2" 
-                                                type="text" placeholder="Digite os detalhes desse produto"
-                                                id="detalhe_produto" name="descricaoProduto"
+                                                <textarea className="caixa-texto_4 caixa_style_2" type="text" placeholder="Digite os detalhes desse produto"
+                                                name="descricaoPreparo"
                                                 value={this.state.put_post_Produto.descricaoProduto}
                                                 onChange={this.postSetState}    />
                                             </div>
@@ -382,13 +381,15 @@ class CadastroProduto extends Component {
                                                     <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputProduto(produto.idProdutoNavigation.idProduto)}>Editar</button>
                                                 </div>
                                         );
-                                    }.bind(this))
+                                    }
+                                    .bind(this)
+                                    )
                                 }
                             </div>
 
                             <div className="mais">
-                                <a onClick={() => { this.incrementarMais() }} title="Ver mais receitas">
-                                    <img src={mais} alt="Ícone de adição, representando ver mais." /></a>
+                                <button className="limparBotao" onClick={() => { this.incrementarMais() }} title="Ver mais receitas">
+                                    <img src={mais} alt="Ícone de adição, representando ver mais." /></button>
                             </div>
                         </div>
                     </section>
