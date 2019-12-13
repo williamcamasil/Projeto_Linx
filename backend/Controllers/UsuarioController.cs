@@ -103,6 +103,7 @@ namespace backend.Controllers {
             }
 
             try {
+                Usuario.IdUsuario = int.Parse (Request.Form["IdUsuario"]);
 
                 if(Request.Form.Files.Count != 0){
                     var imagem = Request.Form.Files[0];
@@ -112,7 +113,6 @@ namespace backend.Controllers {
                     Usuario.ImgPerfil = usuarioCadastrado.ImgPerfil;
                 }
 
-                Usuario.IdUsuario = int.Parse (Request.Form["IdUsuario"]);
                 Usuario.NomeUsuario = Request.Form["NomeUsuario"].ToString ();
                 Usuario.EmailUsuario = Request.Form["EmailUsuario"].ToString ();
                 Usuario.Telefone1 = Request.Form["Telefone1"].ToString ();

@@ -6,6 +6,9 @@ import api from '../../services/api'
 import { parseJwt } from "../../services/auth"
 import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 
+import IconButton from '@material-ui/core/IconButton';
+import ImageSearchIcon from '@material-ui/icons/ImageSearch';
+
 class CadastroReceita extends Component {
     constructor() {
         super();
@@ -94,7 +97,7 @@ class CadastroReceita extends Component {
     }
 
     incrementarMais = () => {
-        this.state.more += 4; 
+        this.state.more += 4;
         console.log('Mostrar: ', this.state.more) //this.state.more)  
         this.getCadReceita();
     }
@@ -105,10 +108,10 @@ class CadastroReceita extends Component {
         if (this.state.idReceitaAlterada !== 0) {
             //PUT 
             let receita = new FormData();
-            
+
             if (this.state.put_post_Receita.imgReceita.current !== undefined) {
                 // Seta a nova imagem.
-            receita.set('imgReceita', this.state.put_post_Receita.imgReceita.current.files[0], this.state.put_post_Receita.imgReceita.value);
+                receita.set('imgReceita', this.state.put_post_Receita.imgReceita.current.files[0], this.state.put_post_Receita.imgReceita.value);
             }
             receita.set('idReceita', this.state.put_post_Receita.idReceita);
             receita.set('nomeReceita', this.state.put_post_Receita.nomeReceita);
@@ -216,26 +219,37 @@ class CadastroReceita extends Component {
                                                 {this.state.idReceitaAlterada !== 0 ? (
                                                     // PUT
                                                     <>
-                                                        <input
-                                                            type="file"
-                                                            placeholder="Coloque uma foto sua"
-                                                            aria-label="Coloque uma foto sua"
-                                                            name="imgReceita"
-                                                            onChange={this.imgSetState}
-                                                            ref={this.state.put_post_Receita.imgReceita}
-                                                        />
+                                                        <label htmlFor="icon-button-file">
+                                                            <IconButton color="primary" aria-label="upload picture" component="span">
+                                                                <input
+                                                                    hidden
+                                                                    id="icon-button-file"
+                                                                    accept="image/*"
+
+                                                                    type="file"
+                                                                    name="imgReceita"
+                                                                    onChange={this.imgSetState}
+                                                                    ref={this.state.put_post_Receita.imgReceita}
+                                                                /><ImageSearchIcon color="action" fontSize="large" />
+                                                            </IconButton>
+                                                        </label>
                                                         <img src={"http://localhost:5000/" + this.state.put_post_Receita.imgReceita} alt="" />
                                                     </>
                                                 ) : (
                                                         //POST
-                                                        <input
-                                                            type="file"
-                                                            placeholder="Coloque uma foto sua"
-                                                            aria-label="Coloque uma foto sua"
-                                                            name="imgReceita"
-                                                            onChange={this.imgSetState}
-                                                            ref={this.state.put_post_Receita.imgReceita}
-                                                        />
+                                                        <label htmlFor="icon-button-file">
+                                                            <IconButton color="primary" aria-label="upload picture" component="span">
+                                                                <input
+                                                                    hidden
+                                                                    id="icon-button-file"
+                                                                    accept="image/*"
+                                                                    type="file"
+                                                                    name="imgReceita"
+                                                                    onChange={this.imgSetState}
+                                                                    ref={this.state.put_post_Receita.imgReceita}
+                                                                /><ImageSearchIcon color="action" fontSize="large" />
+                                                            </IconButton>
+                                                        </label>
                                                     )
                                                 }
 
@@ -311,8 +325,8 @@ class CadastroReceita extends Component {
                                         alt="Ícone de adição, representando ver mais." /></a>
                             </div> */}
                             <div className="mais">
-                                <a onClick = { () => {this.incrementarMais()}} title="Ver mais receitas">
-                                <img src={mais} alt="Ícone de adição, representando ver mais."/></a>
+                                <a onClick={() => { this.incrementarMais() }} title="Ver mais receitas">
+                                    <img src={mais} alt="Ícone de adição, representando ver mais." /></a>
                             </div>
                         </div>
                     </section>
