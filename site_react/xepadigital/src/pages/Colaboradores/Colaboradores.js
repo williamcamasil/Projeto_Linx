@@ -162,7 +162,7 @@ class Colaboradores extends Component {
                                             <h3>Produtos fornecidos</h3>
                                             <div className="card_style">
                                                 {
-                                                    this.state.listaRegistro.filter(e => e.idUsuario === colaborador.idUsuario).map(function (registro) {
+                                                    this.state.listaRegistro.filter(e => e.idUsuario === colaborador.idUsuario).slice(0,4).map(function (registro) {
                                                         return (
                                                             <div key={registro.idRegistro} className="card_info">
                                                                 <img src={"http://localhost:5000/" + registro.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />

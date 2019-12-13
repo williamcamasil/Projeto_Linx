@@ -53,7 +53,6 @@ class PerfilColaborador extends Component {
         }
     }
 
-
     //#region COMPONENT's
     componentDidMount() {
         console.log("Carregado")
