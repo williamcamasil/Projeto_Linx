@@ -13,7 +13,7 @@ import duvida from '../../assets/img/banner_duvida.jpg';
 // import home2 from "../../assets/img/home2.jpg";
 // import home3 from "../../assets/img/home3.jpg";
 // import home4 from "../../assets/img/home4.jpg";
-import home1 from "../../assets/img/home1.jpeg";
+// import home1 from "../../assets/img/home1.jpeg";
 
 
 // const content = [

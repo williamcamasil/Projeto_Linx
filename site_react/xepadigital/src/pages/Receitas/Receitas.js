@@ -73,7 +73,7 @@ class Receitas extends Component {
     }
 
     incrementarMais = () => {
-        this.state.more += 3; 
+        this.setState({more: this.state.more + 3}); 
         console.log('Mostrar: ', this.state.more) //this.state.more)  
         this.getReceita();
     }
@@ -136,8 +136,8 @@ class Receitas extends Component {
                                 }
                             </div>
                             <div className="mais">
-                                <a onClick = { () => {this.incrementarMais()}} title="Ver mais receitas">
-                                <img src={mais} alt="Ícone de adição, representando ver mais."/></a>
+                                <button className="limparBotao" onClick = { () => {this.incrementarMais()}} title="Ver mais receitas">
+                                <img src={mais} alt="Ícone de adição, representando ver mais."/></button>
                             </div>
                         </div>
 
