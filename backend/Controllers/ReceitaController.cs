@@ -50,7 +50,7 @@ namespace backend.Controllers {
 
         [HttpGet ("Usuario/{id}")]
         public async Task<ActionResult<List<Receita>>> GetPorId (int id) {
-            List<Receita> ListaReceita = new List<Receita>();
+            List<Receita> ListaReceita = new List<Receita> ();
             ListaReceita = await _repositorio.BuscarPorIdUser (id);
 
             if (ListaReceita == null) {
@@ -76,14 +76,13 @@ namespace backend.Controllers {
 
                 // Receita.IdUsuario = int.Parse(idClaim.Value);
 
-
                 var imagem = Request.Form.Files[0];
 
                 Receita.ImgReceita = _UploadImg.Upload (imagem, "Receitas");
                 Receita.NomeReceita = Request.Form["NomeReceita"].ToString ();
                 Receita.DescricaoIngrediente = Request.Form["DescricaoIngrediente"].ToString ();
                 Receita.DescricaoPreparo = Request.Form["DescricaoPreparo"].ToString ();
-                Receita.IdUsuario = int.Parse(Request.Form["IdUsuario"]);
+                Receita.IdUsuario = int.Parse (Request.Form["IdUsuario"]);
 
                 await _repositorio.Salvar (Receita);
             } catch (DbUpdateConcurrencyException) {
@@ -107,13 +106,19 @@ namespace backend.Controllers {
                 );
             }
             try {
-                var imagem = Request.Form.Files[0];
 
-                Receita.ImgReceita = _UploadImg.Upload (imagem, "Receitas");
+                if (Request.Form.Files.Count != 0) {
+                    var imagem = Request.Form.Files[0];
+                    Receita.ImgReceita = _UploadImg.Upload (imagem, "Receitas");
+                } else {
+                    Receita receitaCadastrada = await _repositorio.BuscarPorID (int.Parse (Request.Form["IdReceita"]));
+                    Receita.ImgReceita = receitaCadastrada.ImgReceita;
+                }
+
                 Receita.NomeReceita = Request.Form["NomeReceita"].ToString ();
                 Receita.DescricaoIngrediente = Request.Form["DescricaoIngrediente"].ToString ();
                 Receita.DescricaoPreparo = Request.Form["DescricaoPreparo"].ToString ();
-                Receita.IdUsuario = int.Parse(Request.Form["IdUsuario"]);
+                Receita.IdUsuario = int.Parse (Request.Form["IdUsuario"]);
 
                 await _repositorio.Alterar (Receita);
             } catch (DbUpdateConcurrencyException) {

@@ -16,7 +16,7 @@ namespace backend.Controllers {
     public class ProdutoController : ControllerBase {
         ProdutoRepository _repositorio = new ProdutoRepository ();
         // Instanciar o Repositório Registro de Produtos
-        RegistroProdutoRepository _repositorioRegistro = new RegistroProdutoRepository();
+        RegistroProdutoRepository _repositorioRegistro = new RegistroProdutoRepository ();
 
         UploadRepository _UploadImg = new UploadRepository ();
         //GET: api/Produto
@@ -61,8 +61,8 @@ namespace backend.Controllers {
                 Produto.DescricaoProduto = Request.Form["DescricaoProduto"].ToString ();
                 Produto.Disponibilidade = decimal.Parse (Request.Form["Disponibilidade"]);
                 Produto.Organico = bool.Parse (Request.Form["Organico"]);
-                Produto.Preco = decimal.Parse(Request.Form["Preco"]);
-                Produto.Validade = DateTime.Parse(Request.Form["Validade"]);
+                Produto.Preco = decimal.Parse (Request.Form["Preco"]);
+                Produto.Validade = DateTime.Parse (Request.Form["Validade"]);
 
                 await _repositorio.Salvar (Produto);
 
@@ -70,15 +70,15 @@ namespace backend.Controllers {
                 var idPostagemRec = HttpContext.User.Identity as ClaimsIdentity;
                 IEnumerable<Claim> claim = idPostagemRec.Claims;
                 var idClaim = claim.Where (x => x.Type == ClaimTypes.PrimarySid).FirstOrDefault ();
-                
+
                 // Criando o Objeto Registro
                 RegistroProduto registro = new RegistroProduto ();
 
                 // Passando os atributos do Objeto Registro
                 registro.IdProduto = Produto.IdProduto;
-                registro.IdUsuario = Convert.ToInt32(idClaim.Value);
+                registro.IdUsuario = Convert.ToInt32 (idClaim.Value);
 
-                await _repositorioRegistro.Salvar(registro);
+                await _repositorioRegistro.Salvar (registro);
             } catch (DbUpdateConcurrencyException) {
                 throw;
             }
@@ -99,15 +99,21 @@ namespace backend.Controllers {
                 );
             }
             try {
-                var imagem = Request.Form.Files[0];
 
-                Produto.ImgProduto = _UploadImg.Upload (imagem, "Produtos");
+                if (Request.Form.Files.Count != 0) {
+                    var imagem = Request.Form.Files[0];
+                    Produto.ImgProduto = _UploadImg.Upload (imagem, "Produtos");
+                } else {
+                    Produto produtoCadastrado = await _repositorio.BuscarPorID (int.Parse (Request.Form["IdProduto"]));
+                    Produto.ImgProduto = produtoCadastrado.ImgProduto;
+                }
+
                 Produto.NomeProduto = Request.Form["NomeProduto"].ToString ();
                 Produto.Disponibilidade = decimal.Parse (Request.Form["Disponibilidade"]);
                 Produto.DescricaoProduto = Request.Form["DescricaoProduto"].ToString ();
                 Produto.Organico = bool.Parse (Request.Form["Organico"]);
-                Produto.Preco = decimal.Parse(Request.Form["Preco"]);
-                Produto.Validade = DateTime.Parse(Request.Form["Validade"]);
+                Produto.Preco = decimal.Parse (Request.Form["Preco"]);
+                Produto.Validade = DateTime.Parse (Request.Form["Validade"]);
 
                 await _repositorio.Alterar (Produto);
             } catch (DbUpdateConcurrencyException) {

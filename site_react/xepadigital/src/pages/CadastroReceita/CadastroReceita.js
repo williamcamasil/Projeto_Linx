@@ -105,11 +105,15 @@ class CadastroReceita extends Component {
         if (this.state.idReceitaAlterada !== 0) {
             //PUT 
             let receita = new FormData();
+            
+            if (this.state.put_post_Receita.imgReceita.current !== undefined) {
+                // Seta a nova imagem.
+            receita.set('imgReceita', this.state.put_post_Receita.imgReceita.current.files[0], this.state.put_post_Receita.imgReceita.value);
+            }
             receita.set('idReceita', this.state.put_post_Receita.idReceita);
             receita.set('nomeReceita', this.state.put_post_Receita.nomeReceita);
             receita.set('descricaoPreparo', this.state.put_post_Receita.descricaoPreparo);
             receita.set('descricaoIngrediente', this.state.put_post_Receita.descricaoIngrediente);
-            receita.set('imgReceita', this.state.put_post_Receita.imgReceita.current.files[0], this.state.put_post_Receita.imgReceita.value);
             receita.set('idUsuario', this.state.put_post_Receita.idUsuario);
 
             fetch("http://localhost:5000/api/Receita/" + this.state.put_post_Receita.idReceita, {

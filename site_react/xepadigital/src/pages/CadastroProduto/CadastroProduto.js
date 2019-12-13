@@ -115,6 +115,11 @@ class CadastroProduto extends Component {
         if (this.state.idProdutoAlterada !== 0) {
             //PUT
             let produto = new FormData();
+
+            if (this.state.put_post_Produto.imgProduto.current !== undefined) {
+                // Seta a nova imagem.
+            produto.set('imgProduto', this.state.put_post_Produto.imgProduto.current.files[0], this.state.put_post_Produto.imgProduto.value);
+            }
             produto.set('idProduto', this.state.put_post_Produto.idProduto);
             produto.set('nomeProduto', this.state.put_post_Produto.nomeProduto);
             produto.set('descricaoProduto', this.state.put_post_Produto.descricaoProduto);
@@ -122,7 +127,6 @@ class CadastroProduto extends Component {
             produto.set('organico', this.state.put_post_Produto.organico);
             produto.set('preco', this.state.put_post_Produto.preco);
             produto.set('validade', this.state.put_post_Produto.validade);
-            produto.set('imgProduto', this.state.put_post_Produto.imgProduto.current.files[0], this.state.put_post_Produto.imgProduto.value);
             produto.set('idUsuario', this.state.put_post_Produto.idUsuario);
 
             fetch("http://localhost:5000/api/Produto/" + this.state.put_post_Produto.idProduto, {
