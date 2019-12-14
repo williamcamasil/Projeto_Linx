@@ -16,10 +16,11 @@ class PerfilColaborador extends Component {
     constructor() {
         super();
         this.state = {
-            // usuarioPorId: [],
-            // enderecoPorId: [],
+            //======================================================
+            file: '',
+            imagePreviewUrl: '',
 
-            usuarioCadastrado: {},
+
             putUsuario: {
                 idUsuario: parseJwt().Id,
                 imgPerfil: React.createRef(),
@@ -71,7 +72,7 @@ class PerfilColaborador extends Component {
             .then(response => {
                 if (response.status === 200) {
                     this.setState({ putUsuario: response.data })
-                    this.setState({ usuarioCadastrado: response.data })
+                    // this.setState({ usuarioCadastrado: response.data })
                 }
                 console.log("respUser: ", this.state.putUsuario)
             })
@@ -124,6 +125,18 @@ class PerfilColaborador extends Component {
     }
 
     putSetStateImg = (input) => {
+        //=====================================================
+        let reader = new FileReader();
+        let file = input.target.files[0];
+
+        reader.onloadend = () => {
+            this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            });
+        }
+        reader.readAsDataURL(file)
+        //======================================================
         this.setState({
             putUsuario: {
                 ...this.state.putUsuario, [input.target.name]: input.target.files[0]
@@ -198,6 +211,12 @@ class PerfilColaborador extends Component {
 
 
     render() {
+        let { imagePreviewUrl } = this.state;
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl} />);
+        }
+
         return (
             <div>
                 <Header />
@@ -217,12 +236,19 @@ class PerfilColaborador extends Component {
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_esquerda">
                                         <div className="caixa_cad_img">
-                                            {/* <img src={profile} alt="" /> */}
-                                            <img alt="Imagem de perfil do Usuário" src={"http://localhost:5000/" + this.state.putUsuario.imgPerfil} />
+                                            {/* IMG */}
+
+                                            {
+                                                this.state.putUsuario.imgPerfil.current !== undefined ?
+                                                    <>{$imagePreview}</>
+                                                    :
+                                                    <img alt="Imagem de perfil do Usuário" src={"http://localhost:5000/" + this.state.putUsuario.imgPerfil} />
+                                            }
+
                                         </div>
                                         <br />
 
-                                        {/* teste */}
+                                        {/* IMG */}
                                         <label htmlFor="icon-button-file">
                                             <IconButton color="primary" aria-label="upload picture" component="span">
                                                 <input

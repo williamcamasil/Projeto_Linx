@@ -27,17 +27,17 @@ class CadastroReceita extends Component {
             },
             idReceitaAlterada: 0,
             more: 4,
-            erroMsg : "",
-            successMsg : ""
+            erroMsg: "",
+            successMsg: ""
         }
     }
 
-    //Mostrar Imagem
-    imgSetState = (i) => {
-        this.setState({
-            file: URL.createObjectURL(i.target.files[0])
-        })
-    }
+    // //Mostrar Imagem
+    // imgSetState = (i) => {
+    //     this.setState({
+    //         file: URL.createObjectURL(i.target.files[0])
+    //     })
+    // }
 
     postSetState = (input) => {
         this.setState({
@@ -76,10 +76,12 @@ class CadastroReceita extends Component {
         fetch('http://localhost:5000/api/Receita/Usuario/' + parseJwt().Id)
             .then(response => response.json())
             .then(response => {
-                if(response.status === 200){
+                if (response.status === 200 || 204) {
                     var redux = response.slice(0, this.state.more)
 
                     this.setState({ listaCadReceitas: redux })
+                    console.log("dd ", this.state.listaCadReceitas)
+
                 }
             })
 
@@ -103,7 +105,7 @@ class CadastroReceita extends Component {
     }
 
     incrementarMais = () => {
-        this.setState({more: this.state.more + 4});
+        this.setState({ more: this.state.more + 4 });
         console.log('Mostrar: ', this.state.more) //this.state.more)  
         this.getCadReceita();
     }
@@ -111,8 +113,8 @@ class CadastroReceita extends Component {
     //POST & PUT
     post_put_CadReceita = (event) => {
         event.preventDefault();
-        this.setState({ erroMsg : "" })
-        this.setState({ successMsg : "" })
+        this.setState({ erroMsg: "" })
+        this.setState({ successMsg: "" })
 
         if (this.state.idReceitaAlterada !== 0) {
             //PUT 
@@ -135,9 +137,9 @@ class CadastroReceita extends Component {
                 },
                 body: receita
             })
-            .catch(error => {
-                this.setState({ erroMsg : "Não foi possível [SALVAR], verifique se todos os campos foram preenchidos" })
-            })
+                .catch(error => {
+                    this.setState({ erroMsg: "Não foi possível [SALVAR], verifique se todos os campos foram preenchidos" })
+                })
 
             setTimeout(() => {
                 this.getCadReceita();
@@ -145,8 +147,8 @@ class CadastroReceita extends Component {
             }, 1000);
 
             setTimeout(() => {
-                this.setState({successMsg : ""});
-                this.setState({erroMsg : ""});
+                this.setState({ successMsg: "" });
+                this.setState({ erroMsg: "" });
             }, 3500);
 
             this.setState({ idReceitaAlterada: 0 });
@@ -166,16 +168,16 @@ class CadastroReceita extends Component {
                 },
                 body: receita
             })
-            .then(response => response.json())
-            .then(response => {
-                if (response.status === 200 || response.status === 204){
-                    this.setState({successMsg : "Salvo com sucesso!"});
-                    console.log(response);
-                }
-            })
-            .catch(error => {
-                this.setState({ erroMsg : "Não foi possível [SALVAR], verifique se todos os campos foram preenchidos" })
-            })
+                .then(response => response.json())
+                .then(response => {
+                    if (response.status === 200 || response.status === 204) {
+                        this.setState({ successMsg: "Salvo com sucesso!" });
+                        console.log(response);
+                    }
+                })
+                .catch(error => {
+                    this.setState({ erroMsg: "Não foi possível [SALVAR], verifique se todos os campos foram preenchidos" })
+                })
 
             setTimeout(() => {
                 this.getCadReceita();
@@ -183,15 +185,15 @@ class CadastroReceita extends Component {
             }, 1000);
 
             setTimeout(() => {
-                this.setState({successMsg : ""});
-                this.setState({erroMsg : ""});
+                this.setState({ successMsg: "" });
+                this.setState({ erroMsg: "" });
             }, 3500);
         }
     };
 
     //DELETE - Deletar categoria
     deleteCadReceita = (id) => {
-        this.setState({ erroMsg : "" })
+        this.setState({ erroMsg: "" })
 
         fetch("https://localhost:5001/api/Receita/" + id, {
             method: "DELETE",
@@ -201,15 +203,15 @@ class CadastroReceita extends Component {
             }
         })
 
-        .then(response => response.json())
-        .then(response => {
-            console.log(response);
-            this.getCadReceita();
-            this.setState(() => ({ lista: this.state.listaCadReceitas }))
-        })
-        .catch(error => {
-            this.setState({ erroMsg : "Não foi possível [EXCLUIR], verifique se houve alguma falha com ADM" })
-        })
+            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                this.getCadReceita();
+                this.setState(() => ({ lista: this.state.listaCadReceitas }))
+            })
+            .catch(error => {
+                this.setState({ erroMsg: "Não foi possível [EXCLUIR], verifique se houve alguma falha com ADM" })
+            })
 
 
         setTimeout(() => {
@@ -218,8 +220,8 @@ class CadastroReceita extends Component {
         }, 1000);
 
         setTimeout(() => {
-            this.setState({successMsg : ""});
-            this.setState({erroMsg : ""});
+            this.setState({ successMsg: "" });
+            this.setState({ erroMsg: "" });
         }, 3500);
     }
 
@@ -269,7 +271,11 @@ class CadastroReceita extends Component {
                                                                 /><ImageSearchIcon color="action" fontSize="large" />
                                                             </IconButton>
                                                         </label>
-                                                        <img src={"http://localhost:5000/" + this.state.put_post_Receita.imgReceita} alt="" />
+
+
+                                                        <div className="caixa_cad_img">
+                                                            <img src={"http://localhost:5000/" + this.state.put_post_Receita.imgReceita} alt="" />
+                                                        </div>
                                                     </>
                                                 ) : (
                                                         //POST
@@ -310,9 +316,9 @@ class CadastroReceita extends Component {
                                                         value={this.state.put_post_Receita.descricaoIngrediente}
                                                         onChange={this.postSetState} /> */}
                                                     <textarea className="caixa_texto_componente_bt" type="text" placeholder="Digite os ingredientes"
-                                                    id="ingrediente_receita" name="descricaoIngrediente"
-                                                    value={this.state.put_post_Receita.descricaoIngrediente}
-                                                    onChange={this.postSetState}   />
+                                                        id="ingrediente_receita" name="descricaoIngrediente"
+                                                        value={this.state.put_post_Receita.descricaoIngrediente}
+                                                        onChange={this.postSetState} />
                                                 </div>
 
                                                 {/* PREPARO */}
@@ -323,9 +329,9 @@ class CadastroReceita extends Component {
                                                         value={this.state.put_post_Receita.descricaoPreparo}
                                                         onChange={this.postSetState} /> */}
                                                     <textarea className="caixa_texto_componente_bt" type="text" placeholder="Digite o modo de preparo"
-                                                    id="modoReceita" name="descricaoPreparo"
-                                                    value={this.state.put_post_Receita.descricaoPreparo}
-                                                    onChange={this.postSetState}   />
+                                                        id="modoReceita" name="descricaoPreparo"
+                                                        value={this.state.put_post_Receita.descricaoPreparo}
+                                                        onChange={this.postSetState} />
                                                 </div>
                                             </div>
 

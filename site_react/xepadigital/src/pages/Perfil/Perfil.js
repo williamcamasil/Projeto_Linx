@@ -17,8 +17,8 @@ class Perfil extends Component {
     constructor() {
         super();
         this.state = {
-            // usuarioPorId: [],
-            // enderecoPorId: [],
+            file: '',
+            imagePreviewUrl: '',
 
             putUsuario: {
                 idUsuario: parseJwt().Id,
@@ -124,6 +124,17 @@ class Perfil extends Component {
     }
 
     putSetStateImg = (input) => {
+        let reader = new FileReader();
+        let file = input.target.files[0];
+
+        reader.onloadend = () => {
+            this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            });
+        }
+        reader.readAsDataURL(file)
+
         this.setState({
             putUsuario: {
                 ...this.state.putUsuario, [input.target.name]: input.target.files[0]
@@ -198,6 +209,12 @@ class Perfil extends Component {
 
 
     render() {
+        let { imagePreviewUrl } = this.state;
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl} />);
+        }
+
         return (
             <div>
                 <Header />
@@ -217,8 +234,12 @@ class Perfil extends Component {
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_esquerda">
                                         <div className="caixa_cad_img">
-                                            {/* <img src={profile} alt="" /> */}
-                                            <img alt="Imagem de perfil do Usuário" src={"http://localhost:5000/" + this.state.putUsuario.imgPerfil} />
+                                            {
+                                                this.state.putUsuario.imgPerfil.current !== undefined ?
+                                                <>{$imagePreview}</>
+                                                :
+                                                <img alt="Imagem de perfil do Usuário" src={"http://localhost:5000/" + this.state.putUsuario.imgPerfil} />
+                                            }
                                         </div>
                                         <br />
 
