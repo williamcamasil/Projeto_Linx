@@ -16,5 +16,7 @@ namespace backend.Interfaces {
         Task<Usuario> Alterar (Usuario Usuario);
 
         Task<Usuario> Excluir (Usuario Usuario);
+
+        Task<Usuario> ValidarForgotSenha (ForgotSenhaViewModel model);
     }
 }

@@ -22,7 +22,7 @@ namespace backend.Repositories {
                 //Faz uma comparação do que foi mudado no Banco
                 //Comparamos os atributos que foram modificados através do EF
                 _contexto.Entry (Usuario).State = EntityState.Modified;
-                
+
                 // _contexto.Entry (Usuario.SenhaUsuario = senhaAntiga).State = EntityState.Modified;
 
                 //UPDATE Usuario SET titulo = "nt" where id =2
@@ -85,6 +85,13 @@ namespace backend.Repositories {
                 //Salvamos efetivamente o nosso objeto no BD
                 await _contexto.SaveChangesAsync ();
                 return Usuario;
+            }
+        }
+
+        public async Task<Usuario> ValidarForgotSenha (ForgotSenhaViewModel model) {
+            using (XepaDigitalContext _contexto = new XepaDigitalContext ()) {
+                Usuario usuario = await _contexto.Usuario.FirstOrDefaultAsync (u => u.NomeUsuario == model.NomeUsuario && u.EmailUsuario == model.EmailUsuario);
+                return usuario;
             }
         }
     }

@@ -5,6 +5,13 @@ import api from '../../services/api';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 class Login extends Component {
     constructor() {
         super();
@@ -14,7 +21,48 @@ class Login extends Component {
             senhaUsuario: "",
             erroMsg: "",
             isLoading: false,
+
+            modal: false,
+            nomeUsuario: "",
         }
+    }
+
+    toggle = () => {
+        this.setState({
+            modal: !this.state.modal
+        });
+    }
+
+    setStateForgotSenha = (input) => {
+        this.setState({
+            [input.target.name]: input.target.value
+        })
+    }
+
+
+    postForgotSenha = () => {
+    // e.PreventDefault();
+
+    fetch("http://localhost:5000/api/Usuario/EsqueceuSenha/", {
+            method: "PATCH",
+            body: JSON.stringify({
+                nomeUsuario: this.state.nomeUsuario,
+                emailUsuario: this.state.emailUsuario
+            }),
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem('usuario-xepa')
+            },
+        })
+            .then(response => {
+                console.log(response)
+                this.setState({ successMsg: "senha enviada para o email com sucesso!" });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível enviar o email" });
+            })
+        this.toggle();
     }
 
     atualizaEstado = (e) => {
@@ -102,7 +150,7 @@ class Login extends Component {
                                         onChange={this.atualizaEstado}
                                     />
 
-                                    {/* <a className="texto" title="Esqueci a senha" href="#">Esqueceu sua senha?</a> */}
+                                    <a onClick={() => this.toggle()} className="texto" title="Esqueci a senha" href="#">Esqueceu sua senha?</a>
 
                                     <label htmlFor="conectado" aria-label="Mantenha-me conectado" className="linha_link">
                                         <input 
@@ -129,6 +177,47 @@ class Login extends Component {
                                     <span><a href="/Registrar" title="Cadastre-se.">Cadastre-se</a></span>
                                     {/* <button type="button" className="botao"><a href="/Registrar">Cadastre-se</a></button> */}
                                 </form>
+
+                                <Dialog open={this.state.modal} aria-labelledby="form-dialog-title">
+                                <DialogTitle id="form-dialog-title">Esqueceu sua senha?</DialogTitle>
+                                <DialogContent>
+                                    <form onSubmit={this.postForgotSenha}>
+                                        <p style={{ color : 'red' }}>{this.state.erroMsg}</p>
+                                        <TextField
+                                            label="Nome Completo"
+                                            type="text"
+                                            placeholder="Digite seu nome"
+                                            name="nomeUsuario"
+                                            value={this.state.senhaAtual}
+                                            onChange={this.setStateForgotSenha}
+
+                                            autoFocus
+                                            margin="dense"
+                                            fullWidth
+                                        />
+                                        <TextField
+                                            label="Email"
+                                            type="text"
+                                            placeholder="Digite seu email"
+                                            name="emailUsuario"
+                                            value={this.state.emailUsuario}
+                                            onChange={this.setStateForgotSenha}
+
+                                            autoFocus
+                                            margin="dense"
+                                            fullWidth
+                                        />
+                                        <DialogActions>
+                                            <Button onClick={this.toggle} color="primary">
+                                                Fechar
+                                                </Button>
+                                            <Button type="submit" color="primary">
+                                                Enviar
+                                                </Button>
+                                        </DialogActions>
+                                    </form>
+                                </DialogContent>
+                            </Dialog>
 
                             </div>
                         </div>
