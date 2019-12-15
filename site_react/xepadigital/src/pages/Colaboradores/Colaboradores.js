@@ -166,8 +166,8 @@ class Colaboradores extends Component {
                                                         return (
                                                             <div key={registro.idRegistro} className="card_info">
                                                                 <img src={"http://localhost:5000/" + registro.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
-                                                                <p>{registro.idUsuarioNavigation.nomeProduto}</p>
-                                                                <p>R$ {registro.idUsuarioNavigation.preco} /Kg</p>
+                                                                <p>{registro.idProdutoNavigation.nomeProduto}</p>
+                                                                <p>R$ {registro.idProdutoNavigation.preco} /Kg</p>
                                                             </div>
                                                         );
                                                     })

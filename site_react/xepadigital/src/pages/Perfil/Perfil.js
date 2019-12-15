@@ -275,10 +275,17 @@ class Perfil extends Component {
         if ((senhaBanco === senhaAtual) && (novaSenha === confirmaSenha)) {
             this.putAltSenha(e);
         } else {
-            this.setState({ erroMsg: "A senha inserida não é igual" });
-            setTimeout(() => {
-                this.setState({ erroMsg: "" });
-            }, 3500);
+            if (senhaBanco !== senhaAtual) {
+                this.setState({ erroMsg: "Senha incorreta" });
+                setTimeout(() => {
+                    this.setState({ erroMsg: "" });
+                }, 3500);
+            } else {
+                this.setState({ erroMsg: "A nova senha não coincide" });
+                setTimeout(() => {
+                    this.setState({ erroMsg: "" });
+                }, 3500);
+            }
         }
     }
     //#endregion

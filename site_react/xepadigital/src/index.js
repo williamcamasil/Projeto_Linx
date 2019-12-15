@@ -65,8 +65,8 @@ const Rotas = (
                 <Route exact path="/" component ={Inicial}/>
                 <Route path="/Colaboradores" component = {Colaboradores} />
                 <Route path="/ColaboradorDetalhes" component = {ColaboradorDetalhes}/> 
-                <Route path="/ReservaColaborador" component = {ReservaColaborador}/> 
-                <Route path="/ReservaCliente" component = {ReservaCliente}/> 
+                <PermissaoColaborador path="/ReservaColaborador" component = {ReservaColaborador}/> 
+                <PermissaoCliente path="/ReservaCliente" component = {ReservaCliente}/> 
                 <Route path="/Receitas" component = {Receitas}/> 
                 <Route path="/ReceitasDetalhes" component = {ReceitasDetalhes}/> 
                 <Route path="/Duvidas" component = {Duvidas}/> 
@@ -74,7 +74,7 @@ const Rotas = (
                 <PermissaoColaborador path="/CadastroProduto" component = {CadastroProduto}/> 
                 <PermissaoCliente path="/CadastroReceita" component = {CadastroReceita}/>
                 <PermissaoColaborador path="/PerfilColaborador" component = {PerfilColaborador}/>
-                <Route path="/Perfil" component = {Perfil}/>
+                <PermissaoCliente path="/Perfil" component = {Perfil}/>
                 <Route path="/NotFound" component = {NotFound}/>
                 <Route path="/Registrar" component={Registrar}/>
                 <Route path="/Login" component={Login}/>
