@@ -27,8 +27,8 @@ class CadastroReceita extends Component {
             },
             idReceitaAlterada: 0,
             more: 4,
-            erroMsg : "",
-            successMsg : ""
+            // erroMsg : "",
+            // successMsg : ""
         }
     }
 
@@ -76,12 +76,14 @@ class CadastroReceita extends Component {
         fetch('http://localhost:5000/api/Receita/Usuario/' + parseJwt().Id)
             .then(response => response.json())
             .then(response => {
-                if(response.status === 200){
+                // if(response.status === 200 || response.status === 204){
+                    // console.log(response.status)
                     var redux = response.slice(0, this.state.more)
 
                     this.setState({ listaCadReceitas: redux })
-                }
+                // }
             })
+       
 
     }
 
@@ -111,8 +113,8 @@ class CadastroReceita extends Component {
     //POST & PUT
     post_put_CadReceita = (event) => {
         event.preventDefault();
-        this.setState({ erroMsg : "" })
-        this.setState({ successMsg : "" })
+        // this.setState({ erroMsg : "" })
+        // this.setState({ successMsg : "" })
 
         if (this.state.idReceitaAlterada !== 0) {
             //PUT 
@@ -135,19 +137,19 @@ class CadastroReceita extends Component {
                 },
                 body: receita
             })
-            .catch(error => {
-                this.setState({ erroMsg : "Não foi possível [SALVAR], verifique se todos os campos foram preenchidos" })
-            })
+            // .catch(error => {
+            //     this.setState({ erroMsg : "Não foi possível [SALVAR], verifique se todos os campos foram preenchidos" })
+            // })
 
             setTimeout(() => {
                 this.getCadReceita();
                 this.limparCampos();
             }, 1000);
 
-            setTimeout(() => {
-                this.setState({successMsg : ""});
-                this.setState({erroMsg : ""});
-            }, 3500);
+            // setTimeout(() => {
+            //     this.setState({successMsg : ""});
+            //     this.setState({erroMsg : ""});
+            // }, 3500);
 
             this.setState({ idReceitaAlterada: 0 });
         } else {
@@ -167,25 +169,25 @@ class CadastroReceita extends Component {
                 body: receita
             })
             .then(response => response.json())
-            .then(response => {
-                if (response.status === 200 || response.status === 204){
-                    this.setState({successMsg : "Salvo com sucesso!"});
-                    console.log(response);
-                }
-            })
-            .catch(error => {
-                this.setState({ erroMsg : "Não foi possível [SALVAR], verifique se todos os campos foram preenchidos" })
-            })
+            // .then(response => {
+            //     if (response.status === 200 || response.status === 204){
+            //         this.setState({successMsg : "Salvo com sucesso!"});
+            //         console.log(response);
+            //     }
+            // })
+            // .catch(error => {
+            //     this.setState({ erroMsg : "Não foi possível [SALVAR], verifique se todos os campos foram preenchidos" })
+            // })
 
             setTimeout(() => {
                 this.getCadReceita();
                 this.limparCampos();
             }, 1000);
 
-            setTimeout(() => {
-                this.setState({successMsg : ""});
-                this.setState({erroMsg : ""});
-            }, 3500);
+            // setTimeout(() => {
+            //     this.setState({successMsg : ""});
+            //     this.setState({erroMsg : ""});
+            // }, 3500);
         }
     };
 
@@ -207,9 +209,9 @@ class CadastroReceita extends Component {
             this.getCadReceita();
             this.setState(() => ({ lista: this.state.listaCadReceitas }))
         })
-        .catch(error => {
-            this.setState({ erroMsg : "Não foi possível [EXCLUIR], verifique se houve alguma falha com ADM" })
-        })
+        // .catch(error => {
+        //     this.setState({ erroMsg : "Não foi possível [EXCLUIR], verifique se houve alguma falha com ADM" })
+        // })
 
 
         setTimeout(() => {
@@ -217,10 +219,10 @@ class CadastroReceita extends Component {
             this.limparCampos();
         }, 1000);
 
-        setTimeout(() => {
-            this.setState({successMsg : ""});
-            this.setState({erroMsg : ""});
-        }, 3500);
+        // setTimeout(() => {
+        //     this.setState({successMsg : ""});
+        //     this.setState({erroMsg : ""});
+        // }, 3500);
     }
 
     limparCampos = () => {
@@ -340,10 +342,10 @@ class CadastroReceita extends Component {
 
                             <div className="linha"></div>
                             <div className="tit_receita">
-                                <div className="Mensagens">
+                                {/* <div className="Mensagens">
                                     {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
                                     {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
-                                </div>
+                                </div> */}
 
                                 <span>RECEITAS CADASTRADAS</span>
                             </div>

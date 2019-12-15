@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import HeaderHome from '../../componentes/Header/HeaderHome';
 import Footer from '../../componentes/Footer/Footer';
 import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
-import logo_slogan from '../../assets/img/logo_slogan.svg';
+// import logo_slogan from '../../assets/img/logo_slogan.svg';
 // import Notificacao from '../../componentes/Notificacao/Notificacao';
 import colab from '../../assets/img/colab.jpg';
 import receitas from '../../assets/img/receitas.jpg';

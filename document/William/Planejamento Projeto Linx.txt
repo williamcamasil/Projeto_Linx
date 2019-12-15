@@ -1,0 +1,94 @@
+Como começar o projeto no backend?
+	- Criamos a estrutura de um BD
+	- Criamos um banco de dados no SQLServer
+		- Criamos o BD as tabelas os inserts 
+	- VSCode (Aula 57)
+		- Instalamos a última versão do NetFramework 3.0 (Computador)
+		- No terminal (pasta do projeto) do VSCode Instalamos (comandos):
+			- dotnet new api												//criação das pastas
+			- dotnet tool install --global dotnet-ef									//instalamos o entity framework (comunicação com o BD SQLServer)
+			- dotnet add package Microsoft.EntityFrameworkCore.SqlServer							//pacote usado para conexão do vscode com sqlserver
+			- dotnet add package Microsoft.EntityFrameworkCore.Design							//pacote para poder escrever nossos códigos
+			- dotnet restore												//para verificar se foi instalado corretamente
+			- dotnet ef  													//confirmação se está funcionando o Entity Framework
+			- dotnet ef dbcontext scaffold "Server=DESKTOP-IN4K5BB\\SQLEXPRESS; Database=Gufos; User Id=sa; Password=132"	//Código que criará o nosso Contexto da Base de Dados e nossos Models
+			OU
+			- dotnet ef dbcontext scaffold "Server=WILLIAM\\SQLEXPRESS;Database=Gufos;Trusted_Connection=True;"		//Código que criará o nosso Contexto da Base de Dados e nossos Models (Nesse caso se o BD não tiver login nem senha)
+			- dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson							//Para adicionar a árvore de objetos adicionamos uma nova biblioteca JSON
+			- dotnet add backend.csproj package Swashbuckle.AspNetCore -v 5.0.0-rc4						//Instalamos pacote SWAGGER para Documentação
+			- dotnet add package Microsoft.AspnetCore.Authentication.JwtBearer --version 3.0.0 				//Instalamos pacote JWT - JSON WEB Token | Proteger senhas e usuários, informações que não devem ser expostas						
+
+			OBS
+				- Fizemos tudo isso para trazer o banco de dados do SQLServer e fazer conexão do BD
+				- No backend.csproj tem os pacotes que foram instalados
+				- Dps criamos os controllers...
+				- https://www.nuget.org/packages/EntityFramework/  //Usando esse framework para funções assincronas no nosso código
+				- Criamos um class CategoriaController no vs code
+				- O que é método assincrono: Faz com que seja possivel a execução de varios métodos ao mesmo tempo.	
+				- Apartir daqui criamos o CRUD (GET (SELECT) / POST (INSER) / PUT(UPDATE) / DELETE(DELETE))
+				- Conferir a validação do token (https://jwt.io/)  - Segurança dos dados do site			
+			
+			PROXIMOS PASSOS...
+				- Preenchemos algumas informações no arquivo Startup.cs / backend.csproj / appsettings.json ...etc (AULA 59)
+				- (Aula 62)
+					- DOMAINS / REPOSITORIES / INTERFACES / VIEWMODELS
+						- Inserimos o seguinte comando (terminal):
+						- dotnet ef dbcontext scaffold "Server=WILLIAM\\SQLEXPRESS; Database=Gufos; User Id=sa; Password=132" Microsoft.EntityFrameworkCore.SqlServer -o Domains -d
+						OU
+						dotnet ef dbcontext scaffold "Server=WILLIAM\\SQLEXPRESS;Database=Gufos;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Domains -d
+						- Excluímos o model anterior para usar o Domains
+						- Tiramos a pasta de Controllers de dentro de backend e colocamos fora para não alterar nada nessa pasta
+						- Para isso excluimos o models e executamos o comando -dotnet ef dbcontext scaffold "Server=DESKTOP-IN4K5BB\SQLEXPRESS; Database=Gufos; User Id=sa; Password=132" Microsoft.EntityFrameworkCore.SqlServer -o Domains -d //para recriar a pasta de DOMEIN
+						- Voltamos com a pasta Controllers para dentro de backend e renomeamos o models para domein em using
+						- Criamos a pasta Interfaces e criamos o arquivo interface ICategoria.cs dentro da pasta. 
+						- Inserimos os comando de CRUD dentro dela.
+						- Criamos a pasta Contexts, recortei o arquivo GufosContext.cs e colei dentro da pasta Contexts
+						- Feito isso, criei uma pasta Repositories, criei um arquivo.cs com nome CategoriaRepository.cs e inseri os metodos de CRUD
+						- Passamos todos os métodos do Controller para o Repositorios
+						***Trocamos de MVC para Domain Driving Design***
+									
+		
+				
+
+Como começar o projeto no React?
+	- Para instalar o React (AULA 73)
+		- baixar o node.js (https://nodejs.org/en/) | junto com o node é instalado o npm
+		- crie uma pasta e abra no VSCode | No terminal coloque o seguintes comandos:
+			- npm install -g create-react-app
+			- npx create-react-app gufos 		//gufos é o nome do projeto, aqui pode colocar qualquer nome...
+			- entre na pasta gufos -> cd gufos
+			- e colocque no terminal (npm start) para iniciar o projeto
+
+			- usaremos mais a pasta src dentro de gufos
+			- esses arquivos são jsx que foram traduzidos para html
+			- dentro do source, criamos uma pasta chamada pages para criarmos nossas páginas
+			- dentro dessa pasta iremos criar uma pasta para cada página, porque um arquivo pode ter um css próprio!
+			
+			- EXEMPLO:
+			- Criamos uma pasta Categorias
+			- Criamos um arquivo Categorias.js dentro da pasta Categorias
+			- dentro dela inserimos os nosso imports (AULA 73)
+			- Instalaremos um novo pacote no terminal: (serve para trabalhar com as rotas de uma página para outra)
+				- npm install --save react-router-dom
+			- ...
+			- (AULA 74)
+				- criamos a pasta assets e colocamos as pastas pages e componentes dentro dela
+				- Informações sobre o ciclo de vida
+			- (AULA 75)
+				- CORS (Usado para fazer a comunicação entre backend e frontend)
+			- (AULA 76)
+				- Instalação do pacote (npm install --save mdbreact) para usar o mdb para trazer mais funcionalidades para o frontend
+				- comando para arrumar o pacote (npm audit fix)
+			- (AULA 77)
+				- Usando biblioteca fontawesome
+			- (AULA 78)
+				- Já estavamos fazendo a página eventos (o paulo mostrou a de categorias), e na parte da tarde ariel começou a nos mostrar como fazer login
+				- Componentizamos o header
+			- (AULA 79)
+				- Começamos usar o AXIOS ao invés do FETCH, por ser mais simples de usar. 
+			- (AULA 80)
+				- Como fazer o DEPLOY do site
+			
+			OBS
+				Sites com várias documentações (https://devdocs.io/)
+	
