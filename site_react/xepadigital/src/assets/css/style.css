@@ -25,8 +25,6 @@
 
 /*#endregion*/
 
-
-
 /*#region USO GERAL*/
 :root {
     --roxo: #472A4C;
@@ -666,7 +664,7 @@ h3 {
 .texto {
     width: 700px;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .linha_laranja {
@@ -902,8 +900,8 @@ h2 {
     width: 900px;
 }
 
-.caixa_cad_esquerda button{
-    width: 150px;
+.caixa_cad_esquerda button, .btnSenha{
+    width: 150px !important;
 }
 
 .card_size_cad{
@@ -1717,7 +1715,7 @@ button{
   }
 /*#endregion*/
 
-/* MENU SANDUICHE */
+/* MENU SANDUICHE DESATIVADO*/
 @media(min-width: 1200px){
     #menu_cabecalho {
         display: none;
@@ -2041,6 +2039,9 @@ button{
     .pergunta{
         width: 700px;
     }
+    .respostaDuvidas_perfis{
+        width: 650px;
+    }
     /*#endregion */
 
     /*#region TERMOS DE USO*/
@@ -2163,8 +2164,8 @@ button{
 }
 /*#endregion */
 
+/*#region GERAL MOBILE*/
 @media(min-width: 360px) and (max-width: 767px) {
-    /*#region GERAL MOBILE*/
 
     #tabela-lista-corpo td{
             display: flex;

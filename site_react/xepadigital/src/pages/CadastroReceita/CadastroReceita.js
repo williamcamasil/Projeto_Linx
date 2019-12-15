@@ -32,12 +32,12 @@ class CadastroReceita extends Component {
         }
     }
 
-    //Mostrar Imagem
-    imgSetState = (i) => {
-        this.setState({
-            file: URL.createObjectURL(i.target.files[0])
-        })
-    }
+    // //Mostrar Imagem
+    // imgSetState = (i) => {
+    //     this.setState({
+    //         file: URL.createObjectURL(i.target.files[0])
+    //     })
+    // }
 
     postSetState = (input) => {
         this.setState({
@@ -105,7 +105,7 @@ class CadastroReceita extends Component {
     }
 
     incrementarMais = () => {
-        this.setState({more: this.state.more + 4});
+        this.setState({ more: this.state.more + 4 });
         console.log('Mostrar: ', this.state.more) //this.state.more)  
         this.getCadReceita();
     }
@@ -193,7 +193,7 @@ class CadastroReceita extends Component {
 
     //DELETE - Deletar categoria
     deleteCadReceita = (id) => {
-        this.setState({ erroMsg : "" })
+        this.setState({ erroMsg: "" })
 
         fetch("https://localhost:5001/api/Receita/" + id, {
             method: "DELETE",
@@ -271,7 +271,11 @@ class CadastroReceita extends Component {
                                                                 /><ImageSearchIcon color="action" fontSize="large" />
                                                             </IconButton>
                                                         </label>
-                                                        <img src={"http://localhost:5000/" + this.state.put_post_Receita.imgReceita} alt="" />
+
+
+                                                        <div className="caixa_cad_img">
+                                                            <img src={"http://localhost:5000/" + this.state.put_post_Receita.imgReceita} alt="" />
+                                                        </div>
                                                     </>
                                                 ) : (
                                                         //POST
@@ -312,9 +316,9 @@ class CadastroReceita extends Component {
                                                         value={this.state.put_post_Receita.descricaoIngrediente}
                                                         onChange={this.postSetState} /> */}
                                                     <textarea className="caixa_texto_componente_bt" type="text" placeholder="Digite os ingredientes"
-                                                    id="ingrediente_receita" name="descricaoIngrediente"
-                                                    value={this.state.put_post_Receita.descricaoIngrediente}
-                                                    onChange={this.postSetState}   />
+                                                        id="ingrediente_receita" name="descricaoIngrediente"
+                                                        value={this.state.put_post_Receita.descricaoIngrediente}
+                                                        onChange={this.postSetState} />
                                                 </div>
 
                                                 {/* PREPARO */}
@@ -325,9 +329,9 @@ class CadastroReceita extends Component {
                                                         value={this.state.put_post_Receita.descricaoPreparo}
                                                         onChange={this.postSetState} /> */}
                                                     <textarea className="caixa_texto_componente_bt" type="text" placeholder="Digite o modo de preparo"
-                                                    id="modoReceita" name="descricaoPreparo"
-                                                    value={this.state.put_post_Receita.descricaoPreparo}
-                                                    onChange={this.postSetState}   />
+                                                        id="modoReceita" name="descricaoPreparo"
+                                                        value={this.state.put_post_Receita.descricaoPreparo}
+                                                        onChange={this.postSetState} />
                                                 </div>
                                             </div>
 

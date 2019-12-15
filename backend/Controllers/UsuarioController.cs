@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using backend.Domains;
 using backend.Repositories;
@@ -15,9 +17,7 @@ namespace backend.Controllers {
         UsuarioRepository _repositorio = new UsuarioRepository ();
         EnderecoRepository _repositorioEndereco = new EnderecoRepository ();
         UploadRepository _UploadImg = new UploadRepository ();
-
-        updateUsuarioViewModel _view = new updateUsuarioViewModel ();
-
+        EmailRepository _sendEmail = new EmailRepository ();
         //GET: api/Usuario
         [HttpGet]
         // [Authorize (Roles = "Administrador")]
@@ -105,11 +105,11 @@ namespace backend.Controllers {
             try {
                 Usuario.IdUsuario = int.Parse (Request.Form["IdUsuario"]);
 
-                if(Request.Form.Files.Count != 0){
+                if (Request.Form.Files.Count != 0) {
                     var imagem = Request.Form.Files[0];
                     Usuario.ImgPerfil = _UploadImg.Upload (imagem, "Perfil");
-                }else{
-                    Usuario usuarioCadastrado = await _repositorio.BuscarPorID(int.Parse (Request.Form["IdUsuario"]));
+                } else {
+                    Usuario usuarioCadastrado = await _repositorio.BuscarPorID (int.Parse (Request.Form["IdUsuario"]));
                     Usuario.ImgPerfil = usuarioCadastrado.ImgPerfil;
                 }
 
@@ -141,6 +141,74 @@ namespace backend.Controllers {
 
             //NoContent = Retorna 204, sem nada
             return NoContent ();
+        }
+
+        [HttpPatch ("Senha/{id}")]
+        [Authorize]
+        public async Task<ActionResult> PutSenha (int id, [FromBody] updateSenhaViewModel model) {
+            //Se o Id do objeto não existir
+            //ele retorna 400 
+            var Usuario_Logado = await _repositorio.BuscarPorID (id);
+            if (id != Usuario_Logado.IdUsuario) {
+                return BadRequest (
+                    new {
+                        Mensagem = "Id incompatível, Não foi possível fazer a atualização"
+                    }
+                );
+            }
+            try {
+                Usuario_Logado.SenhaUsuario = model.NovaSenha;
+                await _repositorio.Alterar (Usuario_Logado);
+            } catch (DbUpdateConcurrencyException) {
+                //Verificamos se o objeto inserido realmente existe no banco
+                var Usuario_valido = await _repositorio.BuscarPorID (id);
+                if (Usuario_valido == null) {
+                    return NotFound (
+                        new {
+                            Mensagem = "Não foi possível obter as informações"
+                        }
+                    );
+                } else {
+                    throw;
+                }
+            }
+
+            //NoContent = Retorna 204, sem nada
+            return NoContent ();
+        }
+
+        [HttpPatch ("EsqueceuSenha")]
+        [AllowAnonymous]
+        public async Task<IActionResult> PostForgotSenha ([FromBody] ForgotSenhaViewModel verificar) {
+            IActionResult response = Unauthorized ("Dados inválidos.");
+            var usuario = await _repositorio.ValidarForgotSenha (verificar);
+            if (usuario != null) {
+                string novaSenha = RandomString (5) + usuario.EmailUsuario.Length.ToString () + usuario.NomeUsuario.Length.ToString ();
+                // var senhaEncrypy = encrypt.Encrypt (novaSenha);
+                usuario.SenhaUsuario = novaSenha;
+                await _repositorio.Alterar (usuario);
+                string email = usuario.EmailUsuario;
+                string titulo = "Alteração de senha Xepa Digital";
+                string body = $"<h1>Alteração de senha Xepa Digital</h1>" +
+                    $"<br>" +
+                    $"<br>" +
+                    $"<p>Prezado(a) {usuario.NomeUsuario},</p>" +
+                    $"<br>" +
+                    $"<p>Atendendo ao seu pedido, segue abaixo a sua nova senha." +
+                    $"<p>Nova senha: {novaSenha}</p>" +
+                    $"<br>" +
+                    $"<p>ATENÇÂO: Está é uma senha provisória, favor altera-la após o seu login.</p>";
+                _sendEmail.EnvioEmail (email, titulo, body);
+                return Ok (usuario);
+            } else {
+                return response;
+            }
+        }
+
+        private static Random random = new Random ();
+        public static string RandomString (int length) {
+            const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            return new string (Enumerable.Repeat (chars, length).Select (s => s[random.Next (s.Length)]).ToArray ());
         }
 
         //FAZENDO DELETE NO BANCO

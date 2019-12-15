@@ -105,11 +105,13 @@ class Registrar extends Component {
                                 <form onSubmit={this.confirmaSenha} id="registrar-se" className="texto" method="POST">
                                     <div id="opcao_login">
                                         <input type="radio"
+                                            required
                                             value="Colaborador"
                                             name="tipoUsuario"
                                             onChange={this.postSetState}  
                                             />Colaborador
                                         <input type="radio"
+                                            required
                                             value="Cliente"
                                             name="tipoUsuario"
                                             onChange={this.postSetState} 
