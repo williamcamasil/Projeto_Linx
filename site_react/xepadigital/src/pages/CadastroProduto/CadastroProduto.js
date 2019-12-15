@@ -9,7 +9,7 @@ import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 
 import IconButton from '@material-ui/core/IconButton';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
-import { MDBAlert} from "mdbreact";
+import { MDBAlert } from "mdbreact";
 
 class CadastroProduto extends Component {
     constructor() {
@@ -30,8 +30,8 @@ class CadastroProduto extends Component {
             },
             idProdutoAlterada: 0,
             more: 4,
-            erroMsg : "",
-            successMsg : ""
+            erroMsg: "",
+            successMsg: ""
         }
     }
 
@@ -92,7 +92,7 @@ class CadastroProduto extends Component {
     }
 
     incrementarMais = () => {
-        this.setState({more: this.state.more + 4});
+        this.setState({ more: this.state.more + 4 });
         console.log('Mostrar: ', this.state.more) //this.state.more)  
         this.getCadProduto();
     }
@@ -119,8 +119,8 @@ class CadastroProduto extends Component {
     //POST & PUT
     post_put_CadProduto = (event) => {
         event.preventDefault();
-        this.setState({ erroMsg : "" })
-        this.setState({ successMsg : "" })
+        this.setState({ erroMsg: "" })
+        this.setState({ successMsg: "" })
         if (this.state.idProdutoAlterada !== 0) {
             //PUT
             let produto = new FormData();
@@ -145,13 +145,13 @@ class CadastroProduto extends Component {
                 },
                 body: produto
             })
-            .then(response => {
-                this.setState({ successMsg: "Informação alterada com sucesso!"});
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ erroMsg: "Não foi possível fazer a modificar" });
-            })
+                .then(response => {
+                    this.setState({ successMsg: "Informação alterada com sucesso!" });
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.setState({ erroMsg: "Não foi possível fazer a modificar" });
+                })
 
             setTimeout(() => {
                 this.getCadProduto();
@@ -159,8 +159,8 @@ class CadastroProduto extends Component {
             }, 1000);
 
             setTimeout(() => {
-                this.setState({successMsg : ""});
-                this.setState({erroMsg : ""});
+                this.setState({ successMsg: "" });
+                this.setState({ erroMsg: "" });
             }, 3500);
 
             this.setState({ idProdutoAlterada: 0 });
@@ -195,31 +195,32 @@ class CadastroProduto extends Component {
                 },
                 body: produto
             })
-            .then(response => response.json())
-            .then(response => {
-                this.setState({ successMsg: "Conteúdo salvo com sucesso!"});
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ erroMsg: "Não foi possível salvar" });
-            })
+                .then(response => response.json())
+                .then(response => {
+                    this.setState({ successMsg: "Conteúdo salvo com sucesso!" });
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.setState({ erroMsg: "Não foi possível salvar" });
+                })
 
             setTimeout(() => {
                 this.getCadProduto();
+                window.location.reload();
                 this.limparCampos();
             }, 1000);
 
             setTimeout(() => {
-                this.setState({successMsg : ""});
-                this.setState({erroMsg : ""});
+                this.setState({ successMsg: "" });
+                this.setState({ erroMsg: "" });
             }, 3500);
         }
     };
 
     //DELETE - Deletar categoria
     deleteCadProduto = (id) => {
-        this.setState({ erroMsg : "" })
-        this.setState({ successMsg : "" })
+        this.setState({ erroMsg: "" })
+        this.setState({ successMsg: "" })
         fetch("http://localhost:5000/api/Produto/" + id, {
             method: "DELETE",
             headers: {
@@ -227,16 +228,16 @@ class CadastroProduto extends Component {
                 "Authorization": "Bearer " + localStorage.getItem('usuario-xepa')
             }
         })
-        .then(response => response.json())
-        .then(response => {
-            this.setState({ successMsg: "Informação deletada com sucesso!"});
-            this.getCadProduto();
-            this.setState(() => ({ lista: this.state.listaCadProdutos }))
-        })
-        .catch(error => {
-            console.log(error);
-            this.setState({ erroMsg: "Não foi possível deletar" });
-        })
+            .then(response => response.json())
+            .then(response => {
+                this.setState({ successMsg: "Informação deletada com sucesso!" });
+                this.getCadProduto();
+                this.setState(() => ({ lista: this.state.listaCadProdutos }))
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível deletar" });
+            })
 
 
         setTimeout(() => {
@@ -245,8 +246,8 @@ class CadastroProduto extends Component {
         }, 1000);
 
         setTimeout(() => {
-            this.setState({successMsg : ""});
-            this.setState({erroMsg : ""});
+            this.setState({ successMsg: "" });
+            this.setState({ erroMsg: "" });
         }, 3500);
     }
 
@@ -273,120 +274,122 @@ class CadastroProduto extends Component {
                 <main>
                     <section>
                         <div className="container">
-                            <div id="card_cadastro">
+                            <div id="card_cadastro" className="card">
                                 <span>CADASTRO DE PRODUTO</span>
 
                                 <div id="caixa_total">
                                     <div id="caixa_parte_conteudo">
                                         <form className="form_caixa" action="GET" onSubmit={this.post_put_CadProduto}>
-                                            {/* IMAGEM */}
-                                            <div id="caixa_parte_imagem">
 
-                                                {this.state.idProdutoAlterada !== 0 ? (
-                                                    // PUT
-                                                    <>
-                                                        <label htmlFor="icon-button-file">
-                                                            <IconButton color="primary" aria-label="upload picture" component="span">
-                                                                <input
-                                                                    hidden
-                                                                    id="icon-button-file"
-                                                                    accept="image/*"
-                                                                    type="file"
-                                                                    name="imgProduto"
-                                                                    onChange={this.imgSetState}
-                                                                    ref={this.state.put_post_Produto.imgProduto}
-                                                                /><ImageSearchIcon color="action" fontSize="large" />
-                                                            </IconButton>
-                                                        </label>
-                                                        <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" onError={i => i.target.style.display='none'}/>
-                                                    </>
-                                                ) : (
-                                                        //POST
-                                                        <label htmlFor="icon-button-file">
-                                                            <IconButton color="primary" aria-label="upload picture" component="span">
-                                                                <input
-                                                                    hidden
-                                                                    id="icon-button-file"
-                                                                    accept="image/*"
-                                                                    type="file"
-                                                                    name="imgProduto"
-                                                                    onChange={this.imgSetState}
-                                                                    ref={this.state.put_post_Produto.imgProduto}
-                                                                /><ImageSearchIcon color="action" fontSize="large" />
-                                                            </IconButton>
-                                                        </label>
-                                                    )
-                                                }
+                                            <div className="">
+                                                {/* IMAGEM */}
 
-                                                <img className="img_cad_produto"  alt="imagem ilustrativa de comida"
-                                                    onError={this.addDefaultSrc}
-                                                    src={this.state.file}
-                                                />
-                                            </div>
+                                                <div className="caixa_esquerda">
 
-                                            {/* NOME */}
-                                            <div className="padronizar_campo2">
-                                                <label htmlFor="nome_lbl" aria-label="nome_lbl"> Nome</label>
-                                                <input className="caixa_texto_componente" type="nome_produto"
-                                                    placeholder="Digite o nome do produto" name="nomeProduto" id="nome_produto"
-                                                    value={this.state.put_post_Produto.nomeProduto}
-                                                    onChange={this.postSetState}
-                                                />
-                                            </div>
-
-                                            <div className="caixa_texto">
-                                                <div className="caixa_texto_sub">
-                                                    <label htmlFor="preco_lbl" aria-label="preco_lbl"> Preço</label><br />
-                                                    <input className="caixa_texto_componente" type="preco_produto"
-                                                        placeholder="Digite o preço" name="preco" id="preco_produto"
-                                                        value={this.state.put_post_Produto.preco}
-                                                        onChange={this.postSetState}
-                                                    />
-                                                </div>
-                                                <div className="caixa_texto_sub">
-                                                    <label htmlFor="data_lbl" aria-label="data_lbl"> Data de Validade</label><br />
-                                                    <input className="caixa_texto_componente" type="date"
-                                                        placeholder="26/10/2019" name="validade" id="data_produto"
-                                                        value={this.state.put_post_Produto.validade}
-                                                        onChange={this.postSetState}
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className="caixa_texto">
-                                                <div className="caixa_texto_sub">
-                                                    <label htmlFor="organico_lbl" aria-label="organico_lbl"> Este produto é orgânico?</label><br />
-                                                    <select className="caixa_texto_componente" name="organico_produto" id="organico_produto">
-                                                        <option value="organico_nao">Não</option>
-                                                        <option value="organico_sim">Sim</option>
-                                                    </select>
+                                                    {this.state.idProdutoAlterada !== 0 ? (
+                                                        // PUT
+                                                        <>
+                                                            <label htmlFor="icon-button-file">
+                                                                <IconButton color="primary" aria-label="upload picture" component="span">
+                                                                    <input
+                                                                        hidden
+                                                                        id="icon-button-file"
+                                                                        accept="image/*"
+                                                                        type="file"
+                                                                        name="imgProduto"
+                                                                        onChange={this.imgSetState}
+                                                                        ref={this.state.put_post_Produto.imgProduto}
+                                                                    /><ImageSearchIcon color="action" fontSize="large" />
+                                                                </IconButton>
+                                                            </label>
+                                                        
+                                                            <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" onError={i => i.target.style.display = 'none'} />
+                                                        </>
+                                                    ) : (
+                                                            //POST
+                                                            <label htmlFor="icon-button-file">
+                                                                <IconButton color="primary" aria-label="upload picture" component="span">
+                                                                    <input
+                                                                        hidden
+                                                                        id="icon-button-file"
+                                                                        accept="image/*"
+                                                                        type="file"
+                                                                        name="imgProduto"
+                                                                        onChange={this.imgSetState}
+                                                                        ref={this.state.put_post_Produto.imgProduto}
+                                                                    /><ImageSearchIcon color="action" fontSize="large" />
+                                                                </IconButton>
+                                                            </label>
+                                                        )
+                                                    }
+                                                    {
+                                                        this.state.file !== null ?
+                                                            // <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" onError={i => i.target.style.display='none'}/>
+                                                            <img className="img_cad_produto" alt="imagem ilustrativa de comida" src={this.state.file} />
+                                                            :
+                                                            <></>
+                                                    }
                                                 </div>
 
-                                                <div className="caixa_texto_sub">
-                                                    <label htmlFor="disponibilidade_lbl" aria-label="disponibilidade_lbl"> Disponibilidade</label><br/>
-                                                    <input className="caixa_texto_componente" type="detalhe_produto" 
-                                                    placeholder="1 kg" name="disponibilidade" 
-                                                    value={this.state.put_post_Produto.disponibilidade}
-                                                    onChange={this.postSetState}   
-                                                    />
+                                                <div className="caixa_direita">
+                                                    {/* NOME */}
+                                                    <div className="padronizar_campo2">
+                                                        <label htmlFor="nome_lbl" aria-label="nome_lbl"> Nome</label>
+                                                        <input className="caixa_texto_componente" type="nome_produto"
+                                                            placeholder="Digite o nome do produto" name="nomeProduto" id="nome_produto"
+                                                            value={this.state.put_post_Produto.nomeProduto}
+                                                            onChange={this.postSetState}
+                                                        />
+                                                    </div>
+
+                                                    <div className="caixa_texto">
+                                                        <div className="caixa_texto_sub">
+                                                            <label htmlFor="preco_lbl" aria-label="preco_lbl"> Preço</label><br />
+                                                            <input className="caixa_texto_componente" type="preco_produto"
+                                                                placeholder="Digite o preço" name="preco" id="preco_produto"
+                                                                value={this.state.put_post_Produto.preco}
+                                                                onChange={this.postSetState}
+                                                            />
+                                                        </div>
+                                                        <div className="caixa_texto_sub">
+                                                            <label htmlFor="data_lbl" aria-label="data_lbl"> Data de Validade</label><br />
+                                                            <input className="caixa_texto_componente" type="date"
+                                                                placeholder="26/10/2019" name="validade" id="data_produto"
+                                                                value={this.state.put_post_Produto.validade}
+                                                                onChange={this.postSetState}
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="caixa_texto">
+                                                        <div className="caixa_texto_sub">
+                                                            <label htmlFor="organico_lbl" aria-label="organico_lbl"> Este produto é orgânico?</label><br />
+                                                            <select className="caixa_texto_componente" name="organico_produto" id="organico_produto">
+                                                                <option value="organico_nao">Não</option>
+                                                                <option value="organico_sim">Sim</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div className="caixa_texto_sub">
+                                                            <label htmlFor="disponibilidade_lbl" aria-label="disponibilidade_lbl"> Disponibilidade</label><br />
+                                                            <input className="caixa_texto_componente" type="detalhe_produto"
+                                                                placeholder="1 kg" name="disponibilidade"
+                                                                value={this.state.put_post_Produto.disponibilidade}
+                                                                onChange={this.postSetState}
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="caixa_texto_sub">
+                                                        <label htmlFor="detalhe_lbl" aria-label="detalhe_lbl"> Detalhe</label><br />
+                                                        <textarea className="caixa-texto_4 caixa_style_2" type="text" placeholder="Digite os detalhes desse produto"
+                                                            name="descricaoProduto"
+                                                            value={this.state.put_post_Produto.descricaoProduto}
+                                                            onChange={this.postSetState} />
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            <div className="caixa_texto_sub">
-                                                <label htmlFor="detalhe_lbl" aria-label="detalhe_lbl"> Detalhe</label><br/>
-                                                {/* <input className="caixa_texto_componente_campo" type="detalhe_produto" 
-                                                placeholder="Digite os detalhes desse produto" name="descricaoProduto" id="detalhe_produto"
-                                                value={this.state.put_post_Produto.descricaoProduto}
-                                                onChange={this.postSetState}   
-                                                />  */}
-                                                <textarea className="caixa-texto_4 caixa_style_2" type="text" placeholder="Digite os detalhes desse produto"
-                                                name="descricaoPreparo"
-                                                value={this.state.put_post_Produto.descricaoProduto}
-                                                onChange={this.postSetState}    />
-                                            </div>
-
-
-                                            
 
                                             <div className="caixa_texto_botoes">
                                                 <button className="botao" type="submit" name="Salvar">Salvar</button>
@@ -401,38 +404,38 @@ class CadastroProduto extends Component {
                             <div className="linha"></div>
                             <div className="tit_produtor">
                                 <div className="Mensagens">
-                                    {      
-                                        this.state.erroMsg && 
+                                    {
+                                        this.state.erroMsg &&
                                         <MDBAlert className="text-center" color="danger" >
                                             {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
                                         </MDBAlert>
                                     }
-                        
+
                                     {
-                                        this.state.successMsg && 
+                                        this.state.successMsg &&
                                         <MDBAlert className="text-center" color="success" >
                                             {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
                                         </MDBAlert>
                                     }
-                                 </div>
+                                </div>
                                 <span>PRODUTOS CADASTRADOS</span>
                             </div>
 
                             <div className="card_">
                                 {
-                                    this.state.listaCadProdutos.map(function(produto){
-                                        return(
-                                            
-                                                <div className="card_branco card">
-                                                    <img src={"http://localhost:5000/" + produto.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
-                                                    <p>{produto.idProdutoNavigation.nomeProduto}</p>
-                                                    <p>{(produto.idProdutoNavigation.organico === true) ? 'Produto Orgânico':'Produto não Orgânico'}</p>
-                                                    <p>{produto.idProdutoNavigation.disponibilidade} Kg</p>
-                                                    <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputProduto(produto.idProdutoNavigation.idProduto)}>Editar</button>
-                                                </div>
+                                    this.state.listaCadProdutos.map(function (produto) {
+                                        return (
+
+                                            <div className="card_branco card">
+                                                <img src={"http://localhost:5000/" + produto.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
+                                                <p>{produto.idProdutoNavigation.nomeProduto}</p>
+                                                <p>{(produto.idProdutoNavigation.organico === true) ? 'Produto Orgânico' : 'Produto não Orgânico'}</p>
+                                                <p>{produto.idProdutoNavigation.disponibilidade} Kg</p>
+                                                <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputProduto(produto.idProdutoNavigation.idProduto)}>Editar</button>
+                                            </div>
                                         );
                                     }
-                                    .bind(this)
+                                        .bind(this)
                                     )
                                 }
                             </div>
