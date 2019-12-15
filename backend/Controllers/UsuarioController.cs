@@ -16,7 +16,7 @@ namespace backend.Controllers {
         EnderecoRepository _repositorioEndereco = new EnderecoRepository ();
         UploadRepository _UploadImg = new UploadRepository ();
 
-        updateUsuarioViewModel _view = new updateUsuarioViewModel ();
+        updateSenhaViewModel _view = new updateSenhaViewModel ();
 
         //GET: api/Usuario
         [HttpGet]
@@ -105,11 +105,11 @@ namespace backend.Controllers {
             try {
                 Usuario.IdUsuario = int.Parse (Request.Form["IdUsuario"]);
 
-                if(Request.Form.Files.Count != 0){
+                if (Request.Form.Files.Count != 0) {
                     var imagem = Request.Form.Files[0];
                     Usuario.ImgPerfil = _UploadImg.Upload (imagem, "Perfil");
-                }else{
-                    Usuario usuarioCadastrado = await _repositorio.BuscarPorID(int.Parse (Request.Form["IdUsuario"]));
+                } else {
+                    Usuario usuarioCadastrado = await _repositorio.BuscarPorID (int.Parse (Request.Form["IdUsuario"]));
                     Usuario.ImgPerfil = usuarioCadastrado.ImgPerfil;
                 }
 
@@ -127,6 +127,40 @@ namespace backend.Controllers {
             } catch (DbUpdateConcurrencyException) {
                 //Verificamos se o objeto inserido realmente existe no banco
 
+                var Usuario_valido = await _repositorio.BuscarPorID (id);
+                if (Usuario_valido == null) {
+                    return NotFound (
+                        new {
+                            Mensagem = "Não foi possível obter as informações"
+                        }
+                    );
+                } else {
+                    throw;
+                }
+            }
+
+            //NoContent = Retorna 204, sem nada
+            return NoContent ();
+        }
+
+        [HttpPatch ("Senha/{id}")]
+        [Authorize]
+        public async Task<ActionResult> PutSenha (int id, [FromBody] updateSenhaViewModel model) {
+            //Se o Id do objeto não existir
+            //ele retorna 400 
+            var Usuario_Logado = await _repositorio.BuscarPorID (id);
+            if (id != Usuario_Logado.IdUsuario) {
+                return BadRequest (
+                    new {
+                        Mensagem = "Id incompatível, Não foi possível fazer a atualização"
+                    }
+                );
+            }
+            try {
+                Usuario_Logado.SenhaUsuario = model.NovaSenha;
+                await _repositorio.Alterar (Usuario_Logado);
+            } catch (DbUpdateConcurrencyException) {
+                //Verificamos se o objeto inserido realmente existe no banco
                 var Usuario_valido = await _repositorio.BuscarPorID (id);
                 if (Usuario_valido == null) {
                     return NotFound (

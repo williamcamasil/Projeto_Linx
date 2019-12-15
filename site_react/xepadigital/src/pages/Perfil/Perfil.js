@@ -7,6 +7,12 @@ import api, { apiForm } from '../../services/api';
 import IconButton from '@material-ui/core/IconButton';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 // npm install @material-ui/core
 // npm install @material-ui/icons
@@ -49,10 +55,23 @@ class Perfil extends Component {
                 bairro: "",
                 estado: "",
                 idUsuario: parseJwt().Id,
-            }
+            },
+
+            modal: false,
+            senhaAtual: "",
+            novaSenha: "",
+            confirmaSenha: "",
+
+            successMsg: "",
+            erroMsg: "",
         }
     }
 
+    toggle = () => {
+        this.setState({
+            modal: !this.state.modal
+        });
+    }
 
     //#region COMPONENTS
     componentDidMount() {
@@ -141,6 +160,12 @@ class Perfil extends Component {
             }
         })
     }
+
+    putSetStateSenha = (input) => {
+        this.setState({
+            [input.target.name]: input.target.value
+        })
+    }
     //#endregion
 
     //#region PUTS
@@ -198,14 +223,65 @@ class Perfil extends Component {
             this.getEnderecoId();
         }, 500);
     }
-    //#endregion
 
+    putAltSenha = (e) => {
+        e.preventDefault();
+
+        fetch("http://localhost:5000/api/Usuario/Senha/" + parseJwt().Id, {
+            method: "PATCH",
+            body: JSON.stringify({
+                novaSenha: this.state.novaSenha
+            }),
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem('usuario-xepa')
+            },
+        })
+            .then(response => {
+                console.log(response)
+                this.setState({ successMsg: "Senha alterada com sucesso!" });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível alterar a senha" });
+            })
+        this.toggle();
+
+        setTimeout(() => {
+            this.getUsuarioId();
+        }, 300);
+
+        setTimeout(() => {
+            this.setState({ successMsg: "" });
+            this.setState({ erroMsg: "" });
+        }, 3500);
+    }
+    
     putGeral = (e) => {
         e.preventDefault();
         this.putAltUsuario(e);
         this.putAltEndereco(e);
     }
+    
+    alterarSenha = (e) => {
+        e.preventDefault();
+        let senhaBanco = this.state.putUsuario.senhaUsuario
 
+        let { senhaAtual, novaSenha, confirmaSenha } = this.state;
+        console.log("banco ",senhaBanco)
+        console.log("atual ",senhaAtual)
+        console.log("nova ",novaSenha)
+        console.log("confirma ",confirmaSenha)
+        if ((senhaBanco === senhaAtual) && (novaSenha === confirmaSenha)) {
+            this.putAltSenha(e);
+        } else {
+            this.setState({ erroMsg: "A senha inserida não é igual" });
+            setTimeout(() => {
+                this.setState({ erroMsg: "" });
+            }, 3500);
+        }
+    }
+    //#endregion
 
 
     render() {
@@ -243,7 +319,8 @@ class Perfil extends Component {
                                         </div>
                                         <br />
 
-                                        {/* teste */}
+                                        {/* IMG input */}
+                                        <div>
                                         <label htmlFor="icon-button-file">
                                             <IconButton color="primary" aria-label="upload picture" component="span">
                                                 <input
@@ -257,8 +334,11 @@ class Perfil extends Component {
                                                 /><ImageSearchIcon color="action" fontSize="large" />
                                             </IconButton>
                                         </label>
-
+                                        </div>
                                         {/* </button> */}
+                                        <div>
+                                            <button type="button" className="botao btnSenha" onClick={() => this.toggle()}>Alterar Senha</button>
+                                        </div>
                                     </div>
                                     <div>
                                         <div className="caixa_cad_direita">
@@ -435,6 +515,58 @@ class Perfil extends Component {
                                     </div>
                                 </div>
                             </form>
+                            <Dialog open={this.state.modal} aria-labelledby="form-dialog-title">
+                                <DialogTitle id="form-dialog-title">Alterar Senha</DialogTitle>
+                                <DialogContent>
+                                    <form onSubmit={this.alterarSenha}>
+                                        <p style={{ color : 'red' }}>{this.state.erroMsg}</p>
+                                        <TextField
+                                            label="Senha Atual"
+                                            type="password"
+                                            placeholder="Digite a senha atual"
+                                            name="senhaAtual"
+                                            value={this.state.senhaAtual}
+                                            onChange={this.putSetStateSenha}
+
+                                            autoFocus
+                                            margin="dense"
+                                            fullWidth
+                                        />
+                                        <TextField
+                                            label="Nova Senha"
+                                            type="password"
+                                            placeholder="Digite a nova senha"
+                                            name="novaSenha"
+                                            value={this.state.novaSenha}
+                                            onChange={this.putSetStateSenha}
+
+                                            autoFocus
+                                            margin="dense"
+                                            fullWidth
+                                        />
+                                        <TextField
+                                            label="Confirmar Senha"
+                                            type="password"
+                                            placeholder="Confirme a nova senha"
+                                            name="confirmaSenha"
+                                            value={this.state.confirmaSenha}
+                                            onChange={this.putSetStateSenha}
+
+                                            autoFocus
+                                            margin="dense"
+                                            fullWidth
+                                        />
+                                        <DialogActions>
+                                            <Button onClick={this.toggle} color="primary">
+                                                Fechar
+                                                </Button>
+                                            <Button type="submit" color="primary">
+                                                Salvar
+                                                </Button>
+                                        </DialogActions>
+                                    </form>
+                                </DialogContent>
+                            </Dialog>
 
                         </div>
                     </section>
