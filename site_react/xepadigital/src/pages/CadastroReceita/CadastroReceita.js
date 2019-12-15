@@ -8,8 +8,7 @@ import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 
 import IconButton from '@material-ui/core/IconButton';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
-
-// import { MDBAlert} from "mdbreact";
+import { MDBAlert} from "mdbreact";
 
 class CadastroReceita extends Component {
     constructor() {
@@ -27,8 +26,8 @@ class CadastroReceita extends Component {
             },
             idReceitaAlterada: 0,
             more: 4,
-            // erroMsg : "",
-            // successMsg : ""
+            erroMsg : "",
+            successMsg : ""
         }
     }
 
@@ -62,29 +61,17 @@ class CadastroReceita extends Component {
             })
     }
 
-    //GET -  Receitas
-    // getCadReceita = () => {
-    //     api.get('/Receita/Usuario/' + parseJwt().Id)
-    //         .then(response => {
-    //             if (response.status === 200) {
-    //                 this.setState({ listaCadReceitas: response.data })
-    //             }
-    //         })
-    // }
-
     getCadReceita = () => {
         fetch('http://localhost:5000/api/Receita/Usuario/' + parseJwt().Id)
-            .then(response => response.json())
-            .then(response => {
-                // if(response.status === 200 || response.status === 204){
-                    // console.log(response.status)
-                    var redux = response.slice(0, this.state.more)
+        .then(response => response.json())
+        .then(response => {
+            // if(response.status === 200 || response.status === 204){
+                // console.log(response.status)
+                var redux = response.slice(0, this.state.more)
 
-                    this.setState({ listaCadReceitas: redux })
-                // }
-            })
-       
-
+                this.setState({ listaCadReceitas: redux })
+            // }
+        })
     }
 
     //Mostrar Imagem
@@ -113,8 +100,8 @@ class CadastroReceita extends Component {
     //POST & PUT
     post_put_CadReceita = (event) => {
         event.preventDefault();
-        // this.setState({ erroMsg : "" })
-        // this.setState({ successMsg : "" })
+        this.setState({ erroMsg : "" })
+        this.setState({ successMsg : "" })
 
         if (this.state.idReceitaAlterada !== 0) {
             //PUT 
@@ -137,19 +124,23 @@ class CadastroReceita extends Component {
                 },
                 body: receita
             })
-            // .catch(error => {
-            //     this.setState({ erroMsg : "Não foi possível [SALVAR], verifique se todos os campos foram preenchidos" })
-            // })
+            .then(response => {
+                this.setState({ successMsg: "Informação alterada com sucesso!"});
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível fazer a modificar" });
+            })
 
             setTimeout(() => {
                 this.getCadReceita();
                 this.limparCampos();
             }, 1000);
 
-            // setTimeout(() => {
-            //     this.setState({successMsg : ""});
-            //     this.setState({erroMsg : ""});
-            // }, 3500);
+            setTimeout(() => {
+                this.setState({successMsg : ""});
+                this.setState({erroMsg : ""});
+            }, 3500);
 
             this.setState({ idReceitaAlterada: 0 });
         } else {
@@ -169,31 +160,30 @@ class CadastroReceita extends Component {
                 body: receita
             })
             .then(response => response.json())
-            // .then(response => {
-            //     if (response.status === 200 || response.status === 204){
-            //         this.setState({successMsg : "Salvo com sucesso!"});
-            //         console.log(response);
-            //     }
-            // })
-            // .catch(error => {
-            //     this.setState({ erroMsg : "Não foi possível [SALVAR], verifique se todos os campos foram preenchidos" })
-            // })
+            .then(response => {
+                this.setState({ successMsg: "Conteúdo salvo com sucesso!"});
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível salvar" });
+            })
 
             setTimeout(() => {
                 this.getCadReceita();
                 this.limparCampos();
             }, 1000);
 
-            // setTimeout(() => {
-            //     this.setState({successMsg : ""});
-            //     this.setState({erroMsg : ""});
-            // }, 3500);
+            setTimeout(() => {
+                this.setState({successMsg : ""});
+                this.setState({erroMsg : ""});
+            }, 3500);
         }
     };
 
     //DELETE - Deletar categoria
     deleteCadReceita = (id) => {
-        this.setState({ erroMsg: "" })
+        this.setState({ erroMsg : "" })
+        this.setState({ successMsg : "" })
 
         fetch("https://localhost:5001/api/Receita/" + id, {
             method: "DELETE",
@@ -209,9 +199,13 @@ class CadastroReceita extends Component {
             this.getCadReceita();
             this.setState(() => ({ lista: this.state.listaCadReceitas }))
         })
-        // .catch(error => {
-        //     this.setState({ erroMsg : "Não foi possível [EXCLUIR], verifique se houve alguma falha com ADM" })
-        // })
+        .then(response => {
+            this.setState({ successMsg: "Informação deletada com sucesso!"});
+        })
+        .catch(error => {
+            console.log(error);
+            this.setState({ erroMsg: "Não foi possível deletar" });
+        })
 
 
         setTimeout(() => {
@@ -219,10 +213,10 @@ class CadastroReceita extends Component {
             this.limparCampos();
         }, 1000);
 
-        // setTimeout(() => {
-        //     this.setState({successMsg : ""});
-        //     this.setState({erroMsg : ""});
-        // }, 3500);
+        setTimeout(() => {
+            this.setState({successMsg : ""});
+            this.setState({erroMsg : ""});
+        }, 3500);
     }
 
     limparCampos = () => {
@@ -311,10 +305,6 @@ class CadastroReceita extends Component {
                                                 {/* INGREDIENTES */}
                                                 <div className="caixa_texto_sub">
                                                     <label htmlFor="ingrediente_lbl" aria-label="ingrediente_lbl"> Ingredientes</label><br />
-                                                    {/* <input className="caixa_texto_componente_bt" type="ingrediente_receita"
-                                                        placeholder="Digite os ingredientes" name="descricaoIngrediente" id="ingrediente_receita"
-                                                        value={this.state.put_post_Receita.descricaoIngrediente}
-                                                        onChange={this.postSetState} /> */}
                                                     <textarea className="caixa_texto_componente_bt" type="text" placeholder="Digite os ingredientes"
                                                         id="ingrediente_receita" name="descricaoIngrediente"
                                                         value={this.state.put_post_Receita.descricaoIngrediente}
@@ -324,10 +314,6 @@ class CadastroReceita extends Component {
                                                 {/* PREPARO */}
                                                 <div className="caixa_texto_sub">
                                                     <label htmlFor="modo_lbl" aria-label="modo_lbl"> Modo de Preparo</label><br />
-                                                    {/* <input className="caixa_texto_componente_bt" type="modo_receita"
-                                                        placeholder="Digite o modo de preparo" name="descricaoPreparo" id="modoReceita"
-                                                        value={this.state.put_post_Receita.descricaoPreparo}
-                                                        onChange={this.postSetState} /> */}
                                                     <textarea className="caixa_texto_componente_bt" type="text" placeholder="Digite o modo de preparo"
                                                         id="modoReceita" name="descricaoPreparo"
                                                         value={this.state.put_post_Receita.descricaoPreparo}
@@ -346,10 +332,23 @@ class CadastroReceita extends Component {
 
                             <div className="linha"></div>
                             <div className="tit_receita">
-                                {/* <div className="Mensagens">
-                                    {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
-                                    {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
-                                </div> */}
+                                <div className="Mensagens">
+                                    {      
+                                        this.state.erroMsg && 
+                                        <MDBAlert className="text-center" color="danger" >
+                                            {/* {this.state.erroMsg} */}
+                                            {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
+                                        </MDBAlert>
+                                    }
+                        
+                                    {
+                                        this.state.successMsg && 
+                                        <MDBAlert className="text-center" color="success" >
+                                            {/* {this.state.successMsg} */}
+                                            {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
+                                        </MDBAlert>
+                                    }
+                                 </div> 
 
                                 <span>RECEITAS CADASTRADAS</span>
                             </div>

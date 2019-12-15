@@ -9,6 +9,7 @@ import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 
 import IconButton from '@material-ui/core/IconButton';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
+import { MDBAlert} from "mdbreact";
 
 class CadastroProduto extends Component {
     constructor() {
@@ -28,7 +29,9 @@ class CadastroProduto extends Component {
                 idUsuario: parseJwt().Id,
             },
             idProdutoAlterada: 0,
-            more: 4
+            more: 4,
+            erroMsg : "",
+            successMsg : ""
         }
     }
 
@@ -116,6 +119,8 @@ class CadastroProduto extends Component {
     //POST & PUT
     post_put_CadProduto = (event) => {
         event.preventDefault();
+        this.setState({ erroMsg : "" })
+        this.setState({ successMsg : "" })
         if (this.state.idProdutoAlterada !== 0) {
             //PUT
             let produto = new FormData();
@@ -140,12 +145,23 @@ class CadastroProduto extends Component {
                 },
                 body: produto
             })
-                .catch(error => console.log(error))
+            .then(response => {
+                this.setState({ successMsg: "Informação alterada com sucesso!"});
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível fazer a modificar" });
+            })
 
             setTimeout(() => {
                 this.getCadProduto();
                 this.limparCampos();
             }, 1000);
+
+            setTimeout(() => {
+                this.setState({successMsg : ""});
+                this.setState({erroMsg : ""});
+            }, 3500);
 
             this.setState({ idProdutoAlterada: 0 });
         } else {
@@ -179,21 +195,31 @@ class CadastroProduto extends Component {
                 },
                 body: produto
             })
-                .then(response => response.json())
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(error => console.log('Não foi possível cadastrar:' + error))
+            .then(response => response.json())
+            .then(response => {
+                this.setState({ successMsg: "Conteúdo salvo com sucesso!"});
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível salvar" });
+            })
 
             setTimeout(() => {
                 this.getCadProduto();
                 this.limparCampos();
             }, 1000);
+
+            setTimeout(() => {
+                this.setState({successMsg : ""});
+                this.setState({erroMsg : ""});
+            }, 3500);
         }
     };
 
     //DELETE - Deletar categoria
     deleteCadProduto = (id) => {
+        this.setState({ erroMsg : "" })
+        this.setState({ successMsg : "" })
         fetch("http://localhost:5000/api/Produto/" + id, {
             method: "DELETE",
             headers: {
@@ -201,18 +227,27 @@ class CadastroProduto extends Component {
                 "Authorization": "Bearer " + localStorage.getItem('usuario-xepa')
             }
         })
+        .then(response => response.json())
+        .then(response => {
+            this.setState({ successMsg: "Informação deletada com sucesso!"});
+            this.getCadProduto();
+            this.setState(() => ({ lista: this.state.listaCadProdutos }))
+        })
+        .catch(error => {
+            console.log(error);
+            this.setState({ erroMsg: "Não foi possível deletar" });
+        })
 
-            .then(response => response.json())
-            .then(response => {
-                console.log(response);
-                this.getCadProduto();
-                this.setState(() => ({ lista: this.state.listaCadProdutos }))
-            })
 
         setTimeout(() => {
             this.getCadProduto();
             this.limparCampos();
         }, 1000);
+
+        setTimeout(() => {
+            this.setState({successMsg : ""});
+            this.setState({erroMsg : ""});
+        }, 3500);
     }
 
     limparCampos = () => {
@@ -365,6 +400,21 @@ class CadastroProduto extends Component {
 
                             <div className="linha"></div>
                             <div className="tit_produtor">
+                                <div className="Mensagens">
+                                    {      
+                                        this.state.erroMsg && 
+                                        <MDBAlert className="text-center" color="danger" >
+                                            {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
+                                        </MDBAlert>
+                                    }
+                        
+                                    {
+                                        this.state.successMsg && 
+                                        <MDBAlert className="text-center" color="success" >
+                                            {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
+                                        </MDBAlert>
+                                    }
+                                 </div>
                                 <span>PRODUTOS CADASTRADOS</span>
                             </div>
 

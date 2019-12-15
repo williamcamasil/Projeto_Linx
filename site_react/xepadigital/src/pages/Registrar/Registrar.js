@@ -82,12 +82,14 @@ class Registrar extends Component {
 
         if (postUsuario.senhaUsuario !== senhaIgual) {
             this.setState({ erroMsg: "A senha inserida não é igual" });
-
+            
             setTimeout(() => {
                 this.setState({ erroMsg: "" });
             }, 3500);
         } else {
             this.postUsuario();
+            //Abre a tela de login após cadastrar
+            window.location = "\Login"
         }
     }
 

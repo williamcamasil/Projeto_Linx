@@ -683,7 +683,7 @@ h3 {
 
 .grupo {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 1100px;
     flex-wrap: wrap;
     margin-bottom: 40px;
@@ -692,6 +692,7 @@ h3 {
 .cards {
     border-radius: 10px;
     margin-top: 40px;
+    margin-right: 10px;
     width: 350px;
 }
 
@@ -889,7 +890,7 @@ h2 {
 .c_text{
     text-align: center;
     font-size: 30px;
-    text-decoration-line: underline;
+    /* text-decoration-line: underline; */
     margin: 0px 0px 20px;
 }
 .d_text{
@@ -995,7 +996,7 @@ button{
 
 #card_cadastro span{
     font-size: 40px; 
-    text-decoration-line: underline; 
+    /* text-decoration-line: underline;  */
 }
 
 #caixa_total{
@@ -1066,6 +1067,7 @@ button{
 .card_branco img{
     width: 120px;
     padding-bottom: 20px;
+    height: 120px;
 }
 
 .card_branco button{
@@ -1092,7 +1094,7 @@ button{
 
 .tit_produtor span{
     font-size: 30px;
-    text-decoration-line: underline;
+    /* text-decoration-line: underline; */
 }
 
 #p_nome input{
@@ -1223,7 +1225,7 @@ button{
 
 .tit_receita span{
     font-size: 30px;
-    text-decoration-line: underline;
+    /* text-decoration-line: underline; */
 }
 /*#endregion */
 
@@ -2322,6 +2324,11 @@ button{
     /*#endregion */
 
     /*#region CADASTRO MOBILE*/
+    .caixa_texto_componente_bt{
+        max-width: 300px;
+        min-width: 300px;
+    }
+
     .card_cadastro {
         width: 368px;
         margin: auto;
@@ -2493,6 +2500,8 @@ button{
      
     .card_{
         flex-wrap: wrap; 
+        width: 300px;
+        justify-content: center;
     }
 
     .card_branco{

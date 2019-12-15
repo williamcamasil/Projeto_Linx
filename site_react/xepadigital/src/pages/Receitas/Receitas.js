@@ -119,9 +119,9 @@ class Receitas extends Component {
                                                     </div>
 
                                                     <p className="card_titulo">{receita.nomeReceita}</p>
-                                                    <p className="card_subtitulo">Ingredientes</p>
+                                                    <p className="card_subtitulo"><strong>Ingredientes</strong></p>
                                                     <p className="card_conteudo">{receita.descricaoIngrediente}</p>
-                                                    <p className="card_subtitulo">Mode de Preparo</p>
+                                                    <p className="card_subtitulo"><strong>Mode de Preparo</strong></p>
                                                     <p className="card_conteudo">
                                                         {receita.descricaoPreparo}
                                                     </p>

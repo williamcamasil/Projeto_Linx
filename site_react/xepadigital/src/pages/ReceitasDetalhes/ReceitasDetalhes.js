@@ -63,13 +63,13 @@ class ReceitasDetalhes extends Component {
                                     </div>
 
                                     <div id="box_informacoes">
-                                        <span>Ingredientes</span>
+                                        <span><strong>Ingredientes</strong></span>
                                         <br/><br/>
                                         <p>
                                             {vr.descricaoIngrediente}
                                         </p>
                                         <br/>
-                                        <span>Modo de Preparo</span>
+                                        <span><strong>Modo de Preparo</strong></span>
                                         <br/>
                                         <br/>
                                         <p>
