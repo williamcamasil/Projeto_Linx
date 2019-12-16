@@ -35,15 +35,15 @@ class CadastroProduto extends Component {
         }
     }
 
-    //#region POST
     //Mostrar Imagem
-    imgSetState = (i) => {
-        this.setState({
-            file: URL.createObjectURL(i.target.files[0])
-        })
-    }
+    // imgSetState = (i) => {
+    //     this.setState({
+    //         file: URL.createObjectURL(i.target.files[0])
+    //     })
+    // }
 
     //POST - PEGAR INPUTS
+    //#region Setstate
     postSetState = (input) => {
         this.setState({
             put_post_Produto: {
@@ -69,16 +69,6 @@ class CadastroProduto extends Component {
                 }
             })
     }
-
-    //GET - Produtos
-    // getCadProduto = () => {
-    //     api.get('/RegistroProduto/'+parseJwt().Id)
-    //     .then(response => {
-    //         if (response.status === 200) {
-    //             this.setState({ listaCadProdutos: response.data })
-    //         }
-    //     })
-    // }
 
     getCadProduto = () => {
         fetch('http://localhost:5000/api/RegistroProduto/' + parseJwt().Id)
@@ -302,8 +292,9 @@ class CadastroProduto extends Component {
                                                                     /><ImageSearchIcon color="action" fontSize="large" />
                                                                 </IconButton>
                                                             </label>
-                                                        
-                                                            <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" onError={i => i.target.style.display = 'none'} />
+                                                            <div className="caixa_cad_img">
+                                                                <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" />
+                                                            </div>
                                                         </>
                                                     ) : (
                                                             //POST
@@ -325,7 +316,7 @@ class CadastroProduto extends Component {
                                                     {
                                                         this.state.file !== null ?
                                                             // <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" onError={i => i.target.style.display='none'}/>
-                                                            <img className="img_cad_produto" alt="imagem ilustrativa de comida" src={this.state.file} />
+                                                            <img className="img_cad_receita" alt="imagem ilustrativa de comida" src={this.state.file} />
                                                             :
                                                             <></>
                                                     }
