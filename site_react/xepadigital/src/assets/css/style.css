@@ -71,6 +71,9 @@
     height: 70vh;
     overflow: hidden;
   }
+  .img_centro{
+      width: 60vw;
+  }
   .slide {
     height: 70vh;
     background-size: cover !important;
@@ -577,6 +580,10 @@ h3 {
     padding: 10px;
 }
 
+.btn_link_click:hover{
+    color: white;
+}
+
 .btn_link_click_receita{ 
     color: var(--branco);
     background-color: var(--roxo);
@@ -588,7 +595,7 @@ h3 {
 
 
 #caixa_parte_imagem form{
-    margin-top: 10px;    
+    margin-top: 10px;  
 }
 /*#endregion */
 
@@ -756,7 +763,9 @@ h3 {
 }
 
 .card-login {
-    width: 1136px;
+    width: 600px;
+    border-radius: 10px;
+    padding-left: 20px;
     height: 600px;
     display: flex;
     justify-content: center;
@@ -822,6 +831,27 @@ h2 {
     border-radius: 5px;
     color: white;
     background-color: #472A4C;
+}
+
+.botao_link {
+    width: 100%;
+    height: 60px;
+    margin-top: 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #472A4C;
+    border-radius: 5px;
+    color: white;
+    background-color: #472A4C;
+    padding: 10px;
+}
+
+.botao_link:hover{
+    color: white;
+}
+
+Link a:hover{
+    color: white;    
 }
 
 .botao a{
@@ -1717,6 +1747,8 @@ button{
   }
 /*#endregion*/
 
+/*#region RESPONSIVO*/
+
 /* MENU SANDUICHE DESATIVADO*/
 @media(min-width: 1200px){
     #menu_cabecalho {
@@ -1724,7 +1756,6 @@ button{
     }
 }
 
-/*#region RESPONSIVO*/
 
 @media (min-width:768px) and (max-width: 1200px) {
     /*#region EDIÇÃO GERAL TABLET*/
@@ -1799,6 +1830,10 @@ button{
     .caixa_cad_img{
         width: 200px;
         height: 220px;
+    }
+
+    .img_cad_produto{
+        width: 15vw;
     }
     .caixa_cad_img img{
         width: 180px;
@@ -1928,11 +1963,11 @@ button{
     
     /*#region LOGIN TABLET*/
     .card-login {
-        width: 90%;
-        height: 90%;
-        margin: 0px 10px;
+        width: 600px;
+        border-radius: 10px;
+        padding-left: 20px;
     }
-    .login form, .registrar-se form {
+    /* .login form, .registrar-se form {
         width: 100%;
         margin: 0px;
         height: 60%;
@@ -1941,12 +1976,12 @@ button{
         width: 50%;
         justify-items: center;
         height: 90%;
-    }
+    } */
     /* .registrar-se {
         border-left: 1px solid #707070;
         
     } */
-    .botao {
+    /* .botao {
         width: 100%;
         font-size: 20px;
         margin: 15px 20px;
@@ -1976,7 +2011,7 @@ button{
     }
     .texto-horizontal {
         width: 100%;
-    }
+    } */
     /*#endregion */
 
     /*#region HOME TABLET*/
@@ -2220,6 +2255,13 @@ button{
     }
     /*#endregion */
 
+    /*#region COLABORADORES_DETALHES*/
+    .prod_colab_top{
+        display: flex;
+        flex-direction: column;
+    }
+    /*#endregion*/
+
     /*#region EDIÇÃO GERAL MOBILE*/
     .container {
         width: 350px;
@@ -2293,7 +2335,12 @@ button{
     }
 
     .form_style {
-        display: none;
+        /* display: none; */
+        width: 350px;
+    }
+
+    .form_style .input_style{
+        width: 350px;
     }
 
     .tituloh1 {
@@ -2457,6 +2504,7 @@ button{
 
     #caixa_parte_imagem img{
         width: 200px;
+        text-align: center;
     }
     
     #caixa_total{
@@ -2526,7 +2574,8 @@ button{
         height: auto;
     }
     .card-login {
-        width: 90%;
+        width: 350px;
+        border-radius: 10px;
         margin: 20px;
         flex-direction: column;
         height: auto;
@@ -2541,7 +2590,6 @@ button{
         padding: 20px 0px;
     }
     .registrar-se {
-        border-top: 1px solid #707070;
         height: 100%;
     }
     .botao {

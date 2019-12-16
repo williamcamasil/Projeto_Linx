@@ -129,7 +129,7 @@ class CadastroReceita extends Component {
                 })
                 .catch(error => {
                     console.log(error);
-                    this.setState({ erroMsg: "Não foi possível fazer a modificar" });
+                    this.setState({ erroMsg: "Não foi possível fazer a modificação" });
                 })
 
             setTimeout(() => {
@@ -186,7 +186,7 @@ class CadastroReceita extends Component {
         this.setState({ erroMsg: "" })
         this.setState({ successMsg: "" })
 
-        fetch("https://localhost:5001/api/Receita/" + id, {
+        fetch("http://localhost:5000/api/Receita/" + id, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -194,19 +194,19 @@ class CadastroReceita extends Component {
             }
         })
 
-            .then(response => response.json())
-            .then(response => {
-                console.log(response);
-                this.getCadReceita();
-                this.setState(() => ({ lista: this.state.listaCadReceitas }))
-            })
-            .then(response => {
-                this.setState({ successMsg: "Informação deletada com sucesso!" });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ erroMsg: "Não foi possível deletar" });
-            })
+        .then(response => response.json())
+        .then(response => {
+            console.log(response);
+            this.getCadReceita();
+            this.setState(() => ({ lista: this.state.listaCadReceitas }))
+        })
+        .then(response => {
+            this.setState({ successMsg: "Informação deletada com sucesso!" });
+        })
+        .catch(error => {
+            console.log(error);
+            this.setState({ erroMsg: "Não foi possível deletar" });
+        })
 
 
         setTimeout(() => {
@@ -248,7 +248,7 @@ class CadastroReceita extends Component {
                                         <form className="form_caixa" onSubmit={this.post_put_CadReceita}>
                                             {/* IMAGEM */}
                                             <div id="caixa_parte_imagem">
-
+                                                
                                                 {this.state.idReceitaAlterada !== 0 ? (
                                                     // PUT
                                                     <>
@@ -266,8 +266,6 @@ class CadastroReceita extends Component {
                                                                 /><ImageSearchIcon color="action" fontSize="large" />
                                                             </IconButton>
                                                         </label>
-
-
                                                         <div className="caixa_cad_img">
                                                             <img src={"http://localhost:5000/" + this.state.put_post_Receita.imgReceita} alt="" />
                                                         </div>
@@ -295,6 +293,7 @@ class CadastroReceita extends Component {
                                                         :
                                                         <></>
                                                 }
+
                                             </div>
 
                                             {/* NOME */}

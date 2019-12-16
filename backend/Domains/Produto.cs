@@ -24,7 +24,7 @@ namespace backend.Domains
         [Column(TypeName = "numeric(10, 1)")]
         public decimal? Disponibilidade { get; set; }
         public bool? Organico { get; set; }
-        [Column(TypeName = "numeric(10, 1)")]
+        [Column(TypeName = "numeric(10, 2)")]
         public decimal? Preco { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? Validade { get; set; }

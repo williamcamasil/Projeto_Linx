@@ -5,7 +5,7 @@ import Lupa from '../../assets/img/Lupa.svg';
 import api from '../../services/api'
 import { parseJwt } from '../../services/auth';
 
-import { MDBBtn } from 'mdbreact';
+import { MDBBtn, MDBAlert } from 'mdbreact';
 
 class ReservaCliente extends Component {
     constructor() {
@@ -13,6 +13,8 @@ class ReservaCliente extends Component {
         this.state = {
             listaProdutosReservados: [],
             nomeUsuarioLogado: "",
+            successMsg: "",
+            erroMsg: "",
         }
     }
 
@@ -43,18 +45,31 @@ class ReservaCliente extends Component {
 
     //#region DELETE
     deleteReserva = (id) => {
-
+        this.setState({ erroMsg: "" })
+        this.setState({ successMsg: "" })
         api.delete("/ReservaProduto/" + id)
             .then(response => {
                 if (response.status === (200 || 204)) {
                     console.log("Deletando: ", response.data);
                 }
             })
-            .catch(error => console.log("error: ", error))
+            .then(response => {
+                this.setState({ successMsg: "Reserva deletada com sucesso!" });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível deletar a reserva" });
+            })
+            // .catch(error => console.log("error: ", error))
 
         setTimeout(() => {
             this.getReservasCliente();
         }, 200);
+
+        setTimeout(() => {
+            this.setState({ successMsg: "" });
+            this.setState({ erroMsg: "" });
+        }, 3500);
     }
     //#endregion
 
@@ -131,6 +146,26 @@ class ReservaCliente extends Component {
                                 }
                             </tbody>
                         </table>
+                    </div>
+
+                    <div className="tit_receita">
+                        <div className="Mensagens">
+                            {
+                                this.state.erroMsg &&
+                                <MDBAlert className="text-center" color="danger" >
+                                    {/* {this.state.erroMsg} */}
+                                    {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
+                                </MDBAlert>
+                            }
+
+                            {
+                                this.state.successMsg &&
+                                <MDBAlert className="text-center" color="success" >
+                                    {/* {this.state.successMsg} */}
+                                    {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
+                                </MDBAlert>
+                            }
+                        </div>
                     </div>
 
                     <div className="reserva_preco">

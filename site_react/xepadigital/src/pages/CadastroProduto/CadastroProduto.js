@@ -17,6 +17,8 @@ class CadastroProduto extends Component {
         this.state = {
             listaCadProdutos: [],
             file: null,
+            imagePreviewUrl: '',
+
 
             put_post_Produto: {
                 nomeProduto: "",
@@ -35,15 +37,7 @@ class CadastroProduto extends Component {
         }
     }
 
-    //#region POST
-    //Mostrar Imagem
-    imgSetState = (i) => {
-        this.setState({
-            file: URL.createObjectURL(i.target.files[0])
-        })
-    }
-
-    //POST - PEGAR INPUTS
+    //#region Setstate
     postSetState = (input) => {
         this.setState({
             put_post_Produto: {
@@ -70,16 +64,6 @@ class CadastroProduto extends Component {
             })
     }
 
-    //GET - Produtos
-    // getCadProduto = () => {
-    //     api.get('/RegistroProduto/'+parseJwt().Id)
-    //     .then(response => {
-    //         if (response.status === 200) {
-    //             this.setState({ listaCadProdutos: response.data })
-    //         }
-    //     })
-    // }
-
     getCadProduto = () => {
         fetch('http://localhost:5000/api/RegistroProduto/' + parseJwt().Id)
             .then(response => response.json())
@@ -103,6 +87,17 @@ class CadastroProduto extends Component {
     imgSetState = (i) => {
         if (this.state.idProdutoAlterada !== 0) {
             //PUT
+            let reader = new FileReader();
+            let file = i.target.files[0];
+
+            reader.onloadend = () => {
+                this.setState({
+                    file: file,
+                    imagePreviewUrl: reader.result
+                });
+            }
+            reader.readAsDataURL(file)
+
             this.setState({
                 put_post_Produto: {
                     ...this.state.put_post_Produto, [i.target.name]: i.target.files[0]
@@ -267,6 +262,11 @@ class CadastroProduto extends Component {
     }
 
     render() {
+        let { imagePreviewUrl } = this.state;
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl} />);
+        }
         return (
             <div>
                 <Header />
@@ -284,6 +284,7 @@ class CadastroProduto extends Component {
                                             <div className="">
                                                 {/* IMAGEM */}
 
+                                                {/* <div className="caixa_esquerda"> */}
                                                 <div className="caixa_esquerda">
 
                                                     {this.state.idProdutoAlterada !== 0 ? (
@@ -302,8 +303,15 @@ class CadastroProduto extends Component {
                                                                     /><ImageSearchIcon color="action" fontSize="large" />
                                                                 </IconButton>
                                                             </label>
-                                                        
-                                                            <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" onError={i => i.target.style.display = 'none'} />
+                                                            <div className="caixa_cad_img">
+                                                                {
+                                                                    this.state.put_post_Produto.imgProduto.current !== undefined ?
+                                                                    <>{$imagePreview}</>
+                                                                    :
+                                                                    <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" />
+
+                                                                }
+                                                            </div>
                                                         </>
                                                     ) : (
                                                             //POST
@@ -323,9 +331,9 @@ class CadastroProduto extends Component {
                                                         )
                                                     }
                                                     {
-                                                        this.state.file !== null ?
-                                                            // <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" onError={i => i.target.style.display='none'}/>
-                                                            <img className="img_cad_produto" alt="imagem ilustrativa de comida" src={this.state.file} />
+                                                        // modificação para funcionar os states das trocas de imagem sem exibição de erros
+                                                        this.state.file !== null && this.state.put_post_Produto.imgProduto.current === undefined?
+                                                            <img className="img_cad_receita" alt="imagem ilustrativa de comida" src={this.state.file} />
                                                             :
                                                             <></>
                                                     }
@@ -345,7 +353,7 @@ class CadastroProduto extends Component {
                                                     <div className="caixa_texto">
                                                         <div className="caixa_texto_sub">
                                                             <label htmlFor="preco_lbl" aria-label="preco_lbl"> Preço</label><br />
-                                                            <input className="caixa_texto_componente" type="preco_produto"
+                                                            <input className="caixa_texto_componente" type="number"
                                                                 placeholder="Digite o preço" name="preco" id="preco_produto"
                                                                 value={this.state.put_post_Produto.preco}
                                                                 onChange={this.postSetState}
@@ -372,7 +380,7 @@ class CadastroProduto extends Component {
 
                                                         <div className="caixa_texto_sub">
                                                             <label htmlFor="disponibilidade_lbl" aria-label="disponibilidade_lbl"> Disponibilidade</label><br />
-                                                            <input className="caixa_texto_componente" type="detalhe_produto"
+                                                            <input className="caixa_texto_componente" type="number"
                                                                 placeholder="1 kg" name="disponibilidade"
                                                                 value={this.state.put_post_Produto.disponibilidade}
                                                                 onChange={this.postSetState}

@@ -6,11 +6,13 @@ import "react-animated-slider/build/horizontal.css";
 import home2 from "../../assets/img/home2.jpg";
 import home3 from "../../assets/img/home3.jpg";
 import home4 from "../../assets/img/home4.jpg";
-import home1 from "../../assets/img/home1.jpeg";
+import home1 from "../../assets/img/home.jpg";
+import logo_slogan from "../../assets/img/logo_slogan.png";
 
 
 const content = [
   {
+    img: logo_slogan,
     image: home1,
   },
   {
@@ -34,8 +36,10 @@ const Carousel = () => (
         <div key={index} className="slider-content"
         style={{ background: `url('${item.image}') no-repeat center center` }} >
           <div className="inner">
+            <div>
+              <img className="img_centro" src={item.img}/>
+            </div>
             <h1>{item.title}</h1>
-            {/* <button>{item.button}</button> */}
           </div>
         </div>
       ))}
