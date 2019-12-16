@@ -248,7 +248,7 @@ class CadastroReceita extends Component {
                                         <form className="form_caixa" onSubmit={this.post_put_CadReceita}>
                                             {/* IMAGEM */}
                                             <div id="caixa_parte_imagem">
-
+                                                
                                                 {this.state.idReceitaAlterada !== 0 ? (
                                                     // PUT
                                                     <>
@@ -266,8 +266,6 @@ class CadastroReceita extends Component {
                                                                 /><ImageSearchIcon color="action" fontSize="large" />
                                                             </IconButton>
                                                         </label>
-
-
                                                         <div className="caixa_cad_img">
                                                             <img src={"http://localhost:5000/" + this.state.put_post_Receita.imgReceita} alt="" />
                                                         </div>
@@ -295,6 +293,7 @@ class CadastroReceita extends Component {
                                                         :
                                                         <></>
                                                 }
+
                                             </div>
 
                                             {/* NOME */}
