@@ -545,7 +545,7 @@ class Perfil extends Component {
                                     <div className="caixa_input_33">
 
 
-                                        <button className="botao" type="submit" name="Editar"><a href="/ReservaCliente">Reservas</a></button>
+                                        <button className="botao" type="button" name="Editar"><a href="/ReservaCliente">Reservas</a></button>
 
 
                                     </div>

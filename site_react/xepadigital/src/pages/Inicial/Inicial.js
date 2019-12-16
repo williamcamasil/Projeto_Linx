@@ -69,7 +69,7 @@ class Inicial extends Component {
                     <div className="container_home">
                         <h2 className="tituloh2">NOSSA HISTÓRIA</h2>
                         <div className="text1">
-                            <p>Tudo se iniciou em agosto de 2019, quando nós da 6minds, iniciamos um trabalho em equipe no curso codeXD, na instituição Senai de Informática, a qual recebemos como desafio, um projeto social para a colaboração na criação de novos meios de comunicação para agricultores orgânicos e renda para mulheres de baixa renda. Desde então estamos trabalhando duro, para poder entregar o que acreditamos ser o melhor e assim fazer da nossa cidade um lugar com mais equidade.</p>
+                            <p>Tudo se iniciou em agosto de 2019, quando nós da 5minds, iniciamos um trabalho em equipe no curso codeXD, na instituição Senai de Informática, a qual recebemos como desafio, um projeto social para a colaboração na criação de novos meios de comunicação para agricultores orgânicos e renda para mulheres de baixa renda. Desde então estamos trabalhando duro, para poder entregar o que acreditamos ser o melhor e assim fazer da nossa cidade um lugar com mais equidade.</p>
                         </div>
                     </div>
                 </section>
