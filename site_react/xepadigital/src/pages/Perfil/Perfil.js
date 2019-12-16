@@ -14,6 +14,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import { MDBAlert } from "mdbreact";
+
 // npm install @material-ui/core
 // npm install @material-ui/icons
 // npm install @material-ui/icons/ImageSearch
@@ -208,6 +210,10 @@ class Perfil extends Component {
 
     putAltEndereco = (e) => {
         e.preventDefault();
+
+        this.setState({ erroMsg: "" })
+        this.setState({ successMsg: "" })
+
         let idEndPut = this.state.putEndereco.idEndereco;
         let endAtualizado = this.state.putEndereco;
 
@@ -217,11 +223,23 @@ class Perfil extends Component {
                     console.log("putEndResp: ", response);
                 }
             })
-            .catch(error => console.log("error: ", error))
+            .then(response => {
+                this.setState({ successMsg: "Informação salva com sucesso!" });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível salvar" });
+            })
+            // .catch(error => console.log("error: ", error))
 
         setTimeout(() => {
             this.getEnderecoId();
         }, 500);
+
+        setTimeout(() => {
+            this.setState({ successMsg: "" });
+            this.setState({ erroMsg: "" });
+        }, 3500);
     }
 
     putAltSenha = (e) => {
@@ -237,14 +255,14 @@ class Perfil extends Component {
                 "Authorization": "Bearer " + localStorage.getItem('usuario-xepa')
             },
         })
-            .then(response => {
-                console.log(response)
-                this.setState({ successMsg: "Senha alterada com sucesso!" });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ erroMsg: "Não foi possível alterar a senha" });
-            })
+        .then(response => {
+            console.log(response)
+            this.setState({ successMsg: "Senha alterada com sucesso!" });
+        })
+        .catch(error => {
+            console.log(error);
+            this.setState({ erroMsg: "Não foi possível alterar a senha" });
+        })
         this.toggle();
 
         setTimeout(() => {
@@ -503,7 +521,25 @@ class Perfil extends Component {
                                         />
                                     </div>
                                 </div>
+                                <div className="tit_receita">
+                                    <div className="Mensagens">
+                                        {
+                                            this.state.erroMsg &&
+                                            <MDBAlert className="text-center" color="danger" >
+                                                {/* {this.state.erroMsg} */}
+                                                {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
+                                            </MDBAlert>
+                                        }
 
+                                        {
+                                            this.state.successMsg &&
+                                            <MDBAlert className="text-center" color="success" >
+                                                {/* {this.state.successMsg} */}
+                                                {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
+                                            </MDBAlert>
+                                        }
+                                    </div>
+                                </div>
                                 {/* btn */}
                                 <div className="c_disp_just">
                                     <div className="caixa_input_33">

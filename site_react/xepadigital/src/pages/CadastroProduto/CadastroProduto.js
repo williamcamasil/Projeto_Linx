@@ -284,6 +284,7 @@ class CadastroProduto extends Component {
                                             <div className="">
                                                 {/* IMAGEM */}
 
+                                                {/* <div className="caixa_esquerda"> */}
                                                 <div className="caixa_esquerda">
 
                                                     {this.state.idProdutoAlterada !== 0 ? (
@@ -325,7 +326,8 @@ class CadastroProduto extends Component {
                                                     {
                                                         this.state.file !== null ?
                                                             // <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" onError={i => i.target.style.display='none'}/>
-                                                            <img className="img_cad_produto" alt="imagem ilustrativa de comida" src={this.state.file} />
+                                                            // <img className="img_cad_produto" alt="imagem ilustrativa de comida" src={this.state.file} />
+                                                            <img className="img_cad_receita" alt="imagem ilustrativa de comida" src={this.state.file} />
                                                             :
                                                             <></>
                                                     }
@@ -345,7 +347,7 @@ class CadastroProduto extends Component {
                                                     <div className="caixa_texto">
                                                         <div className="caixa_texto_sub">
                                                             <label htmlFor="preco_lbl" aria-label="preco_lbl"> Preço</label><br />
-                                                            <input className="caixa_texto_componente" type="preco_produto"
+                                                            <input className="caixa_texto_componente" type="number"
                                                                 placeholder="Digite o preço" name="preco" id="preco_produto"
                                                                 value={this.state.put_post_Produto.preco}
                                                                 onChange={this.postSetState}
@@ -372,7 +374,7 @@ class CadastroProduto extends Component {
 
                                                         <div className="caixa_texto_sub">
                                                             <label htmlFor="disponibilidade_lbl" aria-label="disponibilidade_lbl"> Disponibilidade</label><br />
-                                                            <input className="caixa_texto_componente" type="detalhe_produto"
+                                                            <input className="caixa_texto_componente" type="number"
                                                                 placeholder="1 kg" name="disponibilidade"
                                                                 value={this.state.put_post_Produto.disponibilidade}
                                                                 onChange={this.postSetState}

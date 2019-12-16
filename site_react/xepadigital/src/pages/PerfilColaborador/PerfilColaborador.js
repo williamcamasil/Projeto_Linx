@@ -14,6 +14,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import { MDBAlert } from "mdbreact";
+
 // npm install @material-ui/core
 // npm install @material-ui/icons
 
@@ -209,6 +211,8 @@ class PerfilColaborador extends Component {
 
     putAltEndereco = (e) => {
         e.preventDefault();
+        this.setState({ erroMsg: "" })
+        this.setState({ successMsg: "" })
         let idEndPut = this.state.putEndereco.idEndereco;
         let endAtualizado = this.state.putEndereco;
 
@@ -218,11 +222,23 @@ class PerfilColaborador extends Component {
                 console.log(response)
                 console.log("putRespEnd: ", response.data);
             })
-            .catch(error => console.log("error: ", error))
+            .then(response => {
+                this.setState({ successMsg: "Informação salva com sucesso!" });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível salvar" });
+            })
+            // .catch(error => console.log("error: ", error))
 
         setTimeout(() => {
             this.getEnderecoId();
         }, 300);
+        
+        setTimeout(() => {
+            this.setState({ successMsg: "" });
+            this.setState({ erroMsg: "" });
+        }, 3500);
     }
 
     putAltSenha = (e) => {
@@ -519,6 +535,26 @@ class PerfilColaborador extends Component {
                                             value={this.state.putEndereco.cep}
                                             onChange={this.putSetStateEndereco}
                                         />
+                                    </div>
+                                </div>
+
+                                <div className="tit_receita">
+                                    <div className="Mensagens">
+                                        {
+                                            this.state.erroMsg &&
+                                            <MDBAlert className="text-center" color="danger" >
+                                                {/* {this.state.erroMsg} */}
+                                                {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
+                                            </MDBAlert>
+                                        }
+
+                                        {
+                                            this.state.successMsg &&
+                                            <MDBAlert className="text-center" color="success" >
+                                                {/* {this.state.successMsg} */}
+                                                {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
+                                            </MDBAlert>
+                                        }
                                     </div>
                                 </div>
 

@@ -129,7 +129,7 @@ class CadastroReceita extends Component {
                 })
                 .catch(error => {
                     console.log(error);
-                    this.setState({ erroMsg: "Não foi possível fazer a modificar" });
+                    this.setState({ erroMsg: "Não foi possível fazer a modificação" });
                 })
 
             setTimeout(() => {
@@ -186,7 +186,7 @@ class CadastroReceita extends Component {
         this.setState({ erroMsg: "" })
         this.setState({ successMsg: "" })
 
-        fetch("https://localhost:5001/api/Receita/" + id, {
+        fetch("http://localhost:5000/api/Receita/" + id, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -194,19 +194,19 @@ class CadastroReceita extends Component {
             }
         })
 
-            .then(response => response.json())
-            .then(response => {
-                console.log(response);
-                this.getCadReceita();
-                this.setState(() => ({ lista: this.state.listaCadReceitas }))
-            })
-            .then(response => {
-                this.setState({ successMsg: "Informação deletada com sucesso!" });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ erroMsg: "Não foi possível deletar" });
-            })
+        .then(response => response.json())
+        .then(response => {
+            console.log(response);
+            this.getCadReceita();
+            this.setState(() => ({ lista: this.state.listaCadReceitas }))
+        })
+        .then(response => {
+            this.setState({ successMsg: "Informação deletada com sucesso!" });
+        })
+        .catch(error => {
+            console.log(error);
+            this.setState({ erroMsg: "Não foi possível deletar" });
+        })
 
 
         setTimeout(() => {

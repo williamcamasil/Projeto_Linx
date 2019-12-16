@@ -577,6 +577,10 @@ h3 {
     padding: 10px;
 }
 
+.btn_link_click:hover{
+    color: white;
+}
+
 .btn_link_click_receita{ 
     color: var(--branco);
     background-color: var(--roxo);
@@ -822,6 +826,27 @@ h2 {
     border-radius: 5px;
     color: white;
     background-color: #472A4C;
+}
+
+.botao_link {
+    width: 100%;
+    height: 60px;
+    margin-top: 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #472A4C;
+    border-radius: 5px;
+    color: white;
+    background-color: #472A4C;
+    padding: 10px;
+}
+
+.botao_link:hover{
+    color: white;
+}
+
+Link a:hover{
+    color: white;    
 }
 
 .botao a{
@@ -2300,7 +2325,12 @@ button{
     }
 
     .form_style {
-        display: none;
+        /* display: none; */
+        width: 350px;
+    }
+
+    .form_style .input_style{
+        width: 350px;
     }
 
     .tituloh1 {

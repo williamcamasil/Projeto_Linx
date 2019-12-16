@@ -14,6 +14,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { MDBAlert } from "mdbreact";
 
 
 class ColaboradorDetalhes extends Component {
@@ -45,6 +46,8 @@ class ColaboradorDetalhes extends Component {
             modal: false,
             idRegistro: "",
             quantidadeReserva: 0,
+            successMsg: "",
+            erroMsg: "",
         }
     }
 
@@ -105,6 +108,8 @@ class ColaboradorDetalhes extends Component {
 
     postPedido = (e) => {
         e.preventDefault();
+        this.setState({ erroMsg: "" })
+        this.setState({ successMsg: "" })
 
         fetch("http://localhost:5000/api/ReservaProduto", {
             method: "POST",
@@ -118,17 +123,29 @@ class ColaboradorDetalhes extends Component {
                 "Authorization": "Bearer " + localStorage.getItem('usuario-xepa')
             },
         })
-            .then(response => response.json())
-            .then(response => {
-                console.log("Reserva: ", response);
-            })
-            .catch(error => console.log('Não foi possível cadastrar:' + error))
+        .then(response => response.json())
+        .then(response => {
+            console.log("Reserva: ", response);
+        })
+        .then(response => {
+            this.setState({ successMsg: "Informação salva com sucesso!" });
+        })
+        .catch(error => {
+            console.log(error);
+            this.setState({ erroMsg: "Não foi possível salvar" });
+        })
+            // .catch(error => console.log('Não foi possível cadastrar:' + error))
 
         this.toggle();
 
         setTimeout(() => {
             this.getListarProdutos();
         }, 200);
+
+        setTimeout(() => {
+            this.setState({ successMsg: "" });
+            this.setState({ erroMsg: "" });
+        }, 3500);
     }
     //#endregion
 
@@ -159,6 +176,25 @@ class ColaboradorDetalhes extends Component {
                         {/*  */}
                         <div>
                             {/* <form className="form_caixa" action="GET"> */}
+
+                            <div className="tit_receita">
+                                <div className="Mensagens">
+                                    {
+                                        this.state.erroMsg &&
+                                        <MDBAlert className="text-center" color="danger" >
+                                            {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
+                                        </MDBAlert>
+                                    }
+
+                                    {
+                                        this.state.successMsg &&
+                                        <MDBAlert className="text-center" color="success" >
+                                            {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
+                                        </MDBAlert>
+                                    }
+                                </div>
+                            </div>
+
                             <h3>Produtos fornecidos</h3>
                             {
                                 this.state.listaProdutos.map(

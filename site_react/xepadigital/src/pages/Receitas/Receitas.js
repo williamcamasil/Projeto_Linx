@@ -127,7 +127,8 @@ class Receitas extends Component {
                                                     </p>
                                                     <div className="botao_mais">
                                                         {/* transferindo informações de um ID especifico para outra página */}
-                                                        <Link to={{ pathname: '/ReceitasDetalhes', state: { idReceita: receita.idReceita } }} >Leia mais</Link>
+                                                        <Link className="botao_link" to={{ pathname: '/ReceitasDetalhes', state: { idReceita: receita.idReceita } }} >Leia mais</Link>
+                                                        {/* <button className="botao" type="button" name="Editar"><a to={{ pathname: '/ReceitasDetalhes', state: { idReceita: receita.idReceita } }}>Leia mais</a></button> */}
                                                     </div>
                                                 </div>
                                             </>

@@ -5,7 +5,7 @@ import Lupa from '../../assets/img/Lupa.svg';
 import api from '../../services/api'
 import { parseJwt } from '../../services/auth';
 
-import { MDBBtn } from 'mdbreact';
+import { MDBBtn, MDBAlert } from 'mdbreact';
 
 class ReservaColaborador extends Component {
     constructor() {
@@ -13,6 +13,8 @@ class ReservaColaborador extends Component {
         this.state = {
             listaProdutosReservados: [],
             nomeUsuarioLogado: "",
+            successMsg: "",
+            erroMsg: "",
         }
     }
 
@@ -46,6 +48,9 @@ class ReservaColaborador extends Component {
 
         // console.log("id ",reserva.idReserva)
 
+        this.setState({ erroMsg: "" })
+        this.setState({ successMsg: "" })
+
         reserva.situacao = "Aprovado";
 
         console.log("reserva: ", reserva)
@@ -56,15 +61,28 @@ class ReservaColaborador extends Component {
                     console.log("Situação: ", response.data);
                 }
             })
-            .catch(error => console.log("error: ", error))
+            .then(response => {
+                this.setState({ successMsg: "Reserva aprovada com sucesso!" });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível aprovar a reserva" });
+            })
+            // .catch(error => console.log("error: ", error))
 
         setTimeout(() => {
             this.getReservasColaborador();
         }, 200);
+
+        setTimeout(() => {
+            this.setState({ successMsg: "" });
+            this.setState({ erroMsg: "" });
+        }, 3500);
     }
 
     putStatusRecusado = (reserva) => {
 
+        
         reserva.situacao = "Cancelado";
 
         console.log("reserva: ", reserva)
