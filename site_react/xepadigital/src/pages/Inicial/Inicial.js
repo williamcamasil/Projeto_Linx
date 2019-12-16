@@ -36,6 +36,16 @@ import Carousel from "../../componentes/Carousel/Carousel";
 //   ];
 
 class Inicial extends Component {
+    // Aumentar = () => {
+    //     // console.log('Aumentar')
+        
+    // }
+
+    // Diminuir = () => {
+    //     // console.log('Diminuir')
+
+    // }
+
     render() {
         return (
         <div>
@@ -52,6 +62,9 @@ class Inicial extends Component {
 
                 <Carousel/>
                 
+                {/* <button onClick={() => { this.Aumentar() }}>Aumentar</button>
+                <button onClick={() => { this.Diminuir() }}>Diminuir</button> */}
+
                 <section id="historia">
                     <div className="container_home">
                         <h2 className="tituloh2">NOSSA HISTÓRIA</h2>
