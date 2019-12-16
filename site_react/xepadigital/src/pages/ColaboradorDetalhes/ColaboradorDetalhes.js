@@ -5,7 +5,7 @@ import Footer from '../../componentes/Footer/Footer';
 // import colaborador from '../../assets/img/colaborador.png';
 // import foto_cenoura from '../../assets/img/foto_cenoura.png';
 import api from '../../services/api'
-import { parseJwt } from '../../services/auth';
+import { parseJwt, usuarioAutenticado } from '../../services/auth';
 import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 
 import Button from '@material-ui/core/Button';
@@ -181,7 +181,12 @@ class ColaboradorDetalhes extends Component {
                                                     </div>
                                                     <div className="input_produtos">
                                                         <>
-                                                            <button className="botao" type="submit" onClick={() => this.abrirModal(vp.idRegistro)} name="Reservar">Reservar</button>
+                                                        {
+                                                            usuarioAutenticado() && parseJwt().Role === "Cliente" ? 
+                                                            <><button className="botao" type="submit" onClick={() => this.abrirModal(vp.idRegistro)} name="Reservar">Reservar</button></>
+                                                            :
+                                                            <></>
+                                                        }
                                                         </>
                                                     </div>
                                                 </div>

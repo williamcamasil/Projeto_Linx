@@ -8,7 +8,7 @@ import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
 
 import IconButton from '@material-ui/core/IconButton';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
-import { MDBAlert} from "mdbreact";
+import { MDBAlert } from "mdbreact";
 
 class CadastroReceita extends Component {
     constructor() {
@@ -26,8 +26,8 @@ class CadastroReceita extends Component {
             },
             idReceitaAlterada: 0,
             more: 4,
-            erroMsg : "",
-            successMsg : ""
+            erroMsg: "",
+            successMsg: ""
         }
     }
 
@@ -63,15 +63,15 @@ class CadastroReceita extends Component {
 
     getCadReceita = () => {
         fetch('http://localhost:5000/api/Receita/Usuario/' + parseJwt().Id)
-        .then(response => response.json())
-        .then(response => {
-            // if(response.status === 200 || response.status === 204){
+            .then(response => response.json())
+            .then(response => {
+                // if(response.status === 200 || response.status === 204){
                 // console.log(response.status)
                 var redux = response.slice(0, this.state.more)
 
                 this.setState({ listaCadReceitas: redux })
-            // }
-        })
+                // }
+            })
     }
 
     //Mostrar Imagem
@@ -100,8 +100,8 @@ class CadastroReceita extends Component {
     //POST & PUT
     post_put_CadReceita = (event) => {
         event.preventDefault();
-        this.setState({ erroMsg : "" })
-        this.setState({ successMsg : "" })
+        this.setState({ erroMsg: "" })
+        this.setState({ successMsg: "" })
 
         if (this.state.idReceitaAlterada !== 0) {
             //PUT 
@@ -124,13 +124,13 @@ class CadastroReceita extends Component {
                 },
                 body: receita
             })
-            .then(response => {
-                this.setState({ successMsg: "Informação alterada com sucesso!"});
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ erroMsg: "Não foi possível fazer a modificar" });
-            })
+                .then(response => {
+                    this.setState({ successMsg: "Informação alterada com sucesso!" });
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.setState({ erroMsg: "Não foi possível fazer a modificar" });
+                })
 
             setTimeout(() => {
                 this.getCadReceita();
@@ -138,8 +138,8 @@ class CadastroReceita extends Component {
             }, 1000);
 
             setTimeout(() => {
-                this.setState({successMsg : ""});
-                this.setState({erroMsg : ""});
+                this.setState({ successMsg: "" });
+                this.setState({ erroMsg: "" });
             }, 3500);
 
             this.setState({ idReceitaAlterada: 0 });
@@ -159,31 +159,32 @@ class CadastroReceita extends Component {
                 },
                 body: receita
             })
-            .then(response => response.json())
-            .then(response => {
-                this.setState({ successMsg: "Conteúdo salvo com sucesso!"});
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ erroMsg: "Não foi possível salvar" });
-            })
+                .then(response => response.json())
+                .then(response => {
+                    this.setState({ successMsg: "Conteúdo salvo com sucesso!" });
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.setState({ erroMsg: "Não foi possível salvar" });
+                })
 
             setTimeout(() => {
                 this.getCadReceita();
+                window.location.reload();
                 this.limparCampos();
             }, 1000);
 
             setTimeout(() => {
-                this.setState({successMsg : ""});
-                this.setState({erroMsg : ""});
+                this.setState({ successMsg: "" });
+                this.setState({ erroMsg: "" });
             }, 3500);
         }
     };
 
     //DELETE - Deletar categoria
     deleteCadReceita = (id) => {
-        this.setState({ erroMsg : "" })
-        this.setState({ successMsg : "" })
+        this.setState({ erroMsg: "" })
+        this.setState({ successMsg: "" })
 
         fetch("https://localhost:5001/api/Receita/" + id, {
             method: "DELETE",
@@ -193,19 +194,19 @@ class CadastroReceita extends Component {
             }
         })
 
-        .then(response => response.json())
-        .then(response => {
-            console.log(response);
-            this.getCadReceita();
-            this.setState(() => ({ lista: this.state.listaCadReceitas }))
-        })
-        .then(response => {
-            this.setState({ successMsg: "Informação deletada com sucesso!"});
-        })
-        .catch(error => {
-            console.log(error);
-            this.setState({ erroMsg: "Não foi possível deletar" });
-        })
+            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                this.getCadReceita();
+                this.setState(() => ({ lista: this.state.listaCadReceitas }))
+            })
+            .then(response => {
+                this.setState({ successMsg: "Informação deletada com sucesso!" });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível deletar" });
+            })
 
 
         setTimeout(() => {
@@ -214,8 +215,8 @@ class CadastroReceita extends Component {
         }, 1000);
 
         setTimeout(() => {
-            this.setState({successMsg : ""});
-            this.setState({erroMsg : ""});
+            this.setState({ successMsg: "" });
+            this.setState({ erroMsg: "" });
         }, 3500);
     }
 
@@ -288,8 +289,12 @@ class CadastroReceita extends Component {
                                                         </label>
                                                     )
                                                 }
-
-                                                <img className="img_cad_receita" src={this.state.file} alt="imagem ilustrativa de comida" />
+                                                {
+                                                    this.state.file !== null ?
+                                                        <img className="img_cad_receita" src={this.state.file} alt="imagem ilustrativa de comida" />
+                                                        :
+                                                        <></>
+                                                }
                                             </div>
 
                                             {/* NOME */}
@@ -333,22 +338,22 @@ class CadastroReceita extends Component {
                             <div className="linha"></div>
                             <div className="tit_receita">
                                 <div className="Mensagens">
-                                    {      
-                                        this.state.erroMsg && 
+                                    {
+                                        this.state.erroMsg &&
                                         <MDBAlert className="text-center" color="danger" >
                                             {/* {this.state.erroMsg} */}
                                             {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
                                         </MDBAlert>
                                     }
-                        
+
                                     {
-                                        this.state.successMsg && 
+                                        this.state.successMsg &&
                                         <MDBAlert className="text-center" color="success" >
                                             {/* {this.state.successMsg} */}
                                             {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
                                         </MDBAlert>
                                     }
-                                 </div> 
+                                </div>
 
                                 <span>RECEITAS CADASTRADAS</span>
                             </div>

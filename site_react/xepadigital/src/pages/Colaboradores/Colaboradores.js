@@ -43,25 +43,6 @@ class Colaboradores extends Component {
         })
     }
 
-    // getListaRegistros = () => {
-    //     fetch('http://localhost:5000/api/RegistroProduto')
-    //         .then(response => response.json())
-    //         .then(response => {
-    //             var redux = response.slice(0, 3)
-
-    //             this.setState({ listaRegistro: redux })
-    //         })
-    // }
-
-    // getListaColaboradores = () => {
-    //     api.get('/Colaborador').then(response => {
-    //         if (response.status === 200) {
-    //             this.setState({ listaColaborador: response.data })
-    //         }
-    //         console.log("Colaboradores: ", this.state.listaColaborador)
-    //     })
-    // }
-
     getListaColaboradores = () => {
         fetch('http://localhost:5000/api/Colaborador')
             .then(response => response.json())
@@ -95,26 +76,9 @@ class Colaboradores extends Component {
 
     incrementarMais = () => {
         this.setState({more: this.state.more + 3}); 
-        console.log('Mostrar: ', this.state.more) //this.state.more)  
+        console.log('Mostrar: ', this.state.more) 
         this.getListaColaboradores();
     }
-
-    // getListarUsuario = () => {
-    //     fetch("http://localhost:5000/api/Usuario")
-    //         .then(response => response.json())
-    //         .then(data => this.setState({ lista: data }))            
-    // }
-
-
-    // COMO INSERIR FILTRO?
-    // getFiltro = () => {
-    //     api.get('/FiltroReceita').then(response => {
-    //         if (response.status === 200) {
-    //             this.setState({ listaReceitas: response.data })
-    //         }
-    //     })    
-    // }
-
 
     render() {
         return (
@@ -141,8 +105,6 @@ class Colaboradores extends Component {
 
                     {
                         this.state.listaColaborador.map((colaborador) => {
-                            // this.state.idColab = colaborador.idUsuario
-                            // console.log("idMap: ", this.state.idColab)
 
                             return (
                                 <section key={colaborador.idUsuario} className="container">
@@ -166,8 +128,8 @@ class Colaboradores extends Component {
                                                         return (
                                                             <div key={registro.idRegistro} className="card_info">
                                                                 <img src={"http://localhost:5000/" + registro.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
-                                                                <p>{registro.idUsuarioNavigation.nomeProduto}</p>
-                                                                <p>R$ {registro.idUsuarioNavigation.preco} /Kg</p>
+                                                                <p>{registro.idProdutoNavigation.nomeProduto}</p>
+                                                                <p>R$ {registro.idProdutoNavigation.preco} /Kg</p>
                                                             </div>
                                                         );
                                                     })
