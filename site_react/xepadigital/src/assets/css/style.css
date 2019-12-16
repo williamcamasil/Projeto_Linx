@@ -756,7 +756,9 @@ h3 {
 }
 
 .card-login {
-    width: 1136px;
+    width: 600px;
+    border-radius: 10px;
+    padding-left: 20px;
     height: 600px;
     display: flex;
     justify-content: center;
@@ -1717,6 +1719,8 @@ button{
   }
 /*#endregion*/
 
+/*#region RESPONSIVO*/
+
 /* MENU SANDUICHE DESATIVADO*/
 @media(min-width: 1200px){
     #menu_cabecalho {
@@ -1724,7 +1728,6 @@ button{
     }
 }
 
-/*#region RESPONSIVO*/
 
 @media (min-width:768px) and (max-width: 1200px) {
     /*#region EDIÇÃO GERAL TABLET*/
@@ -1928,11 +1931,11 @@ button{
     
     /*#region LOGIN TABLET*/
     .card-login {
-        width: 90%;
-        height: 90%;
-        margin: 0px 10px;
+        width: 600px;
+        border-radius: 10px;
+        padding-left: 20px;
     }
-    .login form, .registrar-se form {
+    /* .login form, .registrar-se form {
         width: 100%;
         margin: 0px;
         height: 60%;
@@ -1941,12 +1944,12 @@ button{
         width: 50%;
         justify-items: center;
         height: 90%;
-    }
+    } */
     /* .registrar-se {
         border-left: 1px solid #707070;
         
     } */
-    .botao {
+    /* .botao {
         width: 100%;
         font-size: 20px;
         margin: 15px 20px;
@@ -1976,7 +1979,7 @@ button{
     }
     .texto-horizontal {
         width: 100%;
-    }
+    } */
     /*#endregion */
 
     /*#region HOME TABLET*/
@@ -2526,7 +2529,8 @@ button{
         height: auto;
     }
     .card-login {
-        width: 90%;
+        width: 350px;
+        border-radius: 10px;
         margin: 20px;
         flex-direction: column;
         height: auto;
@@ -2541,7 +2545,6 @@ button{
         padding: 20px 0px;
     }
     .registrar-se {
-        border-top: 1px solid #707070;
         height: 100%;
     }
     .botao {
