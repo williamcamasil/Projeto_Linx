@@ -89,7 +89,9 @@ class Registrar extends Component {
         } else {
             this.postUsuario();
             //Abre a tela de login após cadastrar
-            window.location = "\Login"
+            setTimeout(() => {
+                window.location = "\Login"
+            }, 1500);
         }
     }
 

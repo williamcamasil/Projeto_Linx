@@ -17,6 +17,8 @@ class CadastroProduto extends Component {
         this.state = {
             listaCadProdutos: [],
             file: null,
+            imagePreviewUrl: '',
+
 
             put_post_Produto: {
                 nomeProduto: "",
@@ -35,14 +37,6 @@ class CadastroProduto extends Component {
         }
     }
 
-    //Mostrar Imagem
-    // imgSetState = (i) => {
-    //     this.setState({
-    //         file: URL.createObjectURL(i.target.files[0])
-    //     })
-    // }
-
-    //POST - PEGAR INPUTS
     //#region Setstate
     postSetState = (input) => {
         this.setState({
@@ -93,6 +87,17 @@ class CadastroProduto extends Component {
     imgSetState = (i) => {
         if (this.state.idProdutoAlterada !== 0) {
             //PUT
+            let reader = new FileReader();
+            let file = i.target.files[0];
+
+            reader.onloadend = () => {
+                this.setState({
+                    file: file,
+                    imagePreviewUrl: reader.result
+                });
+            }
+            reader.readAsDataURL(file)
+
             this.setState({
                 put_post_Produto: {
                     ...this.state.put_post_Produto, [i.target.name]: i.target.files[0]
@@ -257,6 +262,11 @@ class CadastroProduto extends Component {
     }
 
     render() {
+        let { imagePreviewUrl } = this.state;
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl} />);
+        }
         return (
             <div>
                 <Header />
@@ -294,7 +304,13 @@ class CadastroProduto extends Component {
                                                                 </IconButton>
                                                             </label>
                                                             <div className="caixa_cad_img">
-                                                                <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" />
+                                                                {
+                                                                    this.state.put_post_Produto.imgProduto.current !== undefined ?
+                                                                    <>{$imagePreview}</>
+                                                                    :
+                                                                    <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" />
+
+                                                                }
                                                             </div>
                                                         </>
                                                     ) : (
@@ -315,9 +331,8 @@ class CadastroProduto extends Component {
                                                         )
                                                     }
                                                     {
-                                                        this.state.file !== null ?
-                                                            // <img src={"http://localhost:5000/" + this.state.put_post_Produto.imgProduto} alt="" onError={i => i.target.style.display='none'}/>
-                                                            // <img className="img_cad_produto" alt="imagem ilustrativa de comida" src={this.state.file} />
+                                                        // modificação para funcionar os states das trocas de imagem sem exibição de erros
+                                                        this.state.file !== null && this.state.put_post_Produto.imgProduto.current === undefined?
                                                             <img className="img_cad_receita" alt="imagem ilustrativa de comida" src={this.state.file} />
                                                             :
                                                             <></>

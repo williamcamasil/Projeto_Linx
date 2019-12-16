@@ -26,7 +26,7 @@ CREATE TABLE Produto
     DescricaoProduto varchar (255),
     Disponibilidade numeric(10,1),
     Organico bit DEFAULT (0),
-    Preco numeric(10,1),
+    Preco numeric(10,2),
     Validade datetime,
 );
 
