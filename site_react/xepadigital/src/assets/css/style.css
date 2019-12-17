@@ -65,6 +65,21 @@
 
 /*#endregion*/
 
+
+.letra_aumentar_diminuir{
+    text-align: center;
+    padding: 20px;
+}
+
+.letra_aumentar_diminuir .fa-sort-alpha-down-alt{
+    color: var(--roxo);
+}
+
+.letra_aumentar_diminuir .fa-sort-alpha-up-alt{
+    color: var(--roxo);
+    margin-left: 20px;
+}
+
 /*#region CAROUSEL*/
 .slider-wrapper {
     position: relative;
@@ -1920,7 +1935,8 @@ button{
     }
 
     #box_informacoes p {
-        width: 700px; 
+        width: 600px; 
+        margin: auto;
     }
 
     .caixa_produtor{
@@ -1929,13 +1945,19 @@ button{
     }
 
     .produtos_colab{
-        width: 700px; 
-        height: 120px; 
+        width: 600px; 
+        /* height: 120px;  */
+        padding-bottom: 20px;
+        padding-top: 20px;
     }
 
     .produtos_colab p {
         font-size: 15px;
         width: 400px;
+    }
+
+    #box_informacoes span{
+        margin-left: 30px;
     }
 
     #box_informacoes{
@@ -2055,9 +2077,19 @@ button{
         width: 450px;
     }
     /*#endregion */
-        
+    
+    /*#region RESERVA*/
+    #tabela-lista th{
+        display: none;  
+    }
+
+    #tabela-lista-corpo td{
+        display: flex;
+        flex-direction: column;
+    }
+    /*#endregion*/
+
 }
-/*#endregion */
 
 /*#region RESPONSIVO MOBILE*/
 @media(min-width: 360px) and (max-width: 767px) {

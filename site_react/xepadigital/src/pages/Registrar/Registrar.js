@@ -55,11 +55,10 @@ class Registrar extends Component {
     }
 
     postUsuario = () => {
-
         api.post("/Usuario", this.state.postUsuario)
             .then(response => {
                 console.log(response)
-                this.setState({ successMsg: "Conta criada com sucesso!" });
+                this.setState({ successMsg: "Conta criada com sucesso! Faça o login!" });
             })
             .catch(error => {
                 console.log(error);
@@ -68,7 +67,7 @@ class Registrar extends Component {
         setTimeout(() => {
             this.setState({ successMsg: "" });
             this.setState({ erroMsg: "" });
-        }, 3500);
+        }, 2000);
     }
 
     confirmaSenha = (e) => {
@@ -85,13 +84,13 @@ class Registrar extends Component {
             
             setTimeout(() => {
                 this.setState({ erroMsg: "" });
-            }, 3500);
+            }, 2000);
         } else {
             this.postUsuario();
             //Abre a tela de login após cadastrar
             setTimeout(() => {
                 window.location = "\Login"
-            }, 1500);
+            }, 2000);
         }
     }
 
