@@ -115,12 +115,12 @@ class ReservaColaborador extends Component {
                         </div>
                     </div>
 
-                    <div className="container search_bar">
+                    {/* <div className="container search_bar">
                         <form method="GET" className="form_style">
                             <input className="input_style" type="search" placeholder="Pesquisar" />
                             <button className="button_conj" type="button" name="Pesquisa"><img src={Lupa} alt="Lupa branca, representando a busca." /></button>
                         </form>
-                    </div>
+                    </div> */}
 
                     <div className="colab_section"></div>
 

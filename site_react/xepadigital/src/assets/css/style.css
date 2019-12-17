@@ -65,6 +65,21 @@
 
 /*#endregion*/
 
+
+.letra_aumentar_diminuir{
+    text-align: center;
+    padding: 20px;
+}
+
+.letra_aumentar_diminuir .fa-sort-alpha-down-alt{
+    color: var(--roxo);
+}
+
+.letra_aumentar_diminuir .fa-sort-alpha-up-alt{
+    color: var(--roxo);
+    margin-left: 20px;
+}
+
 /*#region CAROUSEL*/
 .slider-wrapper {
     position: relative;
@@ -85,7 +100,7 @@
       width: 100%;
       height: 100%;
       background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.5)));
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0));
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
       bottom: 0;
       left: 0;
   }
@@ -1967,51 +1982,6 @@ button{
         border-radius: 10px;
         padding-left: 20px;
     }
-    /* .login form, .registrar-se form {
-        width: 100%;
-        margin: 0px;
-        height: 60%;
-    }
-    .login, .registrar-se {
-        width: 50%;
-        justify-items: center;
-        height: 90%;
-    } */
-    /* .registrar-se {
-        border-left: 1px solid #707070;
-        
-    } */
-    /* .botao {
-        width: 100%;
-        font-size: 20px;
-        margin: 15px 20px;
-    }
-    .caixa-texto{
-        width: 60%;
-        margin: 5px 10px 10px 20px;
-        font-size:20px;
-        padding: 5px;
-    }
-    .registrar-se p{
-        width:100%;
-        margin:0px 20px;
-        font-size: 16px;
-    }
-    .registrar-se label, .login label{
-        margin:20px 0px 0px 20px;
-        height: fit-content;
-        font-size: 20px;
-    }
-    .login form .texto, .registrar-se form .texto {
-        width: 100%;
-        margin: 0px;
-    }
-    .login .texto a {
-        margin: 15px 20px;
-    }
-    .texto-horizontal {
-        width: 100%;
-    } */
     /*#endregion */
 
     /*#region HOME TABLET*/
@@ -2097,7 +2067,8 @@ button{
     }
 
     #box_informacoes p {
-        width: 700px; 
+        width: 600px; 
+        margin: auto;
     }
 
     .caixa_produtor{
@@ -2106,8 +2077,10 @@ button{
     }
 
     .produtos_colab{
-        width: 700px; 
-        height: 120px; 
+        width: 600px; 
+        /* height: 120px;  */
+        padding-bottom: 20px;
+        padding-top: 20px;
     }
 
     .produtos_colab p {
@@ -2116,6 +2089,10 @@ button{
 
         /* margin-left: 200px; */
         /* margin-right: 20px; */
+    }
+
+    #box_informacoes span{
+        margin-left: 30px;
     }
 
     #box_informacoes{
@@ -2197,9 +2174,19 @@ button{
         width: 170px;
     }
     /*#endregion */
-        
+    
+    /*#region RESERVA*/
+    #tabela-lista th{
+        display: none;  
+    }
+
+    #tabela-lista-corpo td{
+        display: flex;
+        flex-direction: column;
+    }
+    /*#endregion*/
+
 }
-/*#endregion */
 
 /*#region GERAL MOBILE*/
 @media(min-width: 360px) and (max-width: 767px) {

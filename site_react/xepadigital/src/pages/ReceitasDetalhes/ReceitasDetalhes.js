@@ -83,7 +83,7 @@ class ReceitasDetalhes extends Component {
                 }
 
                 <div className='goback'>
-                    <a href="/Receitas" title="Página inicial"><i class="fas fa-arrow-circle-left fa-5x"></i></a>
+                    <a href="/Receitas" title="Página inicial"><i class="fas fa-arrow-circle-left fa-4x"></i></a>
                 </div>
                 
                 <div className="colab_section"></div>
