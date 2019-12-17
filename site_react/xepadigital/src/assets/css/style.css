@@ -85,7 +85,7 @@
       width: 100%;
       height: 100%;
       background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.5)));
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0));
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
       bottom: 0;
       left: 0;
   }
@@ -920,7 +920,6 @@ Link a:hover{
 .c_text{
     text-align: center;
     font-size: 30px;
-    /* text-decoration-line: underline; */
     margin: 0px 0px 20px;
 }
 .d_text{
@@ -951,12 +950,16 @@ Link a:hover{
 .c_disp_flex{
     display: flex;
 }
+
+.c_coll_rev{
+    flex-direction: column-reverse;
+}
 .c_disp_wrap{
     display: flex;
     flex-wrap: wrap;
 }
 .c_disp_just{
-    margin: 20px 0px 0px;
+    margin: 20px 0px 20px;
     display: flex;
     justify-content: space-evenly;
 }
@@ -1014,249 +1017,178 @@ button{
 }
 /*#endregion */
 
-/*#region PÁGINA CADASTRO*/
-#card_cadastro{
-    background: var(--branco);
-    padding: 30px 0px;
-    margin-bottom: 4vw;
-    margin-top: 13vw;
-    text-align: center; 
-    border-radius: 30px;
+/*#region PÁGINA CADASTRO PRODUTOS / RECEITAS*/
+
+.caixa_cad_esquerda_prod{
+    width: 300px;
+    text-align: center;    
 }
 
-#card_cadastro span{
-    font-size: 40px; 
-    /* text-decoration-line: underline;  */
+.caixa_cad_img_prod{
+    width: 300px;
+    height: 300px;
 }
 
-#caixa_total{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
+.caixa_cad_img_prod img{
+    width: 250px;
+    height: 300px;
 }
 
-#caixa_parte_conteudo{
-    width: 800px;  
-}
-
-#caixa_parte_conteudo label{
-    font-size: 20px;   
-}
-
-#caixa_parte_conteudo .caixa-texto{
-    width: 750px;
-    font-size: 20px;
-}
-
-#caixa_parte_conteudo .form_caixa{
-    text-align: initial;
-    
-}
-
-.caixa_texto{
-    display: flex;
-    justify-content: space-between;  
-    width: 760px; 
-}
-
-.caixa_texto_componente{
-    font-size: 20px;
-    border: 1px solid #707070;
-    border-radius: 4px;
-    padding: 5px;
-    width: 350px; 
-}
-
-.caixa_texto_componente_campo{
-    font-size: 20px;
-    border: 1px solid #707070;
-    border-radius: 4px;
-    padding: 5px;
-    width: 750px; 
-    height: 140px;
-}
-
-.caixa_texto_botoes{
-    display: flex;
-    justify-content: space-around;    
-}
-
-.caixa_texto_botoes button{
-    width: 15vw;
-    
-}
-
-.card_branco{
-    background: var(--branco);
-    width: 200px;
-    padding: 10px 0px;
-    border-radius: 20px;
-    margin: 20px 12px;
-}
-
-.card_branco img{
-    width: 120px;
-    padding-bottom: 20px;
-    height: 120px;
-}
-
-.card_branco button{
-    width: 150px;
-    font-size: 20px;
-    height: 40px;
-}
-
-.card_{
+.c_text_prod{
     text-align: center;
-    margin-bottom: 30px;
+    font-size: 30px;
+    margin: 0px 0px 20px;
+}
+.d_text_prod{
+    font-size: 25px;
+}
+
+.caixa_cad_direita_prod{
+    width: 900px;
+}
+
+.caixa_cad_esquerda_prod button {
+    width: 150px !important;
+}
+
+.card_size_cad_prod{
+    padding: 30px 20px;
+    margin:  220px auto 50px;
+    width: 1200px;
+    border-radius: 15px;
+}
+
+.linha_perfil_colab_prod{
+    background-color: #707070;
+    padding: 1px;  
+    margin: 5px 0px 20px;
+}
+
+.c_disp_flex_prod{
+    display: flex;
+}
+
+.c_coll_rev_prod{
+    flex-direction: column-reverse;
+}
+.c_disp_wrap_prod{
+    display: flex;
+    flex-wrap: wrap;
+}
+.c_disp_just_prod{
+    margin: 20px 0px 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.caixa_input_2_prod{
+    width: 450px;
+}
+.caixa_input_3_prod{
+    width: 300px;
+}
+.caixa_input_33_prod{
+    width: 300px;
+}
+button{
+    cursor:pointer;
+}
+.caixa_style_prod{
+    border: 1px solid #707070;
+    border-radius: 4px;
+    padding: 5.5px 4px;
+    margin: 0px 0px 13.5px;
+}
+.caixa_style_2_prod{
+    border: 1px solid #707070;
+    border-radius: 4px;
+    padding: 5.5px 4px 54.5px;
+    margin: 0px 0px 13.5px;
+}
+.caixa-texto_1_prod {
+    width: 95%;
+}
+.caixa-texto_11_prod {
+    width: 95%;
+}
+.caixa-texto_2_prod {
+    width: 90%;
+}
+.caixa-texto_3_prod {
+    width: 92.23%;
+}
+.caixa-texto_4_prod {
+    max-width: 95%;
+    min-width: 95%;
+}
+.caixa-texto_5_prod {
+    width: 87.8%;
+}
+.caixa-texto_6_prod {
+    width: 85%;
+}
+
+
+.card_size_of{
+    padding: 30px 20px;
+    margin:  30px auto;
+    width: 900px;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    width: 900px;
-    margin: auto;
-    
 }
 
-.tit_produtor{
+.card_prod_of{
+    width: 180px;
+    /* height: 330px; */
+    padding: 10px;
+    border-radius: 20px;
+    margin: 20px 10px;
     text-align: center;
-    padding-bottom: 30px;
+    align-items: center;
+    border: 2.4px solid var(--roxo) !important;
 }
 
-.tit_produtor span{
-    font-size: 30px;
-    /* text-decoration-line: underline; */
-}
-
-#p_nome input{
-    width: 95%;
-}
-
-#p_razao_documento{
-    display: flex;
-}
-
-#p_razao_documento #_1{
-    margin-right: 45px;
-    width: 60%; 
-}
-
-#p_razao_documento #_2{
-    width: 30%;
+.caixa_img_of{
+    width: 180px;
+    height: 150px;
+    margin: 20px 0px;
 
 }
 
-#p_razao_documento #_1 input{
-    width: 100%;    
-}
-
-#p_razao_documento #_2 input{
-    width: 100%;    
-}
-
-#p_sobre input{
-    height: 200px;
-    width: 95%;
-    margin-bottom: 30px;
-}
-
-.caixa_cadastro{
-    width: 900px;
+.caixa_img_of img{
+    width: 125px;
+    height: 150px;
     margin: auto;
 }
 
-#p_entrega select{
-    width: 10vw;
+.caixa_of p{
+    margin: 5px 0px;
 }
 
-#p_cep_logradouro{
+.caixa_of textarea{
+    margin: 5px 0px;
+    border: none;
+    background-color: white;
+    min-width: 180px;
+    max-width: 180px;
+    min-height: 90px;
+    resize: none;
+}
+
+.but_prod_of{
+    width: 120px;
+    height: 40px;
+    margin: 20px auto;
+}
+
+.but_prod_of button{
+    height: 40px;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#p_cep{
-    width: 30%;
-}
-
-#p_logradouro{
-    width: 75%;  
-}
-
-#p_logradouro input{
-    width: 90%;       
-}
-
-#p_cep img{
-    width: 20px;
-}
-
-#p_enderco{
-    display: flex;
-}
-
-#p_end{
-    margin-left: 30px;
-}
-
-#p_email{
-    margin-bottom: 30px;
-}
-
-#p_email input{
-    width: 95%;    
-}
-
-#p_email_2 input{
-    width: 95%;    
-}
-
-#p_bairro_perfil{
-    margin-right: 30px;
-    width: 300px;
-}
-
-#p_bairro_perfil .caixa-texto{
-    width: 100%;
-}
-
-#p_cidade_perfil{
-    margin-right: 30px;
-}
-
-#p_estado_perfil{
-    margin-right: 30px;
-}
-
-.padronizar_campo2 input{
-    width: 750px;
-}
-/*#endregion */
-
-/*#region PAGINA CADASTROS RECEITAS*/
-.img_cad_receita{
-    width: 15vw;
-}
-
-.caixa_texto_componente_bt{
-    font-size: 20px;
-    border: 1px solid #707070;
-    border-radius: 4px;
-    padding: 5px;
-    /* width: 350px;  */
-    max-width: 350px;
-    min-width: 350px;
-    max-height: 200px;
-    min-height: 200px;
-    /* height: 200px;        */
-}
-
-.tit_receita{
-    text-align: center;
-    padding-bottom: 30px;
-}
-
-.tit_receita span{
-    font-size: 30px;
-    /* text-decoration-line: underline; */
-}
 /*#endregion */
 
 /*#region PAGINA HOME*/
@@ -1747,7 +1679,7 @@ button{
   }
 /*#endregion*/
 
-/*#region RESPONSIVO*/
+/*#region RESPONSIVO TABLET*/
 
 /* MENU SANDUICHE DESATIVADO*/
 @media(min-width: 1200px){
@@ -1820,7 +1752,7 @@ button{
     }
     /*#endregion */
     
-    /*#region NOVO PERFIL TABLET*/
+    /*#region PERFIL TABLET*/
     .card_size_cad{
         width: 700px;
     }
@@ -1854,7 +1786,7 @@ button{
         width: 485px;
     }
     .caixa_input_33{
-        width: 240px;
+        width: 200px;
 
     }
     .caixa_style{
@@ -1897,123 +1829,14 @@ button{
 
     /*#endregion*/
     
-    /*#region CADASTRO TABLET*/
-    .tit_cad {
-        width: 700px;
-    }
-    .prod_h_titulo {
-        width: 700px;
-    }
-    .card_cadastro {
-        width: 700px;
-    }
-    .form {
-        width: 700px;
-    }
-    .formulario {
-        width: 500px;
-        margin-left: 30px;
-    }
-    .txt_cad {
-        width: 400px;
-    }
-    .form_box1 {
-        width: 700px;
-    }
-    .form_box2 {
-        width: 700px;
-    }
-    .form_box3 {
-        width: 700px;
-    }
-    .txt_1 {
-        width: 220px;
-    }
-    .txt_2 {
-        width: 220px;
-    }
-    .box_1 {
-        width: 300px;
-    }
-    .grupo_cad {
-        margin-left: 30px;
-    }
-    .linha_laranja_cad {
-        width: 700px;
-    }
-    .prod_h {
-        width: 700px;
-    }
-    .btn_cad {
-        background-color: transparent;
-        margin-top: 115px;
-    }
-    .card_total_cad {
-        width: 500px;
-        height: 500px;
-    }
-    .card_prod {
-        width: 500px;
-        height: 400px;
-    }
-    .crd {
-        margin-bottom: 20px;
-    }
-    /*#endregion */
-    
     /*#region LOGIN TABLET*/
     .card-login {
         width: 600px;
         border-radius: 10px;
         padding-left: 20px;
     }
-    /* .login form, .registrar-se form {
-        width: 100%;
-        margin: 0px;
-        height: 60%;
-    }
-    .login, .registrar-se {
-        width: 50%;
-        justify-items: center;
-        height: 90%;
-    } */
-    /* .registrar-se {
-        border-left: 1px solid #707070;
-        
-    } */
-    /* .botao {
-        width: 100%;
-        font-size: 20px;
-        margin: 15px 20px;
-    }
-    .caixa-texto{
-        width: 60%;
-        margin: 5px 10px 10px 20px;
-        font-size:20px;
-        padding: 5px;
-    }
-    .registrar-se p{
-        width:100%;
-        margin:0px 20px;
-        font-size: 16px;
-    }
-    .registrar-se label, .login label{
-        margin:20px 0px 0px 20px;
-        height: fit-content;
-        font-size: 20px;
-    }
-    .login form .texto, .registrar-se form .texto {
-        width: 100%;
-        margin: 0px;
-    }
-    .login .texto a {
-        margin: 15px 20px;
-    }
-    .texto-horizontal {
-        width: 100%;
-    } */
-    /*#endregion */
-
+    /* #endregion */
+    
     /*#region HOME TABLET*/
     .banner_home {
         background-size: cover;
@@ -2048,8 +1871,8 @@ button{
         
     }
     .text_home2 img {
-        height: 170px; /*150*/
-        width: 220px; /*200*/
+        height: 170px;
+        width: 220px;
     }
     .subtext_home1 {
         padding: 25px 0px 25px 30px;
@@ -2064,7 +1887,7 @@ button{
     }
     /*#endregion */
 
-    /*#region INICIO DUVIDAS*/
+    /*#region DUVIDAS TABLET*/
     .caixa_duvidas{
         width: 700px;
     }
@@ -2081,7 +1904,7 @@ button{
     }
     /*#endregion */
 
-    /*#region TERMOS DE USO*/
+    /*#region TERMOS DE USO TABLET*/
     #centralizar_pagina_termos{
         width: 700px;   
     }
@@ -2091,7 +1914,7 @@ button{
     }
     /*#endregion */
 
-    /*#region COLABORADOR_PRODUTOS*/
+    /*#region COLABORADOR_PRODUTOS TABLET*/
     #centralizar_pagina_produtor{
         width: 700px;   
     }
@@ -2113,9 +1936,6 @@ button{
     .produtos_colab p {
         font-size: 15px;
         width: 400px;
-
-        /* margin-left: 200px; */
-        /* margin-right: 20px; */
     }
 
     #box_informacoes{
@@ -2156,54 +1976,93 @@ button{
     }
     /*#endregion */  
 
-    /*#region CADASTRO_PRODUTOS*/
-    #caixa_parte_imagem img{
-        width: 150px;
+    /*#region CADASTRO_PRODUTOS/RECEITAS TABLET*/
+    .card_size_cad_prod{
+        width: 700px;
+    }
+    .caixa_cad_esquerda_prod{
+        width: 200px;
+    }
+    .caixa_cad_img_prod{
+        width: 200px;
+        height: 220px;
     }
 
-    .padronizar_campo2{
-        width: 400px;
+    .img_cad_produto_prod{
+        width: 15vw;
+    }
+    .caixa_cad_img_prod img{
+        width: 180px;
+        height: 216px;
+    }
+    .caixa_cad_direita_prod{
+        width: 510px;
+    }
+    .caixa_input_33_prod button{
+        width: 200px;
+        height: 50px;
+    }
+    .botao a:hover, .botao a {
+        color: white;
+        font-size: 20px;
+    }
+    .caixa_input_2_prod{
+        width: 485px;
+    }
+    .caixa_input_33_prod{
+        width: 200px;
+
+    }
+    .caixa_style_prod{
+        border: 1px solid #707070;
+        border-radius: 4px;
+        padding: 5.5px 4px;
+        margin: 0px 0px 13.5px;
+    }
+    .caixa_style_2_prod{
+        border: 1px solid #707070;
+        border-radius: 4px;
+        padding: 5.5px 4px 54.5px;
+        margin: 0px 0px 13.5px;
+    }
+    .caixa-texto_1_prod {
+        width: 95%;
+    }
+    .caixa-texto_2_prod {
+        width: 100%;
+    }
+    .caixa-texto_3_prod {
+        width: 102%;
+    }
+    .caixa-texto_4_prod {
+        max-width: 95%;
+        min-width: 95%;
+    }
+    .caixa-texto_5_prod {
+        width: 87.8%;
+    }
+    .caixa-texto_6_prod {
+        width: 92%;
+    }
+    .caixa-texto_11_prod {
+        width: 94%;
+    }
+    .style_selec_prod{
+        height: 31px;
     }
 
-    .padronizar_campo2 .caixa_texto_componente{
-        width: 400px;
-    }
-
-    .caixa_texto_sub{
-        width: 170px;
-    }
-
-    .caixa_texto_sub .caixa_texto_componente{
-        width: 170px;
-    }
-
-    .caixa_texto_componente_campo{
-        width: 400px;
-    }
-
-    .caixa_texto div .caixa_texto_componente{
-        width: 170px;
-    }
-
-    .caixa_texto{
-        width: 400px;
-    }
-
-    #caixa_parte_imagem{
-        margin: 0px 40px;
-    }
-
-    .caixa_texto_componente_bt{
-        width: 170px;
+    .card_size_of{
+        width: 450px;
     }
     /*#endregion */
         
 }
 /*#endregion */
 
-/*#region GERAL MOBILE*/
+/*#region RESPONSIVO MOBILE*/
 @media(min-width: 360px) and (max-width: 767px) {
 
+    /* #region GERAL */
     #tabela-lista-corpo td{
             display: flex;
             flex-direction: column;
@@ -2370,201 +2229,80 @@ button{
     }
     /*#endregion */
 
-    /*#region CADASTRO MOBILE*/
-    .caixa_texto_componente_bt{
-        max-width: 300px;
-        min-width: 300px;
+    /*#region CADASTRO PRODUTO E RECEITA MOBILE*/
+    .card_size_cad_prod{
+        padding: 30px 20px;
+        margin:  50px auto 50px;
+        width: 350px;
+        border-radius: 15px;
     }
-
-    .card_cadastro {
-        width: 368px;
-        margin: auto;
-        background-color: var(--branco);
-    }
-
-    .prod_h_titulo {
-        width: 361px;
-        font-size: 20px;
-        text-decoration-line: none;
-        background-color: var(--roxo);
-        color: var(--branco);
-    }
-
-    .formulario {
-        flex-direction: column;
-        width: 368px;
-    }
-
-    .formulario img {
-        padding-left: 100px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    .form_box1 {
-        padding: 0px;
-        width: 368px;
-        padding-left: 30px;
-    }
-
-    .form_box2 {
-        flex-direction: column;
-        width: 368px;
-    }
-
-    .txt_cad {
-        width: 230px;
-    }
-
-    .box_1 {
-        padding-left: 30px;
-    }
-
-    .grupo_cad {
-        text-align: center;
-        width: 368px;
-    }
-
-    .bt_salvar {
-        margin-bottom: 10px;
-    }
-
-    .grupo_cad_total {
-        flex-direction: column;
-        width: 368px;
-    }
-
-    .form_box3 {
-        width: 368px;
-    }
-
-    .opcao {
-        padding: 0px;
-    }
-
-    .txt_1 {
-        width: 240px;
-    }
-
-    .txt_2 {
-        width: 240px;
-    }
-
-    .btncad {
-        width: 260px;
-        flex-direction: column;
-        margin-top: 10px;
-    }
-
-    .linha_laranja_cad {
-        width: 368px;
-    }
-
-    .prod_h {
-        width: 368px;
-    }
-
-    .tit_cad {
-        width: 360px;
-    }
-
-    .btn_cad {
-        display: none;
-    }
-
-    .card_total_cad {
-        width: 368px;
+    .c_disp_flex_prod{
         display: flex;
-        justify-content: center;
-        height: 1040px;
+        flex-direction: column;
+    }
+    .caixa_cad_esquerda_prod{
+        margin: 0px 0px 40px;
+        width: 350px;
+        text-align: center;  
     }
 
-    .crd {
-        margin-top: 30px;
-    }
-
-    .card_prod {
-        width: 200px;
-    }
-
-    .parte2 {
-        display: none;
-    }
-
-    .container-login {
-        width: 80%;
+    .caixa_cad_img_prod{
+        width: 300px;
+        height: 300px;
         margin: auto;
-        height: 100%;
     }
+    
+    .caixa_cad_img_prod img{
+        width: 250px;
+        height: 300px;
+    }
+    .caixa_cad_direita_prod{
+        width: 350px;
 
-    .caixa-texto {
+    }
+    .caixa_input_3_prod{
+        width: 350px;
+    }
+    .caixa_input_33_prod{
+        width: 100px;
+    }
+    .caixa_input_33_prod button{
+        width: 100px;
+        height: 40px;
+    }
+    .botao a:hover, .botao a {
+        color: white;
+        font-size: 20px;
+    }
+    .caixa-texto_1_prod {
+        width: 97%;
+    }
+    .caixa-texto_2_prod {
+        width: 97%;
+    }
+    .caixa-texto_3_prod {
         width: 100%;
-        
+    }
+    .caixa-texto_4_prod {
+        max-width: 97%;
+        min-width: 97%;
+    }
+    .caixa-texto_7_prod{
+        width: 100% !important;
+    }
+    .caixa-texto_5_prod {
+        width: 97%;
+    }
+    .caixa-texto_6_prod {
+        width: 97%;
+    }
+    .caixa-texto_11_prod {
+        width: 97%;
     }
 
-    #caixa_parte_imagem img{
-        width: 200px;
-        text-align: center;
+    .card_size_of{
+        width: 225px;
     }
-    
-    #caixa_total{
-        flex-direction: column;
-    }
-    
-    #caixa_parte_conteudo{
-        width: 350px;
-    }
-    
-    #caixa_parte_conteudo input{
-        width: 300px;
-    }
-
-    .caixa_texto{
-        flex-direction: column;
-    }
-
-    .caixa_texto_sub{
-        width: 300px;
-        /* text-align: center; */
-    }
-
-    .caixa_texto{
-        width: 350px;
-    }
-
-    #caixa_parte_conteudo .form_caixa {
-        width: 350px;
-    }
-
-    .form_caixa {
-        margin-left: 20px;
-    }
-
-    .padronizar_campo2{
-        margin-top: 20px;
-        /* text-align: center; */
-        width: 300px;
-    } 
-     
-    .card_{
-        flex-wrap: wrap; 
-        width: 300px;
-        justify-content: center;
-    }
-
-    .card_branco{
-        margin-bottom: 10px;
-    }
-
-    .caixa_texto_componente{
-        width: 310px;
-        /* background: chartreuse; */
-    }
-
-    /* .caixa_texto_componente_campo{
-        width: 10px;
-        background: chartreuse;
-    } */
 
     /*#endregion */
 
@@ -2793,7 +2531,7 @@ button{
     }
     /*#endregion */
 
-    /*#region NOVO PERFIL*/
+    /*#region PERFIL*/
     .card_size_cad{
         padding: 30px 20px;
         margin:  50px auto 50px;
@@ -2889,6 +2627,4 @@ button{
     }
     /*#endregion */
 }
-/*#endregion */
-
 /*#endregion */

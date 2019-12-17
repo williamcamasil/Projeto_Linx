@@ -10,12 +10,16 @@ import IconButton from '@material-ui/core/IconButton';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import { MDBAlert } from "mdbreact";
 
+import imgdefault from '../../assets/img/imagedefault.png'
+
+
 class CadastroReceita extends Component {
     constructor() {
         super();
         this.state = {
             listaCadReceitas: [],
             file: null,
+            imagePreviewUrl: '',
 
             put_post_Receita: {
                 nomeReceita: "",
@@ -31,13 +35,7 @@ class CadastroReceita extends Component {
         }
     }
 
-    // //Mostrar Imagem
-    // imgSetState = (i) => {
-    //     this.setState({
-    //         file: URL.createObjectURL(i.target.files[0])
-    //     })
-    // }
-
+    // #region
     postSetState = (input) => {
         this.setState({
             put_post_Receita: {
@@ -78,6 +76,17 @@ class CadastroReceita extends Component {
     imgSetState = (i) => {
         if (this.state.idReceitaAlterada !== 0) {
             //PUT
+            let reader = new FileReader();
+            let file = i.target.files[0];
+
+            reader.onloadend = () => {
+                this.setState({
+                    file: file,
+                    imagePreviewUrl: reader.result
+                });
+            }
+            reader.readAsDataURL(file)
+
             this.setState({
                 put_post_Receita: {
                     ...this.state.put_post_Receita, [i.target.name]: i.target.files[0]
@@ -98,7 +107,7 @@ class CadastroReceita extends Component {
     }
 
     //POST & PUT
-    post_put_CadReceita = (event) => {
+    put_post_CadReceita = (event) => {
         event.preventDefault();
         this.setState({ erroMsg: "" })
         this.setState({ successMsg: "" })
@@ -134,13 +143,14 @@ class CadastroReceita extends Component {
 
             setTimeout(() => {
                 this.getCadReceita();
+                window.location.reload();
                 this.limparCampos();
-            }, 1000);
+            }, 1500);
 
             setTimeout(() => {
                 this.setState({ successMsg: "" });
                 this.setState({ erroMsg: "" });
-            }, 3500);
+            }, 1500);
 
             this.setState({ idReceitaAlterada: 0 });
         } else {
@@ -194,19 +204,19 @@ class CadastroReceita extends Component {
             }
         })
 
-        .then(response => response.json())
-        .then(response => {
-            console.log(response);
-            this.getCadReceita();
-            this.setState(() => ({ lista: this.state.listaCadReceitas }))
-        })
-        .then(response => {
-            this.setState({ successMsg: "Informação deletada com sucesso!" });
-        })
-        .catch(error => {
-            console.log(error);
-            this.setState({ erroMsg: "Não foi possível deletar" });
-        })
+            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                this.getCadReceita();
+                this.setState(() => ({ lista: this.state.listaCadReceitas }))
+            })
+            .then(response => {
+                this.setState({ successMsg: "Informação deletada com sucesso!" });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível deletar" });
+            })
 
 
         setTimeout(() => {
@@ -231,27 +241,66 @@ class CadastroReceita extends Component {
             }
         })
     }
+    //#endregion
+
 
     render() {
+        let { imagePreviewUrl } = this.state;
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl} alt="" />);
+        }
         return (
             <>
                 <Header />
                 <ScrollTop />
                 <main>
-                    <section>
+                    <section className="card card_size_cad">
                         <div className="container">
-                            <div id="card_cadastro">
-                                <span>CADASTRO DE RECEITA</span>
 
-                                <div id="caixa_total">
-                                    <div id="caixa_parte_conteudo">
-                                        <form className="form_caixa" onSubmit={this.post_put_CadReceita}>
-                                            {/* IMAGEM */}
-                                            <div id="caixa_parte_imagem">
-                                                
-                                                {this.state.idReceitaAlterada !== 0 ? (
-                                                    // PUT
+                            <h1 className="c_text_prod">RECEITAS</h1>
+
+                            <span className="d_text_prod">Cadastro</span>
+                            <div className="linha_perfil_colab_prod"></div>
+
+                            <form onSubmit={this.put_post_CadReceita}>
+                                <div className="c_disp_flex_prod">
+                                    <div className="caixa_cad_esquerda_prod">
+
+                                        {/* IMG */}
+                                        <div className="caixa_cad_img_prod">
+                                            {
+                                                // modificação para funcionar os states das trocas de imagem sem exibição de erros
+                                                this.state.idReceitaAlterada !== 0 ?
                                                     <>
+                                                        {
+                                                            this.state.put_post_Receita.imgReceita.current !== undefined ?
+                                                                <>{$imagePreview}</>
+                                                                :
+                                                                <img src={"http://localhost:5000/" + this.state.put_post_Receita.imgReceita} alt="imagem ilustrativa de comida" />
+                                                        }
+                                                    </>
+                                                    :
+                                                    this.state.file === null && this.state.put_post_Receita.imgReceita.current !== undefined ?
+                                                        <><img src={imgdefault} /></>
+                                                        :
+                                                        <>
+                                                            {
+                                                                this.state.idReceitaAlterada !== 0 ?
+                                                                    <></>
+                                                                    :
+                                                                    <img className="img_cad_receita" src={this.state.file} alt="" />
+                                                            }
+                                                        </>
+                                            }
+                                        </div>
+                                        <br />
+
+                                        <div>
+                                            {
+                                                this.state.idReceitaAlterada !== 0 ?
+                                                    (
+                                                        // PUT
                                                         <label htmlFor="icon-button-file">
                                                             <IconButton color="primary" aria-label="upload picture" component="span">
                                                                 <input
@@ -266,11 +315,7 @@ class CadastroReceita extends Component {
                                                                 /><ImageSearchIcon color="action" fontSize="large" />
                                                             </IconButton>
                                                         </label>
-                                                        <div className="caixa_cad_img">
-                                                            <img src={"http://localhost:5000/" + this.state.put_post_Receita.imgReceita} alt="" />
-                                                        </div>
-                                                    </>
-                                                ) : (
+                                                    ) : (
                                                         //POST
                                                         <label htmlFor="icon-button-file">
                                                             <IconButton color="primary" aria-label="upload picture" component="span">
@@ -286,90 +331,101 @@ class CadastroReceita extends Component {
                                                             </IconButton>
                                                         </label>
                                                     )
-                                                }
-                                                {
-                                                    this.state.file !== null ?
-                                                        <img className="img_cad_receita" src={this.state.file} alt="imagem ilustrativa de comida" />
-                                                        :
-                                                        <></>
-                                                }
-
-                                            </div>
-
-                                            {/* NOME */}
-                                            <div className="padronizar_campo2">
-                                                <label htmlFor="nome_lbl" aria-label="nome_lbl"> Nome</label>
-                                                <input className="caixa_texto_componente" type="nome_receita"
-                                                    placeholder="Digite o nome da receita" name="nomeReceita" id="nome_receita"
-                                                    value={this.state.put_post_Receita.nomeReceita}
-                                                    onChange={this.postSetState} />
-                                            </div>
-
-                                            <div className="caixa_texto">
-                                                {/* INGREDIENTES */}
-                                                <div className="caixa_texto_sub">
-                                                    <label htmlFor="ingrediente_lbl" aria-label="ingrediente_lbl"> Ingredientes</label><br />
-                                                    <textarea className="caixa_texto_componente_bt" type="text" placeholder="Digite os ingredientes"
-                                                        id="ingrediente_receita" name="descricaoIngrediente"
-                                                        value={this.state.put_post_Receita.descricaoIngrediente}
-                                                        onChange={this.postSetState} />
-                                                </div>
-
-                                                {/* PREPARO */}
-                                                <div className="caixa_texto_sub">
-                                                    <label htmlFor="modo_lbl" aria-label="modo_lbl"> Modo de Preparo</label><br />
-                                                    <textarea className="caixa_texto_componente_bt" type="text" placeholder="Digite o modo de preparo"
-                                                        id="modoReceita" name="descricaoPreparo"
-                                                        value={this.state.put_post_Receita.descricaoPreparo}
-                                                        onChange={this.postSetState} />
-                                                </div>
-                                            </div>
-
-                                            <div className="caixa_texto_botoes">
-                                                <button className="botao" type="submit" name="Salvar">Salvar</button>
-                                                <button className="botao" type="button" name="Editar_Card" onClick={e => this.deleteCadReceita(this.state.put_post_Receita.idReceita)}>Excluir</button>
-                                            </div>
-                                        </form>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className="caixa_cad_direita_prod">
+                                            {/* <!-- NOME RECEITA --> */}
+                                            <label aria-label="nome_lbl">Nome:</label>
+                                            <br />
+                                            <input className="caixa-texto_1_prod caixa_style_prod" type="text"
+                                                placeholder="Digite o nome da receita"
+                                                name="nomeReceita"
+                                                value={this.state.put_post_Receita.nomeReceita}
+                                                onChange={this.postSetState}
+                                            />
+                                        </div>
+                                        <div className="caixa_cad_direita_prod">
+                                            {/* INGREDIENTES */}
+                                            <label aria-label="ingrediente_lbl">Ingredientes:</label>
+                                            <br />
+                                            <textarea className="caixa-texto_4_prod caixa_style_2_prod" type="text"
+                                                placeholder="Digite os ingredientes dessa receita"
+                                                name="descricaoIngrediente"
+                                                value={this.state.put_post_Receita.descricaoIngrediente}
+                                                onChange={this.postSetState}
+                                            />
+                                        </div>
+                                        <div className="caixa_cad_direita_prod">
+                                            {/* PREPARO */}
+                                            <label aria-label="modo_lbl">Modo de preparo:</label>
+                                            <br />
+                                            <textarea className="caixa-texto_4_prod caixa_style_2_prod" type="text"
+                                                placeholder="Digite o modo de preparo dessa receita"
+                                                name="descricaoPreparo"
+                                                value={this.state.put_post_Receita.descricaoPreparo}
+                                                onChange={this.postSetState}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div className="c_disp_just_prod">
+                                    <div className="caixa_input_33_prod">
 
-                            <div className="linha"></div>
-                            <div className="tit_receita">
-                                <div className="Mensagens">
-                                    {
-                                        this.state.erroMsg &&
-                                        <MDBAlert className="text-center" color="danger" >
-                                            {/* {this.state.erroMsg} */}
-                                            {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
-                                        </MDBAlert>
-                                    }
+                                        <button className="botao" type="button" name="Excluir" onClick={e => this.deleteCadProduto(this.state.put_post_Receita.idReceita)}>Excluir</button>
 
-                                    {
-                                        this.state.successMsg &&
-                                        <MDBAlert className="text-center" color="success" >
-                                            {/* {this.state.successMsg} */}
-                                            {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
-                                        </MDBAlert>
-                                    }
+                                    </div>
+                                    <div className="caixa_input_33_prod">
+
+                                        <button className="botao" type="submit" name="Salvar">Salvar</button>
+
+                                    </div>
                                 </div>
+                            </form>
 
-                                <span>RECEITAS CADASTRADAS</span>
+                            <div className="Mensagens">
+                                {
+                                    this.state.erroMsg &&
+                                    <MDBAlert className="text-center" color="danger" >
+                                        {this.state.erroMsg}
+                                        {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
+                                    </MDBAlert>
+                                }
+
+                                {
+                                    this.state.successMsg &&
+                                    <MDBAlert className="text-center" color="success" >
+                                        {this.state.successMsg}
+                                        {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
+                                    </MDBAlert>
+                                }
                             </div>
 
-                            <div className="card_">
+                            <span className="d_text">Receitas cadastradas</span>
+                            <div className="linha_perfil_colab"></div>
+
+                            <div className="card_size_of">
                                 {
                                     this.state.listaCadReceitas.map(function (receita) {
                                         return (
-                                            <>
-                                                <div className="card_branco card">
-                                                    <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
-                                                    <p>{receita.nomeReceita}</p>
-                                                    <p>Ingredientes</p>
-                                                    <p>Modo de Preparo</p>
-                                                    <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputReceita(receita.idReceita)}>Editar</button>
-                                                </div>
-                                            </>
+
+                                            <div className="card_prod_of card">
+                                                <>
+                                                    <div className="caixa_img_of">
+                                                        <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
+                                                    </div>
+                                                    <div className="caixa_of">
+                                                        <p>{receita.nomeReceita}</p>
+                                                        <textarea className="text_inv" readOnly>{receita.descricaoIngrediente}</textarea>
+                                                        <textarea className="text_inv" readOnly>{receita.descricaoPreparo}</textarea>
+                                                    </div>
+                                                    <div className="but_prod_of">
+                                                        <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputReceita(receita.idReceita)}>Editar</button>
+                                                    </div>
+                                                </>
+                                            </div>
+
                                         );
                                     }
                                         .bind(this)
@@ -377,11 +433,6 @@ class CadastroReceita extends Component {
                                 }
                             </div>
 
-                            {/* <div className="mais">
-                                <a href="/#" title="Ver mais receitas">
-                                    <img src={mais}
-                                        alt="Ícone de adição, representando ver mais." /></a>
-                            </div> */}
                             <div className="mais">
                                 <button className="limparBotao" onClick={() => { this.incrementarMais() }} title="Ver mais receitas">
                                     <img src={mais} alt="Ícone de adição, representando ver mais." /></button>
