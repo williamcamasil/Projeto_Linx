@@ -129,7 +129,7 @@ class ReservaColaborador extends Component {
                     </div>
 
                     <div className="tit_produtor">
-                        <span>PEDIDOS SOLICITADOS</span>
+                        <h3>PEDIDOS SOLICITADOS</h3>
                     </div>
 
                     <div className="container" id="conteudoPrincipal-lista">

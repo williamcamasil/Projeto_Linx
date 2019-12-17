@@ -373,7 +373,7 @@ class CadastroReceita extends Component {
                                 <div className="c_disp_just_prod">
                                     <div className="caixa_input_33_prod">
 
-                                        <button className="botao" type="button" name="Excluir" onClick={e => this.deleteCadProduto(this.state.put_post_Receita.idReceita)}>Excluir</button>
+                                        <button className="botao" type="button" name="Excluir" onClick={e => this.deleteCadReceita(this.state.put_post_Receita.idReceita)}>Excluir</button>
 
                                     </div>
                                     <div className="caixa_input_33_prod">
@@ -384,22 +384,23 @@ class CadastroReceita extends Component {
                                 </div>
                             </form>
 
-                            <div className="Mensagens">
-                                {
-                                    this.state.erroMsg &&
-                                    <MDBAlert className="text-center" color="danger" >
-                                        {this.state.erroMsg}
-                                        {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
-                                    </MDBAlert>
-                                }
 
-                                {
-                                    this.state.successMsg &&
-                                    <MDBAlert className="text-center" color="success" >
-                                        {this.state.successMsg}
-                                        {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
-                                    </MDBAlert>
-                                }
+                            <div className="tit_receita">
+                                <div className="Mensagens">
+                                    {
+                                        this.state.erroMsg &&
+                                        <MDBAlert className="text-center" color="danger" >
+                                            {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
+                                        </MDBAlert>
+                                    }
+
+                                    {
+                                        this.state.successMsg &&
+                                        <MDBAlert className="text-center" color="success" >
+                                            {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
+                                        </MDBAlert>
+                                    }
+                                </div>
                             </div>
 
                             <span className="d_text">Receitas cadastradas</span>

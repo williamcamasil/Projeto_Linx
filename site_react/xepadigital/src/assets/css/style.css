@@ -80,6 +80,19 @@
     margin-left: 20px;
 }
 
+.tit_receita{
+    text-align: center;
+}
+
+.tit_produtor{
+    text-align: center;
+}
+/* 
+.tit_produtor span{
+    font-size: 30px; 
+    padding: 10px;  
+} */
+
 /*#region CAROUSEL*/
 .slider-wrapper {
     position: relative;
@@ -1161,7 +1174,7 @@ button{
     margin: 20px 10px;
     text-align: center;
     align-items: center;
-    border: 2.4px solid var(--roxo) !important;
+    /* border: 2.4px solid var(--roxo) !important; */
 }
 
 .caixa_img_of{

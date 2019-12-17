@@ -99,7 +99,7 @@ class ReservaCliente extends Component {
                     </div>
 
                     <div className="tit_produtor">
-                        <span>PEDIDOS REALIZADOS</span>
+                        <h3>PEDIDOS REALIZADOS</h3>
                     </div>
 
                     <div className="container" id="conteudoPrincipal-lista">

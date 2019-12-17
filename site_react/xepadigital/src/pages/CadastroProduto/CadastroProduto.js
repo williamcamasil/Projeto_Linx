@@ -362,7 +362,7 @@ class CadastroProduto extends Component {
                                             <div className="caixa_input_2_prod">
                                                 <label aria-label="preco_lbl">Preço:</label>
                                                 <br />
-                                                <input className="caixa-texto_2_prod caixa_style_prod" type="number"
+                                                <input className="caixa-texto_2_prod caixa_style_prod" type="text"
                                                     placeholder="Digite o preço"
                                                     name="preco"
                                                     value={this.state.put_post_Produto.preco}
@@ -432,21 +432,23 @@ class CadastroProduto extends Component {
                                     </div>
                                 </div>
                             </form>
+                            
+                            <div className="tit_receita">
+                                <div className="Mensagens">
+                                    {
+                                        this.state.erroMsg &&
+                                        <MDBAlert className="text-center" color="danger" >
+                                            {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
+                                        </MDBAlert>
+                                    }
 
-                            <div className="Mensagens">
-                                {
-                                    this.state.erroMsg &&
-                                    <MDBAlert className="text-center" color="danger" >
-                                        {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
-                                    </MDBAlert>
-                                }
-
-                                {
-                                    this.state.successMsg &&
-                                    <MDBAlert className="text-center" color="success" >
-                                        {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
-                                    </MDBAlert>
-                                }
+                                    {
+                                        this.state.successMsg &&
+                                        <MDBAlert className="text-center" color="success" >
+                                            {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
+                                        </MDBAlert>
+                                    }
+                                </div>
                             </div>
 
                             <span className="d_text">Produtos cadastrados</span>
