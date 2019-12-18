@@ -31,7 +31,7 @@ namespace backend.Domains
                 // DESKTOP-IN4K5BB - will (senai)
                 // WILLIAM\\SQLEXPRESS; Database=XepaDigital; Trusted_Connection=True; - will (Casa)
 // #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-LNH3DKI\\SQLEXPRESS; Database=XepaDigital; User Id=sa; Password=132");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-DJ0P3UG\\SQLEXPRESS; Database=XepaDigital; User Id=sa; Password=132");
             }
         }
 

@@ -63,9 +63,6 @@
     margin: auto;
 }
 
-/*#endregion*/
-
-
 .letra_aumentar_diminuir{
     text-align: center;
     padding: 20px;
@@ -87,11 +84,7 @@
 .tit_produtor{
     text-align: center;
 }
-/* 
-.tit_produtor span{
-    font-size: 30px; 
-    padding: 10px;  
-} */
+/*#endregion*/
 
 /*#region CAROUSEL*/
 .slider-wrapper {
@@ -526,18 +519,21 @@ body {
     height: 40px;
     margin: 0px 5px;
 }
+/* FIM DO CSS SEARCH BAR */
 
 /* CONTEUDO PRINCIPAL */
 
 .colab_section {
     background-color: var(--laranja);
-    color: var(--roxo);
-    text-align: center;
-    font-size: 25px;
     padding: 25px 0px;
-    margin: 0px 0px 40px;
+    margin: 0px 0px 30px;
+    /* margin-bottom: 0px; verificar */
+}
 
-    margin-bottom: 0px; /*verificar */
+.colab_section_bot{
+    background-color: var(--laranja);
+    padding: 25px 0px;
+    margin: 30px 0px 0px;
 }
 
 .card_colab {
@@ -548,6 +544,7 @@ body {
     justify-content: space-evenly;
     align-items: center;
     margin-bottom: 40px;
+    border: 2.4px solid var(--roxo) !important;
 }
 
 .card_size {
@@ -555,9 +552,10 @@ body {
     height: 300px;
 }
 
-.Contato_Colaborador{
-    font-weight: bold;
-
+.card_titulo_colab{
+    width: 500px;
+    height: 30px;
+    margin: 0px 0px 20px;
 }
 
 .sp_border {
@@ -569,34 +567,60 @@ body {
     display: flex;
     justify-content: flex-start;
     text-align: justify;
-    margin: 15px 0px;
+    padding: 10px 0px;
 }
 
-.card_style img{
-    height: 100px;
-    width: 100px;
-    margin-left: 20px;
-    margin-bottom: 10px;
+.img_card_colab {
+    width: 180px;
+    height: 180px;
 }
 
-.card_style p{
-    margin-left: 20px;
-    margin-bottom: 10px;
+.img_card_colab img{
+    width: 150px;
+    height: 180px;
 }
 
-.card_info, .card_info img {
-    width: 100px;
+.textarea_colab{
+    width: 300px;
+}
+
+.textarea_colab textarea{
+    border: none;
+    background-color: white;
+    min-width: 320px;
+    max-width: 320px;
+    min-height: 177px;
+    max-height: 177px;
+    resize: none;
+}
+
+.Contato_Colab{
+    width: 500px;
+    height: 30px;
+    margin: 20px 0px 0px;
+}
+
+.Contato_Colab p{
+    font-weight: bold;
+}
+
+.card_info{
+    width: 105px;
+    height: 180px;
+    margin: 0px 10px;
     text-align: center;
+}
+
+.card_info img{
+    max-width: 105px;
+    max-height: 105px;
+    margin: 0px 0px 10px;
 }
 
 h3 {
     font-family: var(--mont);
     font-size: 25px;
     text-align: center;
-}
-
-.text_1 {
-    width: 300px;
 }
 
 .btn_link_click{
@@ -620,7 +644,6 @@ h3 {
     text-decoration-line: none;
     padding: 10px;
 }
-
 
 #caixa_parte_imagem form{
     margin-top: 10px;  
@@ -729,6 +752,8 @@ h3 {
     margin-top: 40px;
     margin-right: 10px;
     width: 350px;
+    border: 2.4px solid var(--roxo) !important;
+
 }
 
 .botao_mais{
@@ -1174,7 +1199,7 @@ button{
     margin: 20px 10px;
     text-align: center;
     align-items: center;
-    /* border: 2.4px solid var(--roxo) !important; */
+    border: 2.4px solid var(--roxo) !important;
 }
 
 .caixa_img_of{
@@ -1471,138 +1496,8 @@ button{
 }
 /*#endregion */
 
-/*#region PAGINA COLABORADOR_RESERVA*/
-#centralizar_pagina_produtor{
-    margin: 30px auto;
-    padding-bottom: 30px;
-    width: 1200px;
-    background: var(--branco);
-    border-radius: 30px;
-}
-
-.caixa_produtor{
-    background-image: linear-gradient(rgba(71, 42, 76, 0.6), rgba(71, 42, 76, 0.6));
-    width: 1100px; 
-    margin: 40px auto;
-    text-align: center;
-    padding: 50px;
-    color: var(--branco);
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-}
-
-.caixa_produtor img{
-    padding-bottom: 30px;
-    width:10vw; 
-}
-
-#box_informacoes{
-    margin: auto;
-    width: 1000px;
-    margin-bottom: 30px;
-}
-
-#box_informacoes .Contato_Colaborador{
-    margin-top: 20px;
-}
-
-.produtos_colab{
-    background-image: linear-gradient(rgba(71, 42, 76, 0.6), rgba(71, 42, 76, 0.6));
-    margin: 30px auto;
-    width: 1000px;
-    border-radius: 16px;
-}
-.prod_colab_top{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.prod_colab_bot{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-    margin: 10px 0px 0px;
-}
-
-.c_disp_flex button{
-    width: 80px;
-    height: 40px;
-    margin: 10px;
-    font-size: 20px;
-}
-
-.c_spc_bet{
-    justify-content: space-between;
-    
-}
-
-.produto p{
-    color: var(--branco);
-    font-size: 20px;
-}
-.input_produtos{
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.input_produtos label{
-    color: var(--branco);
-    font-size: 20px; 
-}
-
-.input_produtos .botao{
-    font-size: 20px;
-    margin: 10px 0px;
-    height: 40px;
-}
-
-#box_colab_produtor{
-    text-align: center;
-}
-
-
-#box_colab_produtor .botao{
-    width: 150px;
-    margin: 20px;
-}
-
-/* teste */
-.spc_botao {
-    width: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-/*#endregion */
-
 /*#region PAGINA RECEITA_DETALHES*/
-#p_bairro{
-    width: 280px;
-}
 
-#p_bairro .caixa-texto{
-    width: 100%;
-}
-
-#p_cidade{
-    margin-left: 30px;   
-}
-
-#p_cidade .caixa-texto {
-    width: 80%;
-}
-
-#p_estado{
-    margin-right: 30px;    
-}
-
-#p_estado .caixa-texto{
-    width: 100%;    
-}
 
 .goback{
     text-align: center;
@@ -1638,7 +1533,158 @@ button{
 }
 /*#endregion*/
 
-/*#region PÁGINA RESERVA*/
+/*#region PAGINA COLABORADOR_DETALHES*/
+
+.card_detalhes_inf{
+    min-height: auto;
+    padding: 0px 0px 30px;
+}
+
+.caixa_produtor{
+    width: 1196px; 
+    margin: 40px auto;
+    text-align: center;
+    border: 2.1px solid var(--roxo) !important;
+}
+
+.caixa_produtor img{
+    margin: 10px 0px 0px;
+}
+
+.borda_circle{
+    border-radius: 30px;
+}
+
+.borda_circle_top{
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.img_card_d{
+    width: 300px;
+    height: 300px;
+    margin: 30px auto;
+}
+
+.img_card_d img{
+    width: 250px;
+    height: 300px;
+}
+
+.caixa_produtor h3{
+    margin: 0px 0px 30px;
+}
+
+#box_informacoes{
+    margin: auto;
+    width: 1000px;
+    margin-bottom: 30px;
+}
+
+#box_informacoes .Contato_Colaborador{
+    margin-top: 20px;
+}
+
+.produtos_colab{
+    margin: 30px auto;
+    width: 1000px;
+    border-radius: 16px;
+    border: 2.1px solid var(--roxo) !important;
+}
+.prod_colab_top{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.img_prod_d{
+    width: 200px;
+    height: 210px;
+    margin: 25px 25px;
+}
+
+.img_prod_d img {
+    width: 150px;
+    max-height: 180px;
+    margin: auto;
+}
+
+.produto{
+    width: 700px;
+    height: 210px;
+}
+
+.produto p, .produto textarea{
+    /* color: var(--branco); */
+    font-size: 20px;
+}
+
+.produto textarea{
+    min-width: 700px;
+    max-width: 700px;
+    border: none;
+    background-color: white;
+    min-height: 90px;
+    resize: none;
+}
+
+.prod_colab_bot{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px 0px 0px;
+}
+
+.c_disp_flex button{
+    width: 80px;
+    height: 40px;
+    margin: 10px;
+    font-size: 20px;
+}
+
+.c_spc_bet{
+    justify-content: space-between;
+}
+
+.input_produtos{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.input_produtos label{
+    color: var(--branco);
+    font-size: 20px; 
+}
+
+.input_produtos .botao{
+    font-size: 20px;
+    margin: 10px 0px;
+    height: 40px;
+}
+
+#box_colab_produtor{
+    text-align: center;
+}
+
+
+#box_colab_produtor .botao{
+    width: 150px;
+    margin: 20px;
+}
+
+.spc_botao {
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/*#endregion */
+
+/*#region PÁGINA RESERVA (TABELA)*/
 .reserva_preco{
     background: #FFB65C;
     width: auto; 
@@ -1753,12 +1799,12 @@ button{
         display: none;
     }
 
-    .btn_link_click{
-        margin-left: 18vw;
+    .Contato_Colab_tablet{
+        text-align: center;
     }
 
     .card_style{
-        margin-bottom: 5vw; 
+        margin-bottom: 20px; 
     }
     /*#endregion */
     
@@ -1944,70 +1990,68 @@ button{
 
     /*#region COLABORADOR_PRODUTOS TABLET*/
     #centralizar_pagina_produtor{
-        width: 700px;   
+        width: 700px;  
+        margin: auto;
     }
 
-    #box_informacoes p {
-        width: 600px; 
+    #box_informacoes p{
+        width: 400px; 
         margin: auto;
     }
 
     .caixa_produtor{
-        width: 700px;
+        width: 696px;
         padding: 20px 0px;
+    }
+
+    .img_prod_d{
+        width: 150px;
+        height: 200px;
+        margin: 30px auto;
+    }
+
+    .img_prod_d img{
+        width: 150px;
+        height: 180px;
+    }
+
+    .produto textarea{
+        min-width: 500px;
+        max-width: 500px;
+        border: none;
+        background-color: white;
+        min-height: 70px;
+        font-size: 15px;
+        resize: none;
+        margin: 0px 50px;
+    }
+
+    .prod_colab_top{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .produtos_colab{
         width: 600px; 
-        /* height: 120px;  */
         padding-bottom: 20px;
         padding-top: 20px;
+        
     }
 
-    .produtos_colab p {
+    .produtos_colab p{
         font-size: 15px;
-        width: 400px;
+        width: 500px;
+        margin: auto;
     }
 
     #box_informacoes span{
-        margin-left: 30px;
+        width: 400px; 
+        margin: 0px 50px;
     }
 
     #box_informacoes{
         width: 700px;
-    }
-
-    .caixa_cadastro{
-        width: 700px;
-    }
-
-    .caixa-texto{
-        margin: 0px;
-        font-size: 13px;
-    }
-
-    #p_bairro{
-        width: 280px;
-    }
-
-    #p_bairro .caixa-texto{
-        width: 100%;
-    }
-
-    #p_cidade{
-        margin-left: 30px;   
-    }
-
-    #p_cidade .caixa-texto {
-        width: 80%;
-    }
-
-    #p_estado{
-        margin-right: 30px;    
-    }
-
-    #p_estado .caixa-texto{
-        width: 100%;    
     }
     /*#endregion */  
 
@@ -2103,6 +2147,7 @@ button{
     /*#endregion*/
 
 }
+/*#endregion*/
 
 /*#region RESPONSIVO MOBILE*/
 @media(min-width: 360px) and (max-width: 767px) {
@@ -2160,9 +2205,64 @@ button{
     /*#endregion */
 
     /*#region COLABORADORES_DETALHES*/
+    #centralizar_pagina_produtor{
+        width: 350px;   
+        margin: auto;
+
+    }
+
+    #box_informacoes p ,#box_informacoes span{
+        width: 300px; 
+    }
+
+    .caixa_produtor{
+        width: 346px;
+        padding: 20px 0px;
+    }
+
+    .img_prod_d{
+        width: 150px;
+        height: 200px;
+        margin: 30px auto;
+    }
+
+    .img_prod_d img{
+        width: 150px;
+        height: 180px;
+    }
+
+    .produto textarea{
+        min-width: 300px;
+        max-width: 300px;
+        border: none;
+        background-color: white;
+        min-height: 70px;
+        font-size: 15px;
+        resize: none;
+        margin: 0px 15px;
+    }
+
     .prod_colab_top{
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .produtos_colab{
+        padding-bottom: 20px;
+        padding-top: 20px;
+        width: 330px;
         flex-direction: column;
+    }
+
+    .produtos_colab p{
+        font-size: 15px;
+        width: 500px;
+        margin: auto;
+    }
+
+    .card_detalhes_inf{
+        padding: 0px 0px 10px;
     }
     /*#endregion*/
 
@@ -2207,16 +2307,40 @@ button{
         display: none;
     }
 
+    .card_titulo_colab{
+        width: 300px;
+    }
+
     .card_colab {
         display: inline-flex;
+        justify-content: flex-start;
         flex-direction: column;
         width: 350px;
-        height: 1350px;
+        height: 1430px;
     }
 
     .card_size {
         width: 300px;
-        height: 650px;
+        height: 500px;
+        margin: 30px 0px 0px;
+    }
+
+    .card_size_mobile{
+        height: 840px !important;
+    }
+
+    .img_card_colab{
+        text-align: center;
+        margin: 0px 0px 30px;
+    }
+
+    .textarea_colab textarea{
+        min-width: 300px;
+        max-width: 300px;
+    }
+
+    .Contato_Colab{
+        width: 300px;
     }
 
     .card_style {
@@ -2490,14 +2614,6 @@ button{
         width: 100%;
     }
 
-    .caixa_produtor{
-        width: 250px;    
-    }
-
-    .caixa_produtor img{
-        width: 150px;
-    }
-
     #centralizar_pagina_produtor{
         width: 350px;
     }
@@ -2508,12 +2624,6 @@ button{
 
     #box_informacoes p{
         width: 330px;
-    }
-
-    .produtos_colab{
-        width: 350px;
-        height: 400px;
-        flex-direction: column;
     }
 
     .produtos_colab p {

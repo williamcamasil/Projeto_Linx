@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 
-// import colaborador from '../../assets/img/colaborador.png';
-// import foto_cenoura from '../../assets/img/foto_cenoura.png';
 import api from '../../services/api'
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
 import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
@@ -25,10 +23,7 @@ class ColaboradorDetalhes extends Component {
             listaProdutos: [],
 
             informacoesDetalhes: {
-                // idUsuario : 0,
                 nomeUsuario: "",
-                // emailUsuario : "",
-                // senhaUsuario : "",
                 receberNotif: false,
                 documento: "",
                 imgPerfil: "",
@@ -38,11 +33,8 @@ class ColaboradorDetalhes extends Component {
                 sobreColab: "",
                 fazEntrega: false,
                 razaoSocial: "",
-                // endereco : [],
-                // receita : [],
-                // registroProduto : [],
-                // reservaProduto: []
             },
+
             modal: false,
             idRegistro: "",
             quantidadeReserva: 0,
@@ -51,6 +43,7 @@ class ColaboradorDetalhes extends Component {
         }
     }
 
+    // #region
     toggle = () => {
         this.setState({
             modal: !this.state.modal
@@ -101,7 +94,6 @@ class ColaboradorDetalhes extends Component {
             quantidadeReserva: input.target.value
         })
     }
-
     //#endregion
 
     //#region POST
@@ -123,19 +115,17 @@ class ColaboradorDetalhes extends Component {
                 "Authorization": "Bearer " + localStorage.getItem('usuario-xepa')
             },
         })
-        .then(response => response.json())
-        .then(response => {
-            console.log("Reserva: ", response);
-        })
-        .then(response => {
-            this.setState({ successMsg: "Informação salva com sucesso!" });
-        })
-        .catch(error => {
-            console.log(error);
-            this.setState({ erroMsg: "Não foi possível salvar" });
-        })
-            // .catch(error => console.log('Não foi possível cadastrar:' + error))
-
+            .then(response => response.json())
+            .then(response => {
+                console.log("Reserva: ", response);
+            })
+            .then(response => {
+                this.setState({ successMsg: "Informação salva com sucesso!" });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ erroMsg: "Não foi possível salvar" });
+            })
         this.toggle();
 
         setTimeout(() => {
@@ -148,6 +138,8 @@ class ColaboradorDetalhes extends Component {
         }, 3500);
     }
     //#endregion
+    //#endregion
+
 
     render() {
         return (
@@ -163,97 +155,111 @@ class ColaboradorDetalhes extends Component {
                     </div>
 
                     <div className="colab_section"></div>
-                    <div id="centralizar_pagina_produtor">
-                        <div className="caixa_produtor">
-                            <img src={"http://localhost:5000/" + this.state.informacoesDetalhes.imgPerfil} alt="imagem ilustrativa do colaborador" />
-                            <h3>{this.state.informacoesDetalhes.nomeUsuario}</h3>
-                        </div>
+                    <section className="container">
+                        <div className="card borda_circle">
+                            <div className="caixa_produtor borda_circle_top">
 
-                        <div id="box_informacoes">
-                            <p>{this.state.informacoesDetalhes.sobreColab}</p>
-                            <p className="Contato_Colaborador"> Tel:{this.state.informacoesDetalhes.telefone1} | {this.state.informacoesDetalhes.endereco}</p>
-                        </div>
-                        {/*  */}
-                        <div>
-                            {/* <form className="form_caixa" action="GET"> */}
-
-                            <div className="tit_receita">
-                                <div className="Mensagens">
-                                    {
-                                        this.state.erroMsg &&
-                                        <MDBAlert className="text-center" color="danger" >
-                                            {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
-                                        </MDBAlert>
-                                    }
-
-                                    {
-                                        this.state.successMsg &&
-                                        <MDBAlert className="text-center" color="success" >
-                                            {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
-                                        </MDBAlert>
-                                    }
+                                <div class="img_card_d">
+                                    <img src={"http://localhost:5000/" + this.state.informacoesDetalhes.imgPerfil} alt="imagem ilustrativa do colaborador" />
                                 </div>
+
+                                <h3>{this.state.informacoesDetalhes.nomeUsuario}</h3>
+
                             </div>
 
-                            <h3>Produtos fornecidos</h3>
-                            {
-                                this.state.listaProdutos.map(
-                                    function (vp) {
-                                        return (
-                                            <div className="produtos_colab card">
-                                                <div className="prod_colab_top">
-                                                    <div>
-                                                        <img className="colaboradores_img" src={"http://localhost:5000/" + vp.idProdutoNavigation.imgProduto} alt="imagem ilustrativa do colaborador" />
+                            <div id="box_informacoes">
+                                <p>{this.state.informacoesDetalhes.sobreColab}</p>
+
+                                {
+                                    this.state.informacoesDetalhes.telefone1 !== "" && this.state.informacoesDetalhes.telefone2 !== "" ?
+                                        <p className="Contato_Colaborador">Contato:  {this.state.informacoesDetalhes.telefone1} | {this.state.informacoesDetalhes.telefone2}</p>
+                                        :
+                                        this.state.informacoesDetalhes.telefone1 !== "" ?
+                                            <p className="Contato_Colaborador">Contato: {this.state.informacoesDetalhes.telefone1}</p>
+                                            :
+                                            <></>
+                                }
+                            </div>
+                            {/*  */}
+                            <div className="card_detalhes_inf">
+
+                                <div className="tit_receita">
+                                    <div className="Mensagens">
+                                        {
+                                            this.state.erroMsg &&
+                                            <MDBAlert className="text-center" color="danger" >
+                                                {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
+                                            </MDBAlert>
+                                        }
+
+                                        {
+                                            this.state.successMsg &&
+                                            <MDBAlert className="text-center" color="success" >
+                                                {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
+                                            </MDBAlert>
+                                        }
+                                    </div>
+                                </div>
+
+                                <h3>Produtos fornecidos</h3>
+                                {
+                                    this.state.listaProdutos.map(
+                                        function (vp) {
+                                            return (
+                                                <div className="produtos_colab card">
+                                                    <div className="prod_colab_top">
+                                                        <div class="img_prod_d">
+                                                            <img className="colaboradores_img" src={"http://localhost:5000/" + vp.idProdutoNavigation.imgProduto} alt="imagem ilustrativa do colaborador" />
+                                                        </div>
+                                                        <div className="produto">
+                                                            <p>
+                                                                Nome: {vp.idProdutoNavigation.nomeProduto} <br />
+                                                                Orgânico: {(vp.idProdutoNavigation.organico === true) ? "Sim" : "Não"} <br />
+                                                                Preço: R${vp.idProdutoNavigation.preco} /Kg <br />
+                                                                Data de validade: {(vp.idProdutoNavigation.validade).split('T')[0]} <br />
+                                                                Disponível: {vp.idProdutoNavigation.disponibilidade} Kg<br />
+                                                            </p>
+                                                                <textarea readOnly>{vp.idProdutoNavigation.descricaoProduto}</textarea> <br />
+                                                        </div>
+                                                        <div className="input_produtos">
+                                                            <>
+                                                                {
+                                                                    usuarioAutenticado() && parseJwt().Role === "Cliente" ?
+                                                                        <><button className="botao" type="submit" onClick={() => this.abrirModal(vp.idRegistro)} name="Reservar">Reservar</button></>
+                                                                        :
+                                                                        <></>
+                                                                }
+                                                            </>
+                                                        </div>
                                                     </div>
-                                                    <div className="produto">
-                                                        <p>
-                                                            Nome: {vp.idProdutoNavigation.nomeProduto} <br />
-                                                            Orgânico: {(vp.idProdutoNavigation.organico === true) ? "Sim" : "Não"} <br />
-                                                            Preço: R${vp.idProdutoNavigation.preco} /Kg <br />
-                                                            Data de validade: {(vp.idProdutoNavigation.validade).split('T')[0]} <br />
-                                                            Disponível: {vp.idProdutoNavigation.disponibilidade} Kg<br />
-                                                            {vp.idProdutoNavigation.descricaoProduto} <br />
-                                                        </p>
-                                                    </div>
-                                                    <div className="input_produtos">
-                                                        <>
-                                                        {
-                                                            usuarioAutenticado() && parseJwt().Role === "Cliente" ? 
-                                                            <><button className="botao" type="submit" onClick={() => this.abrirModal(vp.idRegistro)} name="Reservar">Reservar</button></>
-                                                            :
-                                                            <></>
-                                                        }
-                                                        </>
-                                                    </div>
+
                                                 </div>
-
-                                            </div>
-                                        );
-                                    }
+                                            );
+                                        }
                                         .bind(this)
-                                )
-                            }
+                                    )
+                                }
 
-                            {/* </form>      */}
+                                {/* </form>      */}
+                            </div>
+
+                            {/* <div id="box_colab_produtor"> */}
+                            {/* <Link to={{ pathname: '/ReceitasDetalhes', state: { idReceita: receita.idReceita} }} >Reservar</Link> */}
+                            {/* <button className="botao" type="buttonReservar" name="Reservar"><Link to={{ pathname: '/ReservaCliente'}} >Reservar</Link></button> */}
+                            {/* <button className="botao" type="buttonReservar" name="Reservar">Reservar</button> */}
+                            {/* <button className="botao" type="buttonCancelarReserva" name="CancelarReserva"><Link to={{ pathname: '/Colaboradores'}} >Cancelar</Link></button> */}
+                            {/* </div> */}
                         </div>
-
-                        {/* <div id="box_colab_produtor"> */}
-                        {/* <Link to={{ pathname: '/ReceitasDetalhes', state: { idReceita: receita.idReceita} }} >Reservar</Link> */}
-                        {/* <button className="botao" type="buttonReservar" name="Reservar"><Link to={{ pathname: '/ReservaCliente'}} >Reservar</Link></button> */}
-                        {/* <button className="botao" type="buttonReservar" name="Reservar">Reservar</button> */}
-                        {/* <button className="botao" type="buttonCancelarReserva" name="CancelarReserva"><Link to={{ pathname: '/Colaboradores'}} >Cancelar</Link></button> */}
-                        {/* </div> */}
-                    </div>
-
-                    <div className="colab_section"></div>
+                    </section>
+                    <div className="colab_section_bot"></div>
                     {/* <i className="fas fa-arrow-circle-left"></i>   */}
                 </main>
 
 
-                
 
 
-                
+
+
                 <Dialog open={this.state.modal} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Reserva de Produto</DialogTitle>
                     <DialogContent>

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
 //DEPENDENCIAS    ''
-import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { usuarioAutenticado, parseJwt } from './services/auth';
 
 //SERVICES 
@@ -33,51 +33,53 @@ import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/Login/Login';
 import Registrar from './pages/Registrar/Registrar';
 
-const PermissaoCliente = ({ component : Component }) => (
+
+
+const PermissaoCliente = ({ component: Component }) => (
     <Route render={props =>
         usuarioAutenticado() && parseJwt().Role === "Cliente" ?
-        (
-            <Component {...props}/>
-        ) : (
-            <Redirect to={{ pathname: "/Login" }}/>
-        )
+            (
+                <Component {...props} />
+            ) : (
+                <Redirect to={{ pathname: "/Login" }} />
+            )
     }
     />
 )
 
-const PermissaoColaborador = ({ component : Component }) => (
+const PermissaoColaborador = ({ component: Component }) => (
     <Route render={props =>
         usuarioAutenticado() && parseJwt().Role === "Colaborador" ?
-        (
-            <Component {...props}/>
-        ) : (
-            <Redirect to={{ pathname: "/Login" }}/>
-        )
+            (
+                <Component {...props} />
+            ) : (
+                <Redirect to={{ pathname: "/Login" }} />
+            )
     }
     />
 )
 
 const Rotas = (
     //cria a URL
-    <Router> 
+    <Router>
         <div>
             <Switch>
-                <Route exact path="/" component ={Inicial}/>
-                <Route path="/Colaboradores" component = {Colaboradores} />
-                <Route path="/ColaboradorDetalhes" component = {ColaboradorDetalhes}/> 
-                <PermissaoColaborador path="/ReservaColaborador" component = {ReservaColaborador}/> 
-                <PermissaoCliente path="/ReservaCliente" component = {ReservaCliente}/> 
-                <Route path="/Receitas" component = {Receitas}/> 
-                <Route path="/ReceitasDetalhes" component = {ReceitasDetalhes}/> 
-                <Route path="/Duvidas" component = {Duvidas}/> 
-                <Route path="/Termos" component = {Termos}/> 
-                <PermissaoColaborador path="/CadastroProduto" component = {CadastroProduto}/> 
-                <PermissaoCliente path="/CadastroReceita" component = {CadastroReceita}/>
-                <PermissaoColaborador path="/PerfilColaborador" component = {PerfilColaborador}/>
-                <PermissaoCliente path="/Perfil" component = {Perfil}/>
-                <Route path="/NotFound" component = {NotFound}/>
-                <Route path="/Registrar" component={Registrar}/>
-                <Route path="/Login" component={Login}/>
+                <Route exact path="/" component={Inicial} />
+                <Route path="/Colaboradores" component={Colaboradores} />
+                <Route path="/ColaboradorDetalhes" component={ColaboradorDetalhes} />
+                <Route path="/Receitas" component={Receitas} />
+                <Route path="/ReceitasDetalhes" component={ReceitasDetalhes} />
+                <PermissaoColaborador path="/ReservaColaborador" component={ReservaColaborador} />
+                <PermissaoCliente path="/ReservaCliente" component={ReservaCliente} />
+                <PermissaoColaborador path="/CadastroProduto" component={CadastroProduto} />
+                <PermissaoCliente path="/CadastroReceita" component={CadastroReceita} />
+                <PermissaoColaborador path="/PerfilColaborador" component={PerfilColaborador} />
+                <PermissaoCliente path="/Perfil" component={Perfil} />
+                <Route path="/Duvidas" component={Duvidas} />
+                <Route path="/Termos" component={Termos} />
+                <Route path="/Registrar" component={Registrar} />
+                <Route path="/Login" component={Login} />
+                <Route path="/NotFound" component={NotFound} />
             </Switch>
         </div>
     </Router>

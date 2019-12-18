@@ -17,19 +17,12 @@ class Receitas extends Component {
         }
     }
 
+    // #region
     componentDidMount() {
         console.log("Carregado")
         this.getReceita();
         // this.getFiltroReceita();
     }
-
-    // getReceita = () => {
-    //     api.get('/Receita').then(response => {
-    //         if (response.status === 200) {
-    //             this.setState({ listaReceitas: response.data })
-    //         }
-    //     })
-    // }
 
     getReceita = () => {
         fetch('http://localhost:5000/api/Receita')
@@ -39,17 +32,7 @@ class Receitas extends Component {
 
                 this.setState({ listaReceitas: redux })
             })
-
     }
-
-    // // COMO INSERIR FILTRO?
-    // getFiltroReceita = () => {
-    //     api.get('/FiltroReceita', this.state...).then(response => {
-    //         if (response.status === 200) {
-    //             this.setState({ listaReceitas: response.data })
-    //         }
-    //     })    
-    // }
 
     postSetState = (input) => {
         this.setState({
@@ -74,9 +57,10 @@ class Receitas extends Component {
 
     incrementarMais = () => {
         this.setState({more: this.state.more + 3}); 
-        console.log('Mostrar: ', this.state.more) //this.state.more)  
+        console.log('Mostrar: ', this.state.more)  
         this.getReceita();
     }
+    // #endregion
 
     render() {
         return (
@@ -94,11 +78,6 @@ class Receitas extends Component {
 
                         <div className="container search_bar off">
                             <form method="GET" className="form_style">
-                                {/* <input className="input_style" type="search" placeholder="Pesquisar" />
-                                <button className="button_conj" type="button" name="Pesquisa">
-                                    <img src={lupa} alt="Lupa branca, representando a busca." />
-                                </button> */}
-
                                 <input className="input_style" type="search" value={this.state.nomeReceita}  onChange={this.postSetState} placeholder="Pesquisar" />
                                 <button className="button_conj" type="button" name="Pesquisa" onClick={this.getFiltrarInformacao}><img src={lupa} alt="Lupa branca, representando a busca." /></button>
                             </form>
@@ -141,7 +120,6 @@ class Receitas extends Component {
                                 <img src={mais} alt="Ícone de adição, representando ver mais."/></button>
                             </div>
                         </div>
-
                         <p className="linha_laranja"></p>
                     </section>
                 </main>

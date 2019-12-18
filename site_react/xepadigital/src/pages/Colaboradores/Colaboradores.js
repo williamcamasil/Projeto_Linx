@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
-// import mulher_3 from '../../assets/img/mulher_3.jpg';
-// import mulher_4 from '../../assets/img/mulher_4.jpg';
-// import colaborador from '../../assets/img/colaborador.png';
-// import fazendeiro from '../../assets/img/fazendeiro.png';
-// import foto_cenoura from '../../assets/img/foto_cenoura.png';
-// import foto_alface from '../../assets/img/foto_alface.png';
 import Lupa from '../../assets/img/Lupa.svg';
-// import api from '../../services/api';
 import { Link } from "react-router-dom";
 import api from '../../services/api'
 import mais from '../../assets/img/mais.png'
@@ -27,6 +20,7 @@ class Colaboradores extends Component {
         }
     }
 
+    // #region
     componentDidMount() {
         console.log("Carregado")
         this.getListaColaboradores();
@@ -34,7 +28,6 @@ class Colaboradores extends Component {
     }
 
     getListaRegistros = () => {
-        // let id = this.state.lista.idUsuario;
         api.get('/RegistroProduto').then(response => {
             if (response.status === 200) {
                 this.setState({ listaRegistro: response.data })
@@ -75,10 +68,11 @@ class Colaboradores extends Component {
     }
 
     incrementarMais = () => {
-        this.setState({more: this.state.more + 3}); 
-        console.log('Mostrar: ', this.state.more) 
+        this.setState({ more: this.state.more + 3 });
+        console.log('Mostrar: ', this.state.more)
         this.getListaColaboradores();
     }
+    // #endregion
 
     render() {
         return (
@@ -101,7 +95,7 @@ class Colaboradores extends Component {
                     </div>
 
                     <div className="colab_section"></div>
-                    <br /><br />
+                    <br />
 
                     {
                         this.state.listaColaborador.map((colaborador) => {
@@ -110,32 +104,54 @@ class Colaboradores extends Component {
                                 <section key={colaborador.idUsuario} className="container">
                                     <div className="card card_colab">
                                         <div className="card_size">
-                                            <h3>{colaborador.nomeUsuario}</h3>
-                                            <div className="card_style">
-                                                <img src={"http://localhost:5000/" + colaborador.imgPerfil} alt="Foto de perfil do colaborador" />
-                                                <p className="text_1">{colaborador.sobreColab}</p>
+                                            <div className="card_titulo_colab">
+                                                <h3>{colaborador.nomeUsuario}</h3>
                                             </div>
-                                            <p className="Contato_Colaborador">Tel: (11) 5672-0992 | Rua Guilherme da Cruz, 148</p>
+                                            <div className="card_style">
+                                                <div className="img_card_colab">
+                                                    <img src={"http://localhost:5000/" + colaborador.imgPerfil} alt="Foto de perfil do colaborador" />
+                                                </div>
+                                                <div className="textarea_colab">
+                                                    <textarea readOnly>{colaborador.sobreColab}</textarea>
+                                                </div>
+                                            </div>
+                                            <div className="Contato_Colab">
+                                                {
+                                                    colaborador.telefone1 !== "" && colaborador.telefone2 !== "" ?
+                                                        <p>Contato:  {colaborador.telefone1} | {colaborador.telefone2}</p>
+                                                        :
+                                                        colaborador.telefone1 !== "" ?
+                                                            <p>Contato: {colaborador.telefone1}</p>
+                                                            :
+                                                            <></>
+                                                }
+                                            </div>
                                         </div>
 
                                         <div className="sp_border"></div>
 
-                                        <div className="card_size">
-                                            <h3>Produtos fornecidos</h3>
+                                        <div className="card_size card_size_mobile">
+                                            <div className="card_titulo_colab">
+                                                <h3>Produtos fornecidos</h3>
+                                            </div>
                                             <div className="card_style">
                                                 {
-                                                    this.state.listaRegistro.filter(e => e.idUsuario === colaborador.idUsuario).slice(0,4).map(function (registro) {
+                                                    this.state.listaRegistro.filter(e => e.idUsuario === colaborador.idUsuario).slice(0, 4).map(function (registro) {
                                                         return (
                                                             <div key={registro.idRegistro} className="card_info">
                                                                 <img src={"http://localhost:5000/" + registro.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
-                                                                <p>{registro.idProdutoNavigation.nomeProduto}</p>
-                                                                <p>R$ {registro.idProdutoNavigation.preco} /Kg</p>
+                                                                <div className="caixa_of">
+                                                                    <p>{registro.idProdutoNavigation.nomeProduto}</p>
+                                                                    <p>R$ {registro.idProdutoNavigation.preco} /Kg</p>
+                                                                </div>
                                                             </div>
                                                         );
                                                     })
                                                 }
                                             </div>
-                                            <Link className="btn_link_click" to={{ pathname: '/ColaboradorDetalhes', state: { idUsuario: colaborador.idUsuario } }} >+ Informações</Link>
+                                            <div className="Contato_Colab Contato_Colab_tablet">
+                                                <Link className="btn_link_click" to={{ pathname: '/ColaboradorDetalhes', state: { idUsuario: colaborador.idUsuario } }} >+ Informações</Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </section>
@@ -147,8 +163,8 @@ class Colaboradores extends Component {
                         <button className="limparBotao" onClick={() => { this.incrementarMais() }} title="Ver mais receitas">
                             <img src={mais} alt="Ícone de adição, representando ver mais." /></button>
                     </div>
-                    
-                    <div className="colab_section"></div>
+
+                    <div className="colab_section_bot"></div>
                 </main>
                 <Footer />
             </div>
