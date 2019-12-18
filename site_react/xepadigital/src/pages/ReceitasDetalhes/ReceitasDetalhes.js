@@ -43,7 +43,7 @@ class ReceitasDetalhes extends Component {
                             function (vr) {
                                 return (
 
-                                    <div key={vr.idReceita} id="centralizar_pagina_produtor">
+                                    <div key={vr.idReceita} id="centralizar_pagina_produtor" className="pagina_rec card">
                                         <div className="caixa_produtor">
                                             <img src={"http://localhost:5000/" + vr.imgReceita} alt="imagem ilustrativa de comida" />
                                             <h3>{vr.nomeReceita}</h3>
@@ -73,7 +73,7 @@ class ReceitasDetalhes extends Component {
                         <a href="/Receitas" title="Página inicial"><i class="fas fa-arrow-circle-left fa-4x"></i></a>
                     </div>
 
-                    <div className="colab_section"></div>
+                    <div className="colab_section_bot"></div>
                 </main>
                 <Footer />
             </div>

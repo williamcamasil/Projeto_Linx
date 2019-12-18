@@ -535,6 +535,7 @@ body {
 
 .card_colab {
     border-radius: 15px;
+    padding: 15px 0px;
     width: 1200px;
     height: 350px;
     display: flex;
@@ -542,6 +543,10 @@ body {
     align-items: center;
     margin-bottom: 40px;
     border: 2.4px solid var(--roxo) !important;
+}
+
+.card_colab_mobile{
+    height: auto !important;
 }
 
 .card_size {
@@ -1496,7 +1501,12 @@ button{
 /*#endregion */
 
 /*#region PAGINA RECEITA_DETALHES*/
-
+.pagina_rec{
+    border-radius: 20px !important;
+    padding: 0px 0px 10px;
+    width: 1200px;
+    margin: auto;
+}
 
 .goback{
     text-align: center;
@@ -2056,6 +2066,11 @@ button{
     #box_informacoes{
         width: 700px;
     }
+
+    .pagina_rec{
+        border-radius: 20px !important;
+        padding: 0px 0px 10px;
+    }
     /*#endregion */  
 
     /*#region CADASTRO_PRODUTOS/RECEITAS TABLET*/
@@ -2325,11 +2340,11 @@ button{
     .card_size {
         width: 300px;
         height: 500px;
-        margin: 30px 0px 0px;
+        margin: 30px 0px;
     }
 
     .card_size_mobile{
-        height: 840px !important;
+        height: auto !important;
     }
 
     .img_card_colab{
@@ -2627,6 +2642,11 @@ button{
 
     #centralizar_pagina_produtor{
         width: 350px;
+    }
+
+    .pagina_rec{
+        border-radius: 20px !important;
+        padding: 0px 0px 10px;
     }
 
     #box_informacoes{

@@ -14,7 +14,7 @@ class Colaboradores extends Component {
             listaColaborador: [],
             listaRegistro: [],
             idColab: "",
-            nomeProduto: "",
+            nomeColab: "",
             more: 3
         }
     }
@@ -44,18 +44,18 @@ class Colaboradores extends Component {
 
     postSetState = (input) => {
         this.setState({
-            nomeProduto: input.target.value
+            nomeColab: input.target.value
         })
     }
 
     getFiltrarInformacao = () => {
         let filtro = {
-            nomeProduto: this.state.nomeProduto
+            nomeColab: this.state.nomeColab
         }
 
-        api.post('/FiltroProduto', filtro).then(response => {
+        api.post('/FiltroColab', filtro).then(response => {
             if (response.status === 200) {
-                this.setState({ lista: response.data })
+                this.setState({ listaColaborador: response.data })
             }
         })
     }
@@ -81,7 +81,7 @@ class Colaboradores extends Component {
 
                     <div className="container search_bar">
                         <form method="GET" className="form_style">
-                            <input className="input_style" type="search" value={this.state.nomeProduto} onChange={this.postSetState} placeholder="Pesquisar" />
+                            <input className="input_style" type="search" value={this.state.nomeColab} onChange={this.postSetState} placeholder="Pesquisar" />
                             <button className="button_conj" type="button" name="Pesquisa" onClick={this.getFiltrarInformacao}><img src={Lupa} alt="Lupa branca, representando a busca." /></button>
                         </form>
                     </div>
@@ -92,7 +92,7 @@ class Colaboradores extends Component {
                         this.state.listaColaborador.map((colaborador) => {
                             return (
                                 <section key={colaborador.idUsuario} className="container">
-                                    <div className="card card_colab">
+                                    <div className="card card_colab card_colab_mobile">
                                         <div className="card_size">
                                             <div className="card_titulo_colab">
                                                 <h3>{colaborador.nomeUsuario}</h3>

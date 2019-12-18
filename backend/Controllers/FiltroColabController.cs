@@ -10,21 +10,21 @@ namespace backend.Controllers {
     [Route ("api/[Controller]")]
     [Produces ("Application/json")] // O que é isso mesmo??? força retorno do controle ser em jason
     [ApiController]
-    public class FiltroProdutoController : ControllerBase {
+    public class FiltroColabController : ControllerBase {
         XepaDigitalContext _context = new XepaDigitalContext ();
         [HttpPost]
-        public async Task<ActionResult<List<Produto>>> PostProdutos (FiltroProdutoViewModel search) {
-            if (search.NomeProduto == "") {
+        public async Task<ActionResult<List<Usuario>>> PostColab (FiltroColabViewModel search) {
+            if (search.NomeColab == "") {
                 return BadRequest (
                     new {
-                        mensagem = "Não foi especificado um produto valido"
+                        mensagem = "Não foi especificado um usuario valido"
                     }
                 );
             }
             // TRATAMENTO DE ERRO ESTÁ CORRETO É NECESSÁRIO NO CONTEXTO ATUAL???
-            var prod = await _context.Produto.Where (p =>
-                p.NomeProduto.StartsWith (search.NomeProduto)).ToListAsync ();
-            if (prod.Count == 0) {
+            var user = await _context.Usuario.Where (p =>
+                p.NomeUsuario.Contains (search.NomeColab)).ToListAsync ();
+            if (user.Count == 0) {
                 return NotFound (
                     new {
                         mensagem = "Produto não encontrado"
@@ -32,7 +32,7 @@ namespace backend.Controllers {
 
                 );
             }
-            return prod;
+            return user;
         }
     }
 }
