@@ -50,17 +50,17 @@ class ReceitasDetalhes extends Component {
                                         </div>
 
                                         <div id="box_informacoes">
-                                            <span><strong className="textoCampoSub">Ingredientes</strong></span>
+                                            <p><strong className="textoCampoSub">Ingredientes</strong></p>
                                             <br /><br />
-                                            <p className="textoCampoSub">
-                                            {vr.descricaoIngrediente}
+                                            <p >
+                                            <textarea className="textoCampoSub" readOnly>{vr.descricaoIngrediente}</textarea>
                                             </p>
                                             <br />
-                                            <span><strong className="textoCampoSub">Modo de Preparo</strong></span>
+                                            <p><strong className="textoCampoSub">Modo de Preparo</strong></p>
                                             <br />
                                             <br />
-                                            <p className="textoCampoSub">
-                                            {vr.descricaoPreparo}
+                                            <p >
+                                            <textarea className="textoCampoSub" readOnly>{vr.descricaoPreparo}</textarea>
                                             </p>
                                         </div>
                                     </div>

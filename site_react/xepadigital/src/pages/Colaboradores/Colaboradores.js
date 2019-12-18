@@ -103,7 +103,7 @@ class Colaboradores extends Component {
                                                 </div>
 
                                                 <div className="textarea_colab">
-                                                    <textarea readOnly className="textoCampoSub">{colaborador.sobreColab}</textarea>
+                                                    <textarea className="textoCampoSub" readOnly>{colaborador.sobreColab}</textarea>
                                                 </div>
                                             </div>
                                             <div className="Contato_Colab">

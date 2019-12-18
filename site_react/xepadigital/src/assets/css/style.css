@@ -38,6 +38,13 @@
     --tamLetraMob: 20px;
 }
 
+.mais {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    width: 1180px;
+}
+
 .MuiPaper-root{
     background-color: #F5F5F5 !important;
     font-weight: bolder !important;
@@ -619,7 +626,7 @@ body {
 
 .card_info img{
     max-width: 105px;
-    max-height: 105px;
+    height: 105px;
     margin: 0px 0px 10px;
 }
 
@@ -749,7 +756,7 @@ h3 {
     justify-content: flex-start;
     width: 1100px;
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    margin: auto;
 }
 
 .cards {
@@ -766,43 +773,56 @@ h3 {
     height: 50px;
 }
 
-.img {
-    align-items: center;
+.img_rec {
     text-align: center;
+    margin: 30px auto 0px;
+    width: 200px;
+    height: 200px;
 }
 
-.img img {
-    padding-top: 30px;
-    width: 130px;
+.img_rec img {
+    width: 180px;
+    height: 180px;
 }
 
 .card_titulo {
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 40px;
+    margin: 20px 0px 20px;
+    height: 50px;
     text-decoration-line: underline;
     font-size: 18px;
     font-family: var(--montserrat);
 }
 
+.rec_conteudo{
+    height: 340px;
+}
+
+.rec_conteudo textarea{
+    width: 300px;
+    height: 110px;
+    border: none;
+    background-color: white;
+    resize: none;
+}
+
+.rec_conteudo p{
+    margin: 10px 25px;
+}
+
 .card_subtitulo {
-    padding-left: 10px;
     font-family: var(--lato);
 }
 
 .card_conteudo {
     width: 320px;
-    padding-top: 20px;
-    padding-bottom: 40px;
-    padding-left: 10px;
+    margin: auto;
+    /* padding-top: 20px; */
+    /* padding-bottom: 40px; */
+    /* padding-left: 10px; */
     font-family: var(--lato);
 }
 
-.mais {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px 45px;
-}
 /*#endregion */
 
 /*#region PÁGINA LOGIN/REGISTRO*/
@@ -1584,13 +1604,21 @@ button{
 }
 
 .caixa_produtor h3{
-    margin: 0px 0px 30px;
+    margin: 0px 15px 30px;
 }
 
 #box_informacoes{
     margin: auto;
     width: 1000px;
     margin-bottom: 30px;
+}
+
+#box_informacoes textarea{
+    border: none;
+    background-color: white;
+    width: 1000px;
+    height: 150px;
+    resize: none;
 }
 
 #box_informacoes .Contato_Colaborador{
@@ -1782,6 +1810,10 @@ button{
         width: 700px;
     }
 
+    .mais{
+        width: 680px;
+    }
+
     .menu_home{
         margin-left: 20px; 
         margin-right: 0px;
@@ -1823,7 +1855,7 @@ button{
     
     /*#region RECEITAS TABLET*/
     .caixa_central {
-        width: auto;
+        width: 700px;
         margin: auto;
     }
     .grupo_total {
@@ -2008,8 +2040,13 @@ button{
     }
 
     #box_informacoes p{
-        width: 400px; 
+        width: 600px; 
         margin: auto;
+    }
+
+    #box_informacoes textarea{
+        width: 600px;
+        height: 150px;
     }
 
     .caixa_produtor{
@@ -2179,8 +2216,7 @@ button{
     #tabela-lista th{
         display: none;  
     }
-
-
+    
     #lbl_menu {
         display: block;
         cursor: pointer;
@@ -2229,7 +2265,7 @@ button{
 
     }
 
-    #box_informacoes p ,#box_informacoes span{
+    #box_informacoes p{
         width: 300px; 
     }
 
@@ -2650,11 +2686,12 @@ button{
     }
 
     #box_informacoes{
-        width: 330px;    
+        width: 300px;    
     }
 
-    #box_informacoes p{
-        width: 330px;
+    #box_informacoes textarea{
+        width: 300px;
+        height: 150px;
     }
 
     .produtos_colab p {

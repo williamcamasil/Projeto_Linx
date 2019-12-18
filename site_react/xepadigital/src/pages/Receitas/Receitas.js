@@ -34,7 +34,7 @@ class Receitas extends Component {
 
     postSetState = (input) => {
         this.setState({
-            nomeReceita : input.target.value
+            nomeReceita: input.target.value
         })
     }
 
@@ -42,16 +42,16 @@ class Receitas extends Component {
         let filtro = {
             nomeReceita: this.state.nomeReceita
         }
-        
+
         api.post('/FiltroReceita', filtro).then(response => {
             if (response.status === 200) {
                 this.setState({ listaReceitas: response.data })
             }
-        })     
+        })
     }
 
     incrementarMais = () => {
-        this.setState({more: this.state.more + 3}); 
+        this.setState({ more: this.state.more + 3 });
         this.getReceita();
     }
     // #endregion
@@ -72,7 +72,7 @@ class Receitas extends Component {
 
                         <div className="container search_bar off">
                             <form method="GET" className="form_style">
-                                <input className="input_style" type="search" value={this.state.nomeReceita}  onChange={this.postSetState} placeholder="Pesquisar" />
+                                <input className="input_style" type="search" value={this.state.nomeReceita} onChange={this.postSetState} placeholder="Pesquisar" />
                                 <button className="button_conj" type="button" name="Pesquisa" onClick={this.getFiltrarInformacao}><img src={lupa} alt="Lupa branca, representando a busca." /></button>
                             </form>
                         </div>
@@ -86,17 +86,20 @@ class Receitas extends Component {
                                         return (
                                             <>
                                                 <div className="card cards">
-                                                    <div className="img">
+                                                    <div className="img_rec">
                                                         <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
                                                     </div>
-
                                                     <p className="card_titulo textoCampoSub">{receita.nomeReceita}</p>
-                                                    <p className="card_subtitulo textoCampoSub"><strong>Ingredientes</strong></p>
-                                                    <p className="card_conteudo textoCampoSub">{receita.descricaoIngrediente}</p>
-                                                    <p className="card_subtitulo textoCampoSub"><strong>Mode de Preparo</strong></p>
-                                                    <p className="card_conteudo textoCampoSub">
-                                                        {receita.descricaoPreparo}
-                                                    </p>
+                                                    <div className="rec_conteudo">
+                                                        <p className="card_subtitulo textoCampoSub"><strong>Ingredientes</strong></p>
+                                                        <p className="card_conteudo textoCampoSub">
+                                                            <textarea className= "textoCampoSub" readOnly>{receita.descricaoIngrediente}</textarea>
+                                                        </p>
+                                                        <p className="card_subtitulo textoCampoSub"><strong>Mode de Preparo</strong></p>
+                                                        <p className="card_conteudo textoCampoSub">
+                                                            <textarea className= "textoCampoSub" readOnly>{receita.descricaoPreparo}</textarea>
+                                                        </p>
+                                                    </div>
                                                     <div className="botao_mais">
                                                         {/* transferindo informações de um ID especifico para outra página */}
                                                         <Link className="botao_link" to={{ pathname: '/ReceitasDetalhes', state: { idReceita: receita.idReceita } }} >Leia mais</Link>
@@ -108,8 +111,8 @@ class Receitas extends Component {
                                 }
                             </div>
                             <div className="mais">
-                                <button className="limparBotao" onClick = { () => {this.incrementarMais()}} title="Ver mais receitas">
-                                <img src={mais} alt="Ícone de adição, representando ver mais."/></button>
+                                <button className="limparBotao" onClick={() => { this.incrementarMais() }} title="Ver mais receitas">
+                                    <img src={mais} alt="Ícone de adição, representando ver mais." /></button>
                             </div>
                         </div>
                         <p className="linha_laranja"></p>
