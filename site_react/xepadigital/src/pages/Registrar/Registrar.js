@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-// import { parseJwt } from '../../services/auth';
 import api from '../../services/api';
-// MDBBtn, MDBInput, MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter
 import { MDBAlert} from "mdbreact";
-
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 
@@ -18,7 +15,6 @@ class Registrar extends Component {
                 emailUsuario: "",
                 senhaUsuario: "",
                 tipoUsuario: "",
-                // receberNotif: false,
             },
 
             erroMsg: "",
@@ -72,12 +68,7 @@ class Registrar extends Component {
 
     confirmaSenha = (e) => {
         e.preventDefault();
-
         let { postUsuario, senhaIgual } = this.state;
-
-        // console.log("senha1: "+postUsuario.senhaUsuario);
-        // console.log("senha2: "+senhaIgual);
-        // console.log("role: "+postUsuario.tipoUsuario);
 
         if (postUsuario.senhaUsuario !== senhaIgual) {
             this.setState({ erroMsg: "A senha inserida não é igual" });
@@ -122,32 +113,32 @@ class Registrar extends Component {
                                     </div>
 
                                     {/* NOME */}
-                                    <label aria-label="Seu nome">Seu nome</label>
-                                    <input className="caixa-texto" type="text" placeholder="Digite seu nome"
+                                    <label className="textoCampoSub"aria-label="Seu nome">Seu nome</label>
+                                    <input className="caixa-texto textoCampoSub" type="text" placeholder="Digite seu nome"
                                         name="nomeUsuario"
                                         value={this.state.postUsuario.nomeUsuario}
                                         onChange={this.postSetState}
                                     />
                                     
                                     {/* EMAIL */}
-                                    <label htmlFor="email" aria-label="Seu E-mail">E-mail</label>
-                                    <input className="caixa-texto" type="email" placeholder="Digite seu e-mail"
+                                    <label className="textoCampoSub" htmlFor="email" aria-label="Seu E-mail">E-mail</label>
+                                    <input className="caixa-texto textoCampoSub" type="email" placeholder="Digite seu e-mail"
                                         name="emailUsuario"
                                         value={this.state.postUsuario.emailUsuario}
                                         onChange={this.postSetState}
                                     />
 
                                     {/* SENHA */}
-                                    <label htmlFor="senha" aria-label="Senha">Senha</label>
-                                    <input className="caixa-texto" type="password" placeholder="Crie sua senha"
+                                    <label className="textoCampoSub" htmlFor="senha" aria-label="Senha">Senha</label>
+                                    <input className="caixa-texto textoCampoSub" type="password" placeholder="Crie sua senha"
                                         name="senhaUsuario"
                                         value={this.state.postUsuario.senhaUsuario}
                                         onChange={this.postSetState}
                                     />
 
                                     {/* CONFIRMAÇÃO DE SENHA */}
-                                    <label htmlFor="confirmar senha" aria-label="Confirme sua senha"> Confirme sua senha</label>
-                                    <input className="caixa-texto" type="password" placeholder="Confirme sua senha"
+                                    <label className="textoCampoSub" htmlFor="confirmar senha" aria-label="Confirme sua senha"> Confirme sua senha</label>
+                                    <input className="caixa-texto textoCampoSub" type="password" placeholder="Confirme sua senha"
                                         name="senhaIgual"
                                         value={this.state.senhaIgual}
                                         onChange={this.senhaSetState}

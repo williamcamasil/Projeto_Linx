@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import mais from '../../assets/img/mais.png';
-// import menos from '../../assets/img/menos.jpg';
 import william from '../../assets/img/William.svg';
 import karina from '../../assets/img/Karina.svg';
 import fabiano from '../../assets/img/Fabiano.svg';
@@ -77,10 +76,6 @@ class Duvidas extends Component {
                                         {
                                             this.state.pergunta1?
                                             <p>
-                                                {/* Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas   */}
-
                                                 A palavra Xepa tem relação com comida  e o termo digital relacionado com a tecnologia  
                                                 resultando basicamente em uma feira online  no qual você pode comprar produtos 100% 
                                                 orgânicos.
@@ -101,7 +96,6 @@ class Duvidas extends Component {
                                             {
                                                 this.state.pergunta2?
                                                 <p>
-                                                     {/* Nosso time de desenvolvedores é composto por 5 pessoas: <br/> */}
                                                     <img className="imgTime" src={fabiano} alt="Desenvolvedor" /><br/>
                                                     Fabiano Oliveira | Backend<br/>
                                                     <img className="imgTime" src={giovani} alt="Desenvolvedor" /><br/>
@@ -140,7 +134,6 @@ class Duvidas extends Component {
                                         }
                                     </div>
                                 </div>
-
                                 <div>
                                     <button className="limparBotao" onClick={() => this.maisInformacoes("3")}><img src={mais} alt="Mais informações" /></button>
                                 </div>
@@ -162,7 +155,6 @@ class Duvidas extends Component {
                                         }
                                     </div>
                                 </div>
-
                                 <div>
                                     <button className="limparBotao" onClick={() => this.maisInformacoes("4")}><img src={mais} alt="Mais informações" /></button>
                                 </div>
@@ -187,7 +179,6 @@ class Duvidas extends Component {
                                         }
                                     </div>
                                 </div>
-
                                 <div>
                                     <button className="limparBotao" onClick={() => this.maisInformacoes("5")}><img src={mais} alt="Mais informações" /></button>
                                 </div>
@@ -203,22 +194,16 @@ class Duvidas extends Component {
                                                 Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
                                                 por uma renda extra, com foco principal em colaboradores e pessoas que querem 
                                                 utilizar dos produtos orgânicos para fazer marmitas  
-
-                                                Xepa Digital é um sistema que tem como objetivo conectar pessoas que buscam
-                                                por uma renda extra, com foco principal em colaboradores e pessoas que querem 
-                                                utilizar dos produtos orgânicos para fazer marmitas 
                                             </p>
                                             :null
                                         }
                                     </div>
                                 </div>
-
                                 <div>
                                     <button className="limparBotao" onClick={() => this.maisInformacoes("6")}><img src={mais} alt="Mais informações" /></button>
                                 </div>
                             </div>
                         </div>
-
 
                         <div className="caixa_duvidas">
                             <h2 className="sub_tit_duvida">Sobre Nosso Propósito</h2>
@@ -268,8 +253,6 @@ class Duvidas extends Component {
 
                             <div id="last_duv"></div>
                         </div>
-
-
                     </div>
                 </main>
                 <Footer />

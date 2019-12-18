@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
-
 import api from '../../services/api'
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
 import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
-
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,14 +12,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { MDBAlert } from "mdbreact";
 
-
 class ColaboradorDetalhes extends Component {
     constructor(props) {
         super(props);
         this.state = {
             listarColaborador: [],
             listaProdutos: [],
-
             informacoesDetalhes: {
                 nomeUsuario: "",
                 receberNotif: false,
@@ -82,7 +78,6 @@ class ColaboradorDetalhes extends Component {
             if (response.status === 200) {
                 this.setState({ listaProdutos: response.data })
             }
-            // console.log('Id ', this.state.listaProdutos.idRegistro)
         })
     }
     //#endregion
@@ -168,14 +163,14 @@ class ColaboradorDetalhes extends Component {
                             </div>
 
                             <div id="box_informacoes">
-                                <p>{this.state.informacoesDetalhes.sobreColab}</p>
+                                <p className="textoCampoSub">{this.state.informacoesDetalhes.sobreColab}</p>
 
                                 {
                                     this.state.informacoesDetalhes.telefone1 !== "" && this.state.informacoesDetalhes.telefone2 !== "" ?
-                                        <p className="Contato_Colaborador">Contato:  {this.state.informacoesDetalhes.telefone1} | {this.state.informacoesDetalhes.telefone2}</p>
+                                        <p className="Contato_Colaborador textoCampoSub">Contato:  {this.state.informacoesDetalhes.telefone1} | {this.state.informacoesDetalhes.telefone2}</p>
                                         :
                                         this.state.informacoesDetalhes.telefone1 !== "" ?
-                                            <p className="Contato_Colaborador">Contato: {this.state.informacoesDetalhes.telefone1}</p>
+                                            <p className="Contato_Colaborador textoCampoSub">Contato: {this.state.informacoesDetalhes.telefone1}</p>
                                             :
                                             <></>
                                 }

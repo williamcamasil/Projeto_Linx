@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
-// import api from '../../services/api'
-
-// import food from '../../assets/img/food.png';
 
 class ReceitasDetalhes extends Component {
     constructor(props) {
@@ -22,8 +19,8 @@ class ReceitasDetalhes extends Component {
         let id = this.props.location.state.idReceita;
         setTimeout(() => {
             fetch("http://localhost:5000/api/Receita/" + id)
-                .then(response => response.json())
-                .then(data => this.setState({ listarReceita: [data] }))
+            .then(response => response.json())
+            .then(data => this.setState({ listarReceita: [data] }))
         }, 1000);
     }
 
@@ -53,16 +50,16 @@ class ReceitasDetalhes extends Component {
                                         </div>
 
                                         <div id="box_informacoes">
-                                            <span><strong>Ingredientes</strong></span>
+                                            <span><strong className="textoCampoSub">Ingredientes</strong></span>
                                             <br /><br />
-                                            <p>
+                                            <p className="textoCampoSub">
                                             {vr.descricaoIngrediente}
                                             </p>
                                             <br />
-                                            <span><strong>Modo de Preparo</strong></span>
+                                            <span><strong className="textoCampoSub">Modo de Preparo</strong></span>
                                             <br />
                                             <br />
-                                            <p>
+                                            <p className="textoCampoSub">
                                             {vr.descricaoPreparo}
                                             </p>
                                         </div>

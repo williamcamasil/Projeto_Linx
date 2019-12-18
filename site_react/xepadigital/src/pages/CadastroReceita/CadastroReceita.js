@@ -248,7 +248,7 @@ class CadastroReceita extends Component {
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl} alt="" />);
+            $imagePreview = (<img src={imagePreviewUrl} alt="imagem inserida pelo usuário" />);
         }
         return (
             <>
@@ -282,14 +282,14 @@ class CadastroReceita extends Component {
                                                     </>
                                                     :
                                                     this.state.file === null && this.state.put_post_Receita.imgReceita.current !== undefined ?
-                                                        <><img src={imgdefault} /></>
+                                                        <><img src={imgdefault} alt="" /></>
                                                         :
                                                         <>
                                                             {
                                                                 this.state.idReceitaAlterada !== 0 ?
                                                                     <></>
                                                                     :
-                                                                    <img className="img_cad_receita" src={this.state.file} alt="" />
+                                                                    <img className="img_cad_receita" src={this.state.file} alt="receita cadastrada" />
                                                             }
                                                         </>
                                             }
@@ -337,9 +337,9 @@ class CadastroReceita extends Component {
                                     <div>
                                         <div className="caixa_cad_direita_prod">
                                             {/* <!-- NOME RECEITA --> */}
-                                            <label aria-label="nome_lbl">Nome:</label>
+                                            <label className="textoCampoSub" aria-label="nome_lbl">Nome:</label>
                                             <br />
-                                            <input className="caixa-texto_1_prod caixa_style_prod" type="text"
+                                            <input className="caixa-texto_1_prod caixa_style_prod textoCampoSub" type="text"
                                                 placeholder="Digite o nome da receita"
                                                 name="nomeReceita"
                                                 value={this.state.put_post_Receita.nomeReceita}
@@ -348,9 +348,9 @@ class CadastroReceita extends Component {
                                         </div>
                                         <div className="caixa_cad_direita_prod">
                                             {/* INGREDIENTES */}
-                                            <label aria-label="ingrediente_lbl">Ingredientes:</label>
+                                            <label className="textoCampoSub" aria-label="ingrediente_lbl">Ingredientes:</label>
                                             <br />
-                                            <textarea className="caixa-texto_4_prod caixa_style_2_prod" type="text"
+                                            <textarea className="caixa-texto_4_prod caixa_style_2_prod textoCampoSub" type="text"
                                                 placeholder="Digite os ingredientes dessa receita"
                                                 name="descricaoIngrediente"
                                                 value={this.state.put_post_Receita.descricaoIngrediente}
@@ -359,9 +359,9 @@ class CadastroReceita extends Component {
                                         </div>
                                         <div className="caixa_cad_direita_prod">
                                             {/* PREPARO */}
-                                            <label aria-label="modo_lbl">Modo de preparo:</label>
+                                            <label className="textoCampoSub" aria-label="modo_lbl">Modo de preparo:</label>
                                             <br />
-                                            <textarea className="caixa-texto_4_prod caixa_style_2_prod" type="text"
+                                            <textarea className="caixa-texto_4_prod caixa_style_2_prod textoCampoSub" type="text"
                                                 placeholder="Digite o modo de preparo dessa receita"
                                                 name="descricaoPreparo"
                                                 value={this.state.put_post_Receita.descricaoPreparo}
@@ -372,14 +372,10 @@ class CadastroReceita extends Component {
                                 </div>
                                 <div className="c_disp_just_prod">
                                     <div className="caixa_input_33_prod">
-
                                         <button className="botao" type="button" name="Excluir" onClick={e => this.deleteCadReceita(this.state.put_post_Receita.idReceita)}>Excluir</button>
-
                                     </div>
                                     <div className="caixa_input_33_prod">
-
                                         <button className="botao" type="submit" name="Salvar">Salvar</button>
-
                                     </div>
                                 </div>
                             </form>
@@ -405,21 +401,19 @@ class CadastroReceita extends Component {
 
                             <span className="d_text">Receitas cadastradas</span>
                             <div className="linha_perfil_colab"></div>
-
                             <div className="card_size_of">
                                 {
                                     this.state.listaCadReceitas.map(function (receita) {
                                         return (
-
                                             <div className="card_prod_of card">
                                                 <>
                                                     <div className="caixa_img_of">
                                                         <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
                                                     </div>
                                                     <div className="caixa_of">
-                                                        <p>{receita.nomeReceita}</p>
-                                                        <textarea className="text_inv" readOnly>{receita.descricaoIngrediente}</textarea>
-                                                        <textarea className="text_inv" readOnly>{receita.descricaoPreparo}</textarea>
+                                                        <p><strong className="textoCampoSub">{receita.nomeReceita}</strong></p>
+                                                        <textarea className="text_inv textoCampoSub" readOnly>{receita.descricaoIngrediente}</textarea>
+                                                        <textarea className="text_inv textoCampoSub" readOnly>{receita.descricaoPreparo}</textarea>
                                                     </div>
                                                     <div className="but_prod_of">
                                                         <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputReceita(receita.idReceita)}>Editar</button>

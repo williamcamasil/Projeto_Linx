@@ -21,7 +21,6 @@ class Login extends Component {
             senhaUsuario: "",
             erroMsg: "",
             isLoading: false,
-
             modal: false,
             nomeUsuario: "",
         }
@@ -39,11 +38,8 @@ class Login extends Component {
         })
     }
 
-
     postForgotSenha = () => {
-    // e.PreventDefault();
-
-    fetch("http://localhost:5000/api/Usuario/EsqueceuSenha/", {
+        fetch("http://localhost:5000/api/Usuario/EsqueceuSenha/", {
             method: "PATCH",
             body: JSON.stringify({
                 nomeUsuario: this.state.nomeUsuario,
@@ -128,9 +124,9 @@ class Login extends Component {
                                 
                                 {/* LOGAR */}
                                 <form className="texto" id="Entrar" method="POST" onSubmit={this.realizarLogin.bind(this)}>
-                                    <label aria-label="E-mail" htmlFor="email">E-mail</label>
+                                    <label className="textoCampoSub" aria-label="E-mail" htmlFor="email">E-mail</label>
                                     <input 
-                                        className="caixa-texto" 
+                                        className="caixa-texto textoCampoSub" 
                                         type="email" 
                                         placeholder="Digite seu e-mail" 
                                         name="emailUsuario" 
@@ -139,9 +135,9 @@ class Login extends Component {
                                         onChange={this.atualizaEstado}
                                     />
 
-                                    <label aria-label="Senha" htmlFor="senha">Senha</label>
+                                    <label className="textoCampoSub" aria-label="Senha" htmlFor="senha">Senha</label>
                                     <input 
-                                        className="caixa-texto" 
+                                        className="caixa-texto textoCampoSub" 
                                         type="password" 
                                         placeholder="Digite sua senha" 
                                         name="senhaUsuario" 
@@ -150,9 +146,9 @@ class Login extends Component {
                                         onChange={this.atualizaEstado}
                                     />
 
-                                    <a onClick={() => this.toggle()} className="texto" title="Esqueci a senha" href="#">Esqueceu sua senha?</a>
+                                    <a onClick={() => this.toggle()} className="texto textoCampoSub" title="Esqueci a senha" href="#">Esqueceu sua senha?</a>
 
-                                    <label htmlFor="conectado" aria-label="Mantenha-me conectado" className="linha_link">
+                                    <label htmlFor="conectado" aria-label="Mantenha-me conectado" className="linha_link ">
                                         <input 
                                             className="check" 
                                             type="checkbox" 
@@ -174,7 +170,7 @@ class Login extends Component {
                                         <button type="submit" className="botao">Acessar</button>
                                     }
                                     <span className="linha_link">Ainda não possuí uma conta? </span>
-                                    <span><a href="/Registrar" title="Cadastre-se.">Cadastre-se</a></span>
+                                    <span><a href="/Registrar" title="Cadastre-se." >Cadastre-se</a></span>
                                     {/* <button type="button" className="botao"><a href="/Registrar">Cadastre-se</a></button> */}
                                 </form>
 

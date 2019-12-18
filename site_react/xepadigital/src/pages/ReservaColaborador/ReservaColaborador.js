@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
-import Lupa from '../../assets/img/Lupa.svg';
 import api from '../../services/api'
 import { parseJwt } from '../../services/auth';
-
-import { MDBBtn, MDBAlert } from 'mdbreact';
+import { MDBBtn } from 'mdbreact';
 
 class ReservaColaborador extends Component {
     constructor() {
@@ -68,7 +66,6 @@ class ReservaColaborador extends Component {
                 console.log(error);
                 this.setState({ erroMsg: "Não foi possível aprovar a reserva" });
             })
-            // .catch(error => console.log("error: ", error))
 
         setTimeout(() => {
             this.getReservasColaborador();
@@ -81,12 +78,7 @@ class ReservaColaborador extends Component {
     }
 
     putStatusRecusado = (reserva) => {
-
-        
         reserva.situacao = "Cancelado";
-
-        console.log("reserva: ", reserva)
-
         api.put("/ReservaProduto/" + reserva.idReserva, reserva)
             .then(response => {
                 if (response.status === (200 || 204)) {
@@ -115,13 +107,6 @@ class ReservaColaborador extends Component {
                         </div>
                     </div>
 
-                    {/* <div className="container search_bar">
-                        <form method="GET" className="form_style">
-                            <input className="input_style" type="search" placeholder="Pesquisar" />
-                            <button className="button_conj" type="button" name="Pesquisa"><img src={Lupa} alt="Lupa branca, representando a busca." /></button>
-                        </form>
-                    </div> */}
-
                     <div className="colab_section"></div>
 
                     <div className="caixa_produtor">
@@ -129,21 +114,21 @@ class ReservaColaborador extends Component {
                     </div>
 
                     <div className="tit_produtor">
-                        <h3>PEDIDOS SOLICITADOS</h3>
+                        <span className="textoCampo">PEDIDOS SOLICITADOS</span>
                     </div>
 
                     <div className="container" id="conteudoPrincipal-lista">
                         <table id="tabela-lista">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Cliente</th>
-                                    <th>Contato</th>
-                                    <th>Valor R$</th>
-                                    <th>Produto</th>
-                                    <th>Quantidade</th>
-                                    <th>Situação</th>
-                                    <th>Ações</th>
+                                    <th className="textoCampoSub">#</th>
+                                    <th className="textoCampoSub">Cliente</th>
+                                    <th className="textoCampoSub">Contato</th>
+                                    <th className="textoCampoSub">Valor R$</th>
+                                    <th className="textoCampoSub">Produto</th>
+                                    <th className="textoCampoSub">Quantidade</th>
+                                    <th className="textoCampoSub">Situação</th>
+                                    <th className="textoCampoSub">Ações</th>
                                 </tr>
                             </thead>
 
@@ -153,14 +138,14 @@ class ReservaColaborador extends Component {
                                         // console.log(reserva.idReserva)
                                         return (
                                             <tr>
-                                                <td>Pedido Nº {reserva.idReserva}</td>
-                                                <td>{reserva.idUsuarioNavigation.nomeUsuario}</td>
-                                                <td>{(reserva.idUsuarioNavigation.telefone1 === null || "") ? "Telefone Indisponível" : reserva.idUsuarioNavigation.telefone1}</td>
-                                                <td>R${reserva.idRegistroNavigation.idProdutoNavigation.preco} /Kg</td>
-                                                <td>{reserva.idRegistroNavigation.idProdutoNavigation.nomeProduto}</td>
-                                                <td>{reserva.quantidadeReserva} Kg</td>
-                                                <td>{reserva.situacao}</td>
-                                                <td>
+                                                <td className="textoCampoSub">Pedido Nº {reserva.idReserva}</td>
+                                                <td className="textoCampoSub">{reserva.idUsuarioNavigation.nomeUsuario}</td>
+                                                <td className="textoCampoSub">{(reserva.idUsuarioNavigation.telefone1 === null || "") ? "Telefone Indisponível" : reserva.idUsuarioNavigation.telefone1}</td>
+                                                <td className="textoCampoSub">R${reserva.idRegistroNavigation.idProdutoNavigation.preco} /Kg</td>
+                                                <td className="textoCampoSub">{reserva.idRegistroNavigation.idProdutoNavigation.nomeProduto}</td>
+                                                <td className="textoCampoSub">{reserva.quantidadeReserva} Kg</td>
+                                                <td className="textoCampoSub">{reserva.situacao}</td>
+                                                <td className="textoCampoSub">
                                                     <MDBBtn color="success" size="sm" onClick={() => this.putStatusAprovado(reserva)}>
                                                         <div className="spc_botao">
                                                             <span>Aprovar</span>
@@ -172,8 +157,6 @@ class ReservaColaborador extends Component {
                                                             <span>Cancelar</span>
                                                         </div>
                                                     </MDBBtn>
-                                                    {/* <button>Cancelar</button>
-                                                    <button>Aprovar</button> */}
                                                 </td>
                                             </tr>
                                         );
@@ -186,9 +169,8 @@ class ReservaColaborador extends Component {
                     </div>
 
                     <div className="reserva_preco">
-                        <span>Preço total dos pedidos R$ 59,75</span>
+                        <span className="textoCampoSub">Preço total dos pedidos R$ 59,75</span>
                     </div>
-                    <div className="colab_section"></div>
                 </main>
                 <Footer />
             </div >

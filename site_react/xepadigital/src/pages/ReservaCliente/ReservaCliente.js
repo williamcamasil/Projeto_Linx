@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
-import Lupa from '../../assets/img/Lupa.svg';
 import api from '../../services/api'
 import { parseJwt } from '../../services/auth';
-
 import { MDBBtn, MDBAlert } from 'mdbreact';
 
 class ReservaCliente extends Component {
@@ -19,7 +17,6 @@ class ReservaCliente extends Component {
     }
 
     componentDidMount() {
-        console.log("Carregado")
         this.getReservasCliente();
         this.getUsuarioLogado();
     }
@@ -60,7 +57,6 @@ class ReservaCliente extends Component {
                 console.log(error);
                 this.setState({ erroMsg: "Não foi possível deletar a reserva" });
             })
-            // .catch(error => console.log("error: ", error))
 
         setTimeout(() => {
             this.getReservasCliente();
@@ -85,13 +81,6 @@ class ReservaCliente extends Component {
                         </div>
                     </div>
 
-                    {/* <div className="container search_bar">
-                        <form method="GET" className="form_style">
-                            <input className="input_style" type="search" placeholder="Pesquisar" />
-                            <button className="button_conj" type="button" name="Pesquisa"><img src={Lupa} alt="Lupa branca, representando a busca." /></button>
-                        </form>
-                    </div> */}
-
                     <div className="colab_section"></div>
 
                     <div className="caixa_produtor">
@@ -99,21 +88,21 @@ class ReservaCliente extends Component {
                     </div>
 
                     <div className="tit_produtor">
-                        <h3>PEDIDOS REALIZADOS</h3>
+                        <span className="textoCampoSub">PEDIDOS REALIZADOS</span>
                     </div>
 
                     <div className="container" id="conteudoPrincipal-lista">
                         <table id="tabela-lista">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Produtor</th>
-                                    <th>Contato</th>
-                                    <th>Valor R$</th>
-                                    <th>Produto</th>
-                                    <th>Quantidade</th>
-                                    <th>Status</th>
-                                    <th>Ações</th>
+                                    <th className="textoCampoSub">#</th>
+                                    <th className="textoCampoSub">Produtor</th>
+                                    <th className="textoCampoSub">Contato</th>
+                                    <th className="textoCampoSub">Valor R$</th>
+                                    <th className="textoCampoSub">Produto</th>
+                                    <th className="textoCampoSub">Quantidade</th>
+                                    <th className="textoCampoSub">Status</th>
+                                    <th className="textoCampoSub">Ações</th>
                                 </tr>
                             </thead>
                             <tbody id="tabela-lista-corpo">
@@ -121,13 +110,13 @@ class ReservaCliente extends Component {
                                     this.state.listaProdutosReservados.map(function (reserva) {
                                         return (
                                             <tr key={reserva.idReserva}>
-                                                <td>Reserva Nº {reserva.idReserva}</td>
-                                                <td>{reserva.idRegistroNavigation.idUsuarioNavigation.nomeUsuario}</td>
-                                                <td>{(reserva.idRegistroNavigation.idUsuarioNavigation.telefone1 === null || "") ? "Telefone Indisponível" : reserva.idRegistroNavigation.idUsuarioNavigation.telefone1}</td>
-                                                <td>R${reserva.idRegistroNavigation.idProdutoNavigation.preco} /Kg</td> {/* fazer operação matemática aqui */}
-                                                <td>{reserva.idRegistroNavigation.idProdutoNavigation.nomeProduto}</td> {/* como puxar o produto? */}
-                                                <td>{reserva.quantidadeReserva} Kg</td>
-                                                <td>{reserva.situacao}</td>
+                                                <td className="textoCampoSub">Reserva Nº {reserva.idReserva}</td>
+                                                <td className="textoCampoSub">{reserva.idRegistroNavigation.idUsuarioNavigation.nomeUsuario}</td>
+                                                <td className="textoCampoSub">{(reserva.idRegistroNavigation.idUsuarioNavigation.telefone1 === null || "") ? "Telefone Indisponível" : reserva.idRegistroNavigation.idUsuarioNavigation.telefone1}</td>
+                                                <td className="textoCampoSub">R${reserva.idRegistroNavigation.idProdutoNavigation.preco} /Kg</td> {/* fazer operação matemática aqui */}
+                                                <td className="textoCampoSub">{reserva.idRegistroNavigation.idProdutoNavigation.nomeProduto}</td> {/* como puxar o produto? */}
+                                                <td className="textoCampoSub">{reserva.quantidadeReserva} Kg</td>
+                                                <td className="textoCampoSub">{reserva.situacao}</td>
 
                                                 <td>
                                                     <MDBBtn color="danger" size="sm" onClick={() => this.deleteReserva(reserva.idReserva)}>
@@ -137,8 +126,6 @@ class ReservaCliente extends Component {
                                                     </MDBBtn>
                                                 </td>
                                             </tr>
-
-                                            
                                         );
                                     }
                                         .bind(this)
@@ -169,7 +156,7 @@ class ReservaCliente extends Component {
                     </div>
 
                     <div className="reserva_preco">
-                        <span>Preço total dos pedidos R$ 23,14 </span> {/* [REPLICAR] fazer operação matemática aqui */}
+                        <span className="textoCampoSub">Preço total dos pedidos R$ 23,14 </span> {/* [REPLICAR] fazer operação matemática aqui */}
                     </div>
                 </main>
                 <Footer />

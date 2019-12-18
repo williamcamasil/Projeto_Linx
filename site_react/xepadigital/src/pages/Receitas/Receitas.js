@@ -17,11 +17,9 @@ class Receitas extends Component {
         }
     }
 
-    // #region
+    // #region MÉTODOS
     componentDidMount() {
-        console.log("Carregado")
         this.getReceita();
-        // this.getFiltroReceita();
     }
 
     getReceita = () => {
@@ -41,8 +39,6 @@ class Receitas extends Component {
     }
 
     getFiltrarInformacao = () => {
-        console.log(this.state.nomeReceita);
-
         let filtro = {
             nomeReceita: this.state.nomeReceita
         }
@@ -50,14 +46,12 @@ class Receitas extends Component {
         api.post('/FiltroReceita', filtro).then(response => {
             if (response.status === 200) {
                 this.setState({ listaReceitas: response.data })
-                console.log('Lista ' , this.state.listaReceitas)
             }
         })     
     }
 
     incrementarMais = () => {
         this.setState({more: this.state.more + 3}); 
-        console.log('Mostrar: ', this.state.more)  
         this.getReceita();
     }
     // #endregion
@@ -91,23 +85,21 @@ class Receitas extends Component {
                                     this.state.listaReceitas.map(function (receita) {
                                         return (
                                             <>
-                                            {/* <div className="grupo"></div> */}
                                                 <div className="card cards">
                                                     <div className="img">
                                                         <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
                                                     </div>
 
-                                                    <p className="card_titulo">{receita.nomeReceita}</p>
-                                                    <p className="card_subtitulo"><strong>Ingredientes</strong></p>
-                                                    <p className="card_conteudo">{receita.descricaoIngrediente}</p>
-                                                    <p className="card_subtitulo"><strong>Mode de Preparo</strong></p>
-                                                    <p className="card_conteudo">
+                                                    <p className="card_titulo textoCampoSub">{receita.nomeReceita}</p>
+                                                    <p className="card_subtitulo textoCampoSub"><strong>Ingredientes</strong></p>
+                                                    <p className="card_conteudo textoCampoSub">{receita.descricaoIngrediente}</p>
+                                                    <p className="card_subtitulo textoCampoSub"><strong>Mode de Preparo</strong></p>
+                                                    <p className="card_conteudo textoCampoSub">
                                                         {receita.descricaoPreparo}
                                                     </p>
                                                     <div className="botao_mais">
                                                         {/* transferindo informações de um ID especifico para outra página */}
                                                         <Link className="botao_link" to={{ pathname: '/ReceitasDetalhes', state: { idReceita: receita.idReceita } }} >Leia mais</Link>
-                                                        {/* <button className="botao" type="button" name="Editar"><a to={{ pathname: '/ReceitasDetalhes', state: { idReceita: receita.idReceita } }}>Leia mais</a></button> */}
                                                     </div>
                                                 </div>
                                             </>

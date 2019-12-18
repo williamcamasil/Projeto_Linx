@@ -5,11 +5,9 @@ import api from '../../services/api'
 import { parseJwt } from "../../services/auth"
 import mais from '../../assets/img/mais.png'
 import ScrollTop from '../../componentes/ScrollTop/ScrollTop';
-
 import IconButton from '@material-ui/core/IconButton';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import { MDBAlert } from "mdbreact";
-
 import imgdefault from '../../assets/img/imagedefault.png'
 
 class CadastroProduto extends Component {
@@ -19,7 +17,6 @@ class CadastroProduto extends Component {
             listaCadProdutos: [],
             file: null,
             imagePreviewUrl: '',
-
             put_post_Produto: {
                 nomeProduto: "",
                 descricaoProduto: "",
@@ -72,7 +69,6 @@ class CadastroProduto extends Component {
 
                 this.setState({ listaCadProdutos: redux })
             })
-
     }
 
     incrementarMais = () => {
@@ -348,9 +344,9 @@ class CadastroProduto extends Component {
                                     <div>
                                         <div className="caixa_cad_direita_prod">
                                             {/* <!-- NOME PRODUTO --> */}
-                                            <label aria-label="nome_prod_lbl">Nome:</label>
+                                            <label className="textoCampoSub" aria-label="nome_prod_lbl">Nome:</label>
                                             <br />
-                                            <input className="caixa-texto_1_prod caixa_style_prod" type="text"
+                                            <input className="caixa-texto_1_prod caixa_style_prod textoCampoSub" type="text"
                                                 placeholder="Digite o nome do produto"
                                                 name="nomeProduto"
                                                 value={this.state.put_post_Produto.nomeProduto}
@@ -360,9 +356,9 @@ class CadastroProduto extends Component {
                                         <div className="caixa_cad_direita_prod c_disp_wrap_prod">
                                             {/* <!-- PREÇO --> */}
                                             <div className="caixa_input_2_prod">
-                                                <label aria-label="preco_lbl">Preço:</label>
+                                                <label className="textoCampoSub" aria-label="preco_lbl">Preço:</label>
                                                 <br />
-                                                <input className="caixa-texto_2_prod caixa_style_prod" type="text"
+                                                <input className="caixa-texto_2_prod caixa_style_prod textoCampoSub" type="text"
                                                     placeholder="Digite o preço"
                                                     name="preco"
                                                     value={this.state.put_post_Produto.preco}
@@ -371,9 +367,9 @@ class CadastroProduto extends Component {
                                             </div>
                                             <div className="caixa_input_2_prod">
                                                 {/* <!-- DISPONIBILIDADE --> */}
-                                                <label aria-label="disponibilidade_lbl">Disponibilidade:</label>
+                                                <label className="textoCampoSub" aria-label="disponibilidade_lbl">Disponibilidade:</label>
                                                 <br />
-                                                <input className="caixa-texto_2_prod caixa_style_prod" type="number"
+                                                <input className="caixa-texto_2_prod caixa_style_prod textoCampoSub" type="number"
                                                     placeholder="Quantidade em Kg"
                                                     name="disponibilidade"
                                                     value={this.state.put_post_Produto.disponibilidade}
@@ -382,9 +378,9 @@ class CadastroProduto extends Component {
                                             </div>
                                             <div className="caixa_input_2_prod">
                                                 {/* <!-- DATA DE VALIDADE --> */}
-                                                <label aria-label="data_lbl">Data de Validade:</label>
+                                                <label className="textoCampoSub" aria-label="data_lbl">Data de Validade:</label>
                                                 <br />
-                                                <input className="caixa-texto_2_prod caixa_style_prod" type="date"
+                                                <input className="caixa-texto_2_prod caixa_style_prod textoCampoSub" type="date"
                                                     placeholder="Digite a data de validade"
                                                     name="validade"
                                                     value={this.state.put_post_Produto.validade}
@@ -393,9 +389,9 @@ class CadastroProduto extends Component {
                                             </div>
                                             <div className="caixa_input_2_prod">
                                                 {/* <!-- notificacao --> */}
-                                                <label aria-label="organico_lbl">Este produto é orgânico?</label>
+                                                <label className="textoCampoSub" aria-label="organico_lbl">Este produto é orgânico?</label>
                                                 <br />
-                                                <select className="caixa-texto_3_prod style_selec_prod caixa_style_prod"
+                                                <select className="caixa-texto_3_prod style_selec_prod caixa_style_prod textoCampoSub"
                                                     name="organico"
                                                     value={this.state.put_post_Produto.organico}
                                                     onChange={this.postSetState}
@@ -408,9 +404,9 @@ class CadastroProduto extends Component {
                                             </div>
                                         </div>
                                         <div className="caixa_cad_direita_prod">
-                                            <label aria-label="detalhe_lbl">Detalhes:</label>
+                                            <label className="textoCampoSub" aria-label="detalhe_lbl">Detalhes:</label>
                                             <br />
-                                            <textarea className="caixa-texto_4_prod caixa_style_2_prod" type="text"
+                                            <textarea className="caixa-texto_4_prod caixa_style_2_prod textoCampoSub" type="text"
                                                 placeholder="Digite os detalhes desse produto"
                                                 name="descricaoProduto"
                                                 value={this.state.put_post_Produto.descricaoProduto}
@@ -466,9 +462,9 @@ class CadastroProduto extends Component {
                                                         <img src={"http://localhost:5000/" + produto.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
                                                     </div>
                                                     <div className="caixa_of">
-                                                        <p>{produto.idProdutoNavigation.nomeProduto}</p>
-                                                        <p>{(produto.idProdutoNavigation.organico === true) ? 'Produto Orgânico' : 'Produto não Orgânico'}</p>
-                                                        <p>{produto.idProdutoNavigation.disponibilidade} Kg</p>
+                                                        <p><strong className="textoCampoSub">{produto.idProdutoNavigation.nomeProduto}</strong></p>
+                                                        <p className="textoCampoSub">{(produto.idProdutoNavigation.organico === true) ? 'Produto Orgânico' : 'Produto não Orgânico'}</p>
+                                                        <p className="textoCampoSub">{produto.idProdutoNavigation.disponibilidade} Kg</p>
                                                     </div>
                                                     <div className="but_prod_of">
                                                         <button className="botao" type="button" name="Editar_Card" onClick={e => this.getInputProduto(produto.idProdutoNavigation.idProduto)}>Editar</button>

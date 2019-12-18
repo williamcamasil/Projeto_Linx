@@ -22,7 +22,6 @@
     justify-content: center;
     margin-bottom: 20px;
 }
-
 /*#endregion*/
 
 /*#region USO GERAL*/
@@ -34,6 +33,9 @@
     --laranja: #FFB65C;
     --mont: 'Montserrat';
     --lato: 'Lato';
+    --tamLetraWeb: 25px;
+    --tamLetraWebSub: 18px;
+    --tamLetraMob: 20px;
 }
 
 .MuiPaper-root{
@@ -250,6 +252,7 @@
     transition: 0.5s;
     display: flex;
     align-items: center;
+    font-size: 17px;
   }
  
 /*#endregion
@@ -257,7 +260,6 @@
 /*#region TABELA*/
 
 /*#region HEADER*/
-
 header {
     position: fixed;
     width: 100%;
@@ -502,10 +504,6 @@ body {
 .colaboradores_img{
     width: 150px;
     height: 200px;
-    /* margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px; */
     margin: 20px 20px;
 }
 
@@ -527,7 +525,6 @@ body {
     background-color: var(--laranja);
     padding: 25px 0px;
     margin: 0px 0px 30px;
-    /* margin-bottom: 0px; verificar */
 }
 
 .colab_section_bot{
@@ -582,6 +579,10 @@ body {
 
 .textarea_colab{
     width: 300px;
+}
+
+.textoCampoSub{
+    font-size: var(--tamLetraWebSub);
 }
 
 .textarea_colab textarea{
@@ -655,7 +656,6 @@ h3 {
     margin: auto;
     width: 1200px;
 }
-
 
 .banner_receitaDetalhes {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6 ), rgba(0, 0, 0, 0.6)), url(../img/banner_receita_detalhes.jpg);
@@ -797,7 +797,6 @@ h3 {
     display: flex;
     justify-content: flex-end;
     padding: 10px 45px;
-    /* border-radius: 20px; */
 }
 /*#endregion */
 
@@ -953,7 +952,6 @@ Link a:hover{
 /*#endregion */
 
 /*#region PÁGINA PERFIL*/
-
 .caixa_cad_esquerda{
     margin: 0px 0px 40px;
     width: 300px;
@@ -1071,7 +1069,6 @@ button{
 /*#endregion */
 
 /*#region PÁGINA CADASTRO PRODUTOS / RECEITAS*/
-
 .caixa_cad_esquerda_prod{
     width: 300px;
     text-align: center;    
@@ -1181,7 +1178,6 @@ button{
     width: 85%;
 }
 
-
 .card_size_of{
     padding: 30px 20px;
     margin:  30px auto;
@@ -1193,7 +1189,6 @@ button{
 
 .card_prod_of{
     width: 180px;
-    /* height: 330px; */
     padding: 10px;
     border-radius: 20px;
     margin: 20px 10px;
@@ -1263,7 +1258,13 @@ button{
     align-items: center;
 }
 
+.textoCampo{
+    font-size: var(--tamLetraWeb);
+}
 
+.saibamais{
+    font-size: 20px;
+}
 
 .logoslogan_home {
     width: 100%;
@@ -1327,7 +1328,6 @@ button{
 
 .text_home2 p, .text1 p, .subtext_home1, .subtext_home2 {
     text-align: justify;
-    font-size: 20px;
 }
 
 .subtext_home1, .subtext_home2 {
@@ -1430,8 +1430,7 @@ button{
 
 .respostaDuvidas p{
     font-family: var(--lato);
-    font-size: 18px;
-
+    font-size: var(--tamLetraWebSub);
 }
 
 .respostaDuvidas_perfis{
@@ -1442,7 +1441,7 @@ button{
 
 .respostaDuvidas_perfis p{
     font-family: var(--lato);
-    font-size: 18px;
+    font-size: var(--tamLetraWebSub);
     margin-left: 100px;
 }
 
@@ -1545,10 +1544,13 @@ button{
     margin: 40px auto;
     text-align: center;
     border: 2.1px solid var(--roxo) !important;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
 }
 
 .caixa_produtor img{
     margin: 10px 0px 0px;
+    width: 200px;
 }
 
 .borda_circle{
@@ -1583,6 +1585,7 @@ button{
 
 #box_informacoes .Contato_Colaborador{
     margin-top: 20px;
+    font-weight: bold;
 }
 
 .produtos_colab{
@@ -1616,7 +1619,7 @@ button{
 
 .produto p, .produto textarea{
     /* color: var(--branco); */
-    font-size: 20px;
+    font-size: var(--tamLetraWebSub);
 }
 
 .produto textarea{
@@ -2530,6 +2533,14 @@ button{
     /*#region HOME MOBILE*/
     .banner_home {
         background-size: cover;
+    }
+
+    .textoCampo{
+        font-size: 20px;
+    }
+    
+    .saibamais{
+        font-size: 18px;
     }
 
     .banner_home img{

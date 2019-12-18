@@ -13,16 +13,14 @@ class Colaboradores extends Component {
         this.state = {
             listaColaborador: [],
             listaRegistro: [],
-
             idColab: "",
             nomeProduto: "",
             more: 3
         }
     }
 
-    // #region
+    // #region MÉTODOS
     componentDidMount() {
-        console.log("Carregado")
         this.getListaColaboradores();
         this.getListaRegistros();
     }
@@ -32,18 +30,16 @@ class Colaboradores extends Component {
             if (response.status === 200) {
                 this.setState({ listaRegistro: response.data })
             }
-            console.log("Registros: ", this.state.listaRegistro)
         })
     }
 
     getListaColaboradores = () => {
         fetch('http://localhost:5000/api/Colaborador')
-            .then(response => response.json())
-            .then(response => {
-                var redux = response.slice(0, this.state.more)
-
-                this.setState({ listaColaborador: redux })
-            })
+        .then(response => response.json())
+        .then(response => {
+            var redux = response.slice(0, this.state.more)
+            this.setState({ listaColaborador: redux })
+        })
     }
 
     postSetState = (input) => {
@@ -53,8 +49,6 @@ class Colaboradores extends Component {
     }
 
     getFiltrarInformacao = () => {
-        console.log(this.state.nomeProduto);
-
         let filtro = {
             nomeProduto: this.state.nomeProduto
         }
@@ -62,14 +56,12 @@ class Colaboradores extends Component {
         api.post('/FiltroProduto', filtro).then(response => {
             if (response.status === 200) {
                 this.setState({ lista: response.data })
-                console.log('Lista ', this.state.lista)
             }
         })
     }
 
     incrementarMais = () => {
         this.setState({ more: this.state.more + 3 });
-        console.log('Mostrar: ', this.state.more)
         this.getListaColaboradores();
     }
     // #endregion
@@ -94,12 +86,10 @@ class Colaboradores extends Component {
                         </form>
                     </div>
 
-                    <div className="colab_section"></div>
-                    <br />
+                    <div className="colab_section"></div><br />
 
                     {
                         this.state.listaColaborador.map((colaborador) => {
-
                             return (
                                 <section key={colaborador.idUsuario} className="container">
                                     <div className="card card_colab">
@@ -111,17 +101,18 @@ class Colaboradores extends Component {
                                                 <div className="img_card_colab">
                                                     <img src={"http://localhost:5000/" + colaborador.imgPerfil} alt="Foto de perfil do colaborador" />
                                                 </div>
+
                                                 <div className="textarea_colab">
-                                                    <textarea readOnly>{colaborador.sobreColab}</textarea>
+                                                    <textarea readOnly className="textoCampoSub">{colaborador.sobreColab}</textarea>
                                                 </div>
                                             </div>
                                             <div className="Contato_Colab">
                                                 {
                                                     colaborador.telefone1 !== "" && colaborador.telefone2 !== "" ?
-                                                        <p>Contato:  {colaborador.telefone1} | {colaborador.telefone2}</p>
+                                                        <p className="textoCampoSub">Contato:  {colaborador.telefone1} | {colaborador.telefone2}</p>
                                                         :
                                                         colaborador.telefone1 !== "" ?
-                                                            <p>Contato: {colaborador.telefone1}</p>
+                                                            <p className="textoCampoSub">Contato: {colaborador.telefone1}</p>
                                                             :
                                                             <></>
                                                 }
@@ -141,8 +132,8 @@ class Colaboradores extends Component {
                                                             <div key={registro.idRegistro} className="card_info">
                                                                 <img src={"http://localhost:5000/" + registro.idProdutoNavigation.imgProduto} alt="imagem ilustrativa de comida" />
                                                                 <div className="caixa_of">
-                                                                    <p>{registro.idProdutoNavigation.nomeProduto}</p>
-                                                                    <p>R$ {registro.idProdutoNavigation.preco} /Kg</p>
+                                                                    <p className="textoCampoSub">{registro.idProdutoNavigation.nomeProduto}</p>
+                                                                    <p className="textoCampoSub">R$ {registro.idProdutoNavigation.preco} /Kg</p>
                                                                 </div>
                                                             </div>
                                                         );
@@ -158,12 +149,10 @@ class Colaboradores extends Component {
                             );
                         })
                     }
-
                     <div className="mais container">
                         <button className="limparBotao" onClick={() => { this.incrementarMais() }} title="Ver mais receitas">
                             <img src={mais} alt="Ícone de adição, representando ver mais." /></button>
                     </div>
-
                     <div className="colab_section_bot"></div>
                 </main>
                 <Footer />

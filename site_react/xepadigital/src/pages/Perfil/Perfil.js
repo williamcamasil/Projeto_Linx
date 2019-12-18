@@ -3,23 +3,20 @@ import Header from '../../componentes/Header/Header';
 import Footer from '../../componentes/Footer/Footer';
 import { parseJwt } from '../../services/auth';
 import api, { apiForm } from '../../services/api';
-
 import IconButton from '@material-ui/core/IconButton';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
-
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
 import { MDBAlert } from "mdbreact";
 
+//Itens usados: (Instalar)
 // npm install @material-ui/core
 // npm install @material-ui/icons
 // npm install @material-ui/icons/ImageSearch
-
 
 class Perfil extends Component {
     constructor() {
@@ -27,7 +24,6 @@ class Perfil extends Component {
         this.state = {
             file: '',
             imagePreviewUrl: '',
-
             putUsuario: {
                 idUsuario: parseJwt().Id,
                 imgPerfil: React.createRef(),
@@ -37,12 +33,10 @@ class Perfil extends Component {
                 telefone2: "",
                 documento: "",
                 receberNotif: "",
-
                 //uso exclusivo de colaborador
                 razaoSocial: "",
                 fazEntrega: "",
                 sobreColab: "",
-
                 //tenho que declarar mais não estou utilizando
                 senhaUsuario: "",
                 tipoUsuario: "",
@@ -63,7 +57,6 @@ class Perfil extends Component {
             senhaAtual: "",
             novaSenha: "",
             confirmaSenha: "",
-
             successMsg: "",
             erroMsg: "",
         }
@@ -77,7 +70,6 @@ class Perfil extends Component {
 
     //#region COMPONENTS
     componentDidMount() {
-        console.log("Carregado")
         this.getUsuarioId();
         this.getEnderecoId();
     }
@@ -86,14 +78,12 @@ class Perfil extends Component {
     //#region GETS
     getUsuarioId = () => {
         let idUser = this.state.putUsuario.idUsuario;
-        console.log("idUser: ", idUser);
 
         api.get("/Usuario/" + idUser)
             .then(response => {
                 if (response.status === 200) {
                     this.setState({ putUsuario: response.data })
                 }
-                console.log("respUser: ", this.state.putUsuario)
             })
             .catch(error => {
                 console.log("error: ", error)
@@ -105,14 +95,11 @@ class Perfil extends Component {
     getEnderecoId = () => {
         let idEnd = this.state.putEndereco.idUsuario;
 
-        console.log("idEnd: ", idEnd);
-
         api.get("/Endereco/" + idEnd)
             .then(response => {
                 if (response.status === 200) {
                     this.setState({ putEndereco: response.data })
                 }
-                console.log("respEnd: ", this.state.putEndereco)
             })
             .catch(error => {
                 console.log("error: ", error)
@@ -128,9 +115,6 @@ class Perfil extends Component {
                 ...this.state.putUsuario, [input.target.name]: input.target.value
             }
         })
-        setTimeout(() => {
-            console.log("SetStateUser: ", this.state.putUsuario)
-        }, 500);
     }
 
     putSetStateEndereco = (input) => {
@@ -139,9 +123,6 @@ class Perfil extends Component {
                 ...this.state.putEndereco, [input.target.name]: input.target.value
             }
         })
-        setTimeout(() => {
-            console.log("setStateEnd: ", this.state.putEndereco)
-        }, 500);
     }
 
     putSetStateImg = (input) => {
@@ -197,10 +178,6 @@ class Perfil extends Component {
 
         apiForm.put("/Usuario/" + idUser, usuarioForm)
             .then(response => response.json())
-            .then(response => {
-                console.log(response)
-                console.log("putRespUser: ", response.data);
-            })
             .catch(error => console.log("error: ", error))
 
         setTimeout(() => {
@@ -230,7 +207,6 @@ class Perfil extends Component {
                 console.log(error);
                 this.setState({ erroMsg: "Não foi possível salvar" });
             })
-            // .catch(error => console.log("error: ", error))
 
         setTimeout(() => {
             this.getEnderecoId();
@@ -284,7 +260,6 @@ class Perfil extends Component {
     alterarSenha = (e) => {
         e.preventDefault();
         let senhaBanco = this.state.putUsuario.senhaUsuario
-
         let { senhaAtual, novaSenha, confirmaSenha } = this.state;
         console.log("banco ",senhaBanco)
         console.log("atual ",senhaAtual)
@@ -313,7 +288,7 @@ class Perfil extends Component {
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl} />);
+            $imagePreview = (<img src={imagePreviewUrl} alt="imagem inserida pelo usuário"/>);
         }
 
         return (
@@ -325,11 +300,9 @@ class Perfil extends Component {
                             <h1 className="c_text">PERFIL CLIENTE</h1>
 
                             {/* <!-- form DUPLO--> */}
-
                             {/* <!-- USUARIO--> */}
                             <span className="d_text">Informações</span>
                             <div className="linha_perfil_colab"></div>
-
 
                             <form onSubmit={this.putGeral}>
                                 <div className="c_disp_flex">
@@ -368,18 +341,18 @@ class Perfil extends Component {
                                     <div>
                                         <div className="caixa_cad_direita">
                                             {/* <!-- nome --> */}
-                                            <label aria-label="nome_prod_lbl">Nome</label>
+                                            <label className="textoCampoSub" aria-label="nome_prod_lbl" >Nome</label>
                                             <br />
-                                            <input className="caixa-texto_1 caixa_style" type="text" placeholder="Digite seu nome"
+                                            <input className="caixa-texto_1 caixa_style textoCampoSub" type="text" placeholder="Digite seu nome"
                                                 name="nomeUsuario"
                                                 value={this.state.putUsuario.nomeUsuario}
                                                 onChange={this.putSetStateUsuario}
                                             />
                                             <br />
                                             {/* <!-- email --> */}
-                                            <label aria-label="email_lbl">E-mail</label>
+                                            <label className="textoCampoSub" aria-label="email_lbl">E-mail</label>
                                             <br />
-                                            <input className="caixa-texto_1 caixa_style" type="email" placeholder="exemplo@exemplo.com.br"
+                                            <input className="caixa-texto_1 caixa_style textoCampoSub" type="email" placeholder="exemplo@exemplo.com.br"
                                                 name="emailUsuario"
                                                 value={this.state.putUsuario.emailUsuario}
                                                 onChange={this.putSetStateUsuario}
@@ -388,9 +361,9 @@ class Perfil extends Component {
                                         <div className="caixa_cad_direita c_disp_wrap">
                                             {/* <!-- tel1 --> */}
                                             <div className="caixa_input_2">
-                                                <label aria-label="telefone_lbl">Telefone:</label>
+                                                <label className="textoCampoSub" aria-label="telefone_lbl">Telefone:</label>
                                                 <br />
-                                                <input className="caixa-texto_2 caixa_style" type="text" placeholder="(xx) xxxxx - xxxx"
+                                                <input className="caixa-texto_2 caixa_style textoCampoSub" type="text" placeholder="(xx) xxxxx - xxxx"
                                                     name="telefone1"
                                                     value={this.state.putUsuario.telefone1}
                                                     onChange={this.putSetStateUsuario}
@@ -398,9 +371,9 @@ class Perfil extends Component {
                                             </div>
                                             <div className="caixa_input_2">
                                                 {/* <!-- tel2 --> */}
-                                                <label aria-label="telefone2_lbl">Telefone 2° Opção:</label>
+                                                <label className="textoCampoSub" aria-label="telefone2_lbl">Telefone 2° Opção:</label>
                                                 <br />
-                                                <input className="caixa-texto_2 caixa_style" type="text" placeholder="(xx) xxxxx - xxxx"
+                                                <input className="caixa-texto_2 caixa_style textoCampoSub" type="text" placeholder="(xx) xxxxx - xxxx"
                                                     name="telefone2"
                                                     value={this.state.putUsuario.telefone2}
                                                     onChange={this.putSetStateUsuario}
@@ -408,9 +381,9 @@ class Perfil extends Component {
                                             </div>
                                             <div className="caixa_input_2">
                                                 {/* <!-- cpf --> */}
-                                                <label aria-label="documento_lbl">CPF/CNPJ:</label>
+                                                <label className="textoCampoSub" aria-label="documento_lbl">CPF/CNPJ:</label>
                                                 <br />
-                                                <input className="caixa-texto_2 caixa_style" type="text" placeholder="Digite um documento (CPF/CNPJ)"
+                                                <input className="caixa-texto_2 caixa_style textoCampoSub" type="text" placeholder="Digite um documento (CPF/CNPJ)"
                                                     name="documento"
                                                     value={this.state.putUsuario.documento}
                                                     onChange={this.putSetStateUsuario}
@@ -418,14 +391,13 @@ class Perfil extends Component {
                                             </div>
                                             <div className="caixa_input_2">
                                                 {/* <!-- notificacao --> */}
-                                                <label aria-label="notificacao_lbl">Deseja receber notificações?</label>
+                                                <label className="textoCampoSub" aria-label="notificacao_lbl">Deseja receber notificações?</label>
                                                 <br />
-                                                <select className="caixa-texto_3 style_selec caixa_style"
+                                                <select className="caixa-texto_3 style_selec caixa_style textoCampoSub"
                                                     name="receberNotif"
                                                     value={this.state.putUsuario.receberNotif}
                                                     onChange={this.putSetStateUsuario}
                                                 >
-
                                                     <option value="true">Sim</option>
                                                     <option value="false">Não</option>
 
@@ -435,26 +407,6 @@ class Perfil extends Component {
                                     </div>
                                 </div>
 
-                                {/* Button */}
-                                {/* <div className="c_disp_just">
-                                    <div className="caixa_input_33">
-
-
-                                        <button className="botao" type="submit" name="Editar"><a href="/ReservaCliente">Reservas</a></button>
-
-
-                                    </div>
-                                    <div className="caixa_input_33">
-
-
-                                        <button className="botao" type="submit" name="Salvar">Salvar</button>
-
-
-                                    </div>
-                                </div> */}
-
-                                {/* </form> */}
-
                                 {/* ENDEREÇO */}
                                 <span className="d_text">Endereço</span>
                                 <div className="linha_perfil_colab"></div>
@@ -462,9 +414,9 @@ class Perfil extends Component {
                                 {/* <form onSubmit={this.putAltEndereco}> */}
                                 <div className="c_disp_flex">
                                     <div className="caixa_cad_direita">
-                                        <label aria-label="logradouro_prod_lbl">Logradouro:</label>
+                                        <label className="textoCampoSub" aria-label="logradouro_prod_lbl">Logradouro:</label>
                                         <br />
-                                        <input className="caixa-texto_11 caixa_style" type="text" placeholder="Avenida..."
+                                        <input className="caixa-texto_11 caixa_style textoCampoSub" type="text" placeholder="Avenida..."
                                             name="endereco1"
                                             value={this.state.putEndereco.endereco1}
                                             onChange={this.putSetStateEndereco}
@@ -472,27 +424,27 @@ class Perfil extends Component {
 
                                         <div className="c_disp_flex">
                                             <div className="caixa_input_3">
-                                                <label aria-label="cidade_prod_lbl">Cidade</label>
+                                                <label className="textoCampoSub" aria-label="cidade_prod_lbl">Cidade</label>
                                                 <br />
-                                                <input className="caixa-texto_5 caixa_style" type="text" placeholder="São Paulo"
+                                                <input className="caixa-texto_5 caixa_style textoCampoSub" type="text" placeholder="São Paulo"
                                                     name="cidade"
                                                     value={this.state.putEndereco.cidade}
                                                     onChange={this.putSetStateEndereco}
                                                 />
                                             </div>
                                             <div className="caixa_input_3">
-                                                <label aria-label="bairro_prod_lbl">Bairro</label>
+                                                <label className="textoCampoSub" aria-label="bairro_prod_lbl">Bairro</label>
                                                 <br />
-                                                <input className="caixa-texto_5 caixa_style" type="text" placeholder="Jardins"
+                                                <input className="caixa-texto_5 caixa_style textoCampoSub" type="text" placeholder="Jardins"
                                                     name="bairro"
                                                     value={this.state.putEndereco.bairro}
                                                     onChange={this.putSetStateEndereco}
                                                 />
                                             </div>
                                             <div className="caixa_input_3">
-                                                <label aria-label="estado_prod_lbl">Estado</label>
+                                                <label className="textoCampoSub" aria-label="estado_prod_lbl">Estado</label>
                                                 <br />
-                                                <select className="caixa-texto_5 caixa-texto_7 style_selec caixa_style"
+                                                <select className="caixa-texto_5 caixa-texto_7 style_selec caixa_style textoCampoSub"
                                                     name="estado"
                                                     value={this.state.putEndereco.estado}
                                                     onChange={this.putSetStateEndereco}
@@ -504,17 +456,17 @@ class Perfil extends Component {
                                         </div>
                                     </div>
                                     <div className="caixa_input_3">
-                                        <label aria-label="numero_prod_lbl">Número</label>
+                                        <label className="textoCampoSub" aria-label="numero_prod_lbl">Número</label>
                                         <br />
-                                        <input className="caixa-texto_6 caixa_style" type="text" placeholder="00"
+                                        <input className="caixa-texto_6 caixa_style textoCampoSub" type="text" placeholder="00"
                                             name="numero"
                                             value={this.state.putEndereco.numero}
                                             onChange={this.putSetStateEndereco}
                                         />
                                         <br />
-                                        <label aria-label="cep_prod_lbl">CEP</label>
+                                        <label className="textoCampoSub" aria-label="cep_prod_lbl">CEP</label>
                                         <br />
-                                        <input className="caixa-texto_6 caixa_style" type="text" placeholder="xxxxx-xxx"
+                                        <input className="caixa-texto_6 caixa_style textoCampoSub" type="text" placeholder="xxxxx-xxx"
                                             name="cep"
                                             value={this.state.putEndereco.cep}
                                             onChange={this.putSetStateEndereco}
@@ -526,7 +478,6 @@ class Perfil extends Component {
                                         {
                                             this.state.erroMsg &&
                                             <MDBAlert className="text-center" color="danger" >
-                                                {/* {this.state.erroMsg} */}
                                                 {this.state.erroMsg && <div className="erroMensagem">{this.state.erroMsg}</div>}
                                             </MDBAlert>
                                         }
@@ -534,7 +485,6 @@ class Perfil extends Component {
                                         {
                                             this.state.successMsg &&
                                             <MDBAlert className="text-center" color="success" >
-                                                {/* {this.state.successMsg} */}
                                                 {this.state.successMsg && <div className="certoMensagem">{this.state.successMsg}</div>}
                                             </MDBAlert>
                                         }
@@ -543,18 +493,10 @@ class Perfil extends Component {
                                 {/* btn */}
                                 <div className="c_disp_just">
                                     <div className="caixa_input_33">
-
-
                                         <button className="botao" type="button" name="Editar"><a href="/ReservaCliente">Reservas</a></button>
-
-
                                     </div>
                                     <div className="caixa_input_33">
-
-
                                         <button className="botao" type="submit" name="Salvar">Salvar</button>
-
-
                                     </div>
                                 </div>
                             </form>
