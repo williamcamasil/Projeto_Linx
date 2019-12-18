@@ -1235,6 +1235,10 @@ button{
     margin: auto;
 }
 
+.caixa_of2 p{
+    height: 60px;
+}
+
 .caixa_of p{
     margin: 5px 0px;
 }
@@ -1943,7 +1947,7 @@ button{
         width: 94%;
     }
     .style_selec{
-        height: 31px;
+        height: 33px !important;
     }
 
     /*#endregion*/

@@ -144,20 +144,20 @@ class Registrar extends Component {
                                         onChange={this.senhaSetState}
                                     />
                                     <br/>
+                                    <div className="Mensagens">
                                     {   
                                         this.state.erroMsg && 
-                                        <MDBAlert className="text-center" color="danger" >
+                                        <MDBAlert color="danger" >
                                             {this.state.erroMsg}
                                         </MDBAlert>
                                     }
-                        
                                     {
                                         this.state.successMsg && 
-                                        <MDBAlert className="text-center" color="success" >
+                                        <MDBAlert color="success" >
                                             {this.state.successMsg}
                                         </MDBAlert>
                                     }
-
+                                    </div>
                                     <button className="botao" type="submit">Criar sua Conta</button>
 
                                     <p>Criando sua conta você aceita e concorda com os <a href="Termos" target="_blank" title="Saiba mais sobre nossos termos.">

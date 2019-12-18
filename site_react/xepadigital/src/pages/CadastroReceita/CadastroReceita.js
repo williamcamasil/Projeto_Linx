@@ -410,7 +410,7 @@ class CadastroReceita extends Component {
                                                     <div className="caixa_img_of">
                                                         <img src={"http://localhost:5000/" + receita.imgReceita} alt="imagem ilustrativa de comida" />
                                                     </div>
-                                                    <div className="caixa_of">
+                                                    <div className="caixa_of caixa_of2">
                                                         <p><strong className="textoCampoSub">{receita.nomeReceita}</strong></p>
                                                         <textarea className="text_inv textoCampoSub" readOnly>{receita.descricaoIngrediente}</textarea>
                                                         <textarea className="text_inv textoCampoSub" readOnly>{receita.descricaoPreparo}</textarea>

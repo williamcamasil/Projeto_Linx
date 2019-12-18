@@ -34,10 +34,15 @@ const Carousel = () => (
     <Slider className="slider-wrapper">
       {content.map((item, index) => (
         <div key={index} className="slider-content"
-        style={{ background: `url('${item.image}') no-repeat center center` }} >
+          style={{ background: `url('${item.image}') no-repeat center center` }} >
           <div className="inner">
             <div>
-              <img className="img_centro" src={item.img} alt="carrousel com imagens de alimentos"/>
+              {
+                item.img !== undefined ?
+                < img className="img_centro" src={item.img} alt="carrousel com imagens de alimentos"/>
+                :
+                <></>
+              }
             </div>
             <h1>{item.title}</h1>
           </div>
