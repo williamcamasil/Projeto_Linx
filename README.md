@@ -1,34 +1,34 @@
-Projeto SENAI
+*Projeto SENAI*
 
-FERRAMENTAS UTILIZADAS
+##FERRAMENTAS UTILIZADAS
 
-Compilador de Código
+>Compilador de Código
 	Visual Studio Code
 
-Design
+>Design
 	Adobe XD, MDBootstrap, material-ui
 
-FrontEnd
+>FrontEnd
 	HTML, CSS, JavaScript, React
 
-Backend
+>Backend
 	C#, node.js 
 
-Banco de Dados
+>Banco de Dados
 	SQLServer
 
-Framework
+>Framework
 	.NET Framework
 
-Pacote
+>Pacote
 	npmjs
 
-Versionamento
+>Versionamento
 	Git
 
-Testes
+>Testes
 	Postman
 
 
-Pasta compartilhada no Drive
+##Pasta compartilhada no Drive
 https://drive.google.com/drive/u/0/folders/1RIVqZk2Bg7UdeAWhvQ5NQUh1nrJopOlA
