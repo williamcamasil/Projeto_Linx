@@ -155,9 +155,7 @@ class ReservaCliente extends Component {
                         </div>
                     </div>
 
-                    <div className="reserva_preco">
-                        <span className="textoCampoSub">Preço total dos pedidos R$ 23,14 </span> {/* [REPLICAR] fazer operação matemática aqui */}
-                    </div>
+                    <div className="colab_section_bot"></div>
                 </main>
                 <Footer />
             </div>

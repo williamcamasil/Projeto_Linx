@@ -168,9 +168,7 @@ class ReservaColaborador extends Component {
                         </table>
                     </div>
 
-                    <div className="reserva_preco">
-                        <span className="textoCampoSub">Preço total dos pedidos R$ 59,75</span>
-                    </div>
+                    <div className="colab_section_bot"></div>
                 </main>
                 <Footer />
             </div >
