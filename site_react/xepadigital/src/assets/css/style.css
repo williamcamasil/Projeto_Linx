@@ -2210,6 +2210,9 @@ button{
 
 /*#region RESPONSIVO MOBILE*/
 @media(min-width: 360px) and (max-width: 767px) {
+    .mais{
+        width: 350px;
+    }
 
     /* #region GERAL */
     #tabela-lista-corpo td{
